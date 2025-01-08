@@ -1,5 +1,3 @@
-# BCIT
+# BCIT - Front-End Web Developer Certificate
 
-This is where I will commit all of my BCIT work!
-It will be organized by class and then assignment/project.
-
+Each folder is a class, each sub-folder is an assignment/project.
