@@ -1,88 +1,153 @@
-/* this css is written specifically for this html content */
+/* Warren Chemerika - Landing Page Assignment */
 
 * {
-    margin: 0;
-    padding: 0;
-}
 
-:root {
-    --color-1: mintcream;
-    --color-2: #222;
+    margin: 0;
+
+    padding: 0;
+
 }
 
 body {
-    background: var(--color-1);
-    font-family: "Microsoft Sans Serif";
-    padding: 1em;
+
+    background: #222;
+
+    font-family: "Microsoft Sans Serif", sans-serif;
+
 }
+
 a, body {
-    color: var(--color-2);
+
+    color: #fff7f7;
+
 }
 
 a {
+
     text-decoration: none;
+
     font-weight: bold;
+
 }
+
 a:hover {
+
     text-decoration: underline;
+
+    text-decoration-color: gray;
+
     text-underline-offset: 5px;
+
 }
 
-header, footer {
-    height: 50px;
-    display: flex;
-    align-items: center;
-}
-header {
-    justify-content: end;
-    padding: 0 1em 0 0;
+h1 {
+
+    font-size: 2em;
+
 }
 
-section, ul {
-    display: flex;
-    gap: 1em;
-}
-ul {
-    list-style: none;
-}
-section {
-    align-items: center;
-    justify-content: center;
-    min-height: 500px;
-}
+p {
 
-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#hero > div {
-    display: flex;
-    gap: 1em;
-    align-items: start;
-    flex-direction: column;
-    justify-content: start;
-    height: 200px;
-    padding: 0 0 0 2em;
-}
-img {
-    border-radius: 15px;
-    box-shadow: -7px 7px 1px 0 rgb(234, 234, 100,1), 7px -7px 1px 0 rgb(68, 102, 163);
-    transition: ease 0.25s;
-}
-img:hover {
-    box-shadow: none;
-}
-section p {
+    opacity: 0.9;
+
     line-height: 25px;
+
     width: 400px;
-    background: red;
+
 }
+
+section, ul, section > div, body {
+
+    display: flex;
+
+}
+
+section, ul, section > div  {
+
+    gap: 1em;
+
+}
+
+ul {
+
+    list-style: none;
+
+}
+
+section {
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 500px;
+
+    width: 100vw;
+
+    height: 100vh;
+
+}
+
+section > div {
+
+    align-items: start;
+
+    flex-direction: column;
+
+    justify-content: start;
+
+    min-height: 200px;
+
+    padding: 0 0 0 2em;
+
+}
+
+img {
+
+    border-radius: 15px;
+
+    transition: ease 0.25s;
+
+    box-shadow: 0px 0px 1px 10px limegreen, 0px 0px 15px 10px rgb(0,99,99, 0.5);
+
+}
+
+img:hover {
+
+    box-shadow: none;
+
+}
+
 @media screen and (max-width: 800px) {
+
     p {
-        width: 100%;
-    }
-    #hero {
+
+        width: 335px;
+
+        text-align: center;
+
+        box-sizing: border-box;
 
     }
+
+    section {
+
+        flex-direction: column;
+
+        gap: 2em;
+
+    }
+
+    section > div {
+
+        align-items: center;
+
+    }
+
+    section > div {
+
+        padding: 0;
+
+    }
+
 }
