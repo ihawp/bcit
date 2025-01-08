@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Landing Page | Warren Chemerika</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul id="nav" title="Navbar">
+                <li>
+                    <a href="#" title="Homepage">Home</a>
+                </li>
+                <li>
+                    <a href="#about" title="About Me">About</a>
+                </li>
+                <li>
+                    <a href="#projects" title="My Projects">Projects</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="hero" title="About Me">
+            <img src="w.jpg" alt="" title="" width="200" height="200">
+            <div>
+                <h2>Warren Chemerika</h2>
+                <p>Hello! My name is Warren. I am a Web Developer from Vancouver, BC, I am currently working as a Web Developer at Servoweb Technologies making WordPress sites.</p>
+                <ul id="projects" title="My Projects">
+                    <li>
+                        <a href="https://www.ihawp.com" title="ihawp.com">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="https://www.statementoftheday.com" title="statementoftheday.com">Statement Of The Day v2</a>
+                    </li>
+                    <li>
+                        <a href="https://game.ihawp.com" title="game.ihawp.com">Game</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p id="appendYear">&copy; ihawp</p>
+    </footer>
+    <script type="text/javascript">
+        // append current year to copyright in footer
+        document.getElementById("appendYear").innerText += ' ' + new Date().getFullYear();
+    </script>
+</body>
+</html>
