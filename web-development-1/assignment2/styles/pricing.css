@@ -56,6 +56,10 @@ td, th {
 
 img {
     border: dotted var(--color-1) 1px;
-    width: 100%;
+    height: 200px;
     object-fit: cover;
 }
+video {
+    height: auto;
+}
+img, video { width: 100%; }
