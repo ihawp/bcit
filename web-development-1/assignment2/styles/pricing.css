@@ -56,4 +56,6 @@ td, th {
 
 img {
     border: dotted var(--color-1) 1px;
+    width: 100%;
+    object-fit: cover;
 }
