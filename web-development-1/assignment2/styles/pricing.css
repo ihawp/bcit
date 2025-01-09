@@ -60,6 +60,7 @@ img {
     object-fit: cover;
 }
 video {
+    border: dotted var(--color-2) 1px;
     height: auto;
 }
 img, video { width: 100%; }
