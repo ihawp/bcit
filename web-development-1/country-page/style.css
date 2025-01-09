@@ -1,6 +1,94 @@
 /* Warren Chemerika | BCIT */
 /* Country Page Project */
 
-.class {
+* {
+    margin: 0;
+    padding: 0;
+}
+:root {}
+body {
+    background: white;
+    color: black;
+    font-size: 1.3em;
+}
+h1 {
 
 }
+h2 {
+
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+p {
+
+}
+ul {
+    list-style: none;
+}
+header {
+    background-color: #FF0000;
+    color: white;
+    height: max-content;
+    position: fixed;
+    width: 100vw;
+}
+nav {
+    flex-grow: 1;
+}
+nav a {
+    color: white;
+}
+
+/* gap */
+.gap-1 {
+    gap: 1em;
+}
+
+/* display */
+.display-inherit {
+    display: inherit;
+}
+
+/* flex */
+.flex {
+    display: flex;
+}
+.flex-col {
+    flex-direction: column;
+}
+
+/* align-items */
+.items-center {
+    align-items: center;
+}
+.items-start {
+    align-items: start;
+}
+.items-end {
+    align-items: end;
+}
+
+/* justify-items */
+.justify-center {
+    justify-content: center;
+}
+.justify-start {
+    justify-content: start;
+}
+.justify-end {
+    justify-content: end;
+}
+
+/* hero */
+#hero {
+    /* this is my own image taken at Cypress Mountain */
+    background-image: url("media/bg.webp");
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+/* add loading of smaller image for table/mobile */
+/* via media tags */
