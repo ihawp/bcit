@@ -1,4 +1,9 @@
 <!--
+	Warren Chemerika
+	BCIT - Web Development 1
+	Assignment 2
+	2025 - 01 - 09
+
 	References (Links in text):
 		- MDN Web Docs
 		- Pexels
@@ -9,31 +14,27 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Warren Chemerika">
+	<meta name="description" content="Assignment 2">
+	<
 	<title>Pricing</title>
 	<link rel="stylesheet" href="styles/pricing.css">
 </head>
-
 <body>
-
 	<header>
 		<p>FWDP 1000 - Web Development 1</p>
-
 		<nav>
 			<a href="index.html" rel="noreferrer">Home</a>
 			<a href="about.html" rel="noreferrer">About</a>
 			<a href="news.html" rel="noreferrer">News</a>
 		</nav>
 	</header>
-
 	<main>
-
 		<section>
 		<h1>Our Prices</h1>
-
 		<h2>Find the Plan for You</h2>
-
 		<p>We offer three plans to meet your specific needs, assuming your specific needs fall perfectly in line with one of our three plans.</p>
-
 		<table>
 			<caption>Pricing Comparison</caption>
 			<thead>
@@ -73,26 +74,20 @@
 			<!-- <tfoot></tfoot> -->
 		</table>
 		</section>
-
 		<section class="custom">
 		<h2>Our Support Team</h2>
-
 		<p>Our helpful support team is available 24/7. Our Premium Customers recieve priority when it comes to support but all of our customers receive top notch support from our team. We are fast, efficient and highly rated!</p>
-		
 		<!-- https://www.pexels.com/photo/people-working-in-the-office-5453836/ -->
 		<img src="media/callcenter.webp" alt="Our Beautiful Call Center" title="Our Beautiful Call Center" width="500" height="350">
 		</section>
 		<section>
 		<h2>What Our Customers Say</h2>
-
 		<blockquote>
 			<p><cite>Morbi tincidunt metus eget nibh feugiat rutrum. Etiam elit urna, euismod eget mauris nec, condimentum finibus arcu. Praesent fermentum libero vel nibh accumsan congue. Cras fermentum, enim et facilisis molestie, urna turpis ultrices risus, in lacinia enim augue non sem.</cite></p>
 		</blockquote>
-
 		<blockquote>
 			<p><cite>In maximus interdum dapibus. Mauris eget auctor ligula. Etiam ultrices quam a turpis dictum, eget dignissim leo placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi quis ligula at lacus commodo pulvinar eget vel enim.</cite></p>
 		</blockquote>
-
 		<blockquote>
 			<p><cite>Fusce imperdiet tortor fermentum urna semper maximus. Fusce tempus nisi ac turpis mattis, in convallis lectus laoreet. Sed eget elit id mauris pretium ornare ut a nulla. Proin tempus iaculis dolor, non aliquet dolor malesuada ut. Vestibulum condimentum aliquam libero ac scelerisque.</cite></p>
 		</blockquote>
@@ -113,10 +108,29 @@
 		</section>
 		<section id="faq" class="custom">
 		<h2>Frequently Asked Questions</h2>
-		
 		<!-- Add markup below to show/hide the answers to the questions -->
-
-
+		<!--
+			<details>
+				<summary>
+					When will my order be ready?
+				</summary>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, est in elementum molestie, ex enim eleifend lectus,
+				in porta ex odio vitae libero. Maecenas sit amet elit ut quam suscipit pulvinar. Pellentesque congue imperdiet augue ut laoreet.
+				Mauris imperdiet lacinia erat at luctus.
+			</details>
+			<details>
+				<summary>
+					What are your store hours?
+				</summary>
+				Vestibulum vel sapien sed est aliquam aliquam nec a felis. Nulla tempor ultrices mi ac congue. Morbi sed eros dignissim, sagittis sapien ac, finibus turpis. Curabitur condimentum, urna sit amet mattis faucibus, sem leo viverra orci, ac scelerisque nibh justo at magna.
+			</details>
+			<details>
+				<summary>
+					Can I return the product?
+				</summary>
+				Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris congue, risus congue porttitor dignissim, arcu purus imperdiet massa, sit amet convallis lorem leo sit amet lorem. Cras volutpat lobortis orci, quis efficitur augue fermentum nec. Vivamus non cursus magna.
+			</details>
+		-->
 		</section>
 	</main>
 
@@ -125,12 +139,11 @@
 	</footer>
 
 <script>
-	// add 3 details/summary to DOM
-	// record the 3 objects
-	// click on one close the last one
-	// just like react site
+	// add X amount of details/summary to DOM
+	// click on one to open, if other was open, it will close
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/removeAttribute
 
-	class Wow {
+	class FAQ {
 		constructor() {
 			this.open = 0;
 			this.data = [
@@ -153,7 +166,6 @@
 		init() {
 			const faq = document.getElementById('faq');
 			this.data.map((item, index) => {
-				console.log(index);
 				faq.insertAdjacentHTML('beforeend', `
 					<details id="details-${index}"> <!-- this.open === index ? 'open' : '' -->
 						<summary>
@@ -173,7 +185,7 @@
 			})
 		}
 	}
-	new Wow;
+	new FAQ;
 </script>
 
 </body>
