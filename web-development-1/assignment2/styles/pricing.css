@@ -1,0 +1,59 @@
+* {
+
+}
+:root {
+    --color-1: yellow;
+    --color-2: black;
+}
+::-webkit-scrollbar {
+    width: 0;
+}
+body {
+    background: var(--color-1);
+    color: var(--color-2);
+    font-family: sans-serif;
+    line-height: normal;
+}
+
+h1 {
+    font-size: 2rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Trebuchet MS", serif;
+}
+h2 {
+    font-size: 1.5rem;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px var(--color-2);
+}
+nav {
+    flex-grow: 1;
+    display: inherit;
+    justify-content: end;
+    gap: 1em;
+}
+
+section {
+    padding: 3em;
+}
+
+.custom {
+    background: var(--color-2);
+    color: var(--color-1);
+}
+
+table {
+    text-align: center;
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px solid var(--color-2);
+}
+
+img {
+    border: dotted var(--color-1) 1px;
+}
