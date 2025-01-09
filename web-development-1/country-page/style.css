@@ -6,27 +6,49 @@
     padding: 0;
 }
 :root {}
+::-webkit-scrollbar {
+    width: 0;
+}
 body {
     background: white;
     color: black;
     font-size: 1.3em;
+    font-family: sans-serif;
 }
+
+/* heading */
 h1 {
 
 }
 h2 {
 
 }
+
+/* a */
 a {
     text-decoration: none;
     color: black;
 }
+nav a {
+    color: white;
+    padding: 5px 8px;
+    margin: 5px 0 5px 0;
+    transition: 0.2s ease;
+}
+nav a:hover {
+    background: blue;
+}
+
+/* p */
 p {
 
 }
+
 ul {
     list-style: none;
 }
+
+/* semantic body */
 header {
     background-color: #FF0000;
     color: white;
@@ -37,8 +59,14 @@ header {
 nav {
     flex-grow: 1;
 }
-nav a {
-    color: white;
+main {
+
+}
+section {
+
+}
+footer {
+
 }
 
 /* gap */
