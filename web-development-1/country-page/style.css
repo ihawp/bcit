@@ -52,8 +52,8 @@ ul {
 header {
     background-color: #FF0000;
     color: white;
-    height: max-content;
     position: fixed;
+    height: 80px;
     width: 100vw;
 }
 nav {
