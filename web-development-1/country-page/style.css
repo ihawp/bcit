@@ -123,12 +123,5 @@ footer {
     background-size: cover;
 }
 
-hr {
-    background: gray;
-    width: 30px;
-    height: 1px;
-    border: 0;
-}
-
 /* add loading of smaller image for table/mobile */
 /* via media tags */
