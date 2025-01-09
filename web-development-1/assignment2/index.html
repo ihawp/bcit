@@ -132,7 +132,7 @@
 
 	class Wow {
 		constructor() {
-			this.open = undefined;
+			this.open = 0;
 			this.data = [
 				{
 					summary: 'When will my order be ready?',
@@ -150,26 +150,26 @@
 			this.init();
 		}
 
-		dothing() {
-			// https://stackoverflow.com/questions/7363117/detecting-the-opening-or-closing-of-a-details-element
-			console.log(this.open);
-			if (this.open !== undefined) {
-				document.getElementById(`details-${this.open}`).removeAttribute("open");
-			}
-		}
-
 		init() {
 			const faq = document.getElementById('faq');
 			this.data.map((item, index) => {
+				console.log(index);
 				faq.insertAdjacentHTML('beforeend', `
-					<details id="details-${index}">
+					<details id="details-${index}"> <!-- this.open === index ? 'open' : '' -->
 						<summary>
 						${item.summary}
 						</summary>
 						${item.details}
 					</details>
 				`);
-				document.getElementById(`details-${index}`).addEventListener('toggle', this.dothing);
+				document.getElementById(`details-${index}`).addEventListener('click', () => {
+					try {
+						document.getElementById(`details-${this.open}`).removeAttribute("open");
+					}
+					finally {
+						this.open = index;
+					}
+				});
 			})
 		}
 	}
