@@ -109,6 +109,11 @@ footer {
     justify-content: end;
 }
 
+/* grid */
+/*
+        MAKE GRID LAYOUT!
+ */
+
 /* hero */
 #hero {
     /* this is my own image taken at Cypress Mountain */
@@ -116,6 +121,13 @@ footer {
     height: 100vh;
     background-position: center;
     background-size: cover;
+}
+
+hr {
+    background: gray;
+    width: 30px;
+    height: 1px;
+    border: 0;
 }
 
 /* add loading of smaller image for table/mobile */
