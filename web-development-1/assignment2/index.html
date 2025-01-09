@@ -102,38 +102,21 @@
 				 muted tag required to autoplay video on browsers other than Firefox
 				 not that the autoplay is useful here... just wanted to try it as don't regularly use video
 				 to remove, delete 'muted' + 'autoplay' from <video properties>
+				 and just before uploading I was made aware of the 'loop' + 'playsinline'
+				 loop for looping the video
+				 playsinline for reducing issues in regard to autoplay/play..? will search it up!
 			-->
-			<video width="320" height="240" title="Call center support team enjoying the day" controls muted autoplay>
+			<video width="320" height="240" title="Call center support team enjoying the day" controls muted autoplay loop playsinline>
 				<source src="media/callcenter.mp4" type="video/mp4">
 				Your browser does not support the video tag.
 			</video>
 		</section>
-		<section class="custom">
+		<section id="faq" class="custom">
 		<h2>Frequently Asked Questions</h2>
 		
 		<!-- Add markup below to show/hide the answers to the questions -->
 
 
-			<details>
-				<summary>
-					When will my order be ready?
-				</summary>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, est in elementum molestie, ex enim eleifend lectus,
-				in porta ex odio vitae libero. Maecenas sit amet elit ut quam suscipit pulvinar. Pellentesque congue imperdiet augue ut laoreet.
-				Mauris imperdiet lacinia erat at luctus.
-			</details>
-			<details>
-				<summary>
-					What are your store hours?
-				</summary>
-				Vestibulum vel sapien sed est aliquam aliquam nec a felis. Nulla tempor ultrices mi ac congue. Morbi sed eros dignissim, sagittis sapien ac, finibus turpis. Curabitur condimentum, urna sit amet mattis faucibus, sem leo viverra orci, ac scelerisque nibh justo at magna.
-			</details>
-			<details>
-				<summary>
-					Can I return the product?
-				</summary>
-				Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris congue, risus congue porttitor dignissim, arcu purus imperdiet massa, sit amet convallis lorem leo sit amet lorem. Cras volutpat lobortis orci, quis efficitur augue fermentum nec. Vivamus non cursus magna.
-			</details>
 		</section>
 	</main>
 
@@ -149,30 +132,48 @@
 
 	class Wow {
 		constructor() {
-			this.objects = [];
-			this.data = {
-				0: {
+			this.open = undefined;
+			this.data = [
+				{
 					summary: 'When will my order be ready?',
 					details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, est in elementum molestie, ex enim eleifend lectus, in porta ex odio vitae libero. Maecenas sit amet elit ut quam suscipit pulvinar. Pellentesque congue imperdiet augue ut laoreet. Mauris imperdiet lacinia erat at luctus.'
 				},
-				1: {
+				{
 					summary: 'What are your store hours?',
 					details: 'Vestibulum vel sapien sed est aliquam aliquam nec a felis. Nulla tempor ultrices mi ac congue. Morbi sed eros dignissim, sagittis sapien ac, finibus turpis. Curabitur condimentum, urna sit amet mattis faucibus, sem leo viverra orci, ac scelerisque nibh justo at magna.'
 				},
-				2: {
+				{
 					summary: 'Can I return the product?',
 					details: 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris congue, risus congue porttitor dignissim, arcu purus imperdiet massa, sit amet convallis lorem leo sit amet lorem. Cras volutpat lobortis orci, quis efficitur augue fermentum nec. Vivamus non cursus magna.'
 				}
-			};
+			];
 			this.init();
 		}
-		init() {
-			document.querySelectorAll('main > section:last-of-type').innerHTML += 'wow';
+
+		dothing() {
+			// https://stackoverflow.com/questions/7363117/detecting-the-opening-or-closing-of-a-details-element
+			console.log(this.open);
+			if (this.open !== undefined) {
+				document.getElementById(`details-${this.open}`).removeAttribute("open");
+			}
 		}
-		open() {
-			const object = document.getElementById("bananaphone");
+
+		init() {
+			const faq = document.getElementById('faq');
+			this.data.map((item, index) => {
+				faq.insertAdjacentHTML('beforeend', `
+					<details id="details-${index}">
+						<summary>
+						${item.summary}
+						</summary>
+						${item.details}
+					</details>
+				`);
+				document.getElementById(`details-${index}`).addEventListener('toggle', this.dothing);
+			})
 		}
 	}
+	new Wow;
 </script>
 
 </body>
