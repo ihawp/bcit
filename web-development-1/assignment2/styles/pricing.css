@@ -26,22 +26,32 @@ body {
 header {
     align-items: center;
     border-bottom: solid 1px var(--color-2);
-    padding: 2em;
 }
 section {
-    padding: 3em;
     gap: 1em;
     display: flex;
-    flex-direction: column;
 }
-#hero {
+
+/* gap */
+.gap-half {
     gap: 0.5em;
 }
-#hero-welcome {
+.gap-1 {
+    gap: 1em;
+}
+.gap-2 {
+    gap: 2em;
+}
+
+/* padding */
+.p-1 {
     padding: 1em;
 }
-#hero-welcome h1 {
-    text-align: center;
+.p-2 {
+    padding: 2em;
+}
+.p-3, section {
+    padding: 3em;
 }
 
 /* heading */
@@ -56,38 +66,34 @@ h2 {
     font-size: 1.5rem;
 }
 
+.font-weight-600, a {
+    font-weight: 600;
+}
+
+.text-dec-none, a {
+    text-decoration: none;
+}
+
 a {
     color: var(--color-2);
-    text-decoration: none;
-    font-weight: 600;
 }
 a:hover {
     text-decoration: underline;
 }
+
 nav > ul {
     justify-content: end;
     gap: 2em;
 }
 
-/* height */
-.h-full {
-    height: 100%;
-}
-
-/* flex */
+/* flex box */
 .flex {
     display: flex;
-}
-.flex-grow-1 {
-    flex-grow: 1;
-}
-.flex-grow-inherit {
-    flex-grow: inherit;
 }
 .f-row {
     flex-direction: row;
 }
-.f-col {
+.f-col, section {
     flex-direction: column;
 }
 .fm-row {
@@ -96,21 +102,67 @@ nav > ul {
 .fm-col {
     flex-direction: column;
 }
+/* flex-grow */
+.flex-grow-1 {
+    flex-grow: 1;
+}
+.flex-grow-inherit {
+    flex-grow: inherit;
+}
+
+/* font */
+.font-lg {
+    font-size: 2em;
+}
+.font-md {
+    font-size: 1.5em;
+}
+
+/* width */
+.min-w-two-third {
+    min-width: 66%;
+}
+
+/* justify-content */
+.justify-center {
+    justify-content: center;
+}
+.justify-start {
+    justify-content: start;
+}
+.justify-end {
+    justify-content: end;
+}
+
+/* align-items */
+.items-center {
+    align-items: center;
+}
+.items-start {
+    align-items: start;
+}
+.items-end {
+    align-items: end;
+}
+
 
 /* list */
 .list-none {
     list-style: none;
 }
 
-.custom {
+.inverted {
     background: var(--color-2);
     color: var(--color-1);
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* table */
 table {
     max-width: max-content;
-    text-align: center;
     border-collapse: collapse;
 }
 td, th {
@@ -130,9 +182,6 @@ caption {
 #hero-table caption {
     margin: 0 0 10px 0;
 }
-.hero-table thead {
-
-}
 
 /* media */
 img {
@@ -147,7 +196,7 @@ video {
 img, video { width: 100%; }
 
 /* mobile */
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 800px) {
     header {
         flex-direction: column;
         gap: 2em;
