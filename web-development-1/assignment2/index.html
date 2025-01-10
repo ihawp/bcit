@@ -22,63 +22,77 @@
 	<link rel="stylesheet" href="styles/pricing.css">
 </head>
 <body>
-	<header>
+	<header class="flex">
 		<p>FWDP 1000 - Web Development 1</p>
-		<nav>
-			<a href="index.html" rel="noreferrer">Home</a>
-			<a href="about.html" rel="noreferrer">About</a>
-			<a href="news.html" rel="noreferrer">News</a>
+		<nav class="flex-grow-1">
+			<ul class="flex list-none flex-grow-1">
+				<li>
+					<a href="index.html" rel="noreferrer">Home</a>
+				</li>
+				<li>
+					<a href="about.html" rel="noreferrer">About</a>
+				</li>
+				<li>
+					<a href="news.html" rel="noreferrer">News</a>
+				</li>
+			</ul>
 		</nav>
 	</header>
 	<main>
-		<section>
-		<h1>Our Prices</h1>
-		<h2>Find the Plan for You</h2>
-		<p>We offer three plans to meet your specific needs, assuming your specific needs fall perfectly in line with one of our three plans.</p>
-		<table>
-			<caption>Pricing Comparison</caption>
-			<thead>
-				<tr>
-					<th></th>
-					<th>Basic</th>
-					<th>Standard</th>
-					<th>Premium</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>Price</th>
-					<td>$19 / month</td>
-					<td>$49 / month</td>
-					<td>$99 / month</td>
-				</tr>
-				<tr>
-					<th>Number of Lorems</th>
-					<td>100 Lorems</td>
-					<td>500 Lorems</td>
-					<td>2000 Lorems</td>
-				</tr>
-				<tr>
-					<th>Level of Acccess</th>
-					<td>Limited Access</td>
-					<td>Unlimited Access</td>
-					<td>Preferred Access</td>
-				</tr>
-				<tr>
-					<th>Accounts</th>
-					<td>1</td>
-					<td>5</td>
-					<td>20</td>
-				</tr>
-			</tbody>
-			<!-- <tfoot></tfoot> -->
-		</table>
+		<section id="hero">
+			<div id="hero-welcome" class="custom f-col">
+				<h1>Our Prices</h1>
+			</div>
+			<div class="flex fm-row gap-1">
+				<table id="hero-table">
+					<caption>Pricing Comparison</caption>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Basic</th>
+							<th>Standard</th>
+							<th>Premium</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Price</th>
+							<td>$19 / month</td>
+							<td>$49 / month</td>
+							<td>$99 / month</td>
+						</tr>
+						<tr>
+							<th>Number of Lorems</th>
+							<td>100 Lorems</td>
+							<td>500 Lorems</td>
+							<td>2000 Lorems</td>
+						</tr>
+						<tr>
+							<th>Level of Acccess</th>
+							<td>Limited Access</td>
+							<td>Unlimited Access</td>
+							<td>Preferred Access</td>
+						</tr>
+						<tr>
+							<th>Accounts</th>
+							<td>1</td>
+							<td>5</td>
+							<td>20</td>
+						</tr>
+					</tbody>
+					<!-- <tfoot></tfoot> -->
+				</table>
+				<div class="flex f-col justify-center items-center">
+					<h2>Find the Plan for You</h2>
+					<p>We offer three plans to meet your specific needs, assuming your specific needs fall perfectly in line with one of our three plans.</p>
+				</div>
+			</div>
 		</section>
 		<section class="custom">
 		<h2>Our Support Team</h2>
 		<p>Our helpful support team is available 24/7. Our Premium Customers recieve priority when it comes to support but all of our customers receive top notch support from our team. We are fast, efficient and highly rated!</p>
 		<!-- https://www.pexels.com/photo/people-working-in-the-office-5453836/ -->
-		<img src="media/callcenter.webp" alt="Our Beautiful Call Center" title="Our Beautiful Call Center" width="3668" height="2445">
+		<img src="media/callcenter.webp" alt="Our Beautiful Call Center" title="Our Beautiful Call Center" width="500" height="333">
 		</section>
 		<section>
 		<h2>What Our Customers Say</h2>
@@ -109,6 +123,7 @@
 		<section id="faq" class="custom">
 		<h2>Frequently Asked Questions</h2>
 		<!-- Add markup below to show/hide the answers to the questions -->
+		<!-- Gets inserted from js/index.js -->
 		<!--
 			<details>
 				<summary>
@@ -133,60 +148,9 @@
 		-->
 		</section>
 	</main>
-
 	<footer>
 		<p>&copy; FWDP 2021.</p>
 	</footer>
-
-<script>
-	// add X amount of details/summary to DOM
-	// click on one to open, if other was open, it will close
-	// https://developer.mozilla.org/en-US/docs/Web/API/Element/removeAttribute
-
-	class FAQ {
-		constructor() {
-			this.open = 0;
-			this.data = [
-				{
-					summary: 'When will my order be ready?',
-					details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, est in elementum molestie, ex enim eleifend lectus, in porta ex odio vitae libero. Maecenas sit amet elit ut quam suscipit pulvinar. Pellentesque congue imperdiet augue ut laoreet. Mauris imperdiet lacinia erat at luctus.'
-				},
-				{
-					summary: 'What are your store hours?',
-					details: 'Vestibulum vel sapien sed est aliquam aliquam nec a felis. Nulla tempor ultrices mi ac congue. Morbi sed eros dignissim, sagittis sapien ac, finibus turpis. Curabitur condimentum, urna sit amet mattis faucibus, sem leo viverra orci, ac scelerisque nibh justo at magna.'
-				},
-				{
-					summary: 'Can I return the product?',
-					details: 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris congue, risus congue porttitor dignissim, arcu purus imperdiet massa, sit amet convallis lorem leo sit amet lorem. Cras volutpat lobortis orci, quis efficitur augue fermentum nec. Vivamus non cursus magna.'
-				}
-			];
-			this.init();
-		}
-
-		init() {
-			const faq = document.getElementById('faq');
-			this.data.map((item, index) => {
-				faq.insertAdjacentHTML('beforeend', `
-					<details id="details-${index}"> <!-- this.open === index ? 'open' : '' -->
-						<summary>
-						${item.summary}
-						</summary>
-						${item.details}
-					</details>
-				`);
-				document.getElementById(`details-${index}`).addEventListener('click', () => {
-					try {
-						document.getElementById(`details-${this.open}`).removeAttribute("open");
-					}
-					finally {
-						this.open = index;
-					}
-				});
-			})
-		}
-	}
-	new FAQ;
-</script>
-
+<script src="js/index.js"></script>
 </body>
 </html>
