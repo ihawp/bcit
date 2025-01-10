@@ -25,7 +25,7 @@
 	<header class="flex p-2">
 		<p>FWDP 1000 - Web Development 1</p>
 		<nav class="flex-grow-1">
-			<ul class="flex list-none flex-grow-1">
+			<ul class="flex list-none flex-grow-1 gap-2 justify-end">
 				<li>
 					<a href="index.html" rel="noreferrer">Home</a>
 				</li>
@@ -92,19 +92,21 @@
 			<h2>Our Support Team</h2>
 			<p>Our helpful support team is available 24/7. Our Premium Customers recieve priority when it comes to support but all of our customers receive top notch support from our team. We are fast, efficient and highly rated!</p>
 			<!-- https://www.pexels.com/photo/people-working-in-the-office-5453836/ -->
-			<img src="media/callcenter.webp" alt="Our Beautiful Call Center" title="Our Beautiful Call Center" width="500" height="333">
+			<img class="w-full object-cover h-2" src="media/callcenter.webp" alt="Our Beautiful Call Center" title="Our Beautiful Call Center" width="500" height="333">
 		</section>
-		<section>
-			<h2>What Our Customers Say</h2>
-			<blockquote>
-				<p><cite>Morbi tincidunt metus eget nibh feugiat rutrum. Etiam elit urna, euismod eget mauris nec, condimentum finibus arcu. Praesent fermentum libero vel nibh accumsan congue. Cras fermentum, enim et facilisis molestie, urna turpis ultrices risus, in lacinia enim augue non sem.</cite></p>
-			</blockquote>
-			<blockquote>
-				<p><cite>In maximus interdum dapibus. Mauris eget auctor ligula. Etiam ultrices quam a turpis dictum, eget dignissim leo placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi quis ligula at lacus commodo pulvinar eget vel enim.</cite></p>
-			</blockquote>
-			<blockquote>
-				<p><cite>Fusce imperdiet tortor fermentum urna semper maximus. Fusce tempus nisi ac turpis mattis, in convallis lectus laoreet. Sed eget elit id mauris pretium ornare ut a nulla. Proin tempus iaculis dolor, non aliquet dolor malesuada ut. Vestibulum condimentum aliquam libero ac scelerisque.</cite></p>
-			</blockquote>
+		<section class="flex fm-lg-row-rev">
+			<div class="gap-1 flex f-col">
+				<h2>What Our Customers Say</h2>
+				<blockquote>
+					<p><cite>Morbi tincidunt metus eget nibh feugiat rutrum. Etiam elit urna, euismod eget mauris nec, condimentum finibus arcu. Praesent fermentum libero vel nibh accumsan congue. Cras fermentum, enim et facilisis molestie, urna turpis ultrices risus, in lacinia enim augue non sem.</cite></p>
+				</blockquote>
+				<blockquote>
+					<p><cite>In maximus interdum dapibus. Mauris eget auctor ligula. Etiam ultrices quam a turpis dictum, eget dignissim leo placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi quis ligula at lacus commodo pulvinar eget vel enim.</cite></p>
+				</blockquote>
+				<blockquote>
+					<p><cite>Fusce imperdiet tortor fermentum urna semper maximus. Fusce tempus nisi ac turpis mattis, in convallis lectus laoreet. Sed eget elit id mauris pretium ornare ut a nulla. Proin tempus iaculis dolor, non aliquet dolor malesuada ut. Vestibulum condimentum aliquam libero ac scelerisque.</cite></p>
+				</blockquote>
+			</div>
 			<!-- https://www.pexels.com/video/people-working-as-a-call-center-agent-8865893/ -->
 				<!--
 					 https://stackoverflow.com/questions/17994666/video-auto-play-is-not-working-in-safari-and-chrome-desktop-browser
@@ -115,7 +117,7 @@
 					 loop for looping the video
 					 playsinline for reducing issues in regard to autoplay/play..? will search it up!
 				-->
-			<video width="320" height="240" title="Call center support team enjoying the day" controls muted autoplay loop playsinline>
+			<video id="video" class="h-full w-half h-auto" width="320" height="240" title="Call center support team enjoying the day" controls muted autoplay loop playsinline>
 				<source src="media/callcenter.mp4" type="video/mp4">
 				Your browser does not support the video tag.
 			</video>
@@ -148,7 +150,7 @@
 		-->
 		</section>
 	</main>
-	<footer>
+	<footer class="h-2 flex justify-center items-center">
 		<p>&copy; FWDP 2021.</p>
 	</footer>
 <script src="js/index.js"></script>
