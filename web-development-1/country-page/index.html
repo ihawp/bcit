@@ -10,121 +10,178 @@
   <title>Home</title>
 </head>
 <body>
-  <header class="flex flex-col">
-    <div class="flex items-center">
-
-      <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+  <header class="flex flex-col items-center p-1">
+    <div class="div-media flex flex-col gap-1">
       <div class="flex items-center">
-        <img src="media/canada-flag.svg" alt="Canada Flag" width="90" height="43" />
-        <h1 title="Travel Canada">Travel Canada</h1>
-      </div>
-      <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
-      <nav id="nav-login" aria-label="Login/Register" class="flex-grow-1">
+        <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+        <div class="flex items-center gap-1">
+          <img src="media/canada-flag.png" alt="Canada Flag" width="90" height="43" />
+          <h1 title="Travel Canada">Travel Canada</h1>
+        </div>
+        <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
+        <nav id="language-nav" aria-label="Change Language" class="flex-grow-1">
           <ul class="flex items-center justify-end gap-half">
-              <li>
-                  <a href="#" title="Login">Login</a>
-              </li>
-              <li>
-                  <a href="#" title="Register">Register</a>
-              </li>
+            <li>
+              <a href="#" title="English">English</a>
+            </li>
+            <li>
+              <a href="#" title="Francais">Francais</a>
+            </li>
           </ul>
+        </nav>
+      </div>
+      <nav class="bg-1 flex" aria-label="Main Site Navigation">
+        <ul class="flex gap-1">
+          <li>
+            <a title="Home" class="active" href="index.html">Home</a>
+          </li>
+          <li>
+            <a title="About" href="about.html">About</a>
+          </li>
+          <li>
+            <a title="Visit" href="visit.html">Visit</a>
+          </li>
+          <li>
+            <a title="Credit" href="credit.html">Credit</a>
+          </li>
+        </ul>
+        <ul class="flex flex-grow-1 justify-end gap-1">
+          <li>
+            <a title="Login" href="#">Login</a>
+          </li>
+          <li>
+            <p>|</p>
+          </li>
+          <li>
+            <a title="Register" href="#">Register</a>
+          </li>
+        </ul>
       </nav>
     </div>
-    <nav class="bg-4" aria-label="Main Site Navigation">
-      <ul class="flex gap-1">
-        <li>
-          <a title="Home" href="index.html">Home</a>
-        </li>
-        <li>
-          <a title="About" href="about.html">About</a>
-        </li>
-        <li>
-          <a title="Visit" href="visit.html">Visit</a>
-        </li>
-        <li>
-          <a title="Credit" href="credit.html">Credit</a>
-        </li>
-      </ul>
-    </nav>
   </header>
+
   <main>
     <section>
-      <img src="media/" alt="" title="">
-      <h1>wow</h1>
+
+
+
     </section>
   </main>
-  <footer class="inverted flex flex-col gap-2 p-1">
-    <h2>Canada</h2>
-    <div class="flex flex-wrap">
-      <nav aria-label="footerNav1" class="w-third flex flex-col gap-half">
-        <h3>About</h3>
-        <ul class="flex flex-col gap-half">
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">About</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Home</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">About</a>
-          </li>
-        </ul>
-      </nav>
-      <nav aria-label="footerNav2" class="w-third flex flex-col gap-half">
-        <h3>About</h3>
-        <ul class="flex flex-col gap-half">
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">About</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Home</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">About</a>
-          </li>
-        </ul>
-      </nav>
-      <nav aria-label="footerNav3" class="w-third flex flex-col gap-half">
-        <h3>About</h3>
-        <ul class="flex flex-col gap-half">
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">About</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Home</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
-          </li>
-          <li>
-            <a title="" href="" target="_blank" rel="noreferrer">About</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="flex gap-1">
-      <address>
-        House of Commons<br>
-        Ottawa, Ontario<br>
-        Canada<br>
-        K1A 0A6
-      </address>
-      <p class="w-full text-end font-weight-900">&copy; Canada 2025</p>
+
+  <footer class="inverted p-2 flex items-center justify-center">
+    <div class="div-media flex flex-col gap-2">
+      <div class="flex items-center gap-1">
+        <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+        <img alt="Canada Flag" src="media/canada-flag-alt.png" width="68.5" height="32">
+        <h2>Travel Canada | Resources</h2>
+      </div>
+      <div class="flex flex-col-sm gap-2 flex-wrap basis-auto">
+        <nav aria-label="footerNav1" class="flex flex-grow-1 flex-col gap-half min-width-150">
+          <p class="font-weight-900">Home</p>
+          <ul class="flex flex-col gap-half">
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Link</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Sections</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">From</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Each</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Page</a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="footerNav2" class="flex flex-grow-1 flex-col gap-half min-width-150">
+          <p class="font-weight-900">About</p>
+          <ul class="flex flex-col gap-half">
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="footerNav3" class="flex flex-grow-1 flex-col gap-half min-width-150">
+          <p class="font-weight-900">Visit</p>
+          <ul class="flex flex-col gap-half">
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="footerNav4" class="flex flex-grow-1 flex-col gap-half min-width-150">
+          <p class="font-weight-900">Credit</p>
+          <ul class="flex flex-col gap-half">
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+            </li>
+            <li>
+              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+
+      <div class="flex flex-col-rev-sm-nr gap-2">
+        <div class="flex flex-col gap-2 w-full">
+          <address>
+            Parliament Hill<br>
+            Wellington St, Ottawa, ON K1A 0A9<br>
+            Canada<br>
+            999-999-9999<br>
+            <a class="active" rel="noreferrer" href="mailto:canada@canada.ca">canada@canada.ca</a>
+          </address>
+          <p class="w-full">&copy; Canada 2025.</p>
+
+        </div>
+        <div class="w-full text-start-sm flex flex-col gap-1">
+          <blockquote>
+            "I love Canada a lot!"<br>
+            <cite>- Prime Minister</cite>
+          </blockquote>
+          <blockquote>
+            "I think this place is so awesomeasdasd asd adas as dsa dsad sadas!"<br>
+            <cite>- Austin Powers</cite>
+          </blockquote>
+        </div>
+      </div>
     </div>
   </footer>
 </body>

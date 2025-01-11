@@ -10,7 +10,7 @@
     --1: white;
     --2: #26374a;
     --3: red;
-    --4: gray;
+    --4: rgb(255, 255, 255, 0.6);
 }
 
 /* background */
@@ -31,7 +31,7 @@
 .c-1 {
     color: var(--1);
 }
-.c-2, #nav-login a {
+.c-2 {
     color: var(--2);
 }
 .c-3 {
@@ -86,9 +86,8 @@
 
 /* semantics */
 body {
-    background: var(--1);
     color: var(--2);
-    font-family: ;
+    font-family: sans-serif;
 }
 .inverted {
     background: var(--2);
@@ -103,7 +102,7 @@ nav {
 main {
 
 }
-section {
+section, .div-media {
     width: 100%;
 }
 footer {
@@ -112,7 +111,14 @@ footer {
 
 
 /* text */
-.text-start {
+/* text-smart-sm is media class
+   at small breakpoint (480px) it
+   is changed to text-align end
+   a bit custom, but could be extended
+   in a larger code base, and perhaps down
+   the line I will have to extend it.
+*/
+.text-start, .text-start-sm  {
     text-align: start;
 }
 .text-center {
@@ -133,12 +139,27 @@ h4 {}
 h5 {}
 h6 {}
 
+blockquote {
+    opacity: 0.2;
+}
+
 /* p/a */
 p {
+
 }
 a {
     text-decoration: none;
-    color: var(--1);
+    transition: ease 0.1s;
+}
+a:hover:not(#language-nav a), a.active {
+    text-underline-offset: 4px;
+    text-decoration: underline;
+}
+footer a {
+    color: var(--4);
+}
+header a {
+    color: var(--2);
 }
 
 /* ul/li */
@@ -153,9 +174,10 @@ li {}
 
 
 /* flex */
-.flex {
+.flex, main {
     display: flex;
 }
+
 
 /* flex direction / flex direction media */
 /* trying flex media classes for different breakpoints */
@@ -169,7 +191,7 @@ li {}
 .flex-row-lg {
     flex-direction: row;
 }
-.flex-col,
+.flex-col, main,
 .flex-col-sm,
 .flex-col-md,
 .flex-col-lg
@@ -186,7 +208,8 @@ li {}
 .flex-col-rev,
 .flex-col-rev-sm,
 .flex-col-rev-md,
-.flex-col-rev-lg
+.flex-col-rev-lg,
+.flex-col-rev-sm-nr
 {
     flex-direction: column-reverse;
 }
@@ -204,6 +227,11 @@ li {}
     flex-wrap: nowrap;
 }
 
+/* flex basis */
+.basis-auto {
+    flex-basis: auto;
+}
+
 /* justify content */
 .justify-center {
     justify-content: center;
@@ -216,7 +244,7 @@ li {}
 }
 
 /* align items */
-.items-center {
+.items-center, main {
     align-items: center;
 }
 .items-start {
@@ -296,7 +324,24 @@ li {}
 .w-third {
     width: 33%;
 }
+
+/* min width */
+.min-width-150 {
+    min-width: 150px;
+}
+.min-width-150:last-of-type {
+    flex-grow: 1;
+}
+
 /* grid */
+
+
+#language-nav a {
+
+    background-color: var(--2);
+    color: var(--1);
+    padding: 0.5em;
+}
 
 
 /* media */
@@ -305,7 +350,7 @@ li {}
     .flex-row-sm {
         flex-direction: column;
     }
-    .flex-col-sm {
+    .flex-col-sm, .flex-col-rev-sm-nr {
         flex-direction: row;
     }
     .flex-row-rev-sm {
@@ -313,6 +358,12 @@ li {}
     }
     .flex-col-rev-sm {
         flex-direction: row-reverse;
+    }
+    .text-start-sm {
+        text-align: end;
+    }
+    .text-end-sm {
+        text-align: start;
     }
 }
 @media screen and (min-width: 767px) {
@@ -329,7 +380,7 @@ li {}
     .flex-col-rev-md {
         flex-direction: row-reverse;
     }
-    section {
+    section, .div-media {
         width: 760px;
     }
 }
@@ -347,7 +398,7 @@ li {}
     .flex-col-rev-lg {
         flex-direction: row-reverse;
     }
-    section {
+    section, .div-media {
         width: 1190px;
     }
 }
