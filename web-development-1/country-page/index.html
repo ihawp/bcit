@@ -10,14 +10,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="flex items-center">
-    <nav class="display-inherit items-center justify-start">
+  <header>
+    <div>
       <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
       <img src="media/canada-flag.svg" alt="Canada Flag" width="90" height="43" />
       <h1 title="Travel Canada">Travel Canada</h1>
-    </nav>
-    <nav class="display-inherit justify-end" style="padding: 0 1em 0 0;">
-      <ul class="display-inherit gap-1">
+    </div>
+    <nav>
+      <ul>
         <li>
           <a href="index.html">Home</a>
         </li>
@@ -28,13 +28,13 @@
           <a href="visit.html">Visit</a>
         </li>
         <li>
-          <a href="contact.html">Contact</a>
+          <a href="credit.html">Credit</a>
         </li>
       </ul>
     </nav>
   </header>
   <main>
-    <section id="hero" class="flex items-center justify-center">
+    <section id="hero">
       <h2>Canada</h2>
     </section>
     <section>
@@ -42,30 +42,14 @@
         this is some text about canada
       </p>
     </section>
-    <section style="
-
-    display: grid;
-
-    grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
-
-    grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] 100px [fourth-line] 100px [fifth-line] auto [last-line];
-
-">
-      <div style="
-        background: red;
-
-        grid-column-start: row1-start;
-        grid-column-end: five;
-
-        grid-row-start: row1-end;
-        grid-row-end: 5;
-">
+    <section>
+      <div>
 
       </div>
     </section>
   </main>
   <footer>
-    <p style="grid-column-end: auto">this is the footer</p>
+    <p>this is the footer</p>
   </footer>
 </body>
 </html>
