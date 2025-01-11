@@ -4,52 +4,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <meta name="author" content="Warren Chemerika">
-  <meta name="Description" content="Warren Chemerika">
+  <meta name="description" content="Warren Chemerika">
   <link rel="icon" href="media/shooting-star.ico" type="image/x-icon">
-  <title>Country Page | Warren Chemerika</title>
   <link rel="stylesheet" href="style.css">
+  <title>Home</title>
 </head>
 <body>
-  <header>
-    <div>
+  <header class="flex flex-col">
+    <div class="flex items-center">
+
       <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
-      <img src="media/canada-flag.svg" alt="Canada Flag" width="90" height="43" />
-      <h1 title="Travel Canada">Travel Canada</h1>
+      <div class="flex items-center">
+        <img src="media/canada-flag.svg" alt="Canada Flag" width="90" height="43" />
+        <h1 title="Travel Canada">Travel Canada</h1>
+      </div>
+      <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
+      <nav id="nav-login" aria-label="Login/Register" class="flex-grow-1">
+          <ul class="flex items-center justify-end gap-half">
+              <li>
+                  <a href="#" title="Login">Login</a>
+              </li>
+              <li>
+                  <a href="#" title="Register">Register</a>
+              </li>
+          </ul>
+      </nav>
     </div>
-    <nav>
-      <ul>
+    <nav class="bg-4" aria-label="Main Site Navigation">
+      <ul class="flex gap-1">
         <li>
-          <a href="index.html">Home</a>
+          <a title="Home" href="index.html">Home</a>
         </li>
         <li>
-          <a href="about.html">About</a>
+          <a title="About" href="about.html">About</a>
         </li>
         <li>
-          <a href="visit.html">Visit</a>
+          <a title="Visit" href="visit.html">Visit</a>
         </li>
         <li>
-          <a href="credit.html">Credit</a>
+          <a title="Credit" href="credit.html">Credit</a>
         </li>
       </ul>
     </nav>
   </header>
   <main>
-    <section id="hero">
-      <h2>Canada</h2>
-    </section>
     <section>
-      <p>
-        this is some text about canada
-      </p>
-    </section>
-    <section>
-      <div>
-
-      </div>
+      <img src="media/" alt="" title="">
+      <h1>wow</h1>
     </section>
   </main>
-  <footer>
-    <p>this is the footer</p>
+  <footer class="inverted flex flex-col gap-2 p-1">
+    <h2>Canada</h2>
+    <div class="flex flex-wrap">
+      <nav aria-label="footerNav1" class="w-third flex flex-col gap-half">
+        <h3>About</h3>
+        <ul class="flex flex-col gap-half">
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">About</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">About</a>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="footerNav2" class="w-third flex flex-col gap-half">
+        <h3>About</h3>
+        <ul class="flex flex-col gap-half">
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">About</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">About</a>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="footerNav3" class="w-third flex flex-col gap-half">
+        <h3>About</h3>
+        <ul class="flex flex-col gap-half">
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">About</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+          </li>
+          <li>
+            <a title="" href="" target="_blank" rel="noreferrer">About</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="flex gap-1">
+      <address>
+        House of Commons<br>
+        Ottawa, Ontario<br>
+        Canada<br>
+        K1A 0A6
+      </address>
+      <p class="w-full text-end font-weight-900">&copy; Canada 2025</p>
+    </div>
   </footer>
 </body>
 </html>

@@ -1,10 +1,353 @@
 /* Warren Chemerika | BCIT */
 /* Country Page Project */
+/* Mobile First CSS */
 
 * {
     margin: 0;
     padding: 0;
 }
+:root {
+    --1: white;
+    --2: #26374a;
+    --3: red;
+    --4: gray;
+}
+
+/* background */
+.bg-1 {
+    background: var(--1);
+}
+.bg-2 {
+    background: var(--2);
+}
+.bg-3 {
+    background: var(--3);
+}
+.bg-4 {
+    background: var(--4);
+}
+
+/* color */
+.c-1 {
+    color: var(--1);
+}
+.c-2, #nav-login a {
+    color: var(--2);
+}
+.c-3 {
+    color: var(--3);
+}
+.c-4 {
+    color: var(--4);
+}
+
+/* border color */
+.bc-1 {
+    border-color: var(--1);
+}
+.bc-2 {
+    border-color: var(--1);
+}
+.bc-3 {
+    border-color: var(--1);
+}
+.bc-4 {
+    border-color: var(--1);
+}
+
+/* font weight */
+.font-100 {
+    font-weight: 100;
+}
+.font-200 {
+    font-weight: 200;
+}
+.font-300 {
+    font-weight: 300;
+}
+.font-400 {
+    font-weight: 400;
+}
+.font-weight-500 {
+    font-weight: 500;
+}
+.font-weight-600 {
+    font-weight: 600;
+}
+.font-weight-700 {
+    font-weight: 700;
+}
+.font-weight-800 {
+    font-weight: 800;
+}
+.font-weight-900 {
+    font-weight: 900;
+}
+
+/* semantics */
+body {
+    background: var(--1);
+    color: var(--2);
+    font-family: ;
+}
+.inverted {
+    background: var(--2);
+    color: var(--1);
+}
+header {
+
+}
+nav {
+
+}
+main {
+
+}
+section {
+    width: 100%;
+}
+footer {
+
+}
+
+
+/* text */
+.text-start {
+    text-align: start;
+}
+.text-center {
+    text-align: center;
+}
+.text-end {
+    text-align: end;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: sans-serif;
+}
+h1 {}
+h2 {}
+h3 {}
+h4 {}
+h5 {}
+h6 {}
+
+/* p/a */
+p {
+}
+a {
+    text-decoration: none;
+    color: var(--1);
+}
+
+/* ul/li */
+ul {
+    list-style: none;
+}
+li {}
+
+
+/* CUSTOM CLASSES */
+
 
 
 /* flex */
+.flex {
+    display: flex;
+}
+
+/* flex direction / flex direction media */
+/* trying flex media classes for different breakpoints */
+/*  -row/-col: will have no breakpoint
+    -sm: small breakpoint (480px)
+    -md: medium breakpoint (767px)
+    -lg: large breakpoint (1200px) */
+.flex-row,
+.flex-row-sm,
+.flex-row-md,
+.flex-row-lg {
+    flex-direction: row;
+}
+.flex-col,
+.flex-col-sm,
+.flex-col-md,
+.flex-col-lg
+{
+    flex-direction: column;
+}
+.flex-row-rev,
+.flex-row-rev-sm,
+.flex-row-rev-md,
+.flex-row-rev-lg
+{
+    flex-direction: row-reverse;
+}
+.flex-col-rev,
+.flex-col-rev-sm,
+.flex-col-rev-md,
+.flex-col-rev-lg
+{
+    flex-direction: column-reverse;
+}
+
+/* flex grow */
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+/* flex wrap */
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+/* justify content */
+.justify-center {
+    justify-content: center;
+}
+.justify-start {
+    justify-content: start;
+}
+.justify-end {
+    justify-content: end;
+}
+
+/* align items */
+.items-center {
+    align-items: center;
+}
+.items-start {
+    align-items: start;
+}
+.items-end {
+    align-items: end;
+}
+
+/* gap */
+.gap-half {
+    gap: 0.5em;
+}
+.gap-1 {
+    gap: 1em;
+}
+.gap-2 {
+    gap: 2em;
+}
+.gap-3 {
+    gap: 3em;
+}
+.gap-4 {
+    gap: 4em;
+}
+.gap-5 {
+    gap: 5em;
+}
+
+/* padding */
+.p-half {
+    padding: 0.5em;
+}
+.p-1 {
+    padding: 1em;
+}
+.p-2 {
+    padding: 2em;
+}
+.p-3 {
+    padding: 3em;
+}
+.p-4 {
+    padding: 4em;
+}
+.p-5 {
+    padding: 5em;
+}
+
+/* margin */
+.m-half {
+    margin: 0.5em;
+}
+.m-1 {
+    margin: 1em;
+}
+.m-2 {
+    margin: 2em;
+}
+.m-3 {
+    margin: 3em;
+}
+.m-4 {
+    margin: 4em;
+}
+.m-5 {
+    margin: 5em;
+}
+
+/* width % */
+.w-full {
+    width: 100%;
+}
+.w-half {
+    width: 50%;
+}
+.w-third {
+    width: 33%;
+}
+/* grid */
+
+
+/* media */
+@media screen and (min-width: 480px) {
+    /* flex direction media */
+    .flex-row-sm {
+        flex-direction: column;
+    }
+    .flex-col-sm {
+        flex-direction: row;
+    }
+    .flex-row-rev-sm {
+        flex-direction: column-reverse;
+    }
+    .flex-col-rev-sm {
+        flex-direction: row-reverse;
+    }
+}
+@media screen and (min-width: 767px) {
+    /* flex direction media */
+    .flex-row-md {
+        flex-direction: column;
+    }
+    .flex-col-md {
+        flex-direction: row;
+    }
+    .flex-row-rev-md {
+        flex-direction: column-reverse;
+    }
+    .flex-col-rev-md {
+        flex-direction: row-reverse;
+    }
+    section {
+        width: 760px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    /* flex direction media */
+    .flex-row-lg {
+        flex-direction: column;
+    }
+    .flex-col-lg {
+        flex-direction: row;
+    }
+    .flex-row-rev-lg {
+        flex-direction: column-reverse;
+    }
+    .flex-col-rev-lg {
+        flex-direction: row-reverse;
+    }
+    section {
+        width: 1190px;
+    }
+}
