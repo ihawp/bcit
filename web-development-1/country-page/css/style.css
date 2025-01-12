@@ -38,6 +38,10 @@ nav {
 }
 main {
 }
+section {
+    box-sizing: border-box;
+    padding: 0 1em 0 1em;
+}
 section, .div-media {
     width: 100%;
 }
@@ -316,42 +320,54 @@ li {}
 
 /* p x */
 .px-half {
-    padding: 0.5em 0 0.5em 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 .px-1 {
-    padding: 1em 0 1em 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 .px-2 {
-    padding: 2em 0 2em 0;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 .px-3 {
-    padding: 3em 0 3em 0;
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 .px-4 {
-    padding: 4em 0 4em 0;
+    padding-top: 4em;
+    padding-bottom: 4em;
 }
 .px-5 {
-    padding: 5em 0 5em 0;
+    padding-top: 5em;
+    padding-bottom: 5em;
 }
 
 /* p y */
 .py-half {
-    padding: 0 0.5em 0 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 .py-1 {
-    padding: 0 1em 0 1em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 .py-2 {
-    padding: 0 2em 0 2em;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 .py-3 {
-    padding: 0 3em 0 3em;
+    padding-left: 3em;
+    padding-right: 3em;
 }
 .py-4 {
-    padding: 0 4em 0 4em;
+    padding-left: 4em;
+    padding-right: 4em;
 }
 .py-5 {
-    padding: 0 5em 0 5em;
+    padding-left: 5em;
+    padding-right: 5em;
 }
 
 /* margin */
@@ -372,6 +388,58 @@ li {}
 }
 .m-5 {
     margin: 5em;
+}
+
+/* m x */
+.mx-half {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.mx-1 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.mx-2 {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.mx-3 {
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+.mx-4 {
+    margin-top: 4em;
+    margin-bottom: 4em;
+}
+.mx-5 {
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
+/* m y */
+.my-half {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+.my-1 {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.my-2 {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+.my-3 {
+    margin-left: 3em;
+    margin-right: 3em;
+}
+.my-4 {
+    margin-left: 4em;
+    margin-right: 4em;
+}
+.my-5 {
+    margin-left: 5em;
+    margin-right: 5em;
 }
 
 /* width % */
@@ -512,6 +580,9 @@ input[type=text], form button {
     }
     .display-sm {
         display: flex;
+    }
+    section {
+        padding: unset;
     }
 }
 @media screen and (min-width: 767px) {

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="author" content="Warren Chemerika">
+    <meta name="description" content="Warren Chemerika">
+    <link media="(min-width: 580px)" rel="preload" href="media/bg.webp" as="image">
+    <link media="(max-width: 580px)" rel="preload" href="media/bg-mobile.webp" as="image">
+    <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload stylesheet" href="css/style.css" as="style" type="text/css">
+    <link rel="icon" as="image" href="media/shooting-star.webp" type="image/x-icon">
+
+    <title>Visit</title>
+</head>
+<body>
+<header class="flex flex-col items-center p-1">
+    <div class="div-media flex flex-col gap-1 display-sm">
+        <div class="flex items-center">
+            <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+            <div class="flex items-center gap-1">
+                <img src="media/canada-flag.webp" title="Canada Flag" draggable="false" alt="Canada Flag" width="90" height="45" />
+                <h1 title="Travel Canada" class="display-md">Travel Canada</h1>
+            </div>
+            <div class="flex-grow-1 flex justify-end gap-1">
+                <nav aria-label="Login/Register">
+                    <ul class="flex flex-grow-1 justify-end gap-1">
+                        <li>
+                            <a title="Login" href="#">Login</a>
+                        </li>
+                        <li>
+                            <p>|</p>
+                        </li>
+                        <li>
+                            <a title="Register" href="#">Register</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav id="language-nav" aria-label="Change Language">
+                    <ul class="flex items-center justify-end gap-half">
+                        <li>
+                            <a href="#" title="Francais">Francais</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
+        </div>
+        <nav class="bg-1 flex" aria-label="Desktop/Tablet Main Site Navigation">
+            <ul class="flex gap-1">
+                <li>
+                    <a title="Home" href="index.html">Home</a>
+                </li>
+                <li>
+                    <a title="About" href="about.html">About</a>
+                </li>
+                <li>
+                    <a title="Visit" class="active" href="visit.html">Visit</a>
+                </li>
+                <li>
+                    <a title="Credit" href="credit.html">Credit</a>
+                </li>
+            </ul>
+            <ul class="flex w-full justify-end">
+                <li>
+                    <form action="php/search.php" method="post" class="flex items-center gap-half">
+                        <label for="searchBarDesktop" hidden>Search</label>
+                        <input id="searchBarDesktop" class="bc-2 c-2 bs-solid outline-none bw-2" name="search" type="text" placeholder="Search" required>
+                        <button class="bc-2 bg-2 c-1 bs-solid bw-2" title="Search">Search</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="none flex w-full flex-wrap gap-1">
+        <div class="flex-grow-1 flex items-center">
+            <img src="media/canada-flag.webp" title="Canada Flag" draggable="false" alt="Canada Flag" width="90" height="45" />
+        </div>
+        <div class="flex flex-grow-1 items-center justify-end">
+            <button id="button-mobile-nav" title="Navigation" aria-label="Navigation" class="none-sm">|||</button>
+        </div>
+        <nav id="mobile-nav" class="w-full h-full overflow-auto flex flex-col gap-1 p-2" aria-label="Mobile Main Site Navigation">
+            <div class="flex items-center gap-1">
+                <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+                <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag.webp" width="60" height="30">
+                <h2>Travel Canada</h2>
+            </div>
+            <ul class="flex gap-1 mobile-alt">
+                <li>
+                    <a href="#" title="Francais" class="c-1">Francais</a>
+                </li>
+            </ul>
+            <ul class="flex gap-1 mobile-alt">
+                <li>
+                    <a title="Login" class="c-1" href="#">Login</a>
+                </li>
+                <li>
+                    <p>|</p>
+                </li>
+                <li>
+                    <a title="Register" class="c-1" href="#">Register</a>
+                </li>
+            </ul>
+            <ul class="flex flex-col gap-1">
+                <li>
+                    <a title="Home" class="font-weight-600 c-1" href="index.html">Home</a>
+                </li>
+                <li>
+                    <a title="About" class="font-weight-600 c-1" href="about.html">About</a>
+                </li>
+                <li>
+                    <a title="Visit" class="font-weight-600 c-1" href="visit.html">Visit</a>
+                </li>
+                <li>
+                    <a title="Credit" class="font-weight-600 c-1" href="credit.html">Credit</a>
+                </li>
+            </ul>
+            <div class="flex items-center justify-center min-h-200">
+                <button id="button-exit-mobile-nav" class="c-1 bc-1 bs-solid bw-2" title="Exit Navigation" aria-label="Exit Navigation">X</button>
+            </div>
+        </nav>
+        <nav aria-label="Mobile Search Navigation" class="flex w-full items-center justify-center">
+            <ul class="w-full">
+                <li class="w-full">
+                    <form action="php/search.php" method="post" class="flex items-center gap-half w-full">
+                        <label for="searchBarMobile" hidden>Search</label>
+                        <input id="searchBarMobile" class="bc-2 c-2 w-full bs-solid outline-none bw-2" name="search" type="text" placeholder="Search" required>
+                        <button class="bc-2 bg-2 c-1 bs-solid bw-2 w-third" title="Search">Search</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- PERHAPS: add search bar to header -->
+
+<main class="flex flex-col">
+    <section id="hero">
+        <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="200" width="100%">
+    </section>
+    <section id="">
+        <h2>VISIT!</h2>
+    </section>
+</main>
+
+<footer class="inverted p-1 flex items-center justify-center">
+    <div class="div-media flex flex-col gap-2">
+        <div class="flex items-center gap-1">
+            <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" width="68.5" height="34.25">
+            <h2>Travel Canada</h2>
+        </div>
+        <div class="flex flex-col-sm gap-2 flex-wrap basis-auto">
+            <nav aria-label="footerNav1" class="flex flex-grow-1 flex-col gap-half min-width-150">
+                <p class="font-weight-900">Home</p>
+                <ul class="flex flex-col gap-half">
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Link</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Sections</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">From</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Each</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Page</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav aria-label="footerNav2" class="flex flex-grow-1 flex-col gap-half min-width-150">
+                <p class="font-weight-900">About</p>
+                <ul class="flex flex-col gap-half">
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">About</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">About</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav aria-label="footerNav3" class="flex flex-grow-1 flex-col gap-half min-width-150">
+                <p class="font-weight-900">Visit</p>
+                <ul class="flex flex-col gap-half">
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">About</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">About</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav aria-label="footerNav4" class="flex flex-grow-1 flex-col gap-half min-width-150">
+                <p class="font-weight-900">Credit</p>
+                <ul class="flex flex-col gap-half">
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">About</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+                    </li>
+                    <li>
+                        <a title="" href="" target="_blank" rel="noreferrer">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <div class="flex flex-col-rev-sm-nr gap-2">
+            <div class="flex flex-col gap-2 w-full">
+                <address>
+                    Parliament Hill<br>
+                    Wellington St, Ottawa, ON K1A 0A9<br>
+                    Canada<br>
+                    999-999-9999<br>
+                    <a class="active" rel="noreferrer" href="mailto:canada@canada.ca">canada@canada.ca</a>
+                </address>
+                <p class="w-full">&copy; Canada 2025.</p>
+
+            </div>
+            <div class="w-full text-start-sm flex flex-col gap-1">
+                <blockquote>
+                    "I love Canada a lot!"<br>
+                    <cite>- Prime Minister</cite>
+                </blockquote>
+                <blockquote>
+                    "I think this place is so awesomeasdasd asd adas as dsa dsad sadas!"<br>
+                    <cite>- Austin Powers</cite>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/quick.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript" defer></script>
+</body>
+</html>

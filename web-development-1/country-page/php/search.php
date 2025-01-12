@@ -145,11 +145,11 @@ $query = $_POST['search'];
 
   <main class="flex flex-col">
     <section class="flex px-4 items-center justify-center text-center">
-        <p class="font-weight-200">Your search for "<?= $query ?>" returned 0 results.</p>
+        <p class="font-weight-400 p-1">Your search for "<?= $query ?>" returned 0 results.</p>
     </section>
   </main>
 
-  <footer class="inverted p-2 flex items-center justify-center">
+  <footer class="inverted p-1 flex items-center justify-center">
     <div class="div-media flex flex-col gap-2">
       <div class="flex items-center gap-1">
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
