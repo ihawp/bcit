@@ -1,8 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 /* Warren Chemerika | BCIT */
 /* Country Page Project */
 /* Mobile First CSS */
 
+@font-face {
+    font-family: 'Roboto';
+    src: url("../fonts/Roboto-VariableFont_wdth,wght.ttf");
+    font-display: swap;
+}
 
 * {
     margin: 0;
@@ -439,7 +443,7 @@ input[type=text], form button {
     but use .flex-row.sm to identify switching in media queries...
     that is in relation to the flex stuff.
  */
-@media screen and (min-width: 560px) {
+@media screen and (min-width: 580px) {
     /* flex direction media */
     .flex-row-sm {
         flex-direction: column;

@@ -1,3 +1,7 @@
+if (window.innerWidth > 580) {
+    // change src to desktop res image
+    document.getElementById("hero-image").src = 'media/bg.webp';
+}
 class MobileNav {
     constructor() {
         this.init();
