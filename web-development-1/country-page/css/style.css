@@ -364,7 +364,6 @@ li {}
 }
 
 #mobile-nav {
-    display: none;
     z-index: 999;
     position: fixed;
     color: var(--1);
@@ -428,8 +427,8 @@ input[type=text], form button {
     font-family: 'Roboto', serif;
 }
 
-
-.display {
+/* display */
+.display, .display-sm, .display-md, .display-lg, #mobile-nav {
     display: none;
 }
 
@@ -463,7 +462,7 @@ input[type=text], form button {
     .none {
         display: none;
     }
-    .display {
+    .display-sm {
         display: flex;
     }
 }
@@ -484,6 +483,9 @@ input[type=text], form button {
     section, .div-media {
         width: 760px;
     }
+    .display-md {
+        display: flex;
+    }
 }
 @media screen and (min-width: 1200px) {
     /* flex direction media */
@@ -501,5 +503,8 @@ input[type=text], form button {
     }
     section, .div-media {
         width: 1190px;
+    }
+    .display-lg {
+        display: flex;
     }
 }
