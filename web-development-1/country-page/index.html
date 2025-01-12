@@ -8,10 +8,9 @@
   <link media="(min-width: 580px)" rel="preload" href="media/bg.webp" as="image">
   <link media="(max-width: 580px)" rel="preload" href="media/bg-mobile.webp" as="image">
   <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
-  <link rel="preload" href="css/style.css" as="style" type="text/css">
-  <link rel="preload" href="media/shooting-star.ico" type="image/x-icon" as="image">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="media/shooting-star.ico" type="image/x-icon">
+  <link rel="preload stylesheet" href="css/style.css" as="style" type="text/css">
+  <link rel="preload icon" href="media/shooting-star.webp" type="image/x-icon">
+
   <title>Home</title>
 </head>
 <body>
@@ -65,15 +64,15 @@
         <ul class="flex w-full justify-end">
           <li>
             <form action="somewhere.php" method="post" class="flex items-center gap-half">
-              <label for="searchBar" hidden>Search</label>
-              <input id="searchBar" class="bc-2 c-2 bs-solid outline-none bw-2" name="search" type="text" placeholder="Search" required>
-              <button id="search" class="bc-2 bg-2 c-1 bs-solid bw-2" title="Search">Search</button>
+              <label for="searchBarDesktop" hidden>Search</label>
+              <input id="searchBarDesktop" class="bc-2 c-2 bs-solid outline-none bw-2" name="search" type="text" placeholder="Search" required>
+              <button class="bc-2 bg-2 c-1 bs-solid bw-2" title="Search">Search</button>
             </form>
           </li>
         </ul>
       </nav>
     </div>
-    <div class="none flex w-full">
+    <div class="none flex w-full flex-wrap gap-1">
       <div class="flex-grow-1 flex items-center">
         <img src="media/canada-flag.webp" draggable="false" alt="Canada Flag" width="90" height="45" />
       </div>
@@ -87,12 +86,6 @@
           <h2>Travel Canada</h2>
         </div>
         <ul class="flex gap-1 mobile-alt">
-          <li>
-            <a href="#" title="English" class="c-1">English</a>
-          </li>
-          <li>
-            <p>|</p>
-          </li>
           <li>
             <a href="#" title="Francais" class="c-1">Francais</a>
           </li>
@@ -125,6 +118,17 @@
         <div class="flex items-center justify-center min-h-200">
           <button id="button-exit-mobile-nav" class="c-1 bc-1 bs-solid bw-2" title="Exit Navigation" aria-label="Exit Navigation">X</button>
         </div>
+      </nav>
+      <nav aria-label="Mobile Search Navigation" class="flex w-full items-center justify-center">
+        <ul class="w-full">
+          <li class="w-full">
+            <form action="somewhere.php" id="searchBarMobileContainer" method="post" class="flex items-center gap-half w-full">
+              <label for="searchBarMobile" hidden>Search</label>
+              <input id="searchBarMobile" class="bc-2 c-2 w-full bs-solid outline-none bw-2" name="search" type="text" placeholder="Search" required>
+              <button class="bc-2 bg-2 c-1 bs-solid bw-2 w-third" title="Search">Search</button>
+            </form>
+          </li>
+        </ul>
       </nav>
     </div>
   </header>
