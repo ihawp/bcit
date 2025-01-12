@@ -435,17 +435,6 @@ input[type=text], form button {
     font-family: 'Roboto', serif;
 }
 
-#searchBarMobileContainer {
-}
-
-
-#searchBarMobile {
-    width: 200px;
-}
-#searchButtonMobile {
-
-}
-
 /* display */
 .display, .display-sm, .display-md, .display-lg, #mobile-nav {
     display: none;
