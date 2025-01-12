@@ -314,6 +314,46 @@ li {}
     padding: 5em;
 }
 
+/* p x */
+.px-half {
+    padding: 0.5em 0 0.5em 0;
+}
+.px-1 {
+    padding: 1em 0 1em 0;
+}
+.px-2 {
+    padding: 2em 0 2em 0;
+}
+.px-3 {
+    padding: 3em 0 3em 0;
+}
+.px-4 {
+    padding: 4em 0 4em 0;
+}
+.px-5 {
+    padding: 5em 0 5em 0;
+}
+
+/* p y */
+.py-half {
+    padding: 0 0.5em 0 0.5em;
+}
+.py-1 {
+    padding: 0 1em 0 1em;
+}
+.py-2 {
+    padding: 0 2em 0 2em;
+}
+.py-3 {
+    padding: 0 3em 0 3em;
+}
+.py-4 {
+    padding: 0 4em 0 4em;
+}
+.py-5 {
+    padding: 0 5em 0 5em;
+}
+
 /* margin */
 .m-half {
     margin: 0.5em;

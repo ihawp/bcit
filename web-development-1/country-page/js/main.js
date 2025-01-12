@@ -1,7 +1,4 @@
-
-// insert hero image
-document.getElementById("hero-image").src = `media/bg${window.innerWidth < 580 ? '-mobile' : ''}.webp`;
-
+// mobile nav... it opens, it closes!
 class MobileNav {
     constructor() {
         this.init();
