@@ -4,6 +4,7 @@
 
 @font-face {
     font-family: 'Roboto';
+    /* compressed ttf to woff2 with fontsquirrel... font from google fonts */
     src: url("../fonts/roboto-variablefont_wdthwght-webfont.woff2");
     font-display: swap;
 }
