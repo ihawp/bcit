@@ -6,16 +6,16 @@
   <meta name="author" content="Warren Chemerika">
   <meta name="description" content="Warren Chemerika">
   <link rel="icon" href="media/shooting-star.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>Home</title>
 </head>
 <body>
   <header class="flex flex-col items-center p-1">
-    <div class="div-media flex flex-col gap-1">
+    <div class="div-media flex flex-col gap-1 display">
       <div class="flex items-center">
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
         <div class="flex items-center gap-1">
-          <img src="media/canada-flag.png" alt="Canada Flag" width="90" height="43" />
+          <img src="media/canada-flag.webp" alt="Canada Flag" width="90" height="45" />
           <h1 title="Travel Canada">Travel Canada</h1>
         </div>
         <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
@@ -30,7 +30,7 @@
           </ul>
         </nav>
       </div>
-      <nav class="bg-1 flex" aria-label="Main Site Navigation">
+      <nav class="bg-1 flex" aria-label="Desktop/Tablet Main Site Navigation">
         <ul class="flex gap-1">
           <li>
             <a title="Home" class="active" href="index.html">Home</a>
@@ -58,12 +58,64 @@
         </ul>
       </nav>
     </div>
+    <div class="none flex w-full">
+      <div class="flex-grow-1 flex items-center">
+        <img src="media/canada-flag.webp" alt="Canada Flag" width="90" height="45" />
+      </div>
+      <div class="flex flex-grow-1 items-center justify-end">
+        <button id="button-mobile-nav" title="Navigation" aria-label="Navigation" class="none-sm">|||</button>
+      </div>
+      <nav id="mobile-nav" class="flex flex-col gap-1 p-2" aria-label="Mobile Main Site Navigation">
+        <div class="flex items-center gap-1">
+          <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+          <img alt="Canada Flag" src="media/canada-flag-alt.webp" width="60" height="30">
+          <h2>Travel Canada</h2>
+        </div>
+        <ul class="flex gap-1 mobile-alt">
+          <li>
+            <a href="#" title="English">English</a>
+          </li>
+          <li>
+            <p>|</p>
+          </li>
+          <li>
+            <a href="#" title="Francais">Francais</a>
+          </li>
+        </ul>
+        <ul class="flex gap-1 mobile-alt">
+          <li>
+            <a title="Login" href="#">Login</a>
+          </li>
+          <li>
+            <p>|</p>
+          </li>
+          <li>
+            <a title="Register" href="#">Register</a>
+          </li>
+        </ul>
+        <ul class="flex flex-col gap-1">
+          <li>
+            <a title="Home" class="active" href="index.html">Home</a>
+          </li>
+          <li>
+            <a title="About" href="about.html">About</a>
+          </li>
+          <li>
+            <a title="Visit" href="visit.html">Visit</a>
+          </li>
+          <li>
+            <a title="Credit" href="credit.html">Credit</a>
+          </li>
+        </ul>
+        <button id="button-exit-mobile-nav" title="Exit Navigation" aria-label="Exit Navigation">X</button>
+      </nav>
+    </div>
   </header>
+
+  <!-- PERHAPS: add search bar to header -->
 
   <main>
     <section>
-
-
 
     </section>
   </main>
@@ -72,8 +124,8 @@
     <div class="div-media flex flex-col gap-2">
       <div class="flex items-center gap-1">
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
-        <img alt="Canada Flag" src="media/canada-flag-alt.png" width="68.5" height="32">
-        <h2>Travel Canada | Resources</h2>
+        <img alt="Canada Flag" src="media/canada-flag-alt.webp" width="68.5" height="34.25">
+        <h2>Travel Canada</h2>
       </div>
       <div class="flex flex-col-sm gap-2 flex-wrap basis-auto">
         <nav aria-label="footerNav1" class="flex flex-grow-1 flex-col gap-half min-width-150">
@@ -184,5 +236,6 @@
       </div>
     </div>
   </footer>
+  <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>

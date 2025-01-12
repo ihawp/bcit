@@ -88,6 +88,7 @@
 body {
     color: var(--2);
     font-family: sans-serif;
+    font-size: 1.25rem;
 }
 .inverted {
     background: var(--2);
@@ -106,13 +107,12 @@ section, .div-media {
     width: 100%;
 }
 footer {
-
 }
 
 
 /* text */
 /* text-smart-sm is media class
-   at small breakpoint (480px) it
+   at small breakpoint (550px) it
    is changed to text-align end
    a bit custom, but could be extended
    in a larger code base, and perhaps down
@@ -140,7 +140,7 @@ h5 {}
 h6 {}
 
 blockquote {
-    opacity: 0.2;
+    opacity: 0.6;
 }
 
 /* p/a */
@@ -152,7 +152,7 @@ a {
     transition: ease 0.1s;
 }
 a:hover:not(#language-nav a), a.active {
-    text-underline-offset: 4px;
+    text-underline-offset: 5px;
     text-decoration: underline;
 }
 footer a {
@@ -182,7 +182,7 @@ li {}
 /* flex direction / flex direction media */
 /* trying flex media classes for different breakpoints */
 /*  -row/-col: will have no breakpoint
-    -sm: small breakpoint (480px)
+    -sm: small breakpoint (550px)
     -md: medium breakpoint (767px)
     -lg: large breakpoint (1200px) */
 .flex-row,
@@ -337,15 +337,71 @@ li {}
 
 
 #language-nav a {
-
     background-color: var(--2);
     color: var(--1);
     padding: 0.5em;
 }
 
+#mobile-nav {
+    display: none;
+    z-index: 999;
+    position: fixed;
+    color: var(--1);
+    background-color: var(--2);
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-size: 1.25rem;
+}
+#mobile-nav a {
+    color: var(--1);
+    font-size: 1.5rem;
+}
+button {
+    cursor: pointer;
+}
+#button-mobile-nav {
+    background: transparent;
+    outline: none;
+    border: none;
+    rotate: 90deg;
+    font-size: 2rem;
+    color: var(--2);
+}
+#button-exit-mobile-nav {
+    position: fixed;
+    bottom: 100px;
+    left: calc(50vw - (100px / 2));
+    background: var(--3);
+    border: var(--3) 1px solid;
+
+    border-radius: 15px;
+    outline: none;
+    color: var(--1);
+    font-size: 3em;
+    height: 100px;
+    width: 100px;
+}
+
+.mobile-alt {
+    opacity: 0.6;
+}
+
+
+.display {
+    display: none;
+}
 
 /* media */
-@media screen and (min-width: 480px) {
+/*
+    PERHAPS: better system could have been break point class
+    like .sm .md .lg that don't have any added properties
+    but use .flex-row.sm to identify switching in media queries...
+    that is in relation to the flex stuff.
+ */
+@media screen and (min-width: 550px) {
     /* flex direction media */
     .flex-row-sm {
         flex-direction: column;
@@ -364,6 +420,12 @@ li {}
     }
     .text-end-sm {
         text-align: start;
+    }
+    .none {
+        display: none;
+    }
+    .display {
+        display: flex;
     }
 }
 @media screen and (min-width: 767px) {
