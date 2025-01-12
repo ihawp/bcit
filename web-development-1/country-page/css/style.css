@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'Roboto';
-    src: url("../fonts/Roboto-VariableFont_wdth,wght.ttf");
+    src: url("../fonts/roboto-variablefont_wdthwght-webfont.woff2");
     font-display: swap;
 }
 
@@ -413,11 +413,15 @@ li {}
 }
 
 #mobile-nav .mobile-alt a, .mobile-alt, a.mobile-alt {
-    opacity: 0.7;
+    opacity: 0.8;
     font-size: 1.3rem;
 }
 
-#hero img {
+
+#hero {
+    height: 200px;
+}
+#hero-image {
     object-fit: cover;
     object-position: bottom;
 }
