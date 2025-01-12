@@ -18,17 +18,29 @@
           <img src="media/canada-flag.webp" draggable="false" alt="Canada Flag" width="90" height="45" />
           <h1 title="Travel Canada">Travel Canada</h1>
         </div>
+        <div class="flex-grow-1 flex justify-end gap-1">
+          <nav aria-label="Login/Register">
+            <ul class="flex flex-grow-1 justify-end gap-1">
+              <li>
+                <a title="Login" href="#">Login</a>
+              </li>
+              <li>
+                <p>|</p>
+              </li>
+              <li>
+                <a title="Register" href="#">Register</a>
+              </li>
+            </ul>
+          </nav>
+          <nav id="language-nav" aria-label="Change Language">
+            <ul class="flex items-center justify-end gap-half">
+              <li>
+                <a href="#" title="Francais">Francais</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
         <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
-        <nav id="language-nav" aria-label="Change Language" class="flex-grow-1">
-          <ul class="flex items-center justify-end gap-half">
-            <li>
-              <a href="#" title="English">English</a>
-            </li>
-            <li>
-              <a href="#" title="Francais">Francais</a>
-            </li>
-          </ul>
-        </nav>
       </div>
       <nav class="bg-1 flex" aria-label="Desktop/Tablet Main Site Navigation">
         <ul class="flex gap-1">
@@ -45,15 +57,13 @@
             <a title="Credit" href="credit.html">Credit</a>
           </li>
         </ul>
-        <ul class="flex flex-grow-1 justify-end gap-1">
+        <ul class="flex w-full justify-end">
           <li>
-            <a title="Login" href="#">Login</a>
-          </li>
-          <li>
-            <p>|</p>
-          </li>
-          <li>
-            <a title="Register" href="#">Register</a>
+            <form action="somewhere.php" method="post" class="flex items-center gap-half">
+              <label for="searchBar" hidden>Search</label>
+              <input id="searchBar" class="bc-2 c-2 bs-solid outline-none bw-2" name="search" type="text" placeholder="Search" required>
+              <button id="search" class="bc-2 bg-2 c-1 bs-solid bw-2" title="Search">Search</button>
+            </form>
           </li>
         </ul>
       </nav>
@@ -65,57 +75,63 @@
       <div class="flex flex-grow-1 items-center justify-end">
         <button id="button-mobile-nav" title="Navigation" aria-label="Navigation" class="none-sm">|||</button>
       </div>
-      <nav id="mobile-nav" class="flex flex-col gap-1 p-2" aria-label="Mobile Main Site Navigation">
+      <nav id="mobile-nav" class="w-full h-full overflow-auto flex flex-col gap-1 p-2" aria-label="Mobile Main Site Navigation">
         <div class="flex items-center gap-1">
           <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
-          <img alt="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" width="60" height="30">
+          <img alt="Canada Flag" draggable="false" src="media/canada-flag.webp" width="60" height="30">
           <h2>Travel Canada</h2>
         </div>
         <ul class="flex gap-1 mobile-alt">
           <li>
-            <a href="#" title="English">English</a>
+            <a href="#" title="English" class="c-1">English</a>
           </li>
           <li>
             <p>|</p>
           </li>
           <li>
-            <a href="#" title="Francais">Francais</a>
+            <a href="#" title="Francais" class="c-1">Francais</a>
           </li>
         </ul>
         <ul class="flex gap-1 mobile-alt">
           <li>
-            <a title="Login" href="#">Login</a>
+            <a title="Login" class="c-1" href="#">Login</a>
           </li>
           <li>
             <p>|</p>
           </li>
           <li>
-            <a title="Register" href="#">Register</a>
+            <a title="Register" class="c-1" href="#">Register</a>
           </li>
         </ul>
         <ul class="flex flex-col gap-1">
           <li>
-            <a title="Home" class="active" href="index.html">Home</a>
+            <a title="Home" class="font-weight-600 c-1" href="index.html">Home</a>
           </li>
           <li>
-            <a title="About" href="about.html">About</a>
+            <a title="About" class="font-weight-600 c-1" href="about.html">About</a>
           </li>
           <li>
-            <a title="Visit" href="visit.html">Visit</a>
+            <a title="Visit" class="font-weight-600 c-1" href="visit.html">Visit</a>
           </li>
           <li>
-            <a title="Credit" href="credit.html">Credit</a>
+            <a title="Credit" class="font-weight-600 c-1" href="credit.html">Credit</a>
           </li>
         </ul>
-        <button id="button-exit-mobile-nav" title="Exit Navigation" aria-label="Exit Navigation">X</button>
+        <div class="flex items-center justify-center min-h-200">
+          <button id="button-exit-mobile-nav" class="c-1 bc-1 bs-solid bw-2" title="Exit Navigation" aria-label="Exit Navigation">X</button>
+        </div>
       </nav>
     </div>
   </header>
 
   <!-- PERHAPS: add search bar to header -->
 
-  <main>
+  <main class="flex flex-col">
+    <section id="hero">
+      <img src="media/bg.webp" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="200" width="100%">
+    </section>
     <section>
+      <h2>Do You Want to Travel in Canada?</h2>
 
     </section>
   </main>
