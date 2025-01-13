@@ -1,4 +1,4 @@
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/*! normalize-fwd.css v8.0.1 | MIT License | github.com/necolas/normalize-fwd.css */
 
 /* Document
    ========================================================================== */
@@ -39,7 +39,6 @@ main {
 
 h1 {
     font-size: 2em;
-    margin: 0.67em 0;
 }
 
 /* Grouping content
@@ -346,4 +345,15 @@ template {
 
 [hidden] {
     display: none;
+}
+
+embed,
+iframe,
+object {
+    max-width: 100%;
+}
+
+video {
+    max-width: 100%;
+    height: auto;
 }

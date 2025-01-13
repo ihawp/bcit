@@ -77,11 +77,12 @@ h6 {}
 p {
 
 }
-a {
+a, button {
+    text-underline: none;
     text-decoration: none;
     transition: ease 0.1s;
 }
-a:hover, a.active, button:hover {
+a:hover, a.active, button:not(#button-mobile-nav, #button-exit-mobile-nav):hover {
     text-underline-offset: 5px;
     text-decoration: underline;
 }
@@ -97,6 +98,9 @@ ul {
     list-style: none;
 }
 li {}
+img {
+    object-fit: cover;
+}
 
 
 /* CUSTOM CLASSES */
@@ -714,7 +718,6 @@ li {}
     overflow: hidden;
 }
 #hero-image {
-    object-fit: cover;
     object-position: bottom;
 }
 
