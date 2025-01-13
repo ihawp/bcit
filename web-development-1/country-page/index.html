@@ -8,6 +8,7 @@
   <link media="(min-width: 580px)" rel="preload" href="media/bg.webp" as="image">
   <link media="(max-width: 580px)" rel="preload" href="media/bg-mobile.webp" as="image">
   <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload stylesheet" href="css/normalize.css" as="style" type="text/css">
   <link rel="preload stylesheet" href="css/style.css" as="style" type="text/css">
   <link rel="icon" as="image" href="media/shooting-star.webp" type="image/x-icon">
 
@@ -133,24 +134,52 @@
     </div>
   </header>
 
-  <main class="flex flex-col gap-half">
+  <main class="flex flex-col gap-2">
     <section id="hero">
-      <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="200" width="100%">
+      <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="200" width="100%" class="w-full">
+    </section>
+
+    <section class="flex flex-col-rev-md-nr gap-1">
+      <div class="w-100-m-50">
+        <h2>this is some title about the content and it is very awesome</h2>
+        <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would be worth it for me to just type a paragraph here that is a reasonable length</p>
+      </div>
+      <div class="w-100-m-50">
+        <img src="media/bg.webp" alt="" width="100%" height="100%">
+      </div>
+    </section>
+    <section class="flex flex-col-rev-md">
+      <div class="w-100-m-50">
+        <h2>this is some title about the content and it is very awesome</h2>
+        <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would be worth it for me to just type a paragraph here that is a reasonable length</p>
+      </div>
+      <div class="w-100-m-50">
+        <img src="media/bg.webp" alt="" width="100%" height="200">
+      </div>
     </section>
 
     <section class="grid">
       <!-- create baseline paragraph content section -->
-      <div class="w-full p-1 inverted border-box grid-item2">
-        <h2>Resources</h2>
-        <p>anajknasdas</p>
+      <h2 class="grid-item1 mb-half">Credits:</h2>
+      <div>
+        <div class="p-1 inverted">
+          <h2>Gracie Filena Bobbie-Strelioff</h2>
+          <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
+        </div>
+        <div class="p-1 inverted">
+          <h2>Gracie Filena Bobbie-Strelioff</h2>
+          <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
+        </div>
       </div>
-      <div class="w-full p-1 inverted border-box grid-item3">
-        <h2>Resources</h2>
-        <p>anajknasdas</p>
-      </div>
-      <div class="w-full p-1 inverted border-box grid-item4">
-        <h2>Resources</h2>
-        <p>anajknasdas</p>
+      <div>
+        <div class="p-1 inverted">
+          <h2>Gracie Filena Bobbie-Strelioff</h2>
+          <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
+        </div>
+        <div class="p-1 inverted">
+          <h2>Gracie Filena Bobbie-Strelioff</h2>
+          <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
+        </div>
       </div>
     </section>
     <section class="flex flex-col gap-1">
