@@ -4,7 +4,7 @@ if (!isset($_POST['search'])) {
     header('Location: ../index.html');
 }
 
-$query = $_POST['search'];
+$query = htmlspecialchars(stripcslashes($_POST['search']));
 
 ?>
 
@@ -140,8 +140,6 @@ $query = $_POST['search'];
       </nav>
     </div>
   </header>
-
-  <!-- PERHAPS: add search bar to header -->
 
   <main class="flex flex-col">
     <section class="flex px-4 items-center justify-center text-center">

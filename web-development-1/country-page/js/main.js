@@ -1,4 +1,3 @@
-// mobile nav... it opens, it closes!
 class MobileNav {
     constructor() {
         this.init();

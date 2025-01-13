@@ -133,15 +133,17 @@
     </div>
   </header>
 
-  <!-- PERHAPS: add search bar to header -->
-
-  <main class="flex flex-col">
+  <main class="flex flex-col gap-half">
     <section id="hero">
       <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="200" width="100%">
     </section>
-    <section id="" class="px-1 h-full">
+    <section>
       <h2>Do You Want to Travel in Canada?</h2>
       <p>Yes I do!</p>
+    </section>
+    <section id="faq-section" class="flex flex-col gap-1 mt-1 mb-2">
+      <h2>Frequently Asked Questions</h2>
+      <ul id="faq" class="flex flex-col"></ul>
     </section>
   </main>
 
@@ -262,6 +264,28 @@
     </div>
   </footer>
   <script src="js/quick.js" type="text/javascript"></script>
-  <script src="js/main.js" type="text/javascript" defer></script>
+  <script src="js/faq.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    const data = [
+      {
+        summary: 'Why should I travel to Canada?',
+        details: 'bananaphone'
+      },
+      {
+        summary: 'Why should I not travel to Canada?',
+        details: 'There is no reason to not travel to Canada, we have lots of syrup.'
+      },
+      {
+        summary: 'Why should I travel to Canada?',
+        details: 'bananaphone'
+      },
+      {
+        summary: 'Why should I travel to Canada?',
+        details: 'bananaphone'
+      },
+    ];
+    new FAQ(data);
+  </script>
+  <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>
