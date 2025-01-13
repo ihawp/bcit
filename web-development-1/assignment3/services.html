@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Services</title>
 	<!-- Attach stylesheets here -->
-	<link rel="preload stylesheet" as="style" href="services.css" type="text/css">
 	<link rel="preload stylesheet" as="style" href="normalize-fwd.css" type="text/css">
+	<link rel="preload stylesheet" as="style" href="services.css" type="text/css">
 	<link rel="preload" as="image" href="customer1.jpg">
 	<link rel="preload" as="image" href="customer2.jpg">
 	<link rel="preload" as="image" href="customer3.jpg">
@@ -14,54 +14,76 @@
 
 <body>
 
-	<header>
-		<h1>FWDP 1000 - Web Development 1</h1>
+	<header class="flex-col items-center justify-center">
+		<p>FWDP 1000 - Web Development 1</p>
 		<nav aria-label="Main Navigation">
-			<ul>
+			<ul class="flex-row gap-3">
 				<li>
-					<a href="services.html" title="Services">Services</a>
+					<a href="services.html" class="c-3" title="Home">Home</a>
+				</li>
+				<li>
+					<a href="services.html" class="c-3" title="About">About</a>
+				</li>
+				<li>
+					<a href="services.html" class="c-3" title="News">News</a>
+				</li>
+				<li>
+					<a href="services.html" class="c-3" title="Pricing">Pricing</a>
 				</li>
 			</ul>
 		</nav>
 	</header>
 
 	<main>
-		<h2>Our Services</h2>
+		<h1>Our Services</h1>
 		<section>
-			<h3>Service Types</h3>
-			<p>Consectetur adipisicing elit. Fugiat quis magn, nostrum iste mollitia. Omnis, verio sint ab, labore itaque, in! Consectetur adipisicing elit. Fugiat quis magn, nostrum iste mollitia.</p>
-			<article class="inverted">
-				<h4>Service #1</h4>
+			<h2>Service Types</h2>
+			<p class="mb-2">Consectetur adipisicing elit. Fugiat quis magn, nostrum iste mollitia. Omnis, verio sint ab, labore itaque, in! Consectetur adipisicing elit. Fugiat quis magn, nostrum iste mollitia.</p>
+			<article class="inverted px-1 py-2 mb-2">
+				<h3 class="w-full bb-2">Service #1</h3>
+
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fugiat quis magni, nostrum iste mollitia.</p>
 			</article>
-			<article class="inverted">
-				<h4>Service #2</h4>
+			<article class="inverted px-1 py-2 mb-2">
+				<h3 class="w-full bb-2">Service #2</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque assumenda alias quo dicta deleniti at provident odit.</p>
 			</article>
-			<article class="inverted">
-				<h4>Service #3</h4>
+			<article class="inverted px-1 py-2 mb-2">
+				<h3 class="w-full bb-2">Service #3</h3>
 				<p>Consectetur adipisicing elit. Fugiat quis magn, nostrum iste mollitia. Omnis, verio sint ab, labore itaque, in!</p>
 			</article>
-			<a href="mailto:service@email.ca" class="button" title="Email Us!">Email Us Today!</a>
+			<div class="flex-row justify-center items-center mb-4">
+				<a href="mailto:service@email.ca" class="button py-3 px-1" title="Email Us!">Email Us Today!</a>
+			</div>
 		</section>
 		<section>
-			<h3>Title of Content</h3>
-			<p>this is a paragraph tag</p>
-			<article>
+			<h2>Happy Customers</h2>
+			<p>Hear from our happy customer below or on <a href="https://facebook.com" target="_blank" rel="noreferrer" class="c-3">our Facebook Page</a>.</p>
+			<article class="flex-col items-center text-center">
 				<img src="customer1.jpg" alt="Customer #1" title="Customer #1" width="300" height="300" draggable="false">
+				<blockquote class="flex-row w-full justify-center items-center">
+					<p>"They're a great company!"</p>
+					<cite class="font-weight-600">Maxwell Zach</cite>
+				</blockquote>
 			</article>
-			<article>
+			<article class="flex-col items-center text-center">
 				<img src="customer2.jpg" alt="Customer #2" title="Customer #2" width="300" height="300" draggable="false">
+				<blockquote class="flex-row w-full justify-center items-center">
+					<p>"I was satisfied with their work."</p>
+					<cite class="font-weight-600">Clara Jones</cite>
+				</blockquote>
 			</article>
-			<article>
+			<article class="flex-col items-center text-center">
 				<img src="customer3.jpg" alt="Customer #3" title="Customer #3" width="300" height="300" draggable="false">
+				<blockquote class="flex-row w-full justify-center items-center">
+					<p>"We were in a pinch and they helped us out!"</p>
+					<cite class="font-weight-600">Jane Doe</cite>
+				</blockquote>
 			</article>
 		</section>
 	</main>
-
 	<footer>
-		<p>&copy; Warren Chemerika 2025.</p>
+		<p class="text-center">&copy; Warren Chemerika 2025.</p>
 	</footer>
-
 </body>
 </html>
