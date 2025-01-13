@@ -1,30 +1,67 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="flex-col items-center w-full">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Services</title>
 	<!-- Attach stylesheets here -->
+	<link rel="preload stylesheet" as="style" href="services.css" type="text/css">
+	<link rel="preload stylesheet" as="style" href="normalize-fwd.css" type="text/css">
+	<link rel="preload" as="image" href="customer1.jpg">
+	<link rel="preload" as="image" href="customer2.jpg">
+	<link rel="preload" as="image" href="customer3.jpg">
 </head>
 
 <body>
 
-	<!-- 
-	Add Header here. Include:
-		- site title
-		- navigation
-	-->
+	<header>
+		<h1>FWDP 1000 - Web Development 1</h1>
+		<nav aria-label="Main Navigation">
+			<ul>
+				<li>
+					<a href="services.html" title="Services">Services</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
 
-	<!-- 
-	Add Main here. Include:
-		- page title
-		- first section with heading, paragraph, three articles, link
-		- second section with heading, paragraph, three articles
-	-->
+	<main>
+		<h2>Our Services</h2>
+		<section>
+			<h3>Service Types</h3>
+			<p>Consectetur adipisicing elit. Fugiat quis magn, nostrum iste mollitia. Omnis, verio sint ab, labore itaque, in! Consectetur adipisicing elit. Fugiat quis magn, nostrum iste mollitia.</p>
+			<article class="inverted">
+				<h4>Service #1</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fugiat quis magni, nostrum iste mollitia.</p>
+			</article>
+			<article class="inverted">
+				<h4>Service #2</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque assumenda alias quo dicta deleniti at provident odit.</p>
+			</article>
+			<article class="inverted">
+				<h4>Service #3</h4>
+				<p>Consectetur adipisicing elit. Fugiat quis magn, nostrum iste mollitia. Omnis, verio sint ab, labore itaque, in!</p>
+			</article>
+			<a href="mailto:service@email.ca" class="button" title="Email Us!">Email Us Today!</a>
+		</section>
+		<section>
+			<h3>Title of Content</h3>
+			<p>this is a paragraph tag</p>
+			<article>
+				<img src="customer1.jpg" alt="Customer #1" title="Customer #1" width="300" height="300" draggable="false">
+			</article>
+			<article>
+				<img src="customer2.jpg" alt="Customer #2" title="Customer #2" width="300" height="300" draggable="false">
+			</article>
+			<article>
+				<img src="customer3.jpg" alt="Customer #3" title="Customer #3" width="300" height="300" draggable="false">
+			</article>
+		</section>
+	</main>
 
-	<!-- 
-	Add Footer here. Include:
-		- copyright notice 
-	-->
+	<footer>
+		<p>&copy; Warren Chemerika 2025.</p>
+	</footer>
 
 </body>
 </html>

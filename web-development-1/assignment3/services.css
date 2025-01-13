@@ -1,0 +1,58 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    max-width: 31.25rem;
+    font-size: 1.2rem;
+}
+article.inverted {
+    color: #282828;
+    background: #caffca;
+    padding: 1rem 2rem;
+}
+
+a.button {
+    background: #347034;
+    color: #caffca;
+}
+
+header a, a.button {
+    text-decoration: none;
+}
+
+img {
+    border-radius: 150px;
+}
+
+/* flex */
+.flex-row, .flex-col {
+    display: flex;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-col {
+    flex-direction: column;
+}
+
+/* m b */
+
+/* width */
+.w-full {
+    width: 100%;
+}
+
+/* align items */
+.items-center {
+    align-items: center;
+}
+
+/* justify content */
+.justify-center {
+    justify-content: center;
+}
