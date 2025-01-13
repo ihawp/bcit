@@ -70,10 +70,6 @@ h4 {}
 h5 {}
 h6 {}
 
-blockquote {
-    opacity: 0.6;
-}
-
 /* p a */
 p {
 
@@ -86,7 +82,7 @@ a:hover, a.active, button:hover {
     text-underline-offset: 5px;
     text-decoration: underline;
 }
-footer a {
+footer a, cite {
     color: var(--4);
 }
 header a {
@@ -658,19 +654,6 @@ li {}
 .item1 {
     grid-column-start: 2;
     grid-column-end: 3;
-    background: red;
-}
-
-/* table */
-table {
-    border: 2px solid black;
-    background: red;
-}
-
-#language-nav a {
-    background-color: var(--2);
-    color: var(--1);
-    padding: 0.5em;
 }
 
 #mobile-nav {
@@ -713,6 +696,9 @@ table {
     outline: none;
     font-size: 5rem;
 }
+#button-exit-mobile-nav:hover {
+    text-decoration: none;
+}
 
 .outline-none {
     outline: none;
@@ -745,13 +731,13 @@ textarea {
 }
 
 ::-webkit-scrollbar {
-    background: red;
+    width: 7px;
 }
 ::-webkit-scrollbar-thumb {
-    background: blue;
+    border-radius: 15px;
+    background: var(--2);
 }
-::-webkit-scrollbar-track-piece {
-}
+
 
 /* display */
 .display, .display-sm, .display-md, .display-lg, #mobile-nav {

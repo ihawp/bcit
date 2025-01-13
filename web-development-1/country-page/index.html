@@ -39,7 +39,7 @@
           <nav id="language-nav" aria-label="Change Language">
             <ul class="flex items-center justify-end gap-half">
               <li>
-                <a href="#" title="Francais">Francais</a>
+                <a href="#" class="bg-2 c-1 p-half" title="Francais">Francais</a>
               </li>
             </ul>
           </nav>
@@ -139,49 +139,83 @@
     </section>
 
     <!-- unfinished business -->
+
     <section class="grid">
-      <h1 class="item1">adasdsa</h1>
+      <h2 class="item1">adasdsa</h2>
     </section>
-    <section>
-      <table>
-        <thead>
+    <section class="flex flex-col gap-1">
+      <h2>Data About Canada:</h2>
+      <div class="flex flex-col gap-half">
+        <h3>Most Popular Cities:</h3>
+        <table class="w-full">
+          <thead class="bg-2 c-1">
           <tr>
-            <th>
-              <h3>place</h3>
-            </th>
-            <th>
-              <h3>asdasdsa</h3>
-            </th>
+            <th>City</th>
+            <th>Province</th>
+            <th>Population</th>
           </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
           <tr>
-            <td>
-              <p>thing</p>
-            </td>
-            <td>
-              <p>thingasda sdasd sad </p>
-            </td>
+            <td>Saskatoon</td>
+            <td>Saskatchewan</td>
+            <td>43</td>
           </tr>
-        </tbody>
-        <tfoot>
           <tr>
+            <td>Vancouver</td>
+            <td>British Columbia</td>
+            <td>1.6 mil</td>
           </tr>
-        </tfoot>
-      </table>
+          <tr>
+            <td>123</td>
+            <td>43</td>
+            <td>23</td>
+          </tr>
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
+      <div class="flex flex-col gap-half">
+        <h3>Most Popular Provinces:</h3>
+        <table class="w-full">
+          <thead class="bg-2 c-1">
+          <tr>
+            <th>Province</th>
+            <th>Population</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Saskatchewan</td>
+            <td>43</td>
+          </tr>
+          <tr>
+            <td>British Columbia</td>
+            <td>125</td>
+          </tr>
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
     </section>
+
     <section class="flex flex-col items-center justify-center text-center mt-2 gap-half">
       <h2>Do You Want to Travel to Canada?</h2>
-      <a href="" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
+      <a href="visit.html" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
     </section>
     <section id="faq-section" class="flex flex-col gap-1 mt-2">
-      <h2>Frequently Asked Questions</h2>
+      <h2>Frequently Asked Questions:</h2>
       <ul id="faq" class="flex flex-col"></ul>
     </section>
     <section class="flex flex-col-md mx-2 gap-2">
       <div class="flex flex-col w-100-m-50 gap-1">
         <h2 class="w-full">Have a more specific question?</h2>
         <p>Fill out our contact form, and we will make sure like a banana to get back to you real quick. Customer service is our top priority. We love people!</p>
+        <p>Inquiries are answered every weekday from 8am - 4pm.</p>
       </div>
       <form action="" id="contactForm" method="post" class="w-100-m-50 flex flex-col gap-half">
         <h2 class="mb-half">Contact Us</h2>
@@ -297,7 +331,7 @@
             Parliament Hill<br>
             Wellington St, Ottawa, ON K1A 0A9<br>
             Canada<br>
-            999-999-9999<br>
+            <a class="active" rel="noreferrer" href="tel:999-999-9999">999-999-9999</a><br>
             <a class="active" rel="noreferrer" href="mailto:canada@canada.ca">canada@canada.ca</a>
           </address>
           <p class="w-full">&copy; Canada 2025.</p>
