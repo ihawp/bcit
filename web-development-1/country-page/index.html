@@ -65,8 +65,8 @@
           <li>
             <form action="php/search.php" method="post" class="flex items-center gap-half">
               <label for="searchBarDesktop" hidden>Search</label>
-              <input id="searchBarDesktop" class="bc-2 c-2 bs-solid outline-none bw-2" name="search" type="text" placeholder="Search" required>
-              <button class="bc-2 bg-2 c-1 bs-solid bw-2" title="Search">Search</button>
+              <input id="searchBarDesktop" class="bc-2 c-2 bs-solid outline-none bw-2" aria-label="Search Bar" name="search" type="text" placeholder="Search" required>
+              <button class="bc-2 bg-2 c-1 bs-solid bw-2" type="submit" title="Search">Search</button>
             </form>
           </li>
         </ul>
@@ -124,8 +124,8 @@
           <li class="w-full">
             <form action="php/search.php" method="post" class="flex items-center gap-half w-full">
               <label for="searchBarMobile" hidden>Search</label>
-              <input id="searchBarMobile" class="bc-2 c-2 w-full bs-solid outline-none bw-2" name="search" type="text" placeholder="Search" required>
-              <button class="bc-2 bg-2 c-1 bs-solid bw-2 w-third" title="Search">Search</button>
+              <input id="searchBarMobile" class="bc-2 c-2 w-full bs-solid outline-none bw-2" aria-label="Search Bar" name="search" type="text" placeholder="Search" required>
+              <button class="bc-2 bg-2 c-1 bs-solid bw-2 w-third" type="submit" title="Search">Search</button>
             </form>
           </li>
         </ul>
@@ -137,17 +137,70 @@
     <section id="hero">
       <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="200" width="100%">
     </section>
-    <section>
-      <h2>Do You Want to Travel in Canada?</h2>
-      <p>Yes I do!</p>
+
+    <!-- unfinished business -->
+    <section class="grid">
+      <h1 class="item1">adasdsa</h1>
     </section>
-    <section id="faq-section" class="flex flex-col gap-1 mt-1 mb-2">
+    <section>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <h3>place</h3>
+            </th>
+            <th>
+              <h3>asdasdsa</h3>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <p>thing</p>
+            </td>
+            <td>
+              <p>thingasda sdasd sad </p>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+    <section class="flex flex-col items-center justify-center text-center mt-2 gap-half">
+      <h2>Do You Want to Travel to Canada?</h2>
+      <a href="" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
+    </section>
+    <section id="faq-section" class="flex flex-col gap-1 mt-2">
       <h2>Frequently Asked Questions</h2>
       <ul id="faq" class="flex flex-col"></ul>
     </section>
+    <section class="flex flex-col-md mx-2 gap-2">
+      <div class="flex flex-col w-100-m-50 gap-1">
+        <h2 class="w-full">Have a more specific question?</h2>
+        <p>Fill out our contact form, and we will make sure like a banana to get back to you real quick. Customer service is our top priority. We love people!</p>
+      </div>
+      <form action="" id="contactForm" method="post" class="w-100-m-50 flex flex-col gap-half">
+        <h2 class="mb-half">Contact Us</h2>
+        <div class="flex flex-col-md gap-half">
+          <label for="contactName" hidden>Name</label>
+          <input id="contactName" type="text" title="Name" name="name" aria-label="Contact Form: Name" placeholder="Name" class="outline-none bw-2 bs-solid bc-2 p-1 flex-grow-1" required>
+          <label for="contactEmail" hidden>Email</label>
+          <input id="contactEmail" type="email" title="Email" name="email" aria-label="Contact Form: Email" placeholder="Email" class="outline-none bw-2 bs-solid bc-2 p-1 flex-grow-1" required>
+        </div>
+        <div class="flex gap-half">
+          <label for="contactMessage" hidden>Message</label>
+          <textarea id="contactMessage" title="Message" name="message" aria-label="Contact Form: Message" placeholder="Message" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required></textarea>
+        </div>
+        <button type="submit" title="Submit" aria-label="Contact Form: Submit" class="bw-2 bs-solid bc-2 bg-2 c-1 p-1">Submit</button>
+      </form>
+    </section>
   </main>
 
-  <footer class="inverted p-1 flex items-center justify-center">
+  <footer class="inverted py-1 px-2 flex items-center justify-center">
     <div class="div-media flex flex-col gap-2">
       <div class="flex items-center gap-1">
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
@@ -268,20 +321,20 @@
   <script type="text/javascript">
     const data = [
       {
-        summary: 'Why should I travel to Canada?',
-        details: 'bananaphone'
+        summary: "Is traveling in Canada hard?",
+        details: "bananaphone"
       },
       {
-        summary: 'Why should I not travel to Canada?',
-        details: 'There is no reason to not travel to Canada, we have lots of syrup.'
+        summary: "Are the geese really that vicious?",
+        details: "There is no reason to not travel to Canada, we have lots of syrup."
       },
       {
-        summary: 'Why should I travel to Canada?',
-        details: 'bananaphone'
+        summary: "Do I have to pay for my plane ticket if I bring maple syrup?",
+        details: "bananaphone"
       },
       {
-        summary: 'Why should I travel to Canada?',
-        details: 'bananaphone'
+        summary: "Why should I travel to Canada?",
+        details: "bananaphone"
       },
     ];
     new FAQ(data);
