@@ -1,0 +1,39 @@
+body {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 0 auto;
+	max-width: 40rem;
+}
+
+h1,
+footer {
+	text-align: center;
+	/* Give me equal padding on all four sides */
+	padding: 1rem;
+	
+}
+
+section {
+	background-color: rgb(205, 244, 205);
+	/* Give me some padding only on the left and right */
+	padding: 0 1rem;
+}
+
+article {
+	color: rgb(255, 255, 255);
+	/* Give me a background color that contrasts with my font color */
+	background: black;
+
+	/* Give me padding on the left/right that is larger than my padding on the top/bottom */
+	padding: 0 2rem;
+
+	/* Give me margin on one of my four sides so I don't touch the other articles  */
+	margin: 1rem 0 0 0;
+}
+
+img {
+	/* Remove the space underneath each image */
+	display: block;
+}
