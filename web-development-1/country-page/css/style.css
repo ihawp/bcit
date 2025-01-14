@@ -766,7 +766,7 @@ textarea {
     but use .flex-row.sm to identify switching in media queries...
     that is in relation to the flex stuff.
  */
-@media screen and (min-width: 36.25em) {
+@media screen and (min-width: 40em) {
     /* flex direction media */
     .flex-row-sm {
         flex-direction: column;
@@ -796,7 +796,7 @@ textarea {
         width: 50%;
     }
 }
-@media screen and (min-width: 47.938em) {
+@media screen and (min-width: 50em) {
     /* flex direction media */
     .flex-row-md {
         flex-direction: column;
