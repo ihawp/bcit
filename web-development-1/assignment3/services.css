@@ -35,6 +35,13 @@ img {
     border-radius: 10rem;
 }
 
+a:visited {
+   color: var(--3);
+}
+a:hover, a:focus, a:active {
+    color: rgb(52, 112, 52, 0.8);
+}
+
 /* text decoration */
 .text-dec-none {
     text-decoration: none;
