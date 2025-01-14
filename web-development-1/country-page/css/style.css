@@ -37,21 +37,11 @@ body {
     background: var(--2);
     color: var(--1);
 }
-header {
-
-}
-nav {
-
-}
-main {
-}
-section {
-    box-sizing: border-box;
-    padding: 0 1rem 0 1rem;
-}
-footer {
-
-}
+header {}
+nav {}
+main {}
+section {}
+footer {}
 button, summary {
     cursor: pointer;
 }
@@ -382,7 +372,7 @@ img {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 }
-.py-1 {
+.py-1, section {
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -716,12 +706,6 @@ img {
     font-size: 1.3rem;
 }
 
-
-#hero {
-    height: 200px;
-    box-sizing: border-box;
-    overflow: hidden;
-}
 #hero-image {
     object-position: bottom;
 }

@@ -135,10 +135,21 @@
   </header>
 
   <main class="flex flex-col gap-1">
-    <section id="hero">
-      <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="200" width="100%" class="w-full">
+
+    <!-- hero; might not use this -->
+    <section>
+      <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="auto" width="100%">
     </section>
 
+    <!-- Do You Want to Travel to Canada? -->
+    <section class="flex flex-col items-center justify-center text-center gap-1 pb-half">
+      <h2>Do You Want to Travel to Canada?</h2>
+      <a href="visit.html" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
+    </section>
+
+    <!-- list left desktop -->
+    <!-- list right desktop -->
+    <!-- GOAL: create baseline paragraph content section -->
     <section class="flex flex-col-rev-md-nr gap-1">
       <div class="w-100-m-50 gap-half flex flex-col">
         <h2 class="font-weight-600">This is some title with real PURPOSE.</h2>
@@ -161,7 +172,7 @@
     <section class="flex flex-col-rev-md gap-1">
       <div class="w-100-m-50 flex flex-col gap-half">
         <h2>this is some title about the content and it is very awesome</h2>
-        <ul class="disc p-1 flex flex-col gap-1">
+        <ul class="disc pl-2 pb-1 pt-half pr-1 flex flex-col gap-1">
           <li>
             this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
           </li>
@@ -178,8 +189,8 @@
       </div>
     </section>
 
+    <!-- grid; credits... MAKE WORK FOR MOBILE -->
     <section class="grid inverted pb-1 pt-half py-1">
-      <!-- create baseline paragraph content section -->
       <h2 class="grid-item1 py-half px-half">Credits</h2>
       <div>
         <div class="p-1 inverted">
@@ -202,11 +213,17 @@
         </div>
       </div>
     </section>
-    <section class="flex flex-col gap-1">
+
+    <!-- Thinking About Visiting? -->
+    <section class="flex flex-col items-center justify-center text-center pt-2 gap-half">
       <div class="flex flex-col justify-center items-center text-center p-1 gap-half">
-        <h2>Thinking about visiting?</h2>
+        <h2>Thinking About Visiting?</h2>
         <p>Learn about different parts of canada through the data we've collected regarding Canadas tourism industry.</p>
       </div>
+    </section>
+
+    <!-- table -->
+    <section class="flex flex-col gap-1">
       <div class="flex flex-col gap-half">
         <h3>Most Popular Cities:</h3>
         <table class="w-full">
@@ -265,14 +282,13 @@
       </div>
     </section>
 
-    <section class="flex flex-col items-center justify-center text-center mt-2 gap-half">
-      <h2>Do You Want to Travel to Canada?</h2>
-      <a href="visit.html" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
-    </section>
-    <section id="frequently-asked-questions" class="flex flex-col gap-1 mt-2">
+    <!-- FAQ -->
+    <section id="frequently-asked-questions" class="flex flex-col gap-1 pt-2">
       <h2>Frequently Asked Questions:</h2>
       <ul id="faq" class="flex flex-col"></ul>
     </section>
+
+    <!-- Contact Form -->
     <section id="contact" class="flex flex-col-md mx-2 gap-2">
       <div class="flex flex-col w-100-m-50 gap-1">
         <h2 class="w-full">Have a more specific question?</h2>
@@ -294,6 +310,7 @@
         <button type="submit" title="Submit" aria-label="Contact Form: Submit" class="bw-2 bs-solid bc-2 bg-2 c-1 p-1">Submit</button>
       </form>
     </section>
+
   </main>
 
   <footer class="inverted py-1 px-2 flex items-center justify-center">
