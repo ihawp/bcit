@@ -73,7 +73,7 @@
         </ul>
       </nav>
     </div>
-    <div class="none flex-row flex-wrap gap-1">
+    <div class="none flex-row flex-wrap gap-1 w-full">
       <div class="flex-grow-1 flex-row items-center">
         <img src="media/canada-flag.webp" title="Canada Flag" draggable="false" alt="Canada Flag" width="90" height="45" />
       </div>
@@ -122,8 +122,8 @@
       </nav>
       <nav aria-label="Mobile Search Navigation" class="flex-row w-full items-center justify-center">
         <ul class="w-full">
-          <li class="w-full">
-            <form action="php/search.php" method="post" class="flex-row items-center gap-half w-full">
+          <li>
+            <form action="php/search.php" method="post" class="flex-row items-center gap-half">
               <label for="searchBarMobile" hidden>Search</label>
               <input id="searchBarMobile" class="bc-2 c-2 w-full bs-solid outline-none bw-2" aria-label="Search Bar" name="search" type="text" placeholder="Search" required>
               <button class="bc-2 bg-2 c-1 bs-solid bw-2 w-third" type="submit" title="Search">Search</button>
@@ -226,7 +226,7 @@
     <section class="flex-col gap-1">
       <div class="flex flex-col gap-half">
         <h3>Most Popular Cities:</h3>
-        <table class="w-full">
+        <table>
           <thead class="bg-2 c-1">
           <tr>
             <th>City</th>
@@ -258,7 +258,7 @@
       </div>
       <div class="flex flex-col gap-half">
         <h3>Most Popular Provinces:</h3>
-        <table class="w-full">
+        <table>
           <thead class="bg-2 c-1">
           <tr>
             <th>Province</th>
@@ -291,7 +291,7 @@
     <!-- Contact Form -->
     <section id="contact" class="flex-col-md mx-2 gap-2">
       <div class="flex flex-col w-100-m-50 gap-1">
-        <h2 class="w-full">Have a more specific question?</h2>
+        <h2>Have a more specific question?</h2>
         <p>Fill out our contact form, and we will make sure to get back to you real quick. Customer service is our top priority. We love people!</p>
         <p>Responses to inquiries are sent every weekday from 8am - 4pm.</p>
       </div>
@@ -405,7 +405,7 @@
 
 
       <div class="flex-col-rev-sm-nr gap-2">
-        <div class="flex-col gap-2 w-full">
+        <div class="flex-col gap-2 flex-grow-1">
           <address class="flex-col gap-half">
             <p>Parliament Hill<br>
             Wellington St, Ottawa, ON K1A 0A9<br>
@@ -416,7 +416,7 @@
           <p class="w-full">&copy; Canada 2025.</p>
 
         </div>
-        <div class="w-full text-start-sm flex-col gap-1">
+        <div class="text-start-sm flex-col gap-1 flex-grow-1">
           <blockquote>
             "I love Canada a lot!"<br>
             <cite>- Prime Minister</cite>
