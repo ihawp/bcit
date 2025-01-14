@@ -306,6 +306,11 @@ img {
     min-height: 200px;
 }
 
+/* list style */
+.disc {
+    list-style: disc;
+}
+
 /* gap */
 .gap-half {
     gap: 0.5em;
