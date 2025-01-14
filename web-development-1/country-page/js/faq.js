@@ -9,7 +9,7 @@ class FAQ {
         this.data.map((item, index) => {
             faq.insertAdjacentHTML('beforeend', `
                 <li>
-					<details id="details-${index}" class="flex flex-col">
+					<details id="details-${index}" class="flex-col">
 						<summary class="px-1" id="summary-${index}">
 						    <h3>${item.summary}</h3>
 						</summary>

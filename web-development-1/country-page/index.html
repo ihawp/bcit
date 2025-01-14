@@ -15,17 +15,17 @@
   <title>Home</title>
 </head>
 <body>
-  <header class="flex flex-col items-center p-1">
-    <div class="div-media flex flex-col gap-1 display-sm">
-      <div class="flex items-center">
+  <header class="flex-row flex-col items-center p-1">
+    <div class="div-media flex-row flex-col gap-1 display-sm">
+      <div class="flex-row items-center">
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
-        <div class="flex items-center gap-1">
+        <div class="flex-row items-center gap-1">
           <img src="media/canada-flag.webp" title="Canada Flag" draggable="false" alt="Canada Flag" width="90" height="45" />
           <h1 title="Travel Canada" class="display-md">Travel Canada</h1>
         </div>
-        <div class="flex-grow-1 flex justify-end gap-1">
+        <div class="flex-grow-1 flex-row justify-end gap-1">
           <nav aria-label="Login/Register">
-            <ul class="flex flex-grow-1 justify-end gap-1">
+            <ul class="flex-row flex-grow-1 justify-end gap-1">
               <li>
                 <a title="Login" href="#">Login</a>
               </li>
@@ -38,7 +38,7 @@
             </ul>
           </nav>
           <nav id="language-nav" aria-label="Change Language">
-            <ul class="flex items-center justify-end gap-half">
+            <ul class="flex-row items-center justify-end gap-half">
               <li>
                 <a href="#" class="bg-2 c-1 p-half" title="Francais">Francais</a>
               </li>
@@ -47,8 +47,8 @@
         </div>
         <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
       </div>
-      <nav class="bg-1 flex" aria-label="Desktop/Tablet Main Site Navigation">
-        <ul class="flex gap-1">
+      <nav class="bg-1 flex-row" aria-label="Desktop/Tablet Main Site Navigation">
+        <ul class="flex-row gap-1">
           <li>
             <a title="Home" class="active" href="index.html">Home</a>
           </li>
@@ -62,9 +62,9 @@
             <a title="Credit" href="credit.html">Credit</a>
           </li>
         </ul>
-        <ul class="flex w-full justify-end">
+        <ul class="flex-row w-full justify-end">
           <li>
-            <form action="php/search.php" method="post" class="flex items-center gap-half">
+            <form action="php/search.php" method="post" class="flex-row items-center gap-half">
               <label for="searchBarDesktop" hidden>Search</label>
               <input id="searchBarDesktop" class="bc-2 c-2 bs-solid outline-none bw-2" aria-label="Search Bar" name="search" type="text" placeholder="Search" required>
               <button class="bc-2 bg-2 c-1 bs-solid bw-2" type="submit" title="Search">Search</button>
@@ -73,25 +73,25 @@
         </ul>
       </nav>
     </div>
-    <div class="none flex w-full flex-wrap gap-1">
-      <div class="flex-grow-1 flex items-center">
+    <div class="none flex-row w-full flex-wrap gap-1">
+      <div class="flex-grow-1 flex-row items-center">
         <img src="media/canada-flag.webp" title="Canada Flag" draggable="false" alt="Canada Flag" width="90" height="45" />
       </div>
-      <div class="flex flex-grow-1 items-center justify-end">
+      <div class="flex-row flex-grow-1 items-center justify-end">
         <button id="button-mobile-nav" title="Navigation" aria-label="Navigation" class="none-sm ">|||</button>
       </div>
-      <nav id="mobile-nav" class="w-full h-full overflow-auto flex flex-col gap-1 p-2" aria-label="Mobile Main Site Navigation">
-        <div class="flex items-center gap-1">
+      <nav id="mobile-nav" class="w-full h-full overflow-auto flex-col gap-1 p-2" aria-label="Mobile Main Site Navigation">
+        <div class="flex-row items-center gap-1">
           <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
           <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag.webp" width="60" height="30">
           <h2>Travel Canada</h2>
         </div>
-        <ul class="flex gap-1 mobile-alt">
+        <ul class="flex-row gap-1 mobile-alt">
           <li>
             <a href="#" title="Francais" class="c-1">Francais</a>
           </li>
         </ul>
-        <ul class="flex gap-1 mobile-alt">
+        <ul class="flex-row gap-1 mobile-alt">
           <li>
             <a title="Login" class="c-1" href="#">Login</a>
           </li>
@@ -102,7 +102,7 @@
             <a title="Register" class="c-1" href="#">Register</a>
           </li>
         </ul>
-        <ul class="flex flex-col gap-1">
+        <ul class="flex-col gap-1">
           <li>
             <a title="Home" class="font-weight-600 c-1" href="index.html">Home</a>
           </li>
@@ -116,14 +116,14 @@
             <a title="Credit" class="font-weight-600 c-1" href="credit.html">Credit</a>
           </li>
         </ul>
-        <div class="flex items-center justify-center min-h-200">
+        <div class="flex-row items-center justify-center min-h-200">
           <button id="button-exit-mobile-nav" class="c-1 bc-1 bs-solid bw-2" title="Exit Navigation" aria-label="Exit Navigation">X</button>
         </div>
       </nav>
-      <nav aria-label="Mobile Search Navigation" class="flex w-full items-center justify-center">
+      <nav aria-label="Mobile Search Navigation" class="flex-row w-full items-center justify-center">
         <ul class="w-full">
           <li class="w-full">
-            <form action="php/search.php" method="post" class="flex items-center gap-half w-full">
+            <form action="php/search.php" method="post" class="flex-row items-center gap-half w-full">
               <label for="searchBarMobile" hidden>Search</label>
               <input id="searchBarMobile" class="bc-2 c-2 w-full bs-solid outline-none bw-2" aria-label="Search Bar" name="search" type="text" placeholder="Search" required>
               <button class="bc-2 bg-2 c-1 bs-solid bw-2 w-third" type="submit" title="Search">Search</button>
@@ -134,7 +134,7 @@
     </div>
   </header>
 
-  <main class="flex flex-col gap-1">
+  <main class="flex-col gap-1">
 
     <!-- hero; might not use this -->
     <section>
@@ -142,7 +142,7 @@
     </section>
 
     <!-- Do You Want to Travel to Canada? -->
-    <section class="flex flex-col items-center justify-center text-center gap-1 pb-half">
+    <section class="flex-col items-center justify-center text-center gap-1 pb-half">
       <h2>Do You Want to Travel to Canada?</h2>
       <a href="visit.html" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
     </section>
@@ -150,7 +150,7 @@
     <!-- list left desktop -->
     <!-- list right desktop -->
     <!-- GOAL: create baseline paragraph content section -->
-    <section class="flex flex-col-rev-md-nr gap-1">
+    <section class="flex-col-rev-md-nr gap-1">
       <div class="w-100-m-50 gap-half flex flex-col">
         <h2 class="font-weight-600">This is some title with real PURPOSE.</h2>
         <ul class="disc pl-2 pb-1 pt-half pr-1 flex flex-col gap-1">
@@ -169,7 +169,7 @@
         <img src="media/bg.webp" draggable="false" alt="" width="100%" height="auto">
       </div>
     </section>
-    <section class="flex flex-col-rev-md gap-1">
+    <section class="flex-col-rev-md gap-1">
       <div class="w-100-m-50 flex flex-col gap-half">
         <h2>this is some title about the content and it is very awesome</h2>
         <ul class="disc pl-2 pb-1 pt-half pr-1 flex flex-col gap-1">
@@ -215,7 +215,7 @@
     </section>
 
     <!-- Thinking About Visiting? -->
-    <section class="flex flex-col items-center justify-center text-center pt-2 gap-half">
+    <section class="flex-col items-center justify-center text-center pt-2 gap-half">
       <div class="flex flex-col justify-center items-center text-center p-1 gap-half">
         <h2>Thinking About Visiting?</h2>
         <p>Learn about different parts of canada through the data we've collected regarding Canadas tourism industry.</p>
@@ -223,7 +223,7 @@
     </section>
 
     <!-- table -->
-    <section class="flex flex-col gap-1">
+    <section class="flex-col gap-1">
       <div class="flex flex-col gap-half">
         <h3>Most Popular Cities:</h3>
         <table class="w-full">
@@ -283,13 +283,13 @@
     </section>
 
     <!-- FAQ -->
-    <section id="frequently-asked-questions" class="flex flex-col gap-1 pt-2">
+    <section id="frequently-asked-questions" class="flex-col gap-1 pt-2">
       <h2>Frequently Asked Questions:</h2>
       <ul id="faq" class="flex flex-col"></ul>
     </section>
 
     <!-- Contact Form -->
-    <section id="contact" class="flex flex-col-md mx-2 gap-2">
+    <section id="contact" class="flex-col-md mx-2 gap-2">
       <div class="flex flex-col w-100-m-50 gap-1">
         <h2 class="w-full">Have a more specific question?</h2>
         <p>Fill out our contact form, and we will make sure to get back to you real quick. Customer service is our top priority. We love people!</p>
@@ -313,17 +313,17 @@
 
   </main>
 
-  <footer class="inverted py-1 px-2 flex items-center justify-center">
-    <div class="div-media flex flex-col gap-2">
-      <div class="flex items-center gap-1">
+  <footer class="inverted py-1 px-2 flex-row items-center justify-center">
+    <div class="div-media flex-col gap-2">
+      <div class="flex-row items-center gap-1">
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
         <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" width="68.5" height="34.25">
         <h2>Travel Canada</h2>
       </div>
-      <div class="flex flex-col-sm gap-2 flex-wrap basis-auto">
-        <nav aria-label="footerNav1" class="flex flex-grow-1 flex-col gap-half min-width-150">
+      <div class="flex-col-sm gap-2 flex-wrap basis-auto">
+        <nav aria-label="footerNav1" class="flex-grow-1 flex-col gap-half min-width-150">
           <p class="font-weight-900">Home</p>
-          <ul class="flex flex-col gap-half">
+          <ul class="flex-col gap-half">
             <li>
               <a title="" href="" target="_blank" rel="noreferrer">Link</a>
             </li>
@@ -341,9 +341,9 @@
             </li>
           </ul>
         </nav>
-        <nav aria-label="footerNav2" class="flex flex-grow-1 flex-col gap-half min-width-150">
+        <nav aria-label="footerNav2" class="flex-grow-1 flex-col gap-half min-width-150">
           <p class="font-weight-900">About</p>
-          <ul class="flex flex-col gap-half">
+          <ul class="flex-col gap-half">
             <li>
               <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
             </li>
@@ -361,9 +361,9 @@
             </li>
           </ul>
         </nav>
-        <nav aria-label="footerNav3" class="flex flex-grow-1 flex-col gap-half min-width-150">
+        <nav aria-label="footerNav3" class="flex-grow-1 flex-col gap-half min-width-150">
           <p class="font-weight-900">Visit</p>
-          <ul class="flex flex-col gap-half">
+          <ul class="flex-col gap-half">
             <li>
               <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
             </li>
@@ -381,9 +381,9 @@
             </li>
           </ul>
         </nav>
-        <nav aria-label="footerNav4" class="flex flex-grow-1 flex-col gap-half min-width-150">
+        <nav aria-label="footerNav4" class="flex-grow-1 flex-col gap-half min-width-150">
           <p class="font-weight-900">Credit</p>
-          <ul class="flex flex-col gap-half">
+          <ul class="flex-col gap-half">
             <li>
               <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
             </li>
@@ -404,9 +404,9 @@
       </div>
 
 
-      <div class="flex flex-col-rev-sm-nr gap-2">
-        <div class="flex flex-col gap-2 w-full">
-          <address class="flex flex-col gap-half">
+      <div class="flex-col-rev-sm-nr gap-2">
+        <div class="flex-col gap-2 w-full">
+          <address class="flex-col gap-half">
             <p>Parliament Hill<br>
             Wellington St, Ottawa, ON K1A 0A9<br>
             Canada</p>
@@ -416,7 +416,7 @@
           <p class="w-full">&copy; Canada 2025.</p>
 
         </div>
-        <div class="w-full text-start-sm flex flex-col gap-1">
+        <div class="w-full text-start-sm flex-col gap-1">
           <blockquote>
             "I love Canada a lot!"<br>
             <cite>- Prime Minister</cite>

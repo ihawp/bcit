@@ -211,7 +211,28 @@ img {
 }
 
 /* flex */
-.flex, main, summary {
+.flex-row,
+.flex-col,
+main,
+summary,
+.flex-row,
+.flex-row-sm,
+.flex-row-md,
+.flex-row-lg,
+.flex-col,
+.flex-col-sm,
+.flex-col-md,
+.flex-col-lg,
+.flex-row-rev,
+.flex-row-rev-sm,
+.flex-row-rev-md,
+.flex-row-rev-lg,
+.flex-col-rev,
+.flex-col-rev-sm,
+.flex-col-rev-md,
+.flex-col-rev-lg,
+.flex-col-rev-sm-nr,
+.flex-col-rev-md-nr {
     display: flex;
 }
 
