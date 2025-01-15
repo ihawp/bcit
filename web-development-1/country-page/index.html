@@ -15,25 +15,25 @@
   <title>Travel Canada | Home</title>
 </head>
 <body>
-  <header class="flex-row flex-col items-center p-1">
-    <div class="div-media flex-row flex-col gap-1 display-sm">
+  <header class="flex-row flex-col items-center py-1 pt-1">
+    <div class="div-media flex-col display-sm gap-1">
       <div class="flex-row items-center">
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
         <nav class="flex-row items-center gap-1">
           <img src="media/canada-flag.webp" title="Canada Flag" draggable="false" alt="Canada Flag" width="90" height="45" />
-          <h1><a title="Travel Canada" href="index.html" aria-label="Navigate to Home Page, Travel Canada Site Title" class="display-md">Travel Canada</a></h1>
+          <a title="Travel Canada" href="index.html" aria-label="Navigate to Home Page, Travel Canada Site Title" class="display-md font-size-xx-large font-weight-600 c-2">Travel Canada</a>
         </nav>
         <div class="flex-grow-1 flex-row justify-end gap-1">
           <nav aria-label="Login/Register">
             <ul class="flex-row flex-grow-1 justify-end gap-1">
               <li>
-                <a title="Login" href="#">Login</a>
+                <a title="Login" href="#" class="c-2">Login</a>
               </li>
               <li>
                 <p>|</p>
               </li>
               <li>
-                <a title="Register" href="#">Register</a>
+                <a title="Register" href="#" class="c-2">Register</a>
               </li>
             </ul>
           </nav>
@@ -48,18 +48,18 @@
         <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
       </div>
       <nav class="bg-1 flex-row" aria-label="Desktop/Tablet Main Site Navigation">
-        <ul class="flex-row gap-1">
+        <ul class="flex-row gap-1 items-center">
           <li>
-            <a title="Home" class="active" href="index.html">Home</a>
+            <a title="Home" href="index.html" class="active c-2">Home</a>
           </li>
           <li>
-            <a title="About" href="about.html">About</a>
+            <a title="About" href="about.html" class="c-2">About</a>
           </li>
           <li>
-            <a title="Visit" href="visit.html">Visit</a>
+            <a title="Visit" href="visit.html" class="c-2">Visit</a>
           </li>
           <li>
-            <a title="Credit" href="credit.html">Credit</a>
+            <a title="Credit" href="credit.html" class="c-2">Credit</a>
           </li>
         </ul>
         <ul class="flex-row w-full justify-end">
@@ -134,22 +134,26 @@
     </div>
   </header>
 
-  <main class="flex-col gap-1">
-    <!-- hero; might not use this -->
-    <section>
-      <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="auto" width="100%">
+  <main class="flex-col gap-1 p-1">
+
+    <header class="div-media flex-col gap-1">
+      <img src="media/sun-on-bottom-left-sky-trees.jpg" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="123" width="auto">
+      <h1 class="bg-2 c-1 p-1 text-center">Travel Canada</h1>
+    </header>
+
+    <!-- Do You Want to Travel to Canada? -->
+    <section class="flex-col items-center justify-center text-center gap-1 px-1">
+      <h2>Want to Travel to Canada?</h2>
+      <a href="visit.html" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
     </section>
 
     <!-- list left desktop -->
     <!-- list right desktop -->
     <!-- GOAL: create baseline paragraph content section -->
-    <section class="flex-col-rev-md-nr gap-1">
+    <section class="flex-col-rev-md-nr gap-1 items-center">
       <div class="w-100-m-50 gap-half flex flex-col">
         <h2 class="font-weight-600">This is some title with real PURPOSE.</h2>
-        <ul class="disc pl-2 pb-1 pt-half pr-1 flex flex-col gap-1">
-          <li>
-            this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
-          </li>
+        <ul class="disc pb-1 pl-1-5 pt-half pr-1 flex flex-col gap-1">
           <li>
             this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
           </li>
@@ -159,13 +163,13 @@
         </ul>
       </div>
       <div class="w-100-m-50">
-        <img src="media/bg.webp" draggable="false" alt="" width="100%" height="auto">
+        <img src="media/Untitled-2.jpg" draggable="false" alt="" width="100%" height="300">
       </div>
     </section>
-    <section class="flex-col-rev-md gap-1">
+    <section class="flex-col-rev-md gap-1 items-center">
       <div class="w-100-m-50 flex flex-col gap-half">
         <h2>this is some title about the content and it is very awesome</h2>
-        <ul class="disc pl-2 pb-1 pt-half pr-1 flex flex-col gap-1">
+        <ul class="disc pl-1-5 pb-1 pt-half pr-1 flex flex-col gap-1">
           <li>
             this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
           </li>
@@ -178,44 +182,41 @@
         </ul>
       </div>
       <div class="w-100-m-50">
-        <img src="media/bg.webp" draggable="false" alt="" width="100%" height="300">
+        <img src="media/Untitled-2.jpg" draggable="false" alt="" width="100%" height="300">
       </div>
     </section>
 
-    <!-- Do You Want to Travel to Canada? -->
-    <section class="flex-col items-center justify-center text-center gap-1 pb-half">
-      <h2>Do You Want to Travel to Canada?</h2>
-      <a href="visit.html" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
-    </section>
-
-    <!-- grid; credits... MAKE WORK FOR MOBILE -->
-    <section class="grid inverted pb-1 pt-half py-1">
-      <h2 class="grid-item1 py-half px-half">Credits</h2>
-      <div>
-        <div class="p-1 inverted">
+    <section>
+      <ul class="grid bg-2 c-1 pb-1 pt-half py-1">
+        <li class="grid-item1">
+          <h2 class="px-1 py-1">Resources</h2>
+        </li>
+        <li class="p-1">
           <h3>Gracie Filena Bobbie-Strelioff</h3>
           <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
-        </div>
-        <div class="p-1 inverted">
+        </li>
+        <li class="p-1">
           <h3>Gracie Filena Bobbie-Strelioff</h3>
           <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
-        </div>
-      </div>
-      <div>
-        <div class="p-1 inverted">
+        </li>
+        <li class="p-1">
           <h3>Gracie Filena Bobbie-Strelioff</h3>
           <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
-        </div>
-        <div class="p-1 inverted">
+        </li>
+        <li class="p-1">
           <h3>Gracie Filena Bobbie-Strelioff</h3>
           <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
-        </div>
-      </div>
+        </li>
+        <li class="p-1">
+          <h3>Gracie Filena Bobbie-Strelioff</h3>
+          <a href="" title="" aria-label="" class="c-4 active">View Resource</a>
+        </li>
+      </ul>
     </section>
 
     <!-- Thinking About Visiting? -->
-    <section class="flex-col items-center justify-center text-center pt-2 gap-half">
-      <div class="flex flex-col justify-center items-center text-center p-1 gap-half">
+    <section class="flex-col items-center justify-center text-center gap-half">
+      <div class="flex flex-col justify-center items-center text-center py-1 px-2 gap-half">
         <h2>Thinking About Visiting?</h2>
         <p>Learn about different parts of canada through the data we've collected regarding Canadas tourism industry.</p>
       </div>
@@ -312,7 +313,7 @@
 
   </main>
 
-  <footer class="inverted py-1 px-2 flex-row items-center justify-center">
+  <footer class="bg-2 c-1 py-1 px-2 flex-row items-center justify-center">
     <div class="div-media flex-col gap-2">
       <div class="flex-row items-center gap-1">
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
@@ -324,19 +325,19 @@
           <p class="font-weight-900">Home</p>
           <ul class="flex-col gap-half">
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Link</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Link</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Sections</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Sections</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">From</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">From</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Each</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Each</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Page</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Page</a>
             </li>
           </ul>
         </nav>
@@ -344,19 +345,19 @@
           <p class="font-weight-900">About</p>
           <ul class="flex-col gap-half">
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
             </li>
           </ul>
         </nav>
@@ -364,19 +365,19 @@
           <p class="font-weight-900">Visit</p>
           <ul class="flex-col gap-half">
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
             </li>
           </ul>
         </nav>
@@ -384,19 +385,19 @@
           <p class="font-weight-900">Credit</p>
           <ul class="flex-col gap-half">
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Home</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">Contact</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
             </li>
             <li>
-              <a title="" href="" target="_blank" rel="noreferrer">About</a>
+              <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
             </li>
           </ul>
         </nav>
@@ -409,8 +410,8 @@
             <p>Parliament Hill<br>
             Wellington St, Ottawa, ON K1A 0A9<br>
             Canada</p>
-            <a class="active" rel="noreferrer" href="tel:999-999-9999">999-999-9999</a>
-            <a class="active" rel="noreferrer" href="mailto:canada@canada.ca">canada@canada.ca</a>
+            <a class="active c-4" rel="noreferrer" href="tel:999-999-9999">999-999-9999</a>
+            <a class="active c-4" rel="noreferrer" href="mailto:canada@canada.ca">canada@canada.ca</a>
           </address>
           <p class="w-full">&copy; Canada 2025.</p>
 
@@ -418,17 +419,17 @@
         <div class="text-start-sm flex-col gap-1 flex-grow-1">
           <blockquote>
             "I love Canada a lot!"<br>
-            <cite>- Prime Minister</cite>
+            <cite class="c-4">- Prime Minister</cite>
           </blockquote>
           <blockquote>
             "I think this place is so awesomeasdasd asd adas as dsa dsad sadas!"<br>
-            <cite>- Austin Powers</cite>
+            <cite  class="c-4">- Austin Powers</cite>
           </blockquote>
         </div>
       </div>
     </div>
   </footer>
-  <script src="js/quick.js" type="text/javascript"></script>
+  <!-- <script src="js/quick.js" type="text/javascript"></script> -->
   <script src="js/faq.js" type="text/javascript"></script>
   <script type="text/javascript">
     const data = [
