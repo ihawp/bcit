@@ -1,0 +1,287 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Generic (CALLED IN NORMALIZE.CSS)
+	- Normalize
+	- Box sizing
+	- Media width
+# Base
+	- Typography
+	- Elements
+	- Links
+# Components
+	- Header
+	- Main
+	- Footer
+# Credits
+	- https://ultrawidewallpapers.com/wp-content/uploads/2016/08/flannel-3440x1440-2000x1440.jpg
+	- https://ahmed.7pixelbz.ca/
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+/* Typography
+--------------------------------------------- */
+body {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #282828;
+	background-color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	margin: .5em 0;
+	font-size: 1.75rem;
+}
+
+p {
+	margin: 0 0 1.5em;
+}
+
+
+/* Elements
+--------------------------------------------- */
+section,
+aside {
+	padding: 0 1rem;
+}
+
+
+/* Links
+--------------------------------------------- */
+a,
+a:visited { 
+	color: #008000;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+	text-decoration: underline;
+}
+
+a:focus {
+	outline: 1px dotted;
+}
+
+/*--------------------------------------------------------------
+# Components
+--------------------------------------------------------------*/
+.site-wrapper {
+	/* This is for very large screens */
+	max-width: 120rem;
+	margin: 0 auto;
+}
+/* Header
+--------------------------------------------- */
+.site-header {
+	background-color: white;
+	color: #282828;
+	/* add flex styles here */
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.site-name {
+	font-weight: 900;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 2.25rem;
+	margin: 0 0 0 1rem;
+	color: #282828;
+}
+
+.site-navigation {
+	padding: 0 1rem;
+}
+
+.site-navigation ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+.site-navigation a {
+	display: block;
+	padding: 1rem;
+	font-size: 1.25rem;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+/* START -- STYLES FOR MOBILE MENU */
+/* we will cover this more later */
+.site-navigation ul {
+	display: none;
+	position: absolute;
+	top: 4.5rem;
+	left: 0;
+	right: 0;
+	z-index: 2;
+	background-color: #ffe6bf;
+}
+
+.menu-toggle {
+	display: block;
+	background-color: transparent;
+	border: 0;
+	padding: 1rem;
+}
+
+.menu-toggle:focus {
+	border: 0;
+	outline: 1px dotted;
+}
+
+.site-navigation.toggled ul {
+	display: block;
+}
+/* END -- STYLES FOR MOBILE MENU */
+
+
+@media (min-width: 43.75em) {
+
+	.menu-toggle {
+		display: none;
+	}
+
+	.site-navigation a {
+		color: #282828;
+		font-family: Georgia, Times, 'Times New Roman', serif;
+		text-transform: capitalize;
+	}
+
+	.site-navigation ul,
+	.site-navigation.toggled ul {
+		/* add flex styles here */
+		display: flex;
+
+		/* START - Remove Mobile Menu Styles */
+		position: relative;
+		top: 0;
+		background: none;
+		/* END - Remove Mobile Menu Styles  */
+	}
+
+	.site-navigation a {
+		padding: 0 1rem;
+	}
+
+}
+
+
+/* Main
+--------------------------------------------- */
+/* Page Header */
+.page-header {
+	position: relative;
+}
+
+.page-header h1 {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	transform: translateY(-50%);
+	margin: 0;
+	font-size: 3rem;
+	color: #fff;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.page-header img {
+	display: block;
+	object-fit: cover;
+	min-height: 25rem;
+}
+
+@media (min-width: 50em) {
+
+	.page-header h1 {
+		font-size: 5rem;
+	}
+	
+}
+
+/* Section: About */
+.section-about {
+	display: flex;
+	flex-direction: column;
+}
+.section-about h2 {
+	text-align: center;
+}
+.section-about p {
+	text-align: start;
+	line-height: 2rem;
+}
+
+@media screen and (min-width: 43.75em) {
+	.section-about p {
+		align-self: center;
+		width: 40rem;
+	}
+}
+
+/* Section: Products */
+.section-products {
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+}
+.products-wrapper {
+	display: inherit;
+	flex-direction: column;
+	gap: 3rem;
+	align-items: center;
+}
+.product-link {
+	background: #008000;
+	color: white;
+	padding: 1rem;
+}
+@media screen and (min-width: 43.75em) {
+	.section-products {
+		flex-direction: row-reverse;
+	}
+	.products-sidebar {
+		width: 12em;
+	}
+	.products-wrapper {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: center;
+	}
+	footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+/* Footer
+--------------------------------------------- */
+footer {
+	padding: 1rem;
+}

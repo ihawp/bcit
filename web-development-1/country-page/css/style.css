@@ -194,7 +194,7 @@ img {
 }
 
 /* text */
-/* text-smart-sm is media class
+/* text-smart-sm is images class
    at small breakpoint (550px) it
    is changed to text-align end
    a bit custom, but could be extended
@@ -237,8 +237,8 @@ summary,
     display: flex;
 }
 
-/* flex direction / flex direction media */
-/* trying flex media classes for different breakpoints */
+/* flex direction / flex direction images */
+/* trying flex images classes for different breakpoints */
 /*  -row/-col: will have no breakpoint
     -sm: small breakpoint (550px)
     -md: medium breakpoint (767px)
@@ -759,15 +759,15 @@ textarea {
     display: none;
 }
 
-/* media */
+/* images */
 /*
     PERHAPS: better system could have been break point class
     like .sm .md .lg that don't have any added properties
-    but use .flex-row.sm to identify switching in media queries...
+    but use .flex-row.sm to identify switching in images queries...
     that is in relation to the flex stuff.
  */
 @media screen and (min-width: 40em) {
-    /* flex direction media */
+    /* flex direction images */
     .flex-row-sm {
         flex-direction: column;
     }
@@ -797,7 +797,7 @@ textarea {
     }
 }
 @media screen and (min-width: 50em) {
-    /* flex direction media */
+    /* flex direction images */
     .flex-row-md {
         flex-direction: column;
     }
@@ -824,7 +824,7 @@ textarea {
     }
 }
 @media screen and (min-width: 75em) {
-    /* flex direction media */
+    /* flex direction images */
     .flex-row-lg {
         flex-direction: column;
     }

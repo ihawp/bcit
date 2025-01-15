@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
 }
 
-/* flexbox media (could be sorted into lg, md, sm, for switches at 1200px, 800px, 400px etc... */
+/* flexbox images (could be sorted into lg, md, sm, for switches at 1200px, 800px, 400px etc... */
 .fm-row {
     flex-direction: row;
 }
@@ -203,7 +203,7 @@ td, th {
     width: 50%;
 }
 
-/* media */
+/* images */
 img {
     border: dotted var(--color-1) 1px;
 }

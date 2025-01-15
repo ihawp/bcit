@@ -47,7 +47,7 @@ a:hover, a:focus, a:active {
     text-decoration: none;
 }
 
-/* flex / flex media*/
+/* flex / flex images*/
 .flex-row, .flex-col {
     display: flex;
 }
