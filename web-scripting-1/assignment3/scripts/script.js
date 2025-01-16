@@ -3,14 +3,22 @@
 class Wow {
     constructor() {
         this.count = document.querySelectorAll('.slide img');
-        this.realized = 0;
+        this.current = 0;
         this.init();
     }
     init() {
-        this.count[0].addEventListener('click', this.next);
+        document.getElementById('btn-turn-clockwise').addEventListener('click', this.click.bind(this));
+        document.getElementById('btn-turn-counter-clockwise').addEventListener('click', this.click.bind(this));
     }
-    next() {
-
+    updateSlide = () => {
+        this.count[this.current].style.display = 'none';
+        this.current + 1 === this.count.length ? this.current = 0 : this.current += 1;
+        this.count[this.current].style.display = 'block';
+    }
+    click(event) {
+        console.log(this.current);
+        this.updateSlide();
+        // event.target holds id for button clicked
     }
 }
 
