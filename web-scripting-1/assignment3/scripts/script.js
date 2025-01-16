@@ -1,6 +1,6 @@
 
 
-class Wow {
+class HorizontalCarousel {
     constructor() {
         this.count = document.querySelectorAll('.slide img');
         this.current = 0;
@@ -22,15 +22,4 @@ class Wow {
     }
 }
 
-new Wow();
-
-// get buttons from DOM
-const left = document.getElementById('btn-turn-clockwise');
-const right = document.getElementById('btn-turn-counter-clockwise');
-
-
-function leftClick() {
-
-}
-
-left.addEventListener('click', leftClick);
+new HorizontalCarousel;
