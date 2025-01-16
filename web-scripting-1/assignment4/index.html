@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment 04</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+<div class="wrapper">
+<header>
+    <h1>Assignment 04</h1>
+</header>
+<main>
+    <section>
+        <h1 class="application-title">Shopping Cart</h1>
+        <div class="product">
+            <div class="product-title">
+                <h2>Cool Lite T-Shirt</h2>
+            </div>
+            <div class="product-images-container">
+                <div class="slide-container">
+                    <img class="slide" id="slide" src="images/t-shirt-black-no-model.jpg" alt="Black t-shirt">
+                </div><!-- end slide -->
+                <div class="slide-thumbnails-container">
+                    <div class="th th-no-model" id="th-no-model">
+                        <a href="images/t-shirt-black-no-model.jpg">
+                            <img src="images/t-shirt-black-no-model.jpg" alt="Black T-shirt">
+                        </a>
+                    </div><!-- end th -->
+                    <div class="th th-front" id="th-front">
+                        <a href="images/t-shirt-black-front.jpg">
+                            <img src="images/t-shirt-black-front.jpg" alt="Black t-shirt front view">
+                        </a>
+                    </div><!-- end th -->
+                    <div class="th th-back" id="th-back">
+                        <a href="images/t-shirt-black-back.jpg">
+                            <img src="images/t-shirt-black-back.jpg" alt="Black t-shirt back view">
+                        </a>
+                    </div><!-- end th -->
+                </div><!-- end slide-thumbnails-container -->
+            </div><!-- end product-images-container -->
+            <div class="product-information-container">
+                <div class="product-price">
+                    <p id="price" data-price="90.00">$90.00</p>
+                </div>
+                <form action="#0" class="t-shirt-form" id="t-shirt-form">
+                    <div class="form-group form-group-radio form-group-color">
+                        <div class="form-item form-item-radio">
+                            <input id="t-shirt-color-black" type="radio" name="shirt-color" value="black" checked>
+                            <label for="t-shirt-color-black">
+                                <span class="sr-only">Black</span>
+                                <span class="circle circle-black"></span>
+                            </label>
+                        </div><!-- end form-item -->
+                        <div class="form-item form-item-radio">
+                            <input id="t-shirt-color-red" type="radio" name="shirt-color" value="red">
+                            <label for="t-shirt-color-red">
+                                <span class="sr-only">Red</span>
+                                <span class="circle circle-red"></span>
+                            </label>
+                        </div><!-- end form-item -->
+                        <div class="form-item form-item-radio">
+                            <input id="t-shirt-color-grey" type="radio" name="shirt-color" value="grey">
+                            <label for="t-shirt-color-grey">
+                                <span class="sr-only">Grey</span>
+                                <span class="circle circle-grey"></span>
+                            </label>
+                        </div><!-- end form-item -->
+                    </div><!-- end form-group -->
+                    <div class="form-group form-group-radio form-group-size">
+                        <div class="form-item form-item-radio">
+                            <input id="t-shirt-size-small" type="radio" name="shirt-size" value="s">
+                            <label for="t-shirt-size-small">
+                                <span class="sr-only">Small</span>
+                                <span aria-hidden="true" role="presentation" class="label-text">S</span>
+                            </label>
+                        </div><!-- end form-item -->
+                        <div class="form-item form-item-radio">
+                            <input id="t-shirt-size-medium" type="radio" name="shirt-size" value="m">
+                            <label for="t-shirt-size-medium">
+                                <span class="sr-only">Medium</span>
+                                <span aria-hidden="true" role="presentation" class="label-text">M</span>
+                            </label>
+                        </div><!-- end form-item -->
+                        <div class="form-item form-item-radio">
+                            <input id="t-shirt-size-large" type="radio" name="shirt-size" value="l">
+                            <label for="t-shirt-size-large">
+                                <span class="sr-only">Large</span>
+                                <span aria-hidden="true" role="presentation" class="label-text">L</span>
+                            </label>
+                        </div><!-- end form-item -->
+                    </div><!-- end form-group -->
+                </form>
+                <div class="selected-product-information">
+                    <div class="form-submit-container">
+                        <input type="submit" value="Choose a size" form="t-shirt-form" id="btn-add-to-cart" disabled>
+                    </div>
+                    <div class="product-information">
+                        <ul>
+                            <li>
+                                <strong>Colour: </strong>
+                                <span id="selected-color-out">Black</span>
+                            </li>
+                            <li>
+                                <strong>Size: </strong>
+                                <span id="selected-size-out"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- end product-information-container -->
+        </div><!-- product -->
+    </section>
+</main>
+<footer>
+    <p>&copy; 2019 Michael Whyte</p>
+    <p>T-shirt images from: <a href="https://ca.icebreaker.com/">Icebreaker Canada</a></p>
+</footer>
+</div>
+</body>
+</html>
