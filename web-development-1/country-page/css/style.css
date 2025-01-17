@@ -385,26 +385,28 @@ summary,
 
 /* p y */
 .py-half {
-    padding: 0 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .py-1 {
-    padding: 0 1rem;
-
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 .py-2 {
-    padding: 0 2rem;
-
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 .py-3 {
-    padding: 0 3rem;
-
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 .py-4 {
-    padding: 0 4rem;
-
+    padding-left: 4rem;
+    padding-right: 4rem;
 }
 .py-5 {
-    padding: 0 5rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }
 
 /* p t */
@@ -512,42 +514,54 @@ summary,
 
 /* m x */
 .mx-half {
-    margin: 0.5rem 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .mx-1 {
-    margin: 1rem 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 .mx-2 {
-    margin: 2rem 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 .mx-3 {
-    margin: 3rem 0;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 .mx-4 {
-    margin: 4rem 0;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 .mx-5 {
-    margin: 5rem 0;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 
 /* m y */
 .my-half {
-    margin: 0 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 .my-1 {
-    margin: 0 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 .my-2 {
-    margin: 0 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 .my-3 {
-    margin: 0 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
 }
 .my-4 {
-    margin: 0 4rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
 }
 .my-5 {
-    margin: 0 5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
 }
 
 /* m t */
