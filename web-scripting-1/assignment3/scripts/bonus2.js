@@ -7,6 +7,8 @@
     Apologies for my lack of commenting on the
     first two assignments.
 
+    Original code copied from my bonus1.js
+
     -------------
 
     HorizontalCarousel: Move through a slide
@@ -39,12 +41,17 @@ class HorizontalCarousel {
             left/right buttons
 
         */
-        document.getElementById('btn-turn-clockwise').addEventListener('click', this.click.bind(this));
-        document.getElementById('btn-turn-counter-clockwise').addEventListener('click', this.click.bind(this));
+        document.querySelector('.slide').addEventListener('mousedown', () => {
+            document.addEventListener('mousemove', (event) => {
+                console.log(event.screenX);
+            });
+            this.click();
+        });
 
         /*
 
-            Set display 'none'
+            Set display 'none' on all slides except for
+            the first slide
 
         */
         this.count.forEach((item, keys) => {
@@ -57,7 +64,7 @@ class HorizontalCarousel {
         Display 'none' for current slide
 
     */
-    removeCurrent() {
+    removeCurrent = () => {
         this.count[this.current].style.display = 'none';
     }
 
@@ -66,7 +73,7 @@ class HorizontalCarousel {
         Display 'block' for current slide
 
     */
-    showCurrent() {
+    showCurrent = () => {
         this.count[this.current].style.display = 'block';
     }
 
@@ -75,43 +82,80 @@ class HorizontalCarousel {
         Handle click event from turn
         left/right buttons
 
+        Using arrow function to retain 'this' value.
+        Realized the .bind(this) is redundant if arrow
+        function used because it keeps same this state
+        unlike class function initializer. Great, my
+        understanding has clicked a bit!
+
     */
-    click(event) {
-        /*
-
-            Remove current slide
-
-        */
-        this.removeCurrent();
+    click = (event) => {
 
         /*
 
-            Change count based on whether the
-            left button or not
+            Variable interval initialized to
+            value of setInterval of spinning
+            every 50ms it changes image!
 
         */
-        event.target.id === 'btn-turn-clockwise' ? this.current -= 1 : this.current += 1;
+        let interval = setInterval(() => {
+
+            console.log(event.screenX);
+
+            /*
+
+                Remove current slide
+
+            */
+            this.removeCurrent();
+
+            /*
+
+                Change count based on whether the
+                left button or not
+
+            */
+            event.target.id === 'slide' ? this.current -= 1 : this.current += 1;
+
+            /*
+
+                Check for 'bad increment/decrement'
+                and change to correct value
+
+            */
+            if (this.current === -1) {
+                this.current = this.count.length - 1;
+            }
+            if (this.current >= this.count.length) {
+                this.current = 0;
+            }
+
+            /*
+
+                Show the next slide
+
+            */
+            this.showCurrent();
+
+        }, 50);
+        clearInterval(interval);
 
         /*
 
-            Check for 'bad increment/decrement'
-            and change to correct value
+            Set event listener on event target,
+            using options (once: true) we can
+            garbage collect our event listener!
+            https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 
+            Clear the interval set above
+
+
+        document.querySelector('.slide').addEventListener('mouseup', () => {
+            clearInterval(interval);
+        }, { once: true });
         */
-        if (this.current === -1) {
-            this.current = this.count.length - 1;
-        }
-        if (this.current >= this.count.length) {
-            this.current = 0
-        }
-
-        /*
-
-            Show the next slide
-
-        */
-        this.showCurrent();
     }
+
 }
 
 /*

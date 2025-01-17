@@ -7,6 +7,8 @@
     Apologies for my lack of commenting on the
     first two assignments.
 
+    Original code copied from my script.js
+
     -------------
 
     HorizontalCarousel: Move through a slide
@@ -119,7 +121,7 @@ class HorizontalCarousel {
                 this.current = this.count.length - 1;
             }
             if (this.current >= this.count.length) {
-                this.current = 0
+                this.current = 0;
             }
 
             /*

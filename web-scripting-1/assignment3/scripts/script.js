@@ -101,7 +101,7 @@ class HorizontalCarousel {
             this.current = this.count.length - 1;
         }
         if (this.current >= this.count.length) {
-            this.current = 0
+            this.current = 0;
         }
 
         /*
