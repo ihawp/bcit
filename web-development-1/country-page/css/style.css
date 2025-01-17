@@ -109,6 +109,9 @@ li {}
 .bg-5 {
     background: var(--5);
 }
+.bg-none {
+    background: none;
+}
 
 /* color */
 .c-1, .inverted {
@@ -154,6 +157,11 @@ li {}
 }
 .bw-2 {
     border-width: 2px;
+}
+
+/* border */
+.b-none {
+    border: none;
 }
 
 /* border style */
@@ -676,59 +684,27 @@ summary,
     grid-auto-rows: max-content;
 }
 
-#mobile-nav {
-    z-index: 999;
-    position: fixed;
-    color: var(--1);
-    background-color: var(--2);
-    top: 0;
-    left: 0;
-    font-size: 1.25rem;
-}
-
 /* overflow */
 .overflow-auto {
     overflow: auto;
 }
 
-#mobile-nav a {
-    font-size: 1.5rem;
-}
-#button-mobile-nav {
-    background: transparent;
-    outline: none;
-    border: none;
-    rotate: 90deg;
-    font-size: 2rem;
-    color: var(--2);
-}
-#button-exit-mobile-nav {
-    background: transparent;
-    padding: 10px 29px;
-
-    border-radius: 150px;
-    outline: none;
-    font-size: 5rem;
-}
-#button-exit-mobile-nav:hover {
-    text-decoration: none;
+/* border radius */
+.rounded {
+    border-radius: 50em;
 }
 
 /* text decoration */
-.text-dec-none {
+.text-dec-none, #button-exit-mobile-nav:hover {
     text-decoration: none;
 }
 .text-dec-underline {
     text-decoration: underline;
 }
 
+/* outline */
 .outline-none {
     outline: none;
-}
-
-#mobile-nav .mobile-alt a, .mobile-alt, a.mobile-alt {
-    opacity: 0.8;
-    font-size: 1.3rem;
 }
 
 /* form */
@@ -758,16 +734,52 @@ textarea {
     background: var(--2);
 }
 
-#faq li:last-of-type details {
-    border-bottom: 1px solid var(--5);
-}
-
 /* display */
 .display, .display-sm, .display-md, .display-lg, #mobile-nav {
     display: none;
 }
 
-/* images */
+
+/* *** MAKE CLASSES *** */
+#mobile-nav {
+    position: fixed;
+    color: var(--1);
+    background-color: var(--2);
+    top: 0;
+    left: 0;
+    font-size: 1.25rem;
+}
+#mobile-nav a {
+    font-size: 1.5rem;
+}
+#button-mobile-nav {
+    rotate: 90deg;
+    font-size: 2.5rem;
+}
+#button-exit-mobile-nav {
+    padding: 10px 29px;
+    font-size: 5rem;
+}
+#faq li:last-of-type details {
+    border-bottom: 1px solid var(--5);
+}
+#mobile-nav .mobile-alt a, .mobile-alt, a.mobile-alt {
+    opacity: 0.8;
+    font-size: 1.3rem;
+}
+#mobile-nav a {
+    font-size: 1.5rem;
+}
+#button-mobile-nav {
+    rotate: 90deg;
+    font-size: 2.5rem;
+}
+#button-exit-mobile-nav {
+    padding: 10px 29px;
+    font-size: 5rem;
+}
+
+
 /*
     PERHAPS: better system could have been break point class
     like .sm .md .lg that don't have any added properties
