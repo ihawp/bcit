@@ -39,8 +39,8 @@ class HorizontalCarousel {
             left/right buttons
 
         */
-        document.getElementById('btn-turn-clockwise').addEventListener('mousedown', this.click.bind(this));
-        document.getElementById('btn-turn-counter-clockwise').addEventListener('mousedown', this.click.bind(this));
+        document.getElementById('btn-turn-clockwise').addEventListener('mousedown', this.click);
+        document.getElementById('btn-turn-counter-clockwise').addEventListener('mousedown', this.click);
 
         /*
 
@@ -76,10 +76,24 @@ class HorizontalCarousel {
         Handle click event from turn
         left/right buttons
 
+        Using arrow function to retain 'this' value.
+        Realized the .bind(this) is redundant if arrow
+        function used because it keeps same this state
+        unlike class function initializer. Great, my
+        understanding has clicked a bit!
+
     */
     click = (event) => {
 
+        /*
+
+            Variable interval initialized to
+            value of setInterval of spinning
+            every 50ms it changes image!
+
+        */
         let interval = setInterval(() => {
+
             /*
 
                 Remove current slide
@@ -117,10 +131,21 @@ class HorizontalCarousel {
 
         }, 50);
 
+        /*
+
+            Set event listener on event target,
+            using options (once: true) we can
+            garbage collect our event listener!
+            https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+
+            Clear the interval set above
+
+        */
         document.getElementById(event.target.id).addEventListener('mouseup', () => {
             clearInterval(interval);
-        });
+        }, { once: true });
     }
+
 }
 
 /*

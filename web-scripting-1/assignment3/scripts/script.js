@@ -38,8 +38,8 @@ class HorizontalCarousel {
             left/right buttons
 
         */
-        document.getElementById('btn-turn-clockwise').addEventListener('click', this.click.bind(this));
-        document.getElementById('btn-turn-counter-clockwise').addEventListener('click', this.click.bind(this));
+        document.getElementById('btn-turn-clockwise').addEventListener('click', this.click);
+        document.getElementById('btn-turn-counter-clockwise').addEventListener('click', this.click);
 
         /*
 
@@ -75,7 +75,7 @@ class HorizontalCarousel {
         left/right buttons
 
     */
-    click(event) {
+    click = (event) => {
         /*
 
             Remove current slide
