@@ -2,11 +2,11 @@ class Bigfoot {
     constructor() {
         this.instructions = document.getElementById('instructions');
         this.bigfoot = document.getElementById('bigfoot');
+        this.startButton = document.getElementById('btn-start');
         this.init();
     }
     init() {
-        const startButton = document.getElementById('btn-start');
-        startButton.addEventListener('click', this.start);
+        this.startButton.addEventListener('click', this.start);
     }
 
     placeBigfoot() {
