@@ -11,6 +11,19 @@
 
     -------------
 
+    NOTE:
+
+    I was never sure if we were meant to
+    load the bike slides dynamically...
+
+    The bonus2.js does not work on mobile
+    view in Inspect Element. I am assuming there
+    are some functions that are better suited for
+    interactivity in that way..? Is it meant to work
+    on mobile?
+
+    -------------
+
     HorizontalCarousel: Move through a slide
     of images in either direction infinitely
     while holding down and moving left/right
