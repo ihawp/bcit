@@ -34,27 +34,25 @@ slides.forEach((wow) => {
 const colours = document.querySelectorAll('[name="shirt-color"]');
 colours.forEach((wow) => {
     wow.addEventListener('click', (event) => {
-        let l = slides[0].childNodes[1].childNodes[1];
-        console.log(event);
+        let counter = undefined;
+        let l = slides[1].childNodes[1].childNodes[1];
         let wow = l.src;
-
-        let p = wow.split('/');
-        console.log('wow', p);
-        console.log(p.length);
-        console.log(p[p.length]);
-        console.log({l});
         switch (wow.value) {
             case ('black'):
-
+                counter = 0;
                 break;
             case ('red'):
+                counter = 1;
                 break;
             case ('grey'):
-
+                counter = 2;
                 break;
         }
 
-        l.src = images.black[0].slice(-1, '/');
+        let p = wow.split('/');
+        l.src = 'images/' + p[p.length - 1];
+
+        console.log(l, wow, p, 'images/' + p[p.length - 1]);
 
     })
 })
