@@ -42,9 +42,12 @@ class HorizontalCarousel {
             left/right buttons
 
         */
-        document.querySelector('.slide').addEventListener('mousedown', this.slide);
-        document.querySelector('.slide').addEventListener('mouseup', () => {
-            document.querySelector('.slide').removeEventListener('mousemove', this.removeAll);
+        const slide = document.querySelector('.slide');
+        slide.addEventListener('mousedown', () => {
+            slide.addEventListener('mousemove', this.changeSlide);
+        });
+        slide.addEventListener('mouseup', () => {
+            slide.removeEventListener('mousemove', this.changeSlide);
         });
 
         /*
@@ -63,7 +66,7 @@ class HorizontalCarousel {
         Display 'none' for current slide
 
     */
-    removeCurrent = () => {
+    removeCurrent() {
         this.count[this.current].style.display = 'none';
     }
 
@@ -72,7 +75,7 @@ class HorizontalCarousel {
         Display 'block' for current slide
 
     */
-    showCurrent = () => {
+    showCurrent() {
         this.count[this.current].style.display = 'block';
     }
 
@@ -88,22 +91,7 @@ class HorizontalCarousel {
         understanding has clicked a bit!
 
     */
-    slide = (event) => {
-        /*
-
-            Variable interval initialized to
-            value of setInterval of spinning
-            every 50ms it changes image!
-
-        */
-        document.querySelector('.slide').addEventListener('mousemove', this.removeAll);
-
-    }
-
-    removeAll = (event) => {
-
-        console.log(event.screenX, this.last);
-
+    changeSlide = (event) => {
         /*
 
             Remove current slide
@@ -113,11 +101,11 @@ class HorizontalCarousel {
 
         /*
 
-            Change count based on whether the
-            left button or not
+            this.last tracks the last event.screenX
+            so if event.screenX has changed then the
+            image/position should as well
 
         */
-
         this.last < event.screenX ? this.current -= 1 : this.current += 1;
         this.last = event.screenX;
 

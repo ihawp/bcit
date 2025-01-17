@@ -75,7 +75,7 @@ class HorizontalCarousel {
 
     /*
 
-        Handle click event from turn
+        Handle mousedown event from turn
         left/right buttons
 
         Using arrow function to retain 'this' value.
