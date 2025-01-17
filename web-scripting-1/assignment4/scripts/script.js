@@ -13,6 +13,12 @@ class DoIt {
     }
 
     init() {
+        this.slides.forEach((wow) => {
+           wow.addEventListener('mouseover', () => {
+               console.log(wow);
+               document.querySelector('.slide-container').innerHTML = wow.toString();
+           })
+        });
         console.log(this.slides);
     }
 
