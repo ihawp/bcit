@@ -6,22 +6,20 @@
 
  */
 
-class DoIt {
-    constructor() {
-        this.slides = document.querySelectorAll('.slide-thumbnails-container div');
-        this.init();
-    }
+const slides = document.querySelectorAll('.th');
+slides.forEach((wow) => {
+    wow.addEventListener('mouseover', () => {
+        document.querySelector('.slide-container').innerHTML = wow.outerHTML;
+    })
+});
 
-    init() {
-        this.slides.forEach((wow) => {
-           wow.addEventListener('mouseover', () => {
-               console.log(wow);
-               document.querySelector('.slide-container').innerHTML = wow.toString();
-           })
-        });
-        console.log(this.slides);
-    }
+const colours = document.querySelectorAll('[name="shirt-color"]');
+colours.forEach((wow) => {
+    console.log(wow);
+    wow.addEventListener('click', (event) => {
+        slides.forEach((wow) => {
+            console.log(wow);
+        })
+    })
+})
 
-}
-
-new DoIt;
