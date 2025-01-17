@@ -11,6 +11,7 @@
 
     HorizontalCarousel: Move through a slide
     of images in either direction infinitely
+    while holding down the buttons
 
 */
 class HorizontalCarousel {
@@ -47,7 +48,7 @@ class HorizontalCarousel {
 
         */
         this.count.forEach((item, keys) => {
-           return keys !== 0 ? item.style.display = 'none' : 0;
+            return keys !== 0 ? item.style.display = 'none' : 0;
         });
     }
 

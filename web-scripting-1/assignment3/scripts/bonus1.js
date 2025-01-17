@@ -11,6 +11,7 @@
 
     HorizontalCarousel: Move through a slide
     of images in either direction infinitely
+    while holding down the buttons
 
 */
 class HorizontalCarousel {
@@ -38,16 +39,19 @@ class HorizontalCarousel {
             left/right buttons
 
         */
-        document.getElementById('btn-turn-clockwise').addEventListener('click', this.click.bind(this));
+        document.getElementById('btn-turn-clockwise').addEventListener('mousedown', this.click.bind(this));
+
+
         document.getElementById('btn-turn-counter-clockwise').addEventListener('click', this.click.bind(this));
 
         /*
 
-            Set display 'none'
+            Set display 'none' on all slides except for
+            the first slide
 
         */
         this.count.forEach((item, keys) => {
-           return keys !== 0 ? item.style.display = 'none' : 0;
+            return keys !== 0 ? item.style.display = 'none' : 0;
         });
     }
 
