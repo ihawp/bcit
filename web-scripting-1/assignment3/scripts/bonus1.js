@@ -109,7 +109,7 @@ class HorizontalCarousel {
                 left button or not
 
             */
-            event.target.id === 'btn-turn-clockwise' ? this.current -= 1 : this.current += 1;
+            event.target.id === 'btn-turn-clockwise' ? this.current += 1 : this.current -= 1;
 
             /*
 
