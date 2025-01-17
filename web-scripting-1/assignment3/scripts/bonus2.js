@@ -32,6 +32,7 @@ class HorizontalCarousel {
     constructor() {
         this.count = document.querySelectorAll('.slide img');
         this.current = 0;
+        this.last = 0;
         this.init();
     }
     init() {
@@ -41,11 +42,9 @@ class HorizontalCarousel {
             left/right buttons
 
         */
-        document.querySelector('.slide').addEventListener('mousedown', () => {
-            document.addEventListener('mousemove', (event) => {
-                console.log(event.screenX);
-            });
-            this.click();
+        document.querySelector('.slide').addEventListener('mousedown', this.slide);
+        document.querySelector('.slide').addEventListener('mouseup', () => {
+            document.querySelector('.slide').removeEventListener('mousemove', this.removeAll);
         });
 
         /*
@@ -89,8 +88,7 @@ class HorizontalCarousel {
         understanding has clicked a bit!
 
     */
-    click = (event) => {
-
+    slide = (event) => {
         /*
 
             Variable interval initialized to
@@ -98,64 +96,51 @@ class HorizontalCarousel {
             every 50ms it changes image!
 
         */
-        let interval = setInterval(() => {
+        document.querySelector('.slide').addEventListener('mousemove', this.removeAll);
 
-            console.log(event.screenX);
+    }
 
-            /*
+    removeAll = (event) => {
 
-                Remove current slide
-
-            */
-            this.removeCurrent();
-
-            /*
-
-                Change count based on whether the
-                left button or not
-
-            */
-            event.target.id === 'slide' ? this.current -= 1 : this.current += 1;
-
-            /*
-
-                Check for 'bad increment/decrement'
-                and change to correct value
-
-            */
-            if (this.current === -1) {
-                this.current = this.count.length - 1;
-            }
-            if (this.current >= this.count.length) {
-                this.current = 0;
-            }
-
-            /*
-
-                Show the next slide
-
-            */
-            this.showCurrent();
-
-        }, 50);
-        clearInterval(interval);
+        console.log(event.screenX, this.last);
 
         /*
 
-            Set event listener on event target,
-            using options (once: true) we can
-            garbage collect our event listener!
-            https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+            Remove current slide
 
-            Clear the interval set above
-
-
-        document.querySelector('.slide').addEventListener('mouseup', () => {
-            clearInterval(interval);
-        }, { once: true });
         */
-    }
+        this.removeCurrent();
 
+        /*
+
+            Change count based on whether the
+            left button or not
+
+        */
+
+        this.last < event.screenX ? this.current -= 1 : this.current += 1;
+        this.last = event.screenX;
+
+        /*
+
+            Check for 'bad increment/decrement'
+            and change to correct value
+
+        */
+        if (this.current === -1) {
+            this.current = this.count.length - 1;
+        }
+        if (this.current >= this.count.length) {
+            this.current = 0;
+        }
+
+        /*
+
+            Show the next slide
+
+        */
+        this.showCurrent();
+    }
 }
 
 /*
