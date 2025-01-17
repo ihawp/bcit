@@ -40,9 +40,7 @@ class HorizontalCarousel {
 
         */
         document.getElementById('btn-turn-clockwise').addEventListener('mousedown', this.click.bind(this));
-
-
-        document.getElementById('btn-turn-counter-clockwise').addEventListener('click', this.click.bind(this));
+        document.getElementById('btn-turn-counter-clockwise').addEventListener('mousedown', this.click.bind(this));
 
         /*
 
@@ -60,7 +58,7 @@ class HorizontalCarousel {
         Display 'none' for current slide
 
     */
-    removeCurrent() {
+    removeCurrent = () => {
         this.count[this.current].style.display = 'none';
     }
 
@@ -69,7 +67,7 @@ class HorizontalCarousel {
         Display 'block' for current slide
 
     */
-    showCurrent() {
+    showCurrent = () => {
         this.count[this.current].style.display = 'block';
     }
 
@@ -79,41 +77,49 @@ class HorizontalCarousel {
         left/right buttons
 
     */
-    click(event) {
-        /*
+    click = (event) => {
 
-            Remove current slide
+        let interval = setInterval(() => {
+            /*
 
-        */
-        this.removeCurrent();
+                Remove current slide
 
-        /*
+            */
+            this.removeCurrent();
 
-            Change count based on whether the
-            left button or not
+            /*
 
-        */
-        event.target.id === 'btn-turn-clockwise' ? this.current -= 1 : this.current += 1;
+                Change count based on whether the
+                left button or not
 
-        /*
+            */
+            event.target.id === 'btn-turn-clockwise' ? this.current -= 1 : this.current += 1;
 
-            Check for 'bad increment/decrement'
-            and change to correct value
+            /*
 
-        */
-        if (this.current === -1) {
-            this.current = this.count.length - 1;
-        }
-        if (this.current >= this.count.length) {
-            this.current = 0
-        }
+                Check for 'bad increment/decrement'
+                and change to correct value
 
-        /*
+            */
+            if (this.current === -1) {
+                this.current = this.count.length - 1;
+            }
+            if (this.current >= this.count.length) {
+                this.current = 0
+            }
 
-            Show the next slide
+            /*
 
-        */
-        this.showCurrent();
+                Show the next slide
+
+            */
+            this.showCurrent();
+
+        }, 50);
+
+        document.getElementById(event.target.id).addEventListener('mouseup', () => {
+            clearInterval(interval);
+        });
     }
 }
 
