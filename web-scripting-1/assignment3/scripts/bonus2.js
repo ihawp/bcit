@@ -13,7 +13,7 @@
 
     HorizontalCarousel: Move through a slide
     of images in either direction infinitely
-    while holding down the buttons
+    while holding down and moving left/right
 
 */
 class HorizontalCarousel {
@@ -23,6 +23,8 @@ class HorizontalCarousel {
         to all objects inside .slide
 
         Set current slide count
+
+        Initialize this.last for storage of information!
 
         Initialize the class functionality
         by adding event listeners to both
@@ -38,8 +40,11 @@ class HorizontalCarousel {
     init() {
         /*
 
-            Set 'click' event listeners for
-            left/right buttons
+            Set mouse down, up event listeners for
+            '.slide'
+
+            Remove event listener for '.slide' for
+            changing slides (to stop changing slides)
 
         */
         const slide = document.querySelector('.slide');
@@ -81,14 +86,8 @@ class HorizontalCarousel {
 
     /*
 
-        Handle click event from turn
-        left/right buttons
-
-        Using arrow function to retain 'this' value.
-        Realized the .bind(this) is redundant if arrow
-        function used because it keeps same this state
-        unlike class function initializer. Great, my
-        understanding has clicked a bit!
+        Handle mouseover event from
+        '.slide'
 
     */
     changeSlide = (event) => {
@@ -101,7 +100,7 @@ class HorizontalCarousel {
 
         /*
 
-            this.last tracks the last event.screenX
+            This.last tracks the last event.screenX
             so if event.screenX has changed then the
             image/position should as well
 
