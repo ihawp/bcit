@@ -10,7 +10,7 @@
 
  */
 
-// change the slides from whatever they are..?!
+// change the slides from whatever they are!
 const slides = document.querySelectorAll('.th a img');
 const slideContainer = document.querySelector('.slide-container');
 let current = 0;
@@ -21,12 +21,14 @@ slides.forEach((item, key) => {
     })
 });
 
-// change images based on colour selection
+// change images based on colour selection.
 
 const red = document.getElementById('t-shirt-color-red');
 const grey = document.getElementById('t-shirt-color-grey');
 const black = document.getElementById('t-shirt-color-black');
 
+
+// data for updating image 'src' and 'alt'.
 const images = {
     't-shirt-color-black': {
         0: {
@@ -72,15 +74,16 @@ const images = {
     }
 }
 
+// deal with colour click!
 const click = (event) => {
     let colourOutput = document.getElementById('selected-color-out')
     let l = event.target.id.split('-');
     let colour = l[l.length - 1];
-    let firstLetter = colour[0].toUpperCase() ;
-    colourOutput.innerText = colour.charAt(0).toUpperCase() + colour.substring(1, colour.length);
+    colourOutput.innerText = colour[0].toUpperCase() + colour.substring(1, colour.length);
     setSlides(images[event.target.id]);
 }
 
+// set the slides when new colour is chosen.
 function setSlides(images) {
     slides.forEach((item, key) => {
         let indexed = images[key];
@@ -94,29 +97,31 @@ function setSlides(images) {
     });
 }
 
-// add event listeners to colours
+// add event listeners to colours.
 red.addEventListener('click', click);
 grey.addEventListener('click', click);
 black.addEventListener('click', click);
 
 
-// size selection
+// size selection.
 const small = document.getElementById('t-shirt-size-small');
 const medium = document.getElementById('t-shirt-size-medium');
 const large = document.getElementById('t-shirt-size-large');
 const addToCart = document.getElementById('btn-add-to-cart');
 const selectedSize = document.getElementById('selected-size-out');
 
+// add size event listeners.
 small.addEventListener('click', wow);
 medium.addEventListener('click', wow);
 large.addEventListener('click', wow);
 
+// deal with size change.
 function wow(event) {
     addToCart.removeAttribute('disabled');
     addToCart.value = 'Add To Cart';
 
     // split the id of the size button, then split the 4th index into individual
     // characters and use the first character as innerText of size span
-    let l = event.target.id.split('-')[3].split('');
-    selectedSize.innerText = l[0].toUpperCase();
+    let l = event.target.id.split('-');
+    selectedSize.innerText = l[l.length - 1][0].toUpperCase();
 }
