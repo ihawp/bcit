@@ -80,7 +80,10 @@ function setSlides(images) {
     slides.forEach((item, key) => {
         let indexed = images[key];
         let image = 'images/' + indexed.src;
-        if (key === current) slideContainer.firstElementChild.src = image;
+        if (key === current) {
+            slideContainer.firstElementChild.src = image;
+            slideContainer.firstElementChild.alt = indexed.alt;
+        }
         item.src = image;
         item.alt = indexed.alt;
     });
