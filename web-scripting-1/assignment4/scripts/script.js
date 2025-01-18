@@ -134,6 +134,7 @@ function preload(event) {
 }
 
 function addLink(id, index) {
+    // https://www.w3schools.com/jsref/met_document_createelement.asp
     let l = document.createElement("link");
     l.rel = 'preload';
     l.as = 'image';
