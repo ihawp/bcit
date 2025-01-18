@@ -6,54 +6,70 @@
 
  */
 
-const images = {
-    black: {
-        0: 't-shirt-black-back.jpg',
-        1: 't-shirt-black-front.jpg',
-        2: 't-shirt-black-no-model.jpg'
-    },
-    red: {
-        0: 't-shirt-red-back.jpg',
-        1: 't-shirt-red-front.jpg',
-        2: 't-shirt-red-no-model.jpg'
-    },
-    grey: {
-        0: 't-shirt-grey-back.jpg',
-        1: 't-shirt-grey-front.jpg',
-        2: 't-shirt-grey-no-model.jpg'
-    },
-}
-
-const slides = document.querySelectorAll('.th');
-slides.forEach((wow) => {
-    wow.addEventListener('mouseover', () => {
-        document.querySelector('.slide-container').innerHTML = wow.outerHTML;
+// change the slides from whatever they are..?!
+const slides = document.querySelectorAll('.th a img');
+const slideContainer = document.querySelector('.slide-container');
+slides.forEach((item) => {
+    item.addEventListener('mouseover', () => {
+        slideContainer.innerHTML = item.outerHTML;
     })
 });
 
-const colours = document.querySelectorAll('[name="shirt-color"]');
-colours.forEach((wow) => {
-    wow.addEventListener('click', (event) => {
-        let counter = undefined;
-        let l = slides[1].childNodes[1].childNodes[1];
-        let wow = l.src;
-        switch (wow.value) {
-            case ('black'):
-                counter = 0;
-                break;
-            case ('red'):
-                counter = 1;
-                break;
-            case ('grey'):
-                counter = 2;
-                break;
-        }
+// change images based on colour selection
 
-        let p = wow.split('/');
-        l.src = 'images/' + p[p.length - 1];
+const red = document.getElementById('t-shirt-color-red');
+const grey = document.getElementById('t-shirt-color-grey');
+const black = document.getElementById('t-shirt-color-black');
 
-        console.log(l, wow, p, 'images/' + p[p.length - 1]);
+const images = {
+    't-shirt-color-black': {
+        0: 't-shirt-black-no-model.jpg',
+        1: 't-shirt-black-front.jpg',
+        2: 't-shirt-black-back.jpg'
+    },
+    't-shirt-color-red': {
+        0: 't-shirt-red-no-model.jpg',
+        1: 't-shirt-red-front.jpg',
+        2: 't-shirt-red-back.jpg'
+    },
+    't-shirt-color-grey': {
+        0: 't-shirt-grey-no-model.jpg',
+        1: 't-shirt-grey-front.jpg',
+        2: 't-shirt-grey-back.jpg'
+    },
+}
 
-    })
-})
+// deal with click of colour
+function click(event) {
+    setSlides(images[event.target.id]);
+}
+
+function setSlides(images) {
+    slides.forEach((item, key) => {
+        let image = 'images/' + images[key];
+        if (key === 0) slideContainer.firstElementChild.src = image;
+        item.src = image;
+    });
+}
+
+// add event listeners to colours
+red.addEventListener('click', click);
+grey.addEventListener('click', click);
+black.addEventListener('click', click);
+
+
+// size selection
+const small = document.getElementById('t-shirt-size-small');
+const medium = document.getElementById('t-shirt-size-medium');
+const large = document.getElementById('t-shirt-size-large');
+
+small.addEventListener('click', wow);
+medium.addEventListener('click', wow);
+large.addEventListener('click', wow);
+
+function wow() {
+
+}
+
+
 

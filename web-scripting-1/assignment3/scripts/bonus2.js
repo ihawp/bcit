@@ -74,9 +74,9 @@ class HorizontalCarousel {
             upload of these files...
 
          */
-        document.addEventListener('mouseup', () => {
-            slide.removeEventListener('mousemove', this.changeSlide);
-        });
+        document.addEventListener('mouseup', () =>
+            slide.removeEventListener('mousemove', this.changeSlide)
+        );
 
         /*
 
@@ -84,9 +84,9 @@ class HorizontalCarousel {
             the first slide
 
         */
-        this.count.forEach((item, keys) => {
-            return keys !== 0 ? item.style.display = 'none' : 0;
-        });
+        this.count.forEach((item, keys) =>
+            keys !== 0 ? item.style.display = 'none' : 0
+        );
     }
 
     /*
