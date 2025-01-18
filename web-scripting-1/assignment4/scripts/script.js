@@ -16,9 +16,6 @@ const slideContainer = document.querySelector('.slide-container');
 let current = 0;
 slides.forEach((item) => {
     item.addEventListener('mouseover', () => {
-        switch () {
-
-        }
         slideContainer.innerHTML = item.outerHTML;
     })
 });
@@ -86,6 +83,12 @@ function wow(event) {
 
     selectedSize.innerText = l[0].toUpperCase();
 }
+
+/*
+
+    !!! MAKE MAIN IMAGE STAY AT SAME INDEX OR TYPE OF IMAGE WHEN SWITCHING COLOURS !!!
+
+ */
 
 
 
