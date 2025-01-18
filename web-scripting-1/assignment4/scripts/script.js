@@ -72,7 +72,12 @@ const images = {
     }
 }
 
-function click(event) {
+const click = (event) => {
+    let colourOutput = document.getElementById('selected-color-out')
+    let l = event.target.id.split('-');
+    let colour = l[l.length - 1];
+    let firstLetter = colour[0].toUpperCase() ;
+    colourOutput.innerText = colour.charAt(0).toUpperCase() + colour.substring(1, colour.length);
     setSlides(images[event.target.id]);
 }
 
@@ -113,6 +118,5 @@ function wow(event) {
     // split the id of the size button, then split the 4th index into individual
     // characters and use the first character as innerText of size span
     let l = event.target.id.split('-')[3].split('');
-
     selectedSize.innerText = l[0].toUpperCase();
 }
