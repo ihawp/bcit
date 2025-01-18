@@ -74,12 +74,12 @@ const images = {
     }
 }
 
-// add event listeners to colours.
+// Add 'click' event listeners to colour buttons
 red.addEventListener('click', changeColour);
 grey.addEventListener('click', changeColour);
 black.addEventListener('click', changeColour);
 
-// add size event listeners.
+// Add 'click' event listeners to size buttons
 small.addEventListener('click', changeSize);
 medium.addEventListener('click', changeSize);
 large.addEventListener('click', changeSize);
@@ -138,10 +138,18 @@ function setSlides(images) {
 
 // Change the text displayed as the current selected size
 function changeSize(event) {
+    // Enable the "Choose A Size"/"Add To Cart" Button
     addToCart.removeAttribute('disabled');
+
+    // Change value of "Choose A Size"/"Add To Cart" Button
     addToCart.value = 'Add To Cart';
+
+    // Split the id of the size button used to get size
     let l = event.target.id.split('-');
     // https://www.measurethat.net/Benchmarks/Show/7476/0/char-index-vs-charat-vs-slice#:~:text=In%20modern%20JavaScript%20engines%2C%20the,that%20need%20to%20be%20modified.
+    // Get the first character of the last item in split id array
+    // (the size) use toUpperCase and input the character as the
+    // innerText of the selected size <span>
     selectedSize.innerText = l[l.length - 1][0].toUpperCase();
 }
 
