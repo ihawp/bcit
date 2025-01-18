@@ -127,16 +127,20 @@ function changeSize(event) {
 
 // preload next colour images upon mouseover of colour!
 function preload(event) {
-    console.log(event);
-    console.log(event.target.firstElementChild.id);
+    let id = event.target.firstElementChild.id;
+    addLink(id, 0);
+    addLink(id, 1);
+    addLink(id, 2);
+}
+
+function addLink(id, index) {
     let l = document.createElement("link");
     l.rel = 'preload';
     l.as = 'image';
-    l.href = 'images/t-shirt-grey-front.jpg';
+    l.href = `images/${images[id][index].src}`;
     document.head.appendChild(l);
 }
 
 let bananaPhone = document.querySelectorAll('.form-group-color div.form-item');
-bananaPhone[0].addEventListener('mouseenter', preload);
-bananaPhone[1].addEventListener('mouseenter', preload);
-bananaPhone[2].addEventListener('mouseenter', preload);
+bananaPhone[1].addEventListener('mouseenter', preload, { once: true });
+bananaPhone[2].addEventListener('mouseenter', preload, { once: true });
