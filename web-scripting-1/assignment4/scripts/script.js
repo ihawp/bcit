@@ -4,13 +4,21 @@
     BCIT | Web Scripting 1
     Assignment 4
 
+    -------------
+
+    Some functional programming!
+
  */
 
 // change the slides from whatever they are..?!
 const slides = document.querySelectorAll('.th a img');
 const slideContainer = document.querySelector('.slide-container');
+let current = 0;
 slides.forEach((item) => {
     item.addEventListener('mouseover', () => {
+        switch () {
+
+        }
         slideContainer.innerHTML = item.outerHTML;
     })
 });
@@ -36,10 +44,9 @@ const images = {
         0: 't-shirt-grey-no-model.jpg',
         1: 't-shirt-grey-front.jpg',
         2: 't-shirt-grey-back.jpg'
-    },
+    }
 }
 
-// deal with click of colour
 function click(event) {
     setSlides(images[event.target.id]);
 }
@@ -47,7 +54,7 @@ function click(event) {
 function setSlides(images) {
     slides.forEach((item, key) => {
         let image = 'images/' + images[key];
-        if (key === 0) slideContainer.firstElementChild.src = image;
+        if (key === current) slideContainer.firstElementChild.src = image;
         item.src = image;
     });
 }
@@ -62,13 +69,22 @@ black.addEventListener('click', click);
 const small = document.getElementById('t-shirt-size-small');
 const medium = document.getElementById('t-shirt-size-medium');
 const large = document.getElementById('t-shirt-size-large');
+const addToCart = document.getElementById('btn-add-to-cart');
+const selectedSize = document.getElementById('selected-size-out');
 
 small.addEventListener('click', wow);
 medium.addEventListener('click', wow);
 large.addEventListener('click', wow);
 
-function wow() {
+function wow(event) {
+    addToCart.removeAttribute('disabled');
+    addToCart.value = 'Add To Cart';
 
+    // split the id of the size button, then split the 4th index into individual
+    // characters and use the first character as innerText of size span
+    let l = event.target.id.split('-')[3].split('');
+
+    selectedSize.innerText = l[0].toUpperCase();
 }
 
 
