@@ -10,25 +10,25 @@
 
  */
 
-// change the slides from whatever they are!
+// main image hover slides.
 const slides = document.querySelectorAll('.th a img');
 const slideContainer = document.querySelector('.slide-container');
 let current = 0;
-slides.forEach((item, key) => {
-    item.addEventListener('mouseover', () => {
-        current = key;
-        slideContainer.innerHTML = item.outerHTML;
-    })
-});
 
-// change images based on colour selection.
-
+// colour selection.
 const red = document.getElementById('t-shirt-color-red');
 const grey = document.getElementById('t-shirt-color-grey');
 const black = document.getElementById('t-shirt-color-black');
+let colourOutput = document.getElementById('selected-color-out')
 
+// size selection.
+const small = document.getElementById('t-shirt-size-small');
+const medium = document.getElementById('t-shirt-size-medium');
+const large = document.getElementById('t-shirt-size-large');
+const addToCart = document.getElementById('btn-add-to-cart');
+const selectedSize = document.getElementById('selected-size-out');
 
-// data for updating image 'src' and 'alt'.
+// image data: src / alt.
 const images = {
     't-shirt-color-black': {
         0: {
@@ -74,9 +74,26 @@ const images = {
     }
 }
 
+// add event listeners to colours.
+red.addEventListener('click', click);
+grey.addEventListener('click', click);
+black.addEventListener('click', click);
+
+// add size event listeners.
+small.addEventListener('click', changeSize);
+medium.addEventListener('click', changeSize);
+large.addEventListener('click', changeSize);
+
+// update main image on slide 'mouseover'.
+slides.forEach((item, key) => {
+    item.addEventListener('mouseover', () => {
+        current = key;
+        slideContainer.innerHTML = item.outerHTML;
+    })
+});
+
 // deal with colour click!
-const click = (event) => {
-    let colourOutput = document.getElementById('selected-color-out')
+function click(event) {
     let l = event.target.id.split('-');
     let colour = l[l.length - 1];
     colourOutput.innerText = colour[0].toUpperCase() + colour.substring(1, colour.length);
@@ -97,31 +114,29 @@ function setSlides(images) {
     });
 }
 
-// add event listeners to colours.
-red.addEventListener('click', click);
-grey.addEventListener('click', click);
-black.addEventListener('click', click);
-
-
-// size selection.
-const small = document.getElementById('t-shirt-size-small');
-const medium = document.getElementById('t-shirt-size-medium');
-const large = document.getElementById('t-shirt-size-large');
-const addToCart = document.getElementById('btn-add-to-cart');
-const selectedSize = document.getElementById('selected-size-out');
-
-// add size event listeners.
-small.addEventListener('click', wow);
-medium.addEventListener('click', wow);
-large.addEventListener('click', wow);
-
 // deal with size change.
-function wow(event) {
+function changeSize(event) {
     addToCart.removeAttribute('disabled');
     addToCart.value = 'Add To Cart';
-
     // split the id of the size button, then split the 4th index into individual
     // characters and use the first character as innerText of size span
     let l = event.target.id.split('-');
+    // https://www.measurethat.net/Benchmarks/Show/7476/0/char-index-vs-charat-vs-slice#:~:text=In%20modern%20JavaScript%20engines%2C%20the,that%20need%20to%20be%20modified.
     selectedSize.innerText = l[l.length - 1][0].toUpperCase();
 }
+
+// preload next colour images upon mouseover of colour!
+function preload(event) {
+    console.log(event);
+    console.log(event.target.firstElementChild.id);
+    let l = document.createElement("link");
+    l.rel = 'preload';
+    l.as = 'image';
+    l.href = 'images/t-shirt-grey-front.jpg';
+    document.head.appendChild(l);
+}
+
+let bananaPhone = document.querySelectorAll('.form-group-color div.form-item');
+bananaPhone[0].addEventListener('mouseenter', preload);
+bananaPhone[1].addEventListener('mouseenter', preload);
+bananaPhone[2].addEventListener('mouseenter', preload);
