@@ -75,9 +75,9 @@ const images = {
 }
 
 // add event listeners to colours.
-red.addEventListener('click', click);
-grey.addEventListener('click', click);
-black.addEventListener('click', click);
+red.addEventListener('click', changeColour);
+grey.addEventListener('click', changeColour);
+black.addEventListener('click', changeColour);
 
 // add size event listeners.
 small.addEventListener('click', changeSize);
@@ -92,40 +92,59 @@ slides.forEach((item, key) => {
     })
 });
 
-// deal with colour click!
-function click(event) {
+// Function added to event listener 'click' for
+// colour selection buttons
+function changeColour(event) {
+
+    // Split the id to begin getting the colour
     let l = event.target.id.split('-');
+
+    // Get last element of split string array
     let colour = l[l.length - 1];
+
+    // Set the colour output to be formatted as first letter uppercase
     colourOutput.innerText = colour[0].toUpperCase() + colour.substring(1, colour.length);
+
+    // Set the new images using the setSlides() function
     setSlides(images[event.target.id]);
 }
 
-// set the slides when new colour is chosen.
+// Set all images when a new colour is chosen to view
 function setSlides(images) {
+    // Iterate through slides array using param info
+    // to properly update DOM data
     slides.forEach((item, key) => {
+        // Use key (index of loop) to get proper images sub-array
         let indexed = images[key];
+
+        // Set a formatted link to the image
         let image = 'images/' + indexed.src;
+
+        // Set the main image if the current index of type of image
+        // matches the one being viewed as the main image currently
         if (key === current) {
+            // Set the image link
             slideContainer.firstElementChild.src = image;
+            // Set the alt tag
             slideContainer.firstElementChild.alt = indexed.alt;
         }
+        // Set the slide images (everytime)
+        // Set the image link
         item.src = image;
+        // Set the alt tag
         item.alt = indexed.alt;
     });
 }
 
-// deal with size change.
+// Change the text displayed as the current selected size
 function changeSize(event) {
     addToCart.removeAttribute('disabled');
     addToCart.value = 'Add To Cart';
-    // split the id of the size button, then split the 4th index into individual
-    // characters and use the first character as innerText of size span
     let l = event.target.id.split('-');
     // https://www.measurethat.net/Benchmarks/Show/7476/0/char-index-vs-charat-vs-slice#:~:text=In%20modern%20JavaScript%20engines%2C%20the,that%20need%20to%20be%20modified.
     selectedSize.innerText = l[l.length - 1][0].toUpperCase();
 }
 
-// preload next colour images upon mouseover of colour!
 function preload(event) {
     let id = event.target.firstElementChild.id;
     addLink(id, 0);
