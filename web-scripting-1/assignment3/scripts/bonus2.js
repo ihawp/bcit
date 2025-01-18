@@ -64,7 +64,7 @@ class HorizontalCarousel {
         slide.addEventListener('mousedown', () => {
             slide.addEventListener('mousemove', this.changeSlide);
         });
-        slide.addEventListener('mouseup', () => {
+        document.addEventListener('mouseup', () => {
             slide.removeEventListener('mousemove', this.changeSlide);
         });
 

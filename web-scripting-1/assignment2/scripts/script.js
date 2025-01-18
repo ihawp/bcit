@@ -11,6 +11,9 @@ class Bigfoot {
 
     placeBigfoot() {
         let l = Math.random() * 100;
+        console.log(l);
+        console.log(l);
+
         let q = Math.random() * 100;
         this.bigfoot.style.top = `${q}%`;
         this.bigfoot.style.left = `${l}%`;
