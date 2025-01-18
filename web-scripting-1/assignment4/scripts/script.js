@@ -14,8 +14,9 @@
 const slides = document.querySelectorAll('.th a img');
 const slideContainer = document.querySelector('.slide-container');
 let current = 0;
-slides.forEach((item) => {
+slides.forEach((item, key) => {
     item.addEventListener('mouseover', () => {
+        current = key;
         slideContainer.innerHTML = item.outerHTML;
     })
 });
