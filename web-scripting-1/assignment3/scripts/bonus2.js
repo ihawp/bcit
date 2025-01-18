@@ -64,6 +64,16 @@ class HorizontalCarousel {
         slide.addEventListener('mousedown', () => {
             slide.addEventListener('mousemove', this.changeSlide);
         });
+
+        /*
+
+            Use of document removes glitch (from using slide.)
+            where mousedown and leaving the slide
+            div and then mouseup and re-entering the slide still
+            enacting spinning of the bike... sorry about a third
+            upload of these files...
+
+         */
         document.addEventListener('mouseup', () => {
             slide.removeEventListener('mousemove', this.changeSlide);
         });
