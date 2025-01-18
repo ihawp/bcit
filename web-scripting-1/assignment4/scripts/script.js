@@ -29,19 +29,46 @@ const black = document.getElementById('t-shirt-color-black');
 
 const images = {
     't-shirt-color-black': {
-        0: 't-shirt-black-no-model.jpg',
-        1: 't-shirt-black-front.jpg',
-        2: 't-shirt-black-back.jpg'
+        0: {
+            src: 't-shirt-black-no-model.jpg',
+            alt: 'Black T-Shirt No Model'
+        },
+        1: {
+            src: 't-shirt-black-front.jpg',
+            alt: 'Black T-Shirt Front'
+        },
+        2: {
+            src: 't-shirt-black-back.jpg',
+            alt: 'Black T-Shirt Front'
+        },
     },
     't-shirt-color-red': {
-        0: 't-shirt-red-no-model.jpg',
-        1: 't-shirt-red-front.jpg',
-        2: 't-shirt-red-back.jpg'
+        0: {
+            src: 't-shirt-red-no-model.jpg',
+            alt: 'Red T-Shirt No Model'
+        },
+        1: {
+            src: 't-shirt-red-front.jpg',
+            alt: 'Red T-Shirt Front'
+        },
+        2: {
+            src: 't-shirt-red-back.jpg',
+            alt: 'Red T-Shirt Front'
+        },
     },
     't-shirt-color-grey': {
-        0: 't-shirt-grey-no-model.jpg',
-        1: 't-shirt-grey-front.jpg',
-        2: 't-shirt-grey-back.jpg'
+        0: {
+            src: 't-shirt-grey-no-model.jpg',
+            alt: 'Grey T-Shirt No Model'
+        },
+        1: {
+            src: 't-shirt-grey-front.jpg',
+            alt: 'Grey T-Shirt Front'
+        },
+        2: {
+            src: 't-shirt-grey-back.jpg',
+            alt: 'Grey T-Shirt Front'
+        },
     }
 }
 
@@ -51,9 +78,11 @@ function click(event) {
 
 function setSlides(images) {
     slides.forEach((item, key) => {
-        let image = 'images/' + images[key];
+        let indexed = images[key];
+        let image = 'images/' + indexed.src;
         if (key === current) slideContainer.firstElementChild.src = image;
         item.src = image;
+        item.alt = indexed.alt;
     });
 }
 
@@ -84,12 +113,3 @@ function wow(event) {
 
     selectedSize.innerText = l[0].toUpperCase();
 }
-
-/*
-
-    !!! MAKE MAIN IMAGE STAY AT SAME INDEX OR TYPE OF IMAGE WHEN SWITCHING COLOURS !!!
-
- */
-
-
-
