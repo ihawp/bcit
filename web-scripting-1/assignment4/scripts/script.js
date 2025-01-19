@@ -153,6 +153,7 @@ function changeSize(event) {
     selectedSize.innerText = l[l.length - 1][0].toUpperCase();
 }
 
+// Start adding of preload links based on id of colour button
 function preload(event) {
     let id = event.target.firstElementChild.id;
     addLink(id, 0);
@@ -160,8 +161,12 @@ function preload(event) {
     addLink(id, 2);
 }
 
+// Create <link rel="preload" as="image" href="images/...">
+// in head of DOM to preload the next colour images before the user
+// presses the colour button
 function addLink(id, index) {
     // https://www.w3schools.com/jsref/met_document_createelement.asp
+    // Forgot createElement!
     let l = document.createElement("link");
     l.rel = 'preload';
     l.as = 'image';
@@ -169,6 +174,9 @@ function addLink(id, index) {
     document.head.appendChild(l);
 }
 
+// Had tried using the red, black, grey variables from way above prior to this
+// but they simply just didn't work in the sense that they never could detect
+// a 'mouseover'
 let bananaPhone = document.querySelectorAll('.form-group-color div.form-item');
 bananaPhone[1].addEventListener('mouseenter', preload, { once: true });
 bananaPhone[2].addEventListener('mouseenter', preload, { once: true });
