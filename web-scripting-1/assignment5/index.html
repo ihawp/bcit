@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment 05</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Assignment 05</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Cat Manager</h2>
+                <div class="cat-selector">
+                    <h3>Select a cat</h3>
+                    <div class="cat-images-container">
+                        <div class="cat-image-container">
+                            <img draggable="false" src="images/cat-black.jpg" alt="Black cat">
+                        </div>
+                        <div class="cat-image-container">
+                            <img draggable="false" src="images/cat-black-and-white.jpg" alt="Black and White cat">
+                        </div>
+                        <div class="cat-image-container">
+                            <img draggable="false" src="images/cat-blue.jpg" alt="Blue cat">
+                        </div>
+                        <div class="cat-image-container">
+                            <img draggable="false" src="images/cat-grey-and-black.jpg" alt="Grey and black cat">
+                        </div>
+                        <div class="cat-image-container">
+                            <img draggable="false" src="images/cat-orange.jpg" alt="Orange cat">
+                        </div>
+                        <div class="cat-image-container">
+                            <img draggable="false" src="images/cat-yellow.jpg" alt="Yello cat">
+                        </div>
+                    </div>
+                </div>
+                <div class="cat-name-creator">
+                    <h3>Give Your Cat a Name</h3>
+                    <form action="#0">
+                        <div class="input-group cat-name-input-group">
+                            <label for="cat-name-input">Cat Name:</label>
+                            <input type="text" id="cat-name-input">
+                        </div>
+                        <div class="input-group submit-group">
+                            <input type="submit" value="Submit" class="btn-submit">
+                        </div>
+                    </form>
+                </div>
+                <div class="gameboard-container">
+                    <div class="gameboard">
+                        <div class="cat-name-output">
+                            <h3>Fluffy</h3>
+                        </div>
+                        <div class="game-status-output">
+                            <div class="stats">
+                                <h3>Stats</h3>
+                                <ul>
+                                    <li><span class="stat-item">Hunger:</span> <span class="stat-out" id="hunger-out">10</span></li>
+                                    <li><span class="stat-item">Thirst:</span> <span class="stat-out" id="thirst-out">10</span></li>
+                                    <li><span class="stat-item">Love:</span> <span class="stat-out" id="love-out">10</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="game-image-output">
+                            <img src="images/cat-black.jpg" alt="Black cat" class="cat-image-output">
+                            <img src="images/grim-reaper.jpg" alt="Grim Reaper" class="grim-reaper-image-output">
+                        </div>
+                        <div class="game-controls">
+                            <button class="btn-water-plus" id="btn-food-plus" data-btn="hunger-plus">Food<br> +</button>
+                            <button class="btn-food-minus" id="btn-food-minus" data-btn="hunger-minus">Food<br> -</button>
+                            <button class="btn-water-plus" id="btn-water-plus" data-btn="thirst-plus">Water<br> +</button>
+                            <button class="btn-water-minus" id="btn-water-minus" data-btn="thirst-minus">Water<br> -</button>
+                            <button class="btn-pet-plus" id="btn-pet-plus" data-btn="love-plus">Pet<br> +</button>
+                            <button class="btn-pet-plus" id="btn-pet-minus" data-btn="love-minus">Pet<br> -</button>
+                        </div>
+                        <div class="game-messages-output">
+                            <h3>Message</h3>
+                            <p id="message-out-hunger">I'm not hungry...</p>
+                            <p id="message-out-thirst">I'm not thirsty...</p>
+                            <p id="message-out-love">I'm well loved... 😸</p>
+                        </div>
+                        <div class="game-play-again-container">
+                            <button class="btn-play-again" id="btn-play-again">Play Again</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>Image Credits: <a href="https://inspiremari.nl/cute-pixel-art-kitties/">Cats</a> | <a href="https://openai.com/dall-e-2/">Grim Reaper</a></p>
+            <p>Code Credit: <a href="https://codepen.io/Amminexx/pen/WNNBMeN">CSS Float Animation</a></p>
+            <p>Game Inspiration: <a href="https://codesandbox.io/s/js-lesson11-challenge-01-solution-kii7f?file=/js/script.js">Sharon's Pet Rescue</a></p>
+            <p>&copy; 2023 Michael Whyte</p>
+        </footer>
+    </div>
+    <script src="scripts/script.js"></script>
+</body>
+</html>

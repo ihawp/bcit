@@ -1,0 +1,277 @@
+@charset "utf-8";
+
+/* Resets */
+
+/* Paul Irish - Box Sizing Reset 
+   - https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+*/
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #353535;
+}
+
+header, footer, main, article, section {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 nav a {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin-top: 0;
+}
+
+p {
+    line-height: 1.6;
+    font-size: 1.15em;
+}
+
+li {
+    font-size: 1.15em;
+    margin-bottom: 1em;
+}
+
+code {
+    background-color: #eeeeee;
+}
+
+.wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.warning {
+    padding: 16px;
+    background-color: #fdb3b3;
+}
+
+.warning p {
+    margin: 0;
+}
+
+
+
+header {
+    background-color: #f7df1c;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    line-height: 1;
+}
+
+main {
+    padding: 20px;
+    flex: 1;
+}
+
+.cat-images-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+}
+
+.cat-images-container img {
+    cursor: pointer;
+}
+
+.cat-name-creator {
+    max-width: 500px;
+    display: none;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.input-group label {
+    font-size: 1.15em;
+    margin-right: 0.5em;
+}
+
+.input-group input {
+    display: block;
+    flex: 1;
+    width: 100%;
+    padding: 4px;
+    font-size: 1.15em;
+}
+
+.submit-group {
+    justify-content: end;
+}
+
+.submit-group .btn-submit {
+    cursor: pointer;
+}
+
+.gameboard-container {
+    display: none;
+}
+
+.stats ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.stats li {
+    font-weight: bold;
+    display: flex;
+    column-gap: 0.2em;
+    align-items: center;
+}
+
+.stat-item {
+    flex: 0 0 4.5em;
+}
+
+.stat-out {
+    color: #0c9628;
+    font-size: 1.2em;
+}
+
+.game-image-output,
+.game-controls {
+    margin-bottom: 1.25em;
+}
+
+.game-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0.5em;
+}
+
+.btn-pet-plus,
+.btn-pet-minu {
+    grid-column: span 2;
+}
+
+.game-controls button {
+    display: block;
+    width: 100%;
+}
+
+.game-image-output {
+    position: relative;
+    width: 15.5em;
+    aspect-ratio: 248 / 199;
+}
+
+.game-image-output img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.grim-reaper-image-output {
+    display: none;
+    animation: float 5s infinite ease-in-out;
+}
+
+
+.game-controls button,
+.btn-play-again {
+    cursor: pointer;
+}
+
+.btn-play-again {
+    display: none;
+}
+
+@media (min-width: 30em){
+    .gameboard {
+        display: grid;
+        column-gap: 1.2em;
+        grid-template-columns: 9.5em 16em;
+    }
+
+    .cat-name-output,
+    .game-controls,
+    .game-messages-output {
+        grid-column: span 2;
+    }
+
+}
+
+@media (min-width: 43em){
+    .gameboard {
+        grid-template-columns: 9.5em 16em 1fr;
+        column-gap: 2em;
+    }
+
+    .cat-name-output {
+        grid-column: span 3;
+    }
+
+    .game-controls {
+        grid-row: 3;
+        grid-column: 2;
+        justify-self: center;
+    }
+
+    .game-messages-output {
+        grid-column: span 1;
+    }
+
+    .game-play-again-container {
+        grid-row: 4;
+        grid-column: 2;
+        justify-self: center;
+    }
+
+}
+
+footer {
+    padding: 1.25em;
+    border-top: 1px dotted #858585;
+}
+
+footer p {
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+
+footer p:last-child {
+    margin-bottom: 0;
+}
+
+/* Animations */
+@keyframes float {
+    0% {
+      top: -10%;
+    }
+    25% {
+      top: -6%;
+    }
+    50% {
+      top: -4%;
+    }
+    75% {
+      top: -12%;
+    }
+    100% {
+      top: -10%;
+    }
+}
