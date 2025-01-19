@@ -1,7 +1,9 @@
 /*
 
     Warren Chemerika
+
     BCIT | Web Scripting 1
+
     Assignment 4
 
     -------------
@@ -28,7 +30,7 @@ const large = document.getElementById('t-shirt-size-large');
 const addToCart = document.getElementById('btn-add-to-cart');
 const selectedSize = document.getElementById('selected-size-out');
 
-// Image Data
+// Image Data.
 const images = {
     't-shirt-color-black': {
         0: {
@@ -111,14 +113,24 @@ large.addEventListener('click', changeSize);
 
 /*
 
-    Update main image on slide image 'mouseover'.
+    Add event listener to update main image on
+    slide image 'mouseover'.
+
+    Everytime a slide is hovered current is set to
+    the index of that slide (in relation to all the
+    slides in the program); The order of no-model,
+    front, back.
 
 */
 slides.forEach((item, key) => {
+
     item.addEventListener('mouseover', () => {
+
         current = key;
         slideContainer.innerHTML = item.outerHTML;
-    })
+
+    });
+
 });
 
 /*
@@ -161,7 +173,6 @@ function setSlides(images) {
 
     */
     slides.forEach((item, key) => {
-     */
 
         // Use key (index of loop) to get proper images sub-array.
         let indexed = images[key];
@@ -230,10 +241,15 @@ function changeSize(event) {
 
 */
 function preload(event) {
+
     let id = event.target.firstElementChild.id;
+
     addLink(id, 0);
+
     addLink(id, 1);
+
     addLink(id, 2);
+
 }
 
 /*
@@ -249,10 +265,15 @@ function preload(event) {
 
 */
 function addLink(id, index) {
-    // https://www.w3schools.com/jsref/met_document_createelement.asp
+
     let l = document.createElement("link");
+
     l.rel = 'preload';
+
     l.as = 'image';
+
     l.href = `images/${images[id][index].src}`;
+
     document.head.appendChild(l);
+
 }
