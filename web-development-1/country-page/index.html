@@ -1,526 +1,1059 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Meta Tags -->
+
   <meta charset="UTF-8">
-  <meta name="author" content="Warren Chemerika">
-  <meta name="description" content="Warren Chemerika">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Travel Canada">
+
+  <meta name="keywords" content="Travel Canada, Canada">
+
+  <meta name="author" content="Warren Chemerika" />
+
+  <meta name="robots" content="index, follow">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta property="og:title" content="Warren Chemerika | ihawp.com">
+
+  <meta property="og:description" content="Travel Canada">
+
+  <meta property="og:image" content="">
+
+  <meta property="og:url" content="">
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="twitter:title" content="">
+
+  <meta name="twitter:description" content="Travel Canada">
+
+  <!-- Change below image -->
+
+  <meta name="twitter:image" content="media/bg.webp">
+
+  <meta name="theme-color" content="#26374a">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Preload Images -->
+
   <link media="(min-width: 40em)" rel="preload" href="media/bg.webp" as="image">
+
   <link media="(max-width: 40em)" rel="preload" href="media/bg-mobile.webp" as="image">
+
+  <!-- Fonts -->
+
   <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <!-- Styles -->
+
   <link rel="preload stylesheet" href="css/normalize-fwd.min.css" as="style" type="text/css">
+
   <link rel="preload stylesheet" href="css/style.css" as="style" type="text/css">
+
+  <!-- Icons -->
+
   <link rel="icon" as="image" href="media/shooting-star.webp" type="image/x-icon">
 
+  <link rel="apple-touch-icon" as="image" href="media/shooting-star.webp">
+
   <title>Travel Canada | Home</title>
+
 </head>
+
 <body>
 
   <header class="flex-row flex-col items-center py-1 pt-1">
+
     <div class="div-media flex-col display-sm gap-1">
+
       <div class="flex-row items-center">
+
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+
         <nav class="flex-row items-center gap-1">
+
           <img src="media/canada-flag.webp" title="Canada Flag" draggable="false" alt="Canada Flag" width="90" height="45" />
+
           <a title="Travel Canada" href="index.html" aria-label="Navigate to Home Page, Travel Canada Site Title" class="display-md font-size-xx-large font-weight-600 c-2">Travel Canada</a>
+
         </nav>
+
         <div class="flex-grow-1 flex-row justify-end gap-1">
+
           <nav aria-label="Login/Register">
+
             <ul class="flex-row flex-grow-1 justify-end gap-1">
+
               <li>
+
                 <a title="Login" href="#" class="c-2">Login</a>
+
               </li>
+
               <li>
+
                 <p>|</p>
+
               </li>
+
               <li>
+
                 <a title="Register" href="#" class="c-2">Register</a>
+
               </li>
+
             </ul>
+
           </nav>
+
           <nav id="language-nav" aria-label="Change Language">
+
             <ul class="flex-row items-center justify-end gap-half">
+
               <li>
+
                 <a href="#" class="bg-2 c-1 p-half" title="Francais">Francais</a>
+
               </li>
+
             </ul>
+
           </nav>
+
         </div>
+
         <!-- https://stackoverflow.com/questions/4676388/multiple-nav-tags -->
+
       </div>
+
       <nav class="bg-1 flex-row" aria-label="Desktop/Tablet Main Site Navigation">
+
         <ul class="flex-row gap-1 items-center">
+
           <li>
+
             <a title="Home" href="index.html" class="active c-2">Home</a>
+
           </li>
+
           <li>
+
             <a title="About" href="about.html" class="c-2">About</a>
+
           </li>
+
           <li>
+
             <a title="Visit" href="visit.html" class="c-2">Visit</a>
+
           </li>
+
           <li>
+
             <a title="Credit" href="credit.html" class="c-2">Credit</a>
+
           </li>
+
         </ul>
+
         <ul class="flex-row w-full justify-end">
+
           <li>
+
             <form action="php/search.php" method="post" class="flex-row items-center gap-half">
+
               <label for="searchBarDesktop" hidden>Search</label>
+
               <input id="searchBarDesktop" autocomplete="on" class="bc-2 c-2 bs-solid outline-none bw-2" aria-label="Search Bar" name="search" type="text" placeholder="Search" required>
+
               <button class="bc-2 bg-2 c-1 bs-solid bw-2" type="submit" title="Search">Search</button>
+
             </form>
+
           </li>
+
         </ul>
+
       </nav>
+
     </div>
+
     <div class="none flex-row flex-wrap gap-1 w-full">
+
       <div class="flex-grow-1 flex-row items-center">
+
         <img src="media/canada-flag.webp" title="Canada Flag" draggable="false" alt="Canada Flag" width="90" height="45" />
+
       </div>
+
       <div class="flex-row flex-grow-1 items-center justify-end">
+
         <button id="button-mobile-nav" title="Navigation" aria-label="Navigation" class="none-sm b-none bg-none">|||</button>
+
       </div>
+
       <nav id="mobile-nav" class="w-full h-full overflow-auto flex-col gap-1 p-2" aria-label="Mobile Main Site Navigation">
+
         <div class="flex-row items-center gap-1">
+
           <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+
           <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag.webp" width="60" height="30">
+
           <h2>Travel Canada</h2>
+
         </div>
+
         <ul class="flex-row gap-1 mobile-alt">
+
           <li>
+
             <a href="#" title="Francais" class="c-1">Francais</a>
+
           </li>
+
         </ul>
+
         <ul class="flex-row gap-1 mobile-alt">
+
           <li>
+
             <a title="Login" class="c-1" href="#">Login</a>
+
           </li>
+
           <li>
+
             <p>|</p>
+
           </li>
+
           <li>
+
             <a title="Register" class="c-1" href="#">Register</a>
+
           </li>
+
         </ul>
+
         <ul class="flex-col gap-1">
+
           <li>
+
             <a title="Home" class="font-weight-600 c-1" href="index.html">Home</a>
+
           </li>
+
           <li>
+
             <a title="About" class="font-weight-600 c-1" href="about.html">About</a>
+
           </li>
+
           <li>
+
             <a title="Visit" class="font-weight-600 c-1" href="visit.html">Visit</a>
+
           </li>
+
           <li>
+
             <a title="Credit" class="font-weight-600 c-1" href="credit.html">Credit</a>
+
           </li>
+
         </ul>
+
         <div class="flex-row items-center justify-center min-h-200">
+
           <button id="button-exit-mobile-nav" class="c-1 p-3 bc-1 bs-solid bw-2 outline-none bg-none rounded" title="Exit Navigation" aria-label="Exit Navigation">X</button>
+
         </div>
+
       </nav>
+
       <nav aria-label="Mobile Search Navigation" class="flex-row w-full items-center justify-center">
+
         <ul class="w-full">
+
           <li>
+
             <form action="php/search.php" method="post" class="flex-row items-center gap-half">
+
               <label for="searchBarMobile" hidden>Search</label>
+
               <input id="searchBarMobile" autocomplete="on" class="bc-2 c-2 w-full bs-solid outline-none bw-2" aria-label="Search Bar" name="search" type="text" placeholder="Search" required>
+
               <button class="bc-2 bg-2 c-1 bs-solid bw-2 w-third" type="submit" title="Search">Search</button>
+
             </form>
+
           </li>
+
         </ul>
+
       </nav>
+
     </div>
+
   </header>
+
   <main class="flex-col gap-1 p-1">
+
     <noscript class="div-media">
+
       <p class="text-center bg-3 px-1 c-1">Please enable JavaScript for a more optimal experience.</p>
+
     </noscript>
+
     <header class="div-media flex-col gap-1">
+
       <img id="hero-image" src="" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="1" width="auto">
+
       <h1 class="bg-2 c-1 p-1 text-center">Home</h1>
+
     </header>
 
     <!-- Do You Want to Travel to Canada? -->
+
     <section class="flex-col items-center justify-center text-center gap-1 px-1">
+
       <h2>Do You Want to Travel to Canada?</h2>
+
       <a href="visit.html" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
+
     </section>
 
     <!-- list left desktop -->
+
     <!-- list right desktop -->
+
     <!-- GOAL: create baseline paragraph content section -->
+
     <section class="flex-col-rev-md-nr gap-1 items-center">
+
       <div class="w-100-m-50 gap-half flex flex-col">
+
         <h2 class="font-weight-600">This is some title with real PURPOSE.</h2>
+
         <ul class="disc pb-1 pl-1-5 pt-half pr-1 flex flex-col gap-1">
+
           <li>
-            this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
+
+            <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b</p>
+
           </li>
+
           <li>
-            this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
+
+            <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b</p>
+
           </li>
+
         </ul>
+
       </div>
+
       <div class="w-100-m-50">
+
         <img src="media/Untitled-2.jpg" draggable="false" alt="" width="100%" height="300">
+
       </div>
+
     </section>
+
     <section class="flex-col-rev-md gap-1 items-center">
+
       <div class="w-100-m-50 flex flex-col gap-half">
+
         <h2>this is some title about the content and it is very awesome</h2>
+
         <ul class="disc pl-1-5 pb-1 pt-half pr-1 flex flex-col gap-1">
+
           <li>
-            this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
+
+            <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b</p>
+
           </li>
+
           <li>
-            this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
+
+            <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b</p>
+
           </li>
+
           <li>
-            this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b
+
+            <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b</p>
+
           </li>
+
         </ul>
+
       </div>
+
       <div class="w-100-m-50">
+
         <img src="media/Untitled-2.jpg" draggable="false" alt="" width="100%" height="300">
+
       </div>
+
     </section>
 
     <!-- audio -->
+
     <section>
+
       <audio controls src="media/ocanada.mp3"></audio>
+
       <img src="media/moose.png" alt="" title="">
+
     </section>
 
     <!-- Grid: Information -->
+
     <section>
+
       <ul class="grid bg-2 c-1 pb-1 pt-half py-1">
+
         <li class="grid-item1">
+
           <h2 class="px-1 py-1">Information</h2>
+
         </li>
+
         <li class="p-1">
+
           <h3>Wikipedia</h3>
+
           <a href="https://en.wikipedia.org/wiki/Canada" target="_blank" rel="noreferrer" title="Wikipedia" aria-label="Wikipedia" class="c-4 active">View Resource</a>
+
         </li>
+
       </ul>
+
     </section>
 
     <!-- Grid: Files -->
+
     <section>
+
       <ul class="grid bg-2 c-1 pb-1 pt-half py-1">
+
         <li class="grid-item1">
+
           <h2 class="px-1 py-1">Files</h2>
+
         </li>
+
         <li class="p-1">
+
           <h3>Wikipedia: Canada Flag SVG</h3>
+
           <a href="https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg" target="_blank" rel="noreferrer" title="Wikipedia: Canada Flag SVG" aria-label="Wikipedia: Canada Flag SVG" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>clker: Cartoon Moose</h3>
+
           <a href="http://www.clker.com/clipart-23303.html" target="_blank" rel="noreferrer" title="clker: Cartoon Moose" aria-label="clker: Cartoon Moose" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>Google Fonts: Roboto</h3>
+
           <a href="https://fonts.google.com/specimen/Roboto?categoryFilters=Feeling:%2FExpressive%2FBusiness" target="_blank" rel="noreferrer" title="Google Fonts: Roboto" aria-label="Google Fonts: Roboto" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>SoundClick: Canada Anthem Instrumental</h3>
+
           <a href="https://www.soundclick.com/music/songInfo.cfm?songID=14032161" target="_blank" rel="noreferrer" title="SoundClick: O Canada Instrumental - United States Navy Band" aria-label="SoundClick: O Canada Instrumental - United States Navy Band" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>Gracie Bobbie-Strelioff: Images</h3>
+
           <a href="" title="Gracie Bobbie-Strelioff" aria-label="Gracie Bobbie-Strelioff" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>Warren Chemerika: Images, Favicon</h3>
+
           <a href="https://www.ihawp.com" target="_blank" rel="noreferrer" title="Warren Chemerika | ihawp.com" aria-label="Warren Chemerika | ihawp.com" class="c-4 active">View Resource</a>
+
         </li>
+
       </ul>
+
     </section>
 
     <!-- Grid: References -->
+
     <section>
+
       <ul class="grid bg-2 c-1 pb-1 pt-half py-1">
+
         <li class="grid-item1">
+
           <h2 class="px-1 py-1">References</h2>
+
         </li>
+
         <li class="p-1">
+
           <h3>Mozilla Developer Network</h3>
+
           <a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noreferrer" title="Mozilla Developer Network" aria-label="Mozilla Developer Network" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>W3 Schools</h3>
+
           <a href="https://www.w3schools.com/" target="_blank" rel="noreferrer" title="W3 Schools" aria-label="W3 Schools" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>Git Documentation</h3>
+
           <a href="https://www.git-scm.com/doc" target="_blank" rel="noreferrer" title="Git Documentation" aria-label="Git Documentation" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>Medium</h3>
+
           <a href="https://medium.com/@francis.john/viewport-and-media-query-based-preloading-87db30ff6d5f" target="_blank" rel="noreferrer" title="Medium" aria-label="Medium" class="c-4 active">View Resource</a>
+
         </li>
+
         <li class="p-1">
+
           <h3>Canada Website</h3>
+
           <a href="https://www.canada.ca/en.html" target="_blank" rel="noreferrer" title="Canada Website" aria-label="Canada Website" class="c-4 active">View Resource</a>
+
         </li>
+
       </ul>
+
     </section>
 
     <!-- Thinking About Visiting? -->
+
     <section class="flex-col items-center justify-center text-center gap-half">
+
       <div class="flex flex-col justify-center items-center text-center py-1 px-2 gap-half">
+
         <h2>Thinking About Visiting?</h2>
+
         <p>Learn about different parts of canada through the data we've collected regarding Canadas tourism industry.</p>
+
       </div>
+
     </section>
 
     <!-- table -->
+
     <section class="flex-col gap-1">
+
       <div class="flex flex-col gap-half">
+
         <h3>Most Popular Cities:</h3>
+
         <table>
+
           <thead class="bg-2 c-1">
+
           <tr>
+
             <th>City</th>
+
             <th>Province</th>
+
             <th>Population</th>
+
           </tr>
+
           </thead>
+
           <tbody>
+
           <tr>
+
             <td>Saskatoon</td>
+
             <td>Saskatchewan</td>
+
             <td>43</td>
+
           </tr>
+
           <tr>
+
             <td>Vancouver</td>
+
             <td>British Columbia</td>
+
             <td>1.6 mil</td>
+
           </tr>
+
           <tr>
+
             <td>Calgary</td>
+
             <td>Alberta</td>
+
             <td>1,210</td>
+
           </tr>
+
           </tbody>
+
           <tfoot>
 
+
           </tfoot>
+
         </table>
+
       </div>
+
       <div class="flex flex-col gap-half">
+
         <h3>Most Popular Provinces:</h3>
+
         <table>
+
           <thead class="bg-2 c-1">
+
           <tr>
+
             <th>Province</th>
+
             <th>Population</th>
+
           </tr>
+
           </thead>
+
           <tbody>
+
           <tr>
+
             <td>Saskatchewan</td>
+
             <td>43</td>
+
           </tr>
+
           <tr>
+
             <td>British Columbia</td>
+
             <td>125</td>
+
           </tr>
+
           </tbody>
+
           <tfoot>
 
           </tfoot>
+
         </table>
+
       </div>
+
     </section>
 
     <!-- FAQ -->
+
     <section id="frequently-asked-questions" class="flex-col gap-1 pt-2">
+
       <h2>Frequently Asked Questions:</h2>
+
       <ul id="faq" class="flex flex-col"></ul>
+
     </section>
 
     <!-- Contact Form -->
     <section id="contact" class="flex-col-md mx-2 gap-2">
+
       <div class="flex flex-col w-100-m-50 gap-1">
+
         <h2>Have a more specific question?</h2>
+
         <p>Fill out our contact form, and we will make sure to get back to you real quick. Customer service is our top priority. We love people!</p>
+
         <p>Responses to inquiries are sent every weekday from 8am - 4pm.</p>
+
       </div>
+
       <form action="" id="contactForm" method="post" class="w-100-m-50 flex flex-col gap-half">
+
         <h2 class="mb-half">Contact Us</h2>
+
         <div class="flex flex-col-md gap-half">
+
           <label for="contactName" hidden>Name</label>
+
           <input id="contactName" autocomplete="on" type="text" title="Name" name="name" aria-label="Contact Form: Name" placeholder="Name" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required>
+
           <label for="contactEmail" hidden>Email</label>
+
           <input id="contactEmail" autocomplete="on" type="email" title="Email" name="email" aria-label="Contact Form: Email" placeholder="Email" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required>
+
         </div>
+
         <div class="flex gap-half">
+
           <label for="contactMessage" hidden>Message</label>
+
           <textarea id="contactMessage" title="Message" name="message" aria-label="Contact Form: Message" placeholder="Message" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required></textarea>
+
         </div>
+
         <button type="submit" title="Submit" aria-label="Contact Form: Submit" class="bw-2 bs-solid bc-2 bg-2 c-1 p-1">Submit</button>
+
       </form>
+
     </section>
 
   </main>
 
   <footer class="bg-2 c-1 py-1 px-2 flex-row items-center justify-center">
+
     <div class="div-media flex-col gap-2">
+
       <div class="flex-row items-center gap-1">
+
         <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
+
         <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" width="68.5" height="34.25">
+
         <h2>Travel Canada</h2>
+
       </div>
+
       <div class="flex-col-sm gap-2 flex-wrap basis-auto">
+
         <nav aria-label="footerNav1" class="flex-grow-1 flex-col gap-half min-width-150">
+
           <p class="font-weight-900">Home</p>
+
           <ul class="flex-col gap-half">
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Link</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Sections</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">From</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Each</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Page</a>
+
             </li>
+
           </ul>
+
         </nav>
+
         <nav aria-label="footerNav2" class="flex-grow-1 flex-col gap-half min-width-150">
+
           <p class="font-weight-900">About</p>
+
           <ul class="flex-col gap-half">
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+
             </li>
+
           </ul>
+
         </nav>
+
         <nav aria-label="footerNav3" class="flex-grow-1 flex-col gap-half min-width-150">
+
           <p class="font-weight-900">Visit</p>
+
           <ul class="flex-col gap-half">
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+
             </li>
+
           </ul>
+
         </nav>
+
         <nav aria-label="footerNav4" class="flex-grow-1 flex-col gap-half min-width-150">
+
           <p class="font-weight-900">Credit</p>
+
           <ul class="flex-col gap-half">
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+
             </li>
+
             <li>
+
               <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+
             </li>
+
           </ul>
+
         </nav>
+
       </div>
+
+
+
 
 
       <div class="flex-col-rev-sm-nr gap-2">
+
         <div class="flex-col gap-2 flex-grow-1">
+
           <address class="flex-col gap-half">
+
             <p>Parliament Hill<br>
+
             Wellington St, Ottawa, ON K1A 0A9<br>
+
             Canada</p>
+
             <a class="active c-4" rel="noreferrer" href="tel:999-999-9999">999-999-9999</a>
+
             <a class="active c-4" rel="noreferrer" href="mailto:canada@canada.ca">canada@canada.ca</a>
+
           </address>
+
           <p class="w-full">&copy; Canada 2025.</p>
 
+
         </div>
+
         <div class="text-start-sm flex-col gap-1 flex-grow-1">
+
           <blockquote>
+
             "I love Canada a lot!"<br>
+
             <cite class="c-4">- Prime Minister</cite>
+
           </blockquote>
+
           <blockquote>
+
             "I think this place is so awesomeasdasd asd adas as dsa dsad sadas!"<br>
+
             <cite  class="c-4">- Austin Powers</cite>
+
           </blockquote>
+
         </div>
+
       </div>
+
     </div>
+
   </footer>
+
   <script src="js/quick.js" type="text/javascript"></script>
+
   <script src="js/faq.js" type="text/javascript"></script>
+
   <script type="text/javascript">
+
     const data = [
+
       {
+
         summary: "What are the entry requirements for Canada?",
+
         details: [
+
                 "Your passport must be valid at the time of entry.",
+
                 "A tourist visa is not required for stays under 180 days for many nationalities.",
+
                 "At least one blank page is required in your passport for entry stamps.",
+
         ],
+
       },
+
       {
+
         summary: "What should I declare when entering Canada?",
+
         details: [
+
           "You must declare any goods you are bringing into Canada, including gifts, food, and currency over a certain amount.",
+
           "Be aware of items that are restricted or prohibited, such as certain food products and weapons.",
+
         ],
+
       },
+
       {
+
         summary: "Do I have to pay for my plane ticket if I bring maple syrup?",
+
         details: [
+
           "This site provides official Government of Canada information on travel advisories that may affect your safety and well-being while traveling.",
+
           "Check for updates on health, safety, and security situations in your destination.",
+
         ],
+
       },
+
       {
+
         summary: "Why should I travel to Canada?",
+
         details: [
+
           "Your passport must be valid at the time of entry.",
+
           "A tourist visa is not required for stays under 180 days for many nationalities.",
+
           "At least one blank page is required in your passport for entry stamps.",
+
         ],
+
       },
+
     ];
+
     new FAQ(data);
+
   </script>
+
   <script src="js/main.js" type="text/javascript"></script>
+
 </body>
+
 </html>
+
