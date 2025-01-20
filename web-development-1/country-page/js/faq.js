@@ -23,6 +23,6 @@ class FAQ {
                     document.getElementById(`details-${this.open}`).removeAttribute("open");
                     this.open = index;
             });
-        })
+        });
     }
 }
