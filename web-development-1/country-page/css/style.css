@@ -170,32 +170,11 @@ li {}
 }
 
 /* font weight */
-.font-100 {
-    font-weight: 100;
-}
-.font-200 {
-    font-weight: 200;
-}
-.font-300 {
-    font-weight: 300;
-}
-.font-400 {
-    font-weight: 400;
-}
 .font-weight-500 {
     font-weight: 500;
 }
 .font-weight-600 {
     font-weight: 600;
-}
-.font-weight-700 {
-    font-weight: 700;
-}
-.font-weight-800 {
-    font-weight: 800;
-}
-.font-weight-900 {
-    font-weight: 900;
 }
 
 /* text */
@@ -665,6 +644,9 @@ summary,
 }
 
 /* width % */
+.w-auto {
+    width: auto;
+}
 .w-full, .w-100-m-50, .div-media, section {
     width: 100%;
 }
@@ -689,6 +671,15 @@ summary,
 }
 .h-full {
     height: 100%;
+}
+.h-0-5 {
+    height: 3.125rem;
+}
+.h-2 {
+    height: 12.5rem;
+}
+.h-3 {
+    height: 18.75rem;
 }
 
 /* grid */
@@ -756,32 +747,42 @@ textarea {
 
 
 /* *** MAKE CLASSES *** */
-#mobile-nav {
-    position: fixed;
-    color: var(--1);
-    background-color: var(--2);
-    top: 0;
-    left: 0;
-    font-size: 1.25rem;
-}
-#mobile-nav a {
-    font-size: 1.5rem;
-}
 #button-mobile-nav {
     rotate: 90deg;
-    font-size: 2.5rem;
 }
-#button-exit-mobile-nav {
-    font-size: 5rem;
+#button-mobile-nav, #button-exit-mobile-nav {
+    font-size: 2.4rem;
 }
 #faq li:last-of-type details {
     border-bottom: 1px solid var(--5);
 }
-#mobile-nav .mobile-alt a, .mobile-alt, a.mobile-alt {
-    opacity: 0.8;
-    font-size: 1.3rem;
+
+#for-mobile-nav {
+    gap: 2rem;
+    padding: 1rem;
+    position: absolute;
+    color: var(--1);
+    background-color: var(--2);
+    top: 75px;
+    left: 0;
+    font-size: 1.25rem;
 }
 
+#for-mobile-nav > div, #for-mobile-nav > div > div > nav > ul {
+    flex-direction: column;
+    align-items: center;
+}
+#for-mobile-nav > nav {
+    gap: 2rem;
+    background: transparent;
+    flex-direction: column;
+}
+#for-mobile-nav > nav > ul, #for-mobile-nav > nav > ul {
+    flex-direction: column;
+}
+#for-mobile-nav > nav a, #for-mobile-nav > div a {
+    color: white;
+}
 
 /*
     PERHAPS: better system could have been break point class
@@ -825,6 +826,24 @@ textarea {
         grid-column-start: 1;
         grid-column-end: 3;
     }
+
+    #for-mobile-nav {
+        display: flex;
+        position: relative;
+        background: none;
+        padding: 0;
+    }
+
+    #navigation {
+        background-color: transparent;
+        padding: 0;
+    }
+    #navigation-first-ul {
+        align-items: center;
+    }
+    #navigation-first-ul a {
+        color: var(--2);
+    }
 }
 @media (min-width: 50em) {
     /* flex direction images */
@@ -856,6 +875,9 @@ textarea {
 
 /* too custom for my own liking */
 @media (min-width: 50em) and (max-width: 75em) {
+    #hero-image {
+        height: 200px;
+    }
     .h-auto {
         height: 300px;
     }
