@@ -322,8 +322,16 @@ summary,
 }
 
 /* min height */
-.min-h-200 {
-    min-height: 200px;
+.min-h-2 {
+    min-height: 12.5rem;
+}
+.min-h-3 {
+    min-height: 18.75rem;
+}
+
+/* object fit */
+.object-cover {
+    object-fit: cover;
 }
 
 /* list style */
@@ -403,6 +411,10 @@ summary,
 .py-2 {
     padding-left: 2rem;
     padding-right: 2rem;
+}
+.py-2-5 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 }
 .py-3 {
     padding-left: 3rem;
@@ -672,6 +684,9 @@ summary,
 }
 
 /* height */
+.h-auto {
+    height: auto;
+}
 .h-full {
     height: 100%;
 }
@@ -766,17 +781,6 @@ textarea {
     opacity: 0.8;
     font-size: 1.3rem;
 }
-#mobile-nav a {
-    font-size: 1.5rem;
-}
-#button-mobile-nav {
-    rotate: 90deg;
-    font-size: 2.5rem;
-}
-#button-exit-mobile-nav {
-    padding: 10px 29px;
-    font-size: 5rem;
-}
 
 
 /*
@@ -785,7 +789,7 @@ textarea {
     but use .flex-row.sm to identify switching in images queries...
     that is in relation to the flex stuff.
  */
-@media screen and (min-width: 40em) {
+@media (min-width: 40em) {
     /* flex direction images */
     .flex-row-sm {
         flex-direction: column;
@@ -822,7 +826,7 @@ textarea {
         grid-column-end: 3;
     }
 }
-@media screen and (min-width: 50em) {
+@media (min-width: 50em) {
     /* flex direction images */
     .flex-row-md {
         flex-direction: column;
@@ -849,7 +853,15 @@ textarea {
         width: 50%;
     }
 }
-@media screen and (min-width: 75em) {
+
+/* too custom for my own liking */
+@media (min-width: 50em) and (max-width: 75em) {
+    .h-auto {
+        height: 300px;
+    }
+}
+
+@media (min-width: 75em) {
     /* flex direction images */
     .flex-row-lg {
         flex-direction: column;
