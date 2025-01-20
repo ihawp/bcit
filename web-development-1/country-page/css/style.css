@@ -757,33 +757,6 @@ textarea {
     border-bottom: 1px solid var(--5);
 }
 
-#for-mobile-nav {
-    gap: 2rem;
-    padding: 1rem;
-    position: absolute;
-    color: var(--1);
-    background-color: var(--2);
-    top: 75px;
-    left: 0;
-    font-size: 1.25rem;
-}
-
-#for-mobile-nav > div, #for-mobile-nav > div > div > nav > ul {
-    flex-direction: column;
-    align-items: center;
-}
-#for-mobile-nav > nav {
-    gap: 2rem;
-    background: transparent;
-    flex-direction: column;
-}
-#for-mobile-nav > nav > ul, #for-mobile-nav > nav > ul {
-    flex-direction: column;
-}
-#for-mobile-nav > nav a, #for-mobile-nav > div a {
-    color: white;
-}
-
 /*
     PERHAPS: better system could have been break point class
     like .sm .md .lg that don't have any added properties
@@ -827,13 +800,7 @@ textarea {
         grid-column-end: 3;
     }
 
-    #for-mobile-nav {
-        display: flex;
-        position: relative;
-        background: none;
-        padding: 0;
-    }
-
+    /* Update Header #navigation for Tablet / Desktop viewing differences */
     #navigation {
         background-color: transparent;
         padding: 0;
