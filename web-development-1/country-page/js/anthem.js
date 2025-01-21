@@ -1,5 +1,24 @@
 const audio = document.getElementById('canada-national-anthem');
 const play = document.getElementById('cna-play');
 const pause = document.getElementById('cna-pause');
-play.addEventListener('click', () => audio.play());
+const restart = document.getElementById('cna-restart');
+const timeline = document.getElementById('audio-timeline');
+const audioStart = document.getElementById('audio-start');
+play.addEventListener('click', () => {
+    audio.play();
+});
 pause.addEventListener('click', () => audio.pause());
+restart.addEventListener('click', () => {
+    audio.currentTime = 0;
+    audio.play();
+})
+
+audio.addEventListener('timeupdate', () => {
+    function formatDuration(seconds) {
+        const secs = Math.floor(seconds % 60);
+        return `${Math.floor(seconds / 60)}:${secs < 10 ? '0' + secs : secs}`;
+    }
+
+    audioStart.innerText = formatDuration(audio.currentTime);
+    timeline.value = audio.currentTime;
+});

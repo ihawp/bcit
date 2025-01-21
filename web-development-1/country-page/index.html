@@ -215,27 +215,43 @@
 
     </header>
 
-    <!-- Grid: Information -->
+    <!-- audio -->
 
-    <section>
+    <section class="flex-col-rev-lg justify-center items-center gap-1 inverted px-2 text-center">
 
-      <ul class="grid bg-2 c-1 pb-1 pt-half py-1">
+      <div class="display-lg flex-grow-1 relative h-full">
+        <img class="" title="" alt="" draggable="false" src="media/moose.png" style="bottom: 0; left: 0;" />
+      </div>
 
-        <li class="grid-item1">
+      <div class="flex-col gap-1 text-center flex-grow-1">
+        <h2>Hear Canada's National Anthem</h2>
 
-          <h2 class="px-1 py-1">Information</h2>
+        <p>Performed by the US Navy Band</p>
 
-        </li>
+        <div class="flex-col items-center justify-center">
 
-        <li class="p-1">
 
-          <h3>Wikipedia</h3>
+          <div class="flex-row w-3">
+            <p id="audio-start">0:00</p>
+            <label for="audio-timeline" hidden>Audio Timeline</label>
+            <input id="audio-timeline" class="w-full my-1" min="0" max="78" value="0" type="range" />
+            <p id="audio-end">1:17</p>
+          </div>
 
-          <a href="https://en.wikipedia.org/wiki/Canada" target="_blank" rel="noreferrer" title="Wikipedia" aria-label="Wikipedia" class="c-4 active">View Resource</a>
+          <div class="flex-row bg-2 gap-1 mt-1 w-3">
 
-        </li>
+            <button id="cna-play" title="Play" aria-label="Play Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Play Button" src="media/play.webp" width="35" height="35"/></button>
 
-      </ul>
+            <button id="cna-pause" title="Pause" aria-label="Pause Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Pause Button" src="media/pause.webp" width="35" height="35"/></button>
+
+            <button id="cna-restart" title="Restart" aria-label="Restart Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Restart Button" src="media/restart.webp" width="35" height="35"/></button>
+
+          </div>
+
+          <audio id="canada-national-anthem" controls src="media/ocanada.mp3" hidden></audio>
+
+        </div>
+      </div>
 
     </section>
 
@@ -268,27 +284,6 @@
       <div class="w-100-m-50 display-md">
 
         <img src="media/left-right/stormy-clouds-over-prairie-farm.webp" loading="lazy" class="w-full object-cover h-auto-mid-3" draggable="false" alt="" width="1" height="1" />
-
-      </div>
-
-    </section>
-
-    <!-- audio -->
-
-    <section class="flex-col gap-1 pt-2">
-
-      <h2 class="text-center">Listen to Canada's National Anthem</h2>
-
-      <div class="flex-row items-end justify-center min-h-3">
-
-        <img class="w-auto h-auto" src="media/moose.png" alt="clker: Moose" loading="lazy" title="clker: Moose" draggable="false" width="1" height="1" />
-
-        <div class="absolute bg-2 py-5 px-1">
-          <button id="cna-play">></button>
-          <button id="cna-pause">||</button>
-        </div>
-
-        <audio id="canada-national-anthem" src="media/ocanada.mp3" hidden></audio>
 
       </div>
 

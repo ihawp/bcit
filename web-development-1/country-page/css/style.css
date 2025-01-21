@@ -661,6 +661,9 @@ summary,
 .w-third {
     width: 33%;
 }
+.w-3 {
+    width: 18.75rem;
+}
 
 /* min width */
 .min-width-150 {
