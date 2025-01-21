@@ -63,9 +63,9 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <!-- Icons -->
 
-    <link rel="icon" as="image" href="../media/icon/shooting-star.webp" type="image/x-icon">
+    <link rel="icon" as="image" href="../media/icon/fake-travel-canada.webp" type="image/x-icon">
 
-    <link rel="apple-touch-icon" as="image" href="../media/icon/shooting-star.webp">
+    <link rel="apple-touch-icon" as="image" href="../media/icon/fake-travel-canada.webp">
 
     <!-- Title of Page -->
 

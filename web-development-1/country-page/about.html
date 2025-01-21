@@ -40,11 +40,11 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Preload Images -->
+    <!-- Hero Image Script -->
 
-    <link media="(min-width: 40em)" rel="preload" href="media/hero/hero-4.webp" as="image">
+    <link rel="preload" href="js/heroImage.js" type="text/javascript" as="script">
 
-    <link media="(max-width: 40em)" rel="preload" href="media/hero/hero-4-mobile.webp" as="image">
+    <script src="js/heroImage.js" type="text/javascript"></script>
 
     <!-- Fonts -->
 
@@ -58,9 +58,9 @@
 
     <!-- Icons -->
 
-    <link rel="icon" as="image" href="media/icon/shooting-star.webp" type="image/x-icon">
+    <link rel="icon" as="image" href="media/icon/fake-travel-canada.webp" type="image/x-icon">
 
-    <link rel="apple-touch-icon" as="image" href="media/icon/shooting-star.webp">
+    <link rel="apple-touch-icon" as="image" href="media/icon/fake-travel-canada.webp">
 
     <!-- Title of Page -->
 
@@ -211,27 +211,33 @@
 
         <h1 class="bg-2 c-1 p-1 text-center">About</h1>
 
-        <img id="hero-image" src="" class="h-2 w-auto object-cover" draggable="false" alt="Cypress Mountain, West Vancouver, BC" title="Cypress Mountain, West Vancouver, BC" height="1" width="1" />
+        <img id="hero-image" src="" class="h-2 w-auto object-cover" draggable="false" alt="Hero Image for Fake Travel Canada" title="Hero Image for Fake Travel Canada" height="1" width="1" />
 
     </header>
 
-    <!-- Do You Want to Travel to Canada? -->
+    <!-- Want to Learn About Canada? -->
 
-    <section class="flex-col items-center justify-center text-center gap-1 px-1">
+    <section class="flex-col items-center justify-center text-center gap-half">
 
-        <h2>Do You Want to Travel to Canada?</h2>
+        <div class="flex flex-col justify-center items-center text-center py-1 px-2 gap-half">
 
-        <a href="visit.html" class="bg-2 bs-solid bc-2 c-1 p-half">Yes, I do!</a>
+            <h2>Want to Learn About Canada?</h2>
+
+            <p>You're in the right place! This is the fake #1 place to find Canada's stats.</p>
+
+            <a href="#learn" class="bg-2 c-1 p-half">Learn Now</a>
+
+        </div>
 
     </section>
 
     <!-- list right desktop -->
 
-    <section class="flex-col-rev-md gap-1 items-center">
+    <section class="flex-col-rev-md gap-1 items-center" id="learn">
 
         <div class="w-100-m-50 flex flex-col gap-half">
 
-            <h2>this is some title about the content and it is very awesome</h2>
+            <h2>Visit Our Most Popular Cities!</h2>
 
             <ul class="disc pl-1-5 pb-1 pt-half pr-1 flex flex-col gap-1">
 
@@ -251,9 +257,138 @@
 
         </div>
 
-        <div class="w-100-m-50">
+        <div class="w-100-m-50 display-md">
 
             <img src="media/left-right/stormy-clouds-over-prairie-farm.webp" loading="lazy" class="w-full object-cover h-auto-mid-3" draggable="false" alt="" width="1" height="1" />
+
+        </div>
+
+    </section>
+
+    <!-- Data Table -->
+
+    <section class="flex-col gap-1">
+
+        <div class="flex flex-col gap-half">
+
+            <h3>Most Popular Cities:</h3>
+
+            <table>
+
+                <thead class="bg-2 c-1">
+
+                <tr>
+
+                    <th>City</th>
+
+                    <th>Province</th>
+
+                    <th>Population</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr>
+
+                    <td>Saskatoon</td>
+
+                    <td>Saskatchewan</td>
+
+                    <td>43</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Vancouver</td>
+
+                    <td>British Columbia</td>
+
+                    <td>1.6 mil</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Calgary</td>
+
+                    <td>Alberta</td>
+
+                    <td>1,210</td>
+
+                </tr>
+
+                </tbody>
+
+                <tfoot>
+
+
+                </tfoot>
+
+            </table>
+
+        </div>
+
+        <div class="flex flex-col gap-half">
+
+            <h3>Most Popular Provinces:</h3>
+
+            <table>
+
+                <thead class="bg-2 c-1">
+
+                <tr>
+
+                    <th>Province</th>
+
+                    <th>Population</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr>
+
+                    <td>Saskatchewan</td>
+
+                    <td>43</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>British Columbia</td>
+
+                    <td>125</td>
+
+                </tr>
+
+                </tbody>
+
+                <tfoot>
+
+                </tfoot>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Take A Closer Look! -->
+
+    <section class="flex-col items-center justify-center text-center gap-half">
+
+        <div class="flex flex-col justify-center items-center text-center py-1 px-2 gap-half">
+
+            <h2>Take A Closer Look!</h2>
+
+            <p>Learn about Vancouver, British Columbia.</p>
 
         </div>
 
@@ -288,174 +423,6 @@
         <div class="w-100-m-50">
 
             <img src="media/left-right/ambleside-west-vancouver-british-columbia.webp" loading="lazy" class="w-full object-cover h-auto-mid-3" draggable="false" alt="" width="1" height="1" />
-
-        </div>
-
-    </section>
-
-    <!-- audio -->
-
-    <section>
-
-        <audio controls src="media/ocanada.mp3"></audio>
-
-        <img src="media/moose.png" alt="clker: Moose" title="clker: Moose" draggable="false" width="1" height="1" />
-
-    </section>
-
-    <!-- Grid: Information -->
-
-    <section>
-
-        <ul class="grid bg-2 c-1 pb-1 pt-half py-1">
-
-            <li class="grid-item1">
-
-                <h2 class="px-1 py-1">Information</h2>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Wikipedia</h3>
-
-                <a href="https://en.wikipedia.org/wiki/Canada" target="_blank" rel="noreferrer" title="Wikipedia" aria-label="Wikipedia" class="c-4 active">View Resource</a>
-
-            </li>
-
-        </ul>
-
-    </section>
-
-    <!-- Grid: Files -->
-
-    <section>
-
-        <ul class="grid bg-2 c-1 pb-1 pt-half py-1">
-
-            <li class="grid-item1">
-
-                <h2 class="px-1 py-1">Files</h2>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Wikipedia: Canada Flag SVG</h3>
-
-                <a href="https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg" target="_blank" rel="noreferrer" title="Wikipedia: Canada Flag SVG" aria-label="Wikipedia: Canada Flag SVG" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>clker: Cartoon Moose</h3>
-
-                <a href="http://www.clker.com/clipart-23303.html" target="_blank" rel="noreferrer" title="clker: Cartoon Moose" aria-label="clker: Cartoon Moose" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Google Fonts: Roboto</h3>
-
-                <a href="https://fonts.google.com/specimen/Roboto?categoryFilters=Feeling:%2FExpressive%2FBusiness" target="_blank" rel="noreferrer" title="Google Fonts: Roboto" aria-label="Google Fonts: Roboto" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>SoundClick: Canada Anthem Instrumental</h3>
-
-                <a href="https://www.soundclick.com/music/songInfo.cfm?songID=14032161" target="_blank" rel="noreferrer" title="SoundClick: O Canada Instrumental - United States Navy Band" aria-label="SoundClick: O Canada Instrumental - United States Navy Band" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Gracie Bobbie-Strelioff: Images</h3>
-
-                <a href="" title="Gracie Bobbie-Strelioff" aria-label="Gracie Bobbie-Strelioff" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Warren Chemerika: Images, Favicon</h3>
-
-                <a href="https://www.ihawp.com" target="_blank" rel="noreferrer" title="Warren Chemerika | ihawp.com" aria-label="Warren Chemerika | ihawp.com" class="c-4 active">View Resource</a>
-
-            </li>
-
-        </ul>
-
-    </section>
-
-    <!-- Grid: References -->
-
-    <section>
-
-        <ul class="grid bg-2 c-1 pb-1 pt-half py-1">
-
-            <li class="grid-item1">
-
-                <h2 class="px-1 py-1">References</h2>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Mozilla Developer Network</h3>
-
-                <a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noreferrer" title="Mozilla Developer Network" aria-label="Mozilla Developer Network" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>W3 Schools</h3>
-
-                <a href="https://www.w3schools.com/" target="_blank" rel="noreferrer" title="W3 Schools" aria-label="W3 Schools" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Git Documentation</h3>
-
-                <a href="https://www.git-scm.com/doc" target="_blank" rel="noreferrer" title="Git Documentation" aria-label="Git Documentation" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Medium</h3>
-
-                <a href="https://medium.com/@francis.john/viewport-and-media-query-based-preloading-87db30ff6d5f" target="_blank" rel="noreferrer" title="Medium" aria-label="Medium" class="c-4 active">View Resource</a>
-
-            </li>
-
-            <li class="p-1">
-
-                <h3>Canada Website</h3>
-
-                <a href="https://www.canada.ca/en.html" target="_blank" rel="noreferrer" title="Canada Website" aria-label="Canada Website" class="c-4 active">View Resource</a>
-
-            </li>
-
-        </ul>
-
-    </section>
-
-    <!-- Thinking About Visiting? -->
-
-    <section class="flex-col items-center justify-center text-center gap-half">
-
-        <div class="flex flex-col justify-center items-center text-center py-1 px-2 gap-half">
-
-            <h2>Thinking About Visiting?</h2>
-
-            <p>Learn about different parts of canada through the data we've collected regarding Canadas tourism industry.</p>
 
         </div>
 
@@ -861,8 +828,6 @@
     </div>
 
 </footer>
-
-<script src="js/quick.js" type="text/javascript"></script>
 
 <script src="js/faq.js" type="text/javascript"></script>
 
