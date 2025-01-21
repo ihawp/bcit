@@ -180,7 +180,7 @@
 
                     <li>
 
-                        <form action="php/search.php" method="post" class="flex-row items-center gap-half">
+                        <form action="search.php" method="post" class="flex-row items-center gap-half">
 
                             <label for="searchBar" hidden>Search</label>
 
@@ -215,44 +215,6 @@
 
     </header>
 
-    <!-- Play The Canada National Anthem -->
-
-    <section class="flex-col justify-center items-center inverted gap-1 px-2 py-1 text-center">
-
-        <label for="audio-timeline"><h2>Canada's National Anthem: O Canada</h2></label>
-
-        <div class="flex-col items-center justify-center">
-
-            <div class="flex-row gap-half items-end">
-
-                <p id="audio-start">0:00</p>
-
-                <div>
-
-                    <input id="audio-timeline" name="audio-timeline" class="w-full my-1" min="0" max="78" value="0" type="range" />
-
-                </div>
-
-                <p id="audio-end">1:18</p>
-
-            </div>
-
-            <nav aria-label="Audio Navigation" class="flex-row gap-half mt-1">
-
-                <button id="cna-play" title="Play" aria-label="Play Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Play Button" src="media/play.webp" width="35" height="35"/></button>
-
-                <button id="cna-pause" title="Pause" aria-label="Pause Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Pause Button" src="media/pause.webp" width="35" height="35"/></button>
-
-                <button id="cna-restart" title="Restart" aria-label="Restart Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Restart Button" src="media/restart.webp" width="35" height="35"/></button>
-
-            </nav>
-
-            <audio id="canada-national-anthem" src="media/ocanada.mp3" hidden></audio>
-
-        </div>
-
-    </section>
-
     <!-- Want to Learn About Canada? -->
 
     <section class="flex-col items-center justify-center text-center">
@@ -261,21 +223,21 @@
 
             <h2>Want to Learn About Canada?</h2>
 
-            <p>You're in the right place! This is the #1 fake place to find Canada's stats.</p>
+            <h3>You're in the right place! This is the #1 fake place to find Canada's facts.</h3>
+
+            <h4 class="font-weight-500">All data is from <a href="https://en.wikipedia.org" target="_blank" rel="noreferrer" title="Wikipedia" aria-label="Wikipedia" class="c-2 active">Wikipedia</a> or made up!</h4>
 
         </div>
 
     </section>
 
-    <!-- Take A Closer Look! -->
+    <!-- Province: Title -->
 
     <section class="flex-col items-center justify-center text-center gap-half inverted">
 
         <div class="flex flex-col justify-center items-center text-center p-1 gap-half">
 
-            <h2>Our Provinces And Territories</h2>
-
-            <p>Canada hosts 10 provinces and 3 territories.</p>
+            <h2>Provinces And Territories</h2>
 
         </div>
 
@@ -283,29 +245,33 @@
 
     <!-- Province / Territory List Left -->
 
-    <section class="flex-col-rev-md-nr gap-1 items-center">
+    <section class="flex-col-rev-md-nr gap-1 items-start">
 
         <div class="w-100-m-50 flex flex-col gap-half">
 
-            <h2>Provinces And Territories</h2>
-
-            <ul class="disc pl-1-5 pb-1 pt-half pr-1 flex flex-col gap-1">
+            <ul class=" pb-1 pr-1 flex flex-col gap-1">
 
                 <li>
 
-                    <p>Canada hosts 10 provinces and 3 territories.</p>
+                    <h2>Fundamental Parts</h2>
 
                 </li>
 
                 <li>
 
-                    <p>Quebec, Ontario, British Columbia and Alberta are the largest provinces.</p>
+                    <p>Canada hosts 10 provinces and 3 territories. Quebec, Ontario, British Columbia and Alberta are the largest provinces. The largest territory is Nunavut.</p>
 
                 </li>
 
                 <li>
 
                     <p>The largest territory is Nunavut.</p>
+
+                </li>
+
+                <li>
+
+                    <p>Canada hosts 10 provinces and 3 territories.</p>
 
                 </li>
 
@@ -326,8 +292,6 @@
     <section class="flex-col gap-1">
 
         <div class="flex flex-col gap-half">
-
-            <h3>Provinces:</h3>
 
             <table>
 
@@ -455,8 +419,6 @@
 
         <div class="flex flex-col gap-half">
 
-            <h3>Territories:</h3>
-
             <table>
 
                 <thead class="bg-2 c-1">
@@ -513,39 +475,47 @@
 
     </section>
 
-    <!-- Vancouver: Take A Closer Look! -->
+    <!-- Cities: Title -->
 
     <section class="flex-col items-center justify-center text-center gap-half inverted">
 
         <div class="flex flex-col justify-center items-center text-center p-1 gap-half">
 
-            <h2>Take A Closer Look!</h2>
-
-            <p>Learn about Vancouver, British Columbia.</p>
+            <h2>Popular Cities</h2>
 
         </div>
 
     </section>
 
-    <!-- Vancouver: List Left -->
+    <!-- Cities: List Right -->
 
-    <section class="flex-col-rev-md-nr gap-1 items-center">
+    <section class="flex-col-rev-md gap-1 items-start">
 
         <div class="w-100-m-50 flex flex-col gap-half">
 
-            <h2>Vancouver, British Columbia</h2>
-
-            <ul class="disc pl-1-5 pb-1 pt-half pr-1 flex flex-col gap-1">
+            <ul class=" pb-1 pr-1 flex flex-col gap-1">
 
                 <li>
 
-                    <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b</p>
+                    <h2>Cities of Canada</h2>
 
                 </li>
 
                 <li>
 
-                    <p>this is some text is it also awesome and bit longer because it is a p text class, a paragaph... it would b</p>
+                    <p>Toronto is the largest city in Canada. Vancouver has some of the greatest restaurants in the entire world! Saskatoon is cold.</p>
+
+                </li>
+
+                <li>
+
+                    <p>Toronto is the largest city in Canada. Vancouver has some of the greatest restaurants in the entire world! Saskatoon is cold.</p>
+
+                </li>
+
+                <li>
+
+                    <p>Toronto is the largest city in Canada.</p>
 
                 </li>
 
@@ -561,19 +531,17 @@
 
     </section>
 
-    <!-- Vancouver: Data Table -->
+    <!-- Cities: Data Table -->
 
     <section class="flex-col gap-1">
-
-        <div class="flex flex-col gap-half">
-
-            <h3>Most Popular Provinces:</h3>
 
             <table>
 
                 <thead class="bg-2 c-1">
 
                 <tr>
+
+                    <th>City</th>
 
                     <th>Province</th>
 
@@ -587,36 +555,146 @@
 
                 <tr>
 
-                    <td>Saskatchewan</td>
+                    <td>Toronto</td>
 
-                    <td>43</td>
+                    <td>Ontario</td>
+
+                    <td>6,202,225</td>
 
                 </tr>
 
                 <tr>
 
+                    <td>Montreal</td>
+
+                    <td>Quebec</td>
+
+                    <td>4,291,732</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Vancouver</td>
+
                     <td>British Columbia</td>
 
-                    <td>125</td>
+                    <td>2,642,825</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Ottawa–Gatineau</td>
+
+                    <td>Ontario–Quebec</td>
+
+                    <td>1,488,307</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Calgary</td>
+
+                    <td>Alberta</td>
+
+                    <td>1,481,806</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Edmonton</td>
+
+                    <td>Alberta</td>
+
+                    <td>1,418,118</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Quebec City</td>
+
+                    <td>Quebec</td>
+
+                    <td>839,311</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Winnipeg</td>
+
+                    <td>Manitoba</td>
+
+                    <td>834,678</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Hamilton</td>
+
+                    <td>Ontario</td>
+
+                    <td>785,184</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Waterloo Region</td>
+
+                    <td>Ontario</td>
+
+                    <td>575,847</td>
 
                 </tr>
 
                 </tbody>
 
-                <tfoot>
-
-                </tfoot>
-
             </table>
-
-        </div>
 
     </section>
 
-    <!-- Data Reference -->
+    <!-- Play The Canada National Anthem -->
 
-    <section class="text-center pt-2">
-        <p>All data is from <a href="https://en.wikipedia.org" target="_blank" rel="noreferrer" title="Wikipedia" aria-label="Wikipedia" class="c-2 active">Wikipedia</a> or made up!</p>
+    <section class="flex-col justify-center items-center inverted gap-2 px-2 py-1 text-center">
+
+        <label for="audio-timeline"><h2>Canada's National Anthem: O Canada</h2></label>
+
+        <div class="flex-col items-center justify-center">
+
+            <div class="flex-row gap-half items-end">
+
+                <p id="audio-start">0:00</p>
+
+                <div>
+
+                    <input id="audio-timeline" name="audio-timeline" class="w-full my-1" min="0" max="78" value="0" type="range" />
+
+                </div>
+
+                <p id="audio-end">1:18</p>
+
+            </div>
+
+            <nav aria-label="Audio Navigation" class="flex-row gap-half mt-1">
+
+                <button id="cna-play" title="Play" aria-label="Play Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Play Button" src="media/play.webp" width="35" height="35"/></button>
+
+                <button id="cna-pause" title="Pause" aria-label="Pause Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Pause Button" src="media/pause.webp" width="35" height="35"/></button>
+
+                <button id="cna-restart" title="Restart" aria-label="Restart Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Restart Button" src="media/restart.webp" width="35" height="35"/></button>
+
+            </nav>
+
+            <audio id="canada-national-anthem" src="media/ocanada.mp3" hidden></audio>
+
+        </div>
+
     </section>
 
     <!-- FAQ -->
@@ -642,7 +720,7 @@
 
         </div>
 
-        <form action="php/contact.php" id="contactForm" method="post" class="w-100-m-50 flex flex-col gap-half">
+        <form action="contact.php" id="contactForm" method="post" class="w-100-m-50 flex flex-col gap-half">
 
             <h2 class="mb-half">Contact Us</h2>
 

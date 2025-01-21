@@ -1,10 +1,10 @@
 <?php
 
-if (!isset($_POST['search'])) {
-    header('Location: ../index.html');
+if (!isset($_POST['name'])) {
+    header('Location: index.html');
 }
 
-$query = htmlspecialchars(stripcslashes($_POST['search']));
+$query = htmlspecialchars(stripcslashes($_POST['name']));
 
 ?>
 
@@ -53,23 +53,23 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <!-- Fonts -->
 
-    <link rel="preload" href="../fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
 
     <!-- Styles -->
 
-    <link rel="preload stylesheet" href="../css/normalize-fwd.min.css" as="style" type="text/css">
+    <link rel="preload stylesheet" href="css/normalize-fwd.min.css" as="style" type="text/css">
 
-    <link rel="preload stylesheet" href="../css/style.css" as="style" type="text/css">
+    <link rel="preload stylesheet" href="css/style.css" as="style" type="text/css">
 
     <!-- Icons -->
 
-    <link rel="icon" as="image" href="../media/icon/fake-travel-canada.webp" type="image/x-icon">
+    <link rel="icon" as="image" href="media/icon/fake-travel-canada.webp" type="image/x-icon">
 
-    <link rel="apple-touch-icon" as="image" href="../media/icon/fake-travel-canada.webp">
+    <link rel="apple-touch-icon" as="image" href="media/icon/fake-travel-canada.webp">
 
     <!-- Title of Page -->
 
-    <title>Search Results: <?php echo $query; ?> | Travel Canada</title>
+    <title><?php echo $query ?>'s Contact Form Submission</title>
 
 </head>
 
@@ -83,7 +83,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
             <div class="flex-row items-center gap-1">
 
-                <img src="../media/canada-flag.webp" width="90" height="45" alt="Canada Flag" draggable="false" title="Canada Flag" />
+                <img src="media/canada-flag.webp" width="90" height="45" alt="Canada Flag" draggable="false" title="Canada Flag" />
 
                 <h2 class="display-sm">Travel Canada</h2>
 
@@ -131,25 +131,25 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
                     <li>
 
-                        <a href="../index.html" title="Home" class="c-1" aria-label="Home">Home</a>
+                        <a href="index.html" title="Home" class="c-1" aria-label="Home">Home</a>
 
                     </li>
 
                     <li>
 
-                        <a href="../about.html" title="About" class="c-1" aria-label="About">About</a>
+                        <a href="about.html" title="About" class="c-1" aria-label="About">About</a>
 
                     </li>
 
                     <li>
 
-                        <a href="../visit.html" title="Visit" class="c-1" aria-label="Visit">Visit</a>
+                        <a href="visit.html" title="Visit" class="c-1" aria-label="Visit">Visit</a>
 
                     </li>
 
                     <li>
 
-                        <a href="../credit.html" title="Credit" class="c-1" aria-label="Credit">Credit</a>
+                        <a href="credit.html" title="Credit" class="c-1" aria-label="Credit">Credit</a>
 
                     </li>
 
@@ -208,7 +208,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <section class="flex px-4 items-center justify-center text-center">
 
-        <p class="font-weight-400 p-1">Your search for "<?= $query ?>" returned 0 results.</p>
+        <p class="font-weight-400 p-1">Sorry <?= $query ?>, your data will go nowhere.</p>
 
     </section>
 
@@ -222,7 +222,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
             <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
 
-            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="../media/canada-flag-alt.webp" loading="lazy" width="69" height="34.5" />
+            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" loading="lazy" width="69" height="34.5" />
 
             <h2>Travel Canada</h2>
 
@@ -445,7 +445,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
 </footer>
 
-<script src="../js/mobileNav.js" type="text/javascript"></script>
+<script src="js/mobileNav.js" type="text/javascript"></script>
 
 </body>
 

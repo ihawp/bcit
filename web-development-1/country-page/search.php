@@ -1,10 +1,10 @@
 <?php
 
-if (!isset($_POST['name'])) {
-    header('Location: ../index.html');
+if (!isset($_POST['search'])) {
+    header('Location: index.html');
 }
 
-$query = htmlspecialchars(stripcslashes($_POST['name']));
+$query = htmlspecialchars(stripcslashes($_POST['search']));
 
 ?>
 
@@ -53,23 +53,23 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
     <!-- Fonts -->
 
-    <link rel="preload" href="../fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
 
     <!-- Styles -->
 
-    <link rel="preload stylesheet" href="../css/normalize-fwd.min.css" as="style" type="text/css">
+    <link rel="preload stylesheet" href="css/normalize-fwd.min.css" as="style" type="text/css">
 
-    <link rel="preload stylesheet" href="../css/style.css" as="style" type="text/css">
+    <link rel="preload stylesheet" href="css/style.css" as="style" type="text/css">
 
     <!-- Icons -->
 
-    <link rel="icon" as="image" href="../media/icon/fake-travel-canada.webp" type="image/x-icon">
+    <link rel="icon" as="image" href="media/icon/fake-travel-canada.webp" type="image/x-icon">
 
-    <link rel="apple-touch-icon" as="image" href="../media/icon/fake-travel-canada.webp">
+    <link rel="apple-touch-icon" as="image" href="media/icon/fake-travel-canada.webp">
 
     <!-- Title of Page -->
 
-    <title><?php echo $query ?>'s Contact Form Submission</title>
+    <title>Search Results: <?php echo $query; ?> | Travel Canada</title>
 
 </head>
 
@@ -83,7 +83,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
             <div class="flex-row items-center gap-1">
 
-                <img src="../media/canada-flag.webp" width="90" height="45" alt="Canada Flag" draggable="false" title="Canada Flag" />
+                <img src="media/canada-flag.webp" width="90" height="45" alt="Canada Flag" draggable="false" title="Canada Flag" />
 
                 <h2 class="display-sm">Travel Canada</h2>
 
@@ -131,25 +131,25 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
                     <li>
 
-                        <a href="../index.html" title="Home" class="c-1" aria-label="Home">Home</a>
+                        <a href="index.html" title="Home" class="c-1" aria-label="Home">Home</a>
 
                     </li>
 
                     <li>
 
-                        <a href="../about.html" title="About" class="c-1" aria-label="About">About</a>
+                        <a href="about.html" title="About" class="c-1" aria-label="About">About</a>
 
                     </li>
 
                     <li>
 
-                        <a href="../visit.html" title="Visit" class="c-1" aria-label="Visit">Visit</a>
+                        <a href="visit.html" title="Visit" class="c-1" aria-label="Visit">Visit</a>
 
                     </li>
 
                     <li>
 
-                        <a href="../credit.html" title="Credit" class="c-1" aria-label="Credit">Credit</a>
+                        <a href="credit.html" title="Credit" class="c-1" aria-label="Credit">Credit</a>
 
                     </li>
 
@@ -206,9 +206,64 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
 <main class="flex flex-col">
 
+    <!-- Search Result -->
+
     <section class="flex px-4 items-center justify-center text-center">
 
-        <p class="font-weight-400 p-1">Sorry <?= $query ?>, your data will go nowhere.</p>
+        <h1 class="font-weight-400 p-1">Your search for "<?= $query ?>" returned 0 results.</h1>
+
+    </section>
+
+    <!-- FAQ -->
+
+    <section id="frequently-asked-questions" class="flex-col gap-1 pt-2">
+
+        <h2>Frequently Asked Questions:</h2>
+
+        <ul id="faq" class="flex flex-col"></ul>
+
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="flex-col-md mx-2 gap-2">
+
+        <div class="flex flex-col w-100-m-50 gap-1">
+
+            <h2>Have a more specific question?</h2>
+
+            <p>Fill out our contact form, and we will make sure to get back to you real quick. Customer service is our top priority. We love people!</p>
+
+            <p>Responses to inquiries are sent every weekday from 8am - 4pm.</p>
+
+        </div>
+
+        <form action="contact.php" id="contactForm" method="post" class="w-100-m-50 flex flex-col gap-half">
+
+            <h2 class="mb-half">Contact Us</h2>
+
+            <div class="flex flex-col-md gap-half">
+
+                <label for="contactName" hidden>Name</label>
+
+                <input id="contactName" autocomplete="on" type="text" title="Name" name="name" aria-label="Contact Form: Name" placeholder="Name" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required>
+
+                <label for="contactEmail" hidden>Email</label>
+
+                <input id="contactEmail" autocomplete="on" type="email" title="Email" name="email" aria-label="Contact Form: Email" placeholder="Email" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required>
+
+            </div>
+
+            <div class="flex gap-half">
+
+                <label for="contactMessage" hidden>Message</label>
+
+                <textarea id="contactMessage" title="Message" name="message" aria-label="Contact Form: Message" placeholder="Message" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required></textarea>
+
+            </div>
+
+            <button type="submit" title="Submit" aria-label="Contact Form: Submit" class="bw-2 bs-solid bc-2 bg-2 c-1 p-1">Submit</button>
+
+        </form>
 
     </section>
 
@@ -222,7 +277,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
             <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
 
-            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="../media/canada-flag-alt.webp" loading="lazy" width="69" height="34.5" />
+            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" loading="lazy" width="69" height="34.5" />
 
             <h2>Travel Canada</h2>
 
@@ -445,7 +500,83 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
 </footer>
 
-<script src="../js/mobileNav.js" type="text/javascript"></script>
+<script src="js/mobileNav.js" type="text/javascript"></script>
+
+<script src="js/faq.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    const data = [
+
+        {
+
+            summary: "What are the entry requirements for Canada?",
+
+            details: [
+
+                "Your passport must be valid at the time of entry. No, a selfie with a maple leaf won't cut it!",
+
+                "A tourist visa is not required for stays under 180 days for many nationalities. But if you plan to stay longer, you might want to consider a permanent residency... or just marry a Canadian!",
+
+                "At least one blank page is required in your passport for entry stamps. We need room for all the 'I love Canada' stickers and the occasional moose autograph!"
+
+            ],
+
+        },
+
+        {
+
+            summary: "What should I pack for my trip to Canada?",
+
+            details: [
+
+                "Layers, layers, layers! Canada has four seasons: almost winter, winter, still winter, and construction. Bring your best parka and a swimsuit, just in case!",
+
+                "Don't forget your sense of humor! You'll need it when you try to understand our obsession with poutine and why we put ketchup on everything.",
+
+                "A good pair of snow boots is essential. Unless you want to experience the 'Canadian ice dance' firsthand—trust us, it’s not as graceful as it sounds!"
+
+            ],
+
+        },
+
+        {
+
+            summary: "Is it true that Canadians say 'sorry' a lot?",
+
+            details: [
+
+                "Absolutely! We apologize for everything, even if it’s not our fault. 'Sorry' is basically our national anthem, sung in harmony with a side of maple syrup.",
+
+                "If you bump into a Canadian, expect a heartfelt apology and a cup of hot chocolate as a peace offering. We take our apologies very seriously!",
+
+                "Just remember, if you hear 'sorry' while in Canada, it’s not an apology; it’s a greeting! Kind of like saying 'hello' but with extra politeness."
+
+            ],
+
+        },
+
+        {
+
+            summary: "What’s the best way to see the Northern Lights?",
+
+            details: [
+
+                "Find a cozy spot, preferably with a hot chocolate in hand, and wait for the sky to do its disco dance. Bonus points if you can convince a moose to join you!",
+
+                "Dress warmly! The Northern Lights are beautiful, but so is your ability to feel your toes. Don’t let frostbite ruin your Instagram moment!",
+
+                "If you can’t see the lights, just blame it on the clouds. They’re always hogging the spotlight, and we’re pretty sure they’re in cahoots with the weather gods!"
+
+            ],
+
+        },
+
+    ];
+
+    new FAQ(data);
+
+</script>
 
 </body>
 
