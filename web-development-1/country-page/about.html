@@ -215,6 +215,44 @@
 
     </header>
 
+    <!-- Play The Canada National Anthem -->
+
+    <section class="flex-col justify-center items-center inverted gap-1 px-2 py-1 text-center">
+
+        <label for="audio-timeline"><h2>Canada's National Anthem: O Canada</h2></label>
+
+        <div class="flex-col items-center justify-center">
+
+            <div class="flex-row gap-half items-end">
+
+                <p id="audio-start">0:00</p>
+
+                <div>
+
+                    <input id="audio-timeline" name="audio-timeline" class="w-full my-1" min="0" max="78" value="0" type="range" />
+
+                </div>
+
+                <p id="audio-end">1:18</p>
+
+            </div>
+
+            <nav aria-label="Audio Navigation" class="flex-row gap-half mt-1">
+
+                <button id="cna-play" title="Play" aria-label="Play Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Play Button" src="media/play.webp" width="35" height="35"/></button>
+
+                <button id="cna-pause" title="Pause" aria-label="Pause Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Pause Button" src="media/pause.webp" width="35" height="35"/></button>
+
+                <button id="cna-restart" title="Restart" aria-label="Restart Canada National Anthem Audio" draggable="false" class="bg-1 px-half py-2 flex-col justify-center items-center b-none outline-none"><img alt="Restart Button" src="media/restart.webp" width="35" height="35"/></button>
+
+            </nav>
+
+            <audio id="canada-national-anthem" src="media/ocanada.mp3" hidden></audio>
+
+        </div>
+
+    </section>
+
     <!-- Want to Learn About Canada? -->
 
     <section class="flex-col items-center justify-center text-center gap-half">
@@ -224,8 +262,6 @@
             <h2>Want to Learn About Canada?</h2>
 
             <p>You're in the right place! This is the fake #1 place to find Canada's stats.</p>
-
-            <a href="#learn" class="bg-2 c-1 p-half">Learn Now</a>
 
         </div>
 
@@ -257,7 +293,7 @@
 
         </div>
 
-        <div class="w-100-m-50 display-md">
+        <div class="w-100-m-50">
 
             <img src="media/left-right/stormy-clouds-over-prairie-farm.webp" loading="lazy" class="w-full object-cover h-auto-mid-3" draggable="false" alt="" width="1" height="1" />
 
@@ -382,9 +418,9 @@
 
     <!-- Take A Closer Look! -->
 
-    <section class="flex-col items-center justify-center text-center gap-half">
+    <section class="flex-col items-center justify-center text-center gap-half inverted mt-2">
 
-        <div class="flex flex-col justify-center items-center text-center py-1 pb-1 pt-2 gap-half">
+        <div class="flex flex-col justify-center items-center text-center p-1 gap-half">
 
             <h2>Take A Closer Look!</h2>
 
@@ -540,16 +576,6 @@
             </table>
 
         </div>
-
-    </section>
-
-    <!-- Canada Anthem -->
-
-    <section>
-
-        <audio controls src="media/ocanada.mp3"></audio>
-
-        <img src="media/moose.png" alt="clker: Moose" title="clker: Moose" draggable="false" width="1" height="1" />
 
     </section>
 
@@ -839,6 +865,10 @@
 
 </footer>
 
+<script src="js/mobileNav.js" type="text/javascript"></script>
+
+<script src="js/anthem.js" type="text/javascript"></script>
+
 <script src="js/faq.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -910,8 +940,6 @@
     new FAQ(data);
 
 </script>
-
-<script src="js/mobileNav.js" type="text/javascript"></script>
 
 </body>
 

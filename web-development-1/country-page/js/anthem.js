@@ -10,8 +10,7 @@ const pause = document.getElementById('cna-pause');
 const restart = document.getElementById('cna-restart');
 const timeline = document.getElementById('audio-timeline');
 const audioStart = document.getElementById('audio-start');
-const duration = Math.round(audio.duration);
-
+audio.volume = 0.2;
 
 /*
 
@@ -46,9 +45,17 @@ restart.addEventListener('click', () => {
 
 */
 audio.addEventListener('timeupdate', () => {
-    if (parseInt(timeline.value) === Math.round(audio.duration)) {
+    if (timeline.value === `${Math.round(audio.duration)}`) {
         timeline.value = 0;
         audio.currentTime = 0;
+        /*
+
+            technically not needed if the user won't click directly to the end
+            the issue is that if they do click to the end then it will replay from
+            the start as if it didn't end, but it did, it should just reset actually
+            and visually
+
+        */
         return audio.pause();
     }
     audioStart.innerText = formatDuration(audio.currentTime);
