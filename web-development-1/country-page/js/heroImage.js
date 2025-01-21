@@ -19,6 +19,6 @@ l.href = `media/hero/hero-${Math.round(Math.random() * (2 - 0.75) + 0.75)}${wind
 
 document.head.appendChild(l);
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('hero-image').src = l.href
 });
