@@ -22,3 +22,7 @@ audio.addEventListener('timeupdate', () => {
     audioStart.innerText = formatDuration(audio.currentTime);
     timeline.value = audio.currentTime;
 });
+
+timeline.addEventListener('change', () => {
+    audio.currentTime = timeline.value;
+})

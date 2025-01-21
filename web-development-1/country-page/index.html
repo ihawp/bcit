@@ -217,25 +217,22 @@
 
     <!-- audio -->
 
-    <section class="flex-col-rev-lg justify-center items-center gap-1 inverted px-2 text-center">
-
-      <div class="display-lg flex-grow-1 relative h-full">
-        <img class="" title="" alt="" draggable="false" src="media/moose.png" style="bottom: 0; left: 0;" />
-      </div>
-
-      <div class="flex-col gap-1 text-center flex-grow-1">
+    <section class="flex-col justify-center items-center gap-1 inverted px-2 text-center">
         <h2>Hear Canada's National Anthem</h2>
-
-        <p>Performed by the US Navy Band</p>
 
         <div class="flex-col items-center justify-center">
 
 
           <div class="flex-row w-3">
+
             <p id="audio-start">0:00</p>
+
             <label for="audio-timeline" hidden>Audio Timeline</label>
+
             <input id="audio-timeline" class="w-full my-1" min="0" max="78" value="0" type="range" />
-            <p id="audio-end">1:17</p>
+
+            <p id="audio-end">1:18</p>
+
           </div>
 
           <div class="flex-row bg-2 gap-1 mt-1 w-3">
@@ -248,11 +245,9 @@
 
           </div>
 
-          <audio id="canada-national-anthem" controls src="media/ocanada.mp3" hidden></audio>
+          <audio id="canada-national-anthem" src="media/ocanada.mp3" hidden></audio>
 
         </div>
-      </div>
-
     </section>
 
     <!-- list right desktop -->
