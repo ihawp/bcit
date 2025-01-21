@@ -1,17 +1,24 @@
+/*
 
+    heroImage.js
+    Warren Chemerika
 
-const q = Math.round(Math.random() * (2 - 0.75) + 0.75);
+    Insert a preload for an image
 
-const l = document.createElement("link");
+    Insert the image as an src of the #hero-image
+    of the page
+
+*/
+let l = document.createElement("link");
 
 l.rel = 'preload';
 
 l.as = 'image';
 
-l.href = `media/hero/hero-${q}${window.innerWidth < 640 ? '-mobile' : ''}.webp`;
+l.href = `media/hero/hero-${Math.round(Math.random() * (2 - 0.75) + 0.75)}${window.innerWidth < 640 ? '-mobile' : ''}.webp`;
 
 document.head.appendChild(l);
 
-document.addEventListener('DOMContentLoaded', () =>
+document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('hero-image').src = l.href
-);
+});
