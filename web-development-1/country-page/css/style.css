@@ -34,6 +34,9 @@ body {
     font-family: 'Roboto', serif;
     font-size: 1.25rem;
 }
+table {
+    font-size: 1rem;
+}
 header {}
 nav {}
 main {}
