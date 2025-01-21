@@ -275,11 +275,22 @@
 
     <!-- audio -->
 
-    <section>
+    <section class="flex-col gap-1 pt-2">
 
-      <audio controls src="media/ocanada.mp3"></audio>
+      <h2 class="text-center">Listen to Canada's National Anthem</h2>
 
-      <img src="media/moose.png" alt="clker: Moose" title="clker: Moose" draggable="false" width="1" height="1" />
+      <div class="flex-row items-end justify-center min-h-3">
+
+        <img class="w-auto h-auto" src="media/moose.png" alt="clker: Moose" loading="lazy" title="clker: Moose" draggable="false" width="1" height="1" />
+
+        <div class="absolute bg-2 py-5 px-1">
+          <button id="cna-play">></button>
+          <button id="cna-pause">||</button>
+        </div>
+
+        <audio id="canada-national-anthem" src="media/ocanada.mp3" hidden></audio>
+
+      </div>
 
     </section>
 
@@ -712,6 +723,10 @@
 
   </footer>
 
+  <script src="js/mobileNav.js" type="text/javascript"></script>
+
+  <script src="js/anthem.js" type="text/javascript"></script>
+
   <script src="js/faq.js" type="text/javascript"></script>
 
   <script type="text/javascript">
@@ -783,8 +798,6 @@
     new FAQ(data);
 
   </script>
-
-  <script src="js/mobileNav.js" type="text/javascript"></script>
 
 </body>
 

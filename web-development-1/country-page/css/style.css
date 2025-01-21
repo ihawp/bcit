@@ -90,6 +90,14 @@ li {}
 
 /* CUSTOM CLASSES */
 
+/* position */
+.absolute {
+    position: absolute;
+}
+.relative {
+    position: relative;
+}
+
 /* background */
 .bg-1 {
     background: var(--1);
