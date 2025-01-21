@@ -768,20 +768,35 @@ textarea {
 /* audio track */
 input[type="range"] {
     -webkit-appearance: none;
-    appearance: none;
-    background: var(--2);
-    cursor: pointer;
-    width: 15rem;
-}
-input[type="range"]::-webkit-slider-runnable-track {
-    background: var(--1);
+    padding: 0;
+    margin: 0;
     border-radius: 150px;
 }
 
-/******** Firefox ********/
-input[type="range"]::-moz-range-track {
+input[type="range"]::-webkit-slider-runnable-track {
     background: var(--1);
+    border-radius: 150px;
+    padding: 0;
+    margin: 0;
 }
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--2);
+    border-radius: 150px;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--2);
+    border-radius: 150px;
+    border: 3px solid var(--2);
+
+}
+
 
 /*
     PERHAPS: better system could have been break point class
