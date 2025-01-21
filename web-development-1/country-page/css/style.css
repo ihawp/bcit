@@ -666,7 +666,7 @@ summary,
 }
 
 /* height */
-.h-auto {
+.h-auto, .h-auto-mid-3 {
     height: auto;
 }
 .h-full {
@@ -842,10 +842,7 @@ textarea {
 
 /* too custom for my own liking */
 @media (min-width: 50em) and (max-width: 75em) {
-    #hero-image {
-        height: 200px;
-    }
-    .h-auto {
+    .h-auto-mid-3 {
         height: 300px;
     }
 }
