@@ -367,7 +367,7 @@ summary,
 }
 
 /* p x */
-.px-half {
+.px-half, th, td {
     padding: 0.5rem 0;
 }
 .px-1 {
