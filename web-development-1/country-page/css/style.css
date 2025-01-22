@@ -37,11 +37,6 @@ body {
 table {
     font-size: 1rem;
 }
-header {}
-nav {}
-main {}
-section {}
-footer {}
 button, summary {
     cursor: pointer;
 }
@@ -59,22 +54,13 @@ h6 {
     font-family: 'Roboto', serif;
 }
 h1 { margin: 0; }
-h2 {}
-h3 {}
-h4 {}
-h5 {}
-h6 {}
 
-/* p a */
-p {
-
-}
+/* a / button */
 a, button {
     text-underline: none;
     text-decoration: none;
     transition: ease 0.1s;
 }
-
 a:visited,
 a:hover,
 a.active,
