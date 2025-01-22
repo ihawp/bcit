@@ -209,11 +209,17 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <!-- Search Result -->
 
-    <header class="div-media flex-col gap-1 text-center mx-5">
+    <header class="div-media flex-col gap-1">
 
-        <h1 class="font-weight-400">Your search for "<?= $query ?>" returned 0 results.</h1>
+        <h1 class="bg-2 c-1 p-1 text-center">Search Results</h1>
 
     </header>
+
+    <section class="div-media flex-col text-center mx-5">
+
+        <h2 class="font-weight-400">Your search for "<?= $query ?>" returned 0 results.</h2>
+
+    </section>
 
     <!-- FAQ -->
 

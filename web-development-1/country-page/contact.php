@@ -207,11 +207,19 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
 <main class="flex-col p-1">
 
-    <header class="div-media flex-col gap-1 text-center mx-5 p-1">
+    <!-- Contact Form Submission -->
 
-        <h1 class="font-weight-400">Sorry <?= $query ?>, your data will go nowhere.</h1>
+    <header class="div-media flex-col gap-1">
+
+        <h1 class="bg-2 c-1 p-1 text-center">Contact Form Submission</h1>
 
     </header>
+
+    <section class="div-media flex-col text-center mx-5">
+
+        <h2 class="font-weight-400">Sorry <?= $query ?>, your data will go nowhere.</h2>
+
+    </section>
 
     <!-- FAQ -->
 
