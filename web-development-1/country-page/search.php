@@ -9,7 +9,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 ?>
 
 
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
 
@@ -25,11 +25,9 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <meta name="keywords" content="Fake Travel Canada, Fake Canada">
 
-    <meta name="author" content="Warren Chemerika" />
+    <meta name="author" content="Warren Chemerika">
 
     <meta name="robots" content="index, follow">
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta property="og:title" content="Warren Chemerika | ihawp.com">
 
@@ -51,6 +49,12 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <!-- Hero Image Script -->
+
+    <link rel="preload" href="js/heroImage.js" type="text/javascript" as="script">
+
+    <script src="js/heroImage.js"></script>
+
     <!-- Fonts -->
 
     <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
@@ -63,9 +67,8 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <!-- Icons -->
 
-    <link rel="icon" as="image" href="media/icon/fake-travel-canada.webp" type="image/x-icon">
-
-    <link rel="apple-touch-icon" as="image" href="media/icon/fake-travel-canada.webp">
+    <link rel="icon" href="media/icon/fake-travel-canada.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" href="media/icon/fake-travel-canada.webp">
 
     <!-- Title of Page -->
 
@@ -83,7 +86,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
             <div class="flex-row items-center gap-1">
 
-                <img src="media/canada-flag.webp" width="90" height="45" alt="Canada Flag" draggable="false" title="Canada Flag" />
+                <img src="media/canada-flag.webp" width="90" height="45" alt="Canada Flag" draggable="false" title="Canada Flag">
 
                 <h2 class="display-sm">Travel Canada</h2>
 
@@ -277,7 +280,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
             <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
 
-            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" loading="lazy" width="69" height="34.5" />
+            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" loading="lazy" width="69" height="35">
 
             <h2>Travel Canada</h2>
 
@@ -496,11 +499,11 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
 </footer>
 
-<script src="js/mobileNav.js" type="text/javascript"></script>
+<script src="js/mobileNav.js"></script>
 
-<script src="js/faq.js" type="text/javascript"></script>
+<script src="js/faq.js"></script>
 
-<script type="text/javascript">
+<script>
 
     const data = [
         {

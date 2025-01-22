@@ -71,11 +71,10 @@ button:not(#button-mobile-nav, #button-exit-mobile-nav):hover {
     text-decoration: underline;
 }
 
-/* ul/li */
+/* ul */
 ul {
     list-style: none;
 }
-li {}
 
 /* CUSTOM CLASSES */
 

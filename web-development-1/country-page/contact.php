@@ -9,7 +9,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 ?>
 
 
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
 
@@ -25,11 +25,9 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
     <meta name="keywords" content="Fake Travel Canada, Fake Canada">
 
-    <meta name="author" content="Warren Chemerika" />
+    <meta name="author" content="Warren Chemerika">
 
     <meta name="robots" content="index, follow">
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta property="og:title" content="Warren Chemerika | ihawp.com">
 
@@ -51,6 +49,12 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <!-- Hero Image Script -->
+
+    <link rel="preload" href="js/heroImage.js" type="text/javascript" as="script">
+
+    <script src="js/heroImage.js"></script>
+
     <!-- Fonts -->
 
     <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
@@ -63,9 +67,8 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
     <!-- Icons -->
 
-    <link rel="icon" as="image" href="media/icon/fake-travel-canada.webp" type="image/x-icon">
-
-    <link rel="apple-touch-icon" as="image" href="media/icon/fake-travel-canada.webp">
+    <link rel="icon" href="media/icon/fake-travel-canada.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" href="media/icon/fake-travel-canada.webp">
 
     <!-- Title of Page -->
 
@@ -83,7 +86,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
             <div class="flex-row items-center gap-1">
 
-                <img src="media/canada-flag.webp" width="90" height="45" alt="Canada Flag" draggable="false" title="Canada Flag" />
+                <img src="media/canada-flag.webp" width="90" height="45" alt="Canada Flag" draggable="false" title="Canada Flag">
 
                 <h2 class="display-sm">Travel Canada</h2>
 
@@ -222,6 +225,50 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
     </section>
 
+    <!-- Contact Form -->
+
+    <section class="flex-col-md mx-2 gap-2">
+
+        <div class="flex flex-col w-100-m-50 gap-1">
+
+            <h2>Want to ask another question?</h2>
+
+            <p>Fill out our contact form, and we will make sure to get back to you real quick. Customer service is our top priority. We love people!</p>
+
+            <p>Responses to inquiries are sent every weekday from 8am - 4pm.</p>
+
+        </div>
+
+        <form action="contact.php" id="contactForm" method="post" class="w-100-m-50 flex flex-col gap-half">
+
+            <h2 class="mb-half">Contact Us</h2>
+
+            <div class="flex flex-col-md gap-half">
+
+                <label for="contactName" hidden>Name</label>
+
+                <input id="contactName" autocomplete="on" type="text" title="Name" name="name" aria-label="Contact Form: Name" placeholder="Name" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required>
+
+                <label for="contactEmail" hidden>Email</label>
+
+                <input id="contactEmail" autocomplete="on" type="email" title="Email" name="email" aria-label="Contact Form: Email" placeholder="Email" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required>
+
+            </div>
+
+            <div class="flex gap-half">
+
+                <label for="contactMessage" hidden>Message</label>
+
+                <textarea id="contactMessage" title="Message" name="message" aria-label="Contact Form: Message" placeholder="Message" class="outline-none bw-2 bs-solid bc-2 p-1 w-full" required></textarea>
+
+            </div>
+
+            <button type="submit" title="Submit" aria-label="Contact Form: Submit" class="bw-2 bs-solid bc-2 bg-2 c-1 p-1">Submit</button>
+
+        </form>
+
+    </section>
+
 </main>
 
 <footer class="bg-2 c-1 py-1 px-2 flex-row items-center justify-center">
@@ -232,7 +279,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
             <!-- https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg -->
 
-            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" loading="lazy" width="69" height="34.5" />
+            <img alt="Canada Flag" title="Canada Flag" draggable="false" src="media/canada-flag-alt.webp" loading="lazy" width="69" height="35">
 
             <h2>Travel Canada</h2>
 
@@ -451,11 +498,11 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
 </footer>
 
-<script src="js/mobileNav.js" type="text/javascript"></script>
+<script src="js/mobileNav.js"></script>
 
-<script src="js/faq.js" type="text/javascript"></script>
+<script src="js/faq.js"></script>
 
-<script type="text/javascript">
+<script>
 
     const data = [
         {

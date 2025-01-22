@@ -10,15 +10,13 @@
 
 */
 let l = document.createElement("link");
-
 l.rel = 'preload';
-
 l.as = 'image';
-
 l.href = `media/hero/hero-${Math.round(Math.random() * (2 - 0.75) + 0.75)}${window.innerWidth < 640 ? '-mobile' : ''}.webp`;
-
 document.head.appendChild(l);
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('hero-image').src = l.href
+    const heroImage = document.getElementById('hero-image');
+    heroImage.classList.add('w-auto');
+    heroImage.src = l.href
 });
