@@ -25,7 +25,7 @@ html {
     --2: #26374a;
     --3: red;
     --4: rgb(255, 255, 255, 0.6);
-    --5: rgb(22,22,22,0.4);
+    --5: rgb(38,55,74,0.8);
 }
 
 /* semantics */
@@ -166,10 +166,21 @@ li {}
 .bw-2 {
     border-width: 2px;
 }
+.bw-5 {
+    border-width: 5px;
+}
 
-/* border */
+/* border none */
 .b-none {
     border: none;
+}
+
+/* border only top */
+.b-only-top-10 {
+    border-top-width: 20px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
 }
 
 /* border style */
@@ -680,7 +691,7 @@ summary,
 }
 
 /* height */
-.h-auto, .h-auto-mid-3 {
+.h-auto {
     height: auto;
 }
 .h-full {
@@ -691,6 +702,10 @@ summary,
 }
 .h-2 {
     height: 12.5rem;
+}
+/* h-237 for left/right blocks */
+.h-237 {
+    height: 237px;
 }
 .h-3 {
     height: 18.75rem;
@@ -757,6 +772,11 @@ textarea {
 /* display */
 .display, .display-sm, .display-md, .display-lg, #mobile-nav {
     display: none;
+}
+
+/* object position */
+.object-bottom {
+    object-position: bottom;
 }
 
 
@@ -887,9 +907,8 @@ input[type="range"]::-moz-range-thumb {
     }
 }
 
-/* too custom for my own liking */
 @media (min-width: 50em) and (max-width: 75em) {
-    .h-auto-mid-3 {
+    .h-237 {
         height: 300px;
     }
 }
