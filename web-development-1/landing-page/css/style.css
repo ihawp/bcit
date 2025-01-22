@@ -30,11 +30,25 @@ a {
 
 }
 
-a:hover {
+a:hover, a:visited {
 
     text-decoration: underline;
 
     text-decoration-color: gray;
+
+    text-underline-offset: 5px;
+
+}
+
+a:active,
+
+a:focus {
+
+    color: limegreen;
+
+    text-decoration: underline;
+
+    text-decoration-color: limegreen;
 
     text-underline-offset: 5px;
 
