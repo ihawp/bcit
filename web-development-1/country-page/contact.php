@@ -49,12 +49,6 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Hero Image Script -->
-
-    <link rel="preload" href="js/heroImage.js" type="text/javascript" as="script">
-
-    <script src="js/heroImage.js"></script>
-
     <!-- Fonts -->
 
     <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
@@ -207,7 +201,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
     </nav>
 </header>
 
-<main class="flex flex-col">
+<main class="flex-col p-1">
 
     <header class="div-media flex-col gap-1 text-center mx-5 p-1">
 

@@ -16,7 +16,18 @@ l.href = `media/hero/hero-${Math.round(Math.random() * (2 - 0.75) + 0.75)}${wind
 document.head.appendChild(l);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const heroImage = document.getElementById('hero-image');
-    heroImage.classList.add('w-auto');
-    heroImage.src = l.href
+    const heroImageContainer = document.getElementById('hero-image-container');
+
+    let image = new Image(0, 1);
+    image.classList.add('h-2');
+    image.classList.add('w-auto');
+    image.classList.add('object-cover');
+    image.alt = 'Fake Travel Canada Hero Image'
+    image.title = 'Fake Travel Canada Hero Image'
+    image.src = l.href;
+    image.draggable = false;
+
+    console.log({image});
+
+    heroImageContainer.appendChild(image);
 });
