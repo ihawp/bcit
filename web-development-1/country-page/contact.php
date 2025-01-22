@@ -208,9 +208,19 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
     <header class="div-media flex-col gap-1 text-center mx-5 p-1">
 
-        <h1 class="font-weight-400">Sorry <span class="text-dec-underline"><?= $query ?></span>, your data will go nowhere.</h1>
+        <h1 class="font-weight-400">Sorry <?= $query ?>, your data will go nowhere.</h1>
 
     </header>
+
+    <!-- FAQ -->
+
+    <section id="frequently-asked-questions" class="flex-col gap-1 mb-2">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <ul id="faq" class="flex flex-col"></ul>
+
+    </section>
 
 </main>
 
@@ -442,6 +452,64 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 </footer>
 
 <script src="js/mobileNav.js" type="text/javascript"></script>
+
+<script src="js/faq.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    const data = [
+        {
+            summary: "Will my message actually be sent?",
+
+            details: [
+                "Ah, well, here’s the thing: your message will be sent straight to the land of lost socks and forgotten dreams. It’s a lovely place, but you won’t get a reply!",
+
+                "Think of it as sending a message in a bottle—except the bottle is stuck in a snowbank somewhere in Canada, and the ocean is just a really big lake!",
+
+                "In short, your message will go on a grand adventure, but it won’t be coming back. So, if you need a response, you might want to try smoke signals instead!"
+            ],
+        },
+
+        {
+            summary: "What happens to my contact information?",
+
+            details: [
+                "Your contact info will be treated like a secret recipe for poutine—kept under wraps and never shared with anyone, not even a curious beaver!",
+
+                "It’ll be stored in a virtual igloo, where it will remain safe and sound, but completely ignored. Just like that gym membership you never use!",
+
+                "Rest assured, your information is as secure as a Canadian’s love for hockey—untouchable and fiercely protected!"
+            ],
+        },
+
+        {
+            summary: "Can I expect a response to my inquiry?",
+
+            details: [
+                "You can expect a response from the universe! But as for us? Let’s just say our reply rate is about as high as a moose on a trampoline—pretty much non-existent!",
+
+                "If you’re looking for a reply, you might have better luck asking a friendly squirrel. They’re known for their excellent communication skills!",
+
+                "In the spirit of Canadian politeness, we’ll say 'sorry' in advance for not getting back to you. It’s the thought that counts, right?"
+            ],
+        },
+
+        {
+            summary: "What should I do if I really need to get in touch?",
+
+            details: [
+                "If you really need to reach us, consider sending a postcard! It may take a while, but at least it’ll have a nice stamp on it!",
+
+                "Alternatively, you could try yelling 'Eh!' really loudly. You never know; it might just summon a Canadian to help you out!",
+
+                "Or, you could just enjoy a nice cup of hot chocolate and forget about it. Sometimes, the best conversations happen in your head!"
+            ],
+        },
+    ];
+
+    new FAQ(data);
+
+</script>
 
 </body>
 

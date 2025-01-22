@@ -503,71 +503,53 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 <script type="text/javascript">
 
     const data = [
-
         {
-
-            summary: "What are the entry requirements for Canada?",
+            summary: "Why can't I find any search results?",
 
             details: [
+                "Well, it seems our search function is on a permanent vacation! It might be sipping hot chocolate in the Rockies while you’re here looking for answers.",
 
-                "Your passport must be valid at the time of entry. No, a selfie with a maple leaf won't cut it!",
+                "Our search bar is like a Canadian winter—full of potential but often just a little too cold to function properly. Try again later, eh?",
 
-                "A tourist visa is not required for stays under 180 days for many nationalities. But if you plan to stay longer, you might want to consider a permanent residency... or just marry a Canadian!",
-
-                "At least one blank page is required in your passport for entry stamps. We need room for all the 'I love Canada' stickers and the occasional moose autograph!"
-
+                "If you’re looking for results, you might have better luck asking a friendly moose for directions. They’re surprisingly knowledgeable about local attractions!"
             ],
-
         },
 
         {
-
-            summary: "What should I pack for my trip to Canada?",
+            summary: "Is there a secret to getting better search results?",
 
             details: [
+                "Absolutely! Try typing in 'Canada' instead of 'that place with the maple syrup and hockey.' It’s a game changer!",
 
-                "Layers, layers, layers! Canada has four seasons: almost winter, winter, still winter, and construction. Bring your best parka and a swimsuit, just in case!",
+                "If all else fails, just type 'poutine' and hope for the best. It’s the universal keyword for all things Canadian—results may vary!",
 
-                "Don't forget your sense of humor! You'll need it when you try to understand our obsession with poutine and why we put ketchup on everything.",
-
-                "A good pair of snow boots is essential. Unless you want to experience the 'Canadian ice dance' firsthand—trust us, it’s not as graceful as it sounds!"
-
+                "Remember, our search function is like a Canadian winter: unpredictable. Sometimes it works, and sometimes it just wants to hibernate!"
             ],
-
         },
 
         {
-
-            summary: "Is it true that Canadians say 'sorry' a lot?",
+            summary: "What should I do if I can't find what I'm looking for?",
 
             details: [
+                "Consider sending a carrier pigeon! They’re great at delivering messages, and they might just find the information you need—eventually.",
 
-                "Absolutely! We apologize for everything, even if it’s not our fault. 'Sorry' is basically our national anthem, sung in harmony with a side of maple syrup.",
+                "You could also try consulting a crystal ball. It’s not guaranteed, but it might be more reliable than our search function!",
 
-                "If you bump into a Canadian, expect a heartfelt apology and a cup of hot chocolate as a peace offering. We take our apologies very seriously!",
-
-                "Just remember, if you hear 'sorry' while in Canada, it’s not an apology; it’s a greeting! Kind of like saying 'hello' but with extra politeness."
-
+                "If all else fails, just grab a cup of Tim Hortons coffee and relax. Sometimes the best discoveries happen when you’re not looking!"
             ],
-
         },
 
         {
-
-            summary: "What’s the best way to see the Northern Lights?",
+            summary: "Can I blame the search function for my lack of results?",
 
             details: [
+                "Of course! Our search function is like a polite Canadian—always ready to apologize for not delivering what you need. Just don’t take it too personally!",
 
-                "Find a cozy spot, preferably with a hot chocolate in hand, and wait for the sky to do its disco dance. Bonus points if you can convince a moose to join you!",
+                "Feel free to write a strongly worded letter to our search function. Just remember to include a maple syrup bribe; it works wonders!",
 
-                "Dress warmly! The Northern Lights are beautiful, but so is your ability to feel your toes. Don’t let frostbite ruin your Instagram moment!",
-
-                "If you can’t see the lights, just blame it on the clouds. They’re always hogging the spotlight, and we’re pretty sure they’re in cahoots with the weather gods!"
-
+                "In the end, it’s not you; it’s our search function. It’s just a little shy and prefers to keep things mysterious!"
             ],
-
         },
-
     ];
 
     new FAQ(data);
