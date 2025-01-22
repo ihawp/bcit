@@ -218,14 +218,14 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <section id="frequently-asked-questions" class="flex-col gap-1">
 
-        <h2>Frequently Asked Questions:</h2>
+        <h2>Frequently Asked Questions</h2>
 
         <ul id="faq" class="flex flex-col"></ul>
 
     </section>
 
     <!-- Contact Form -->
-    <section id="contact" class="flex-col-md mx-2 gap-2">
+    <section class="flex-col-md mx-2 gap-2">
 
         <div class="flex flex-col w-100-m-50 gap-1">
 
@@ -293,31 +293,31 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Link</a>
+                        <a title="Home" href="index.html#" class="c-4">Home</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Sections</a>
+                        <a title="Learn" href="index.html#learn" class="c-4">Learn</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">From</a>
+                        <a title="Travel" href="index.html#travel" class="c-4">Travel</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Each</a>
+                        <a title="Frequently Asked Questions" href="index.html#frequently-asked-questions" class="c-4">Frequently Asked Questions</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Page</a>
+                        <a title="Contact" href="index.html#contact" class="c-4">Contact</a>
 
                     </li>
 
@@ -327,37 +327,37 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
             <nav aria-label="footerNav2" class="flex-grow-1 flex-col gap-half min-width-150">
 
-                <p class="font-weight-600">About</p>
+                <p class="font-weight-600">Learn</p>
 
                 <ul class="flex-col gap-half">
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+                        <a title="Learn" href="learn.html" class="c-4">Learn</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+                        <a title="Provinces/Territories" href="learn.html#provinces-territories" class="c-4">Provinces/Territories</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
+                        <a title="Popular Cities" href="learn.html#popular-cities" class="c-4">Popular Cities</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+                        <a title="Anthem" href="learn.html#anthem" class="c-4">Anthem</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+                        <a title="Frequently Asked Questions" href="#frequently-asked-questions" class="c-4">Frequently Asked Questions</a>
 
                     </li>
 
@@ -373,31 +373,31 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+                        <a title="Visit" href="visit.html" class="c-4">Visit</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+                        <a title="Travel" href="visit.html#travel" class="c-4">Travel</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
+                        <a title="Testimonials" href="visit.html#testimonials" class="c-4">Testimonials</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+                        <a title="Ready To Book?" href="visit.html#ready-to-book" class="c-4">Ready To Book?</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+                        <a title="Frequently Asked Questions" href="visit.html#frequently-asked-questions" class="c-4">Frequently Asked Questions</a>
 
                     </li>
 
@@ -413,31 +413,31 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+                        <a title="Credit" href="credit.html" class="c-4">Credit</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+                        <a title="Research" href="credit.html#research" class="c-4">Research</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Home</a>
+                        <a title="Files" href="credit.html#files" class="c-4">Files</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">Contact</a>
+                        <a title="References" href="credit.html#references" class="c-4">References</a>
 
                     </li>
 
                     <li>
 
-                        <a title="" href="" target="_blank" rel="noreferrer" class="c-4">About</a>
+                        <a title="Frequently Asked Questions" href="credit.html#frequently-asked-questions" class="c-4">Frequently Asked Questions</a>
 
                     </li>
 
@@ -446,10 +446,6 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
             </nav>
 
         </div>
-
-
-
-
 
         <div class="flex-col-rev-sm-nr gap-2">
 
@@ -486,7 +482,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
                 <blockquote>
 
-                    "I think this place is so awesomeasdasd asd adas as dsa dsad sadas!"<br>
+                    "This place is rad!"<br>
 
                     <cite  class="c-4">- Austin Powers</cite>
 

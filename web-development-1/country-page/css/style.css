@@ -176,10 +176,18 @@ li {}
 }
 
 /* border only left */
-.b-only-left-10 {
+.b-only-left-5 {
     border-top-width: 0;
-    border-left-width: 10px;
+    border-left-width: 5px;
     border-right-width: 0;
+    border-bottom-width: 0;
+}
+
+/* border only right */
+.b-only-right-5 {
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 5px;
     border-bottom-width: 0;
 }
 
