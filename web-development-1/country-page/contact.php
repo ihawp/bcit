@@ -137,7 +137,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
                     <li>
 
-                        <a href="about.html" title="About" class="c-1" aria-label="About">About</a>
+                        <a href="learn.html" title="About" class="c-1" aria-label="About">About</a>
 
                     </li>
 

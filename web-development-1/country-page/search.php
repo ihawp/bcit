@@ -137,7 +137,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
                     <li>
 
-                        <a href="about.html" title="About" class="c-1" aria-label="About">About</a>
+                        <a href="learn.html" title="About" class="c-1" aria-label="About">About</a>
 
                     </li>
 
@@ -204,19 +204,19 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
     </nav>
 </header>
 
-<main class="flex flex-col">
+<main class="flex-col gap-1 p-1">
 
     <!-- Search Result -->
 
-    <section class="flex px-4 items-center justify-center text-center">
+    <header class="div-media flex-col gap-1 text-center mx-5">
 
-        <h1 class="font-weight-400 p-1">Your search for "<?= $query ?>" returned 0 results.</h1>
+        <h1 class="font-weight-400">Your search for "<?= $query ?>" returned 0 results.</h1>
 
-    </section>
+    </header>
 
     <!-- FAQ -->
 
-    <section id="frequently-asked-questions" class="flex-col gap-1 pt-2">
+    <section id="frequently-asked-questions" class="flex-col gap-1">
 
         <h2>Frequently Asked Questions:</h2>
 

@@ -175,10 +175,10 @@ li {}
     border: none;
 }
 
-/* border only top */
-.b-only-top-10 {
-    border-top-width: 20px;
-    border-left-width: 0;
+/* border only left */
+.b-only-left-10 {
+    border-top-width: 0;
+    border-left-width: 10px;
     border-right-width: 0;
     border-bottom-width: 0;
 }
