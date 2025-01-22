@@ -75,7 +75,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
 <body>
 
-<header class="flex-col items-center py-1 pt-1 gap-1">
+<header class="flex-col items-center py-1 pt-1 gap-1 p-1">
 
     <nav aria-label="Main Navigation" class="div-media flex-col items-center gap-1">
 

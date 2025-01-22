@@ -206,11 +206,11 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
 <main class="flex flex-col">
 
-    <section class="flex px-4 items-center justify-center text-center">
+    <header class="div-media flex-col gap-1 text-center mx-5 p-1">
 
-        <p class="font-weight-400 p-1">Sorry <?= $query ?>, your data will go nowhere.</p>
+        <h1 class="font-weight-400">Sorry <?= $query ?>, your data will go nowhere.</h1>
 
-    </section>
+    </header>
 
 </main>
 
