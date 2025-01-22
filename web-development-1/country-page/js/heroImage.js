@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let image = new Image(0, 1);
     image.classList.add('h-2');
     image.classList.add('w-auto');
+    image.classList.add('h-auto');
     image.classList.add('object-cover');
     image.alt = 'Fake Travel Canada Hero Image'
     image.title = 'Fake Travel Canada Hero Image'
