@@ -57,7 +57,6 @@ h1 { margin: 0; }
 
 /* a / button */
 a, button {
-    text-underline: none;
     text-decoration: none;
     transition: ease 0.1s;
 }
@@ -410,7 +409,7 @@ textarea {
 
 /* *** MAKE CLASSES *** */
 #button-mobile-nav {
-    rotate: 90deg;
+    transform: rotate(90deg);
 }
 #button-mobile-nav, #button-exit-mobile-nav {
     font-size: 2.4rem;
