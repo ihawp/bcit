@@ -285,7 +285,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
         <div class="flex-col-sm gap-2 flex-wrap basis-auto">
 
-            <nav aria-label="footerNav1" class="flex-grow-1 flex-col gap-half min-width-150">
+            <nav aria-label="Footer Home Navigation" class="flex-grow-1 flex-col gap-half min-width-150">
 
                 <p class="font-weight-600">Home</p>
 
@@ -325,7 +325,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
             </nav>
 
-            <nav aria-label="footerNav2" class="flex-grow-1 flex-col gap-half min-width-150">
+            <nav aria-label="Footer Learn Navigation" class="flex-grow-1 flex-col gap-half min-width-150">
 
                 <p class="font-weight-600">Learn</p>
 
@@ -365,7 +365,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
             </nav>
 
-            <nav aria-label="footerNav3" class="flex-grow-1 flex-col gap-half min-width-150">
+            <nav aria-label="Footer Visit Navigation" class="flex-grow-1 flex-col gap-half min-width-150">
 
                 <p class="font-weight-600">Visit</p>
 
@@ -405,7 +405,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
             </nav>
 
-            <nav aria-label="footerNav4" class="flex-grow-1 flex-col gap-half min-width-150">
+            <nav aria-label="Footer Credit Navigation" class="flex-grow-1 flex-col gap-half min-width-150">
 
                 <p class="font-weight-600">Credit</p>
 
