@@ -53,6 +53,10 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <link rel="preload" href="fonts/roboto-variablefont_wdthwght-webfont.woff2" as="font" type="font/ttf" crossorigin="anonymous">
 
+    <!-- Canada Flags -->
+
+    <link rel="preload" href="media/canada-flag.webp" as="image">
+
     <!-- Styles -->
 
     <link rel="preload stylesheet" href="css/normalize-fwd.min.css" as="style" type="text/css">
