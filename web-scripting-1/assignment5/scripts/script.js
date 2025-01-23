@@ -15,26 +15,64 @@ const imagesContainer = document.querySelector('.cat-images-container');
 const nameCreator = document.querySelector('.cat-name-creator');
 const gameboardContainer = document.querySelector('.gameboard-container');
 const catImageOutput = document.querySelector('.cat-image-output');
+const catNameOutput = document.querySelector('.cat-name-output');
 const form = document.querySelector('form');
+let arr = {
+    'food': document.getElementById('hunger-out'),
+    'water': document.getElementById('thirst-out'),
+    'pet': document.getElementById('love-out')
+}
+const btnFoodPlus = document.getElementById('btn-food-plus');
+const btnFoodMinus = document.getElementById('btn-food-minus');
+const btnWaterPlus = document.getElementById('btn-water-plus');
+const btnWaterMinus = document.getElementById('btn-water-minus');
+const btnPetPlus = document.getElementById('btn-pet-plus');
+const btnPetMinus = document.getElementById('btn-pet-minus');
+
+btnFoodPlus.addEventListener('click', addOne);
+btnWaterPlus.addEventListener('click', addOne);
+btnPetPlus.addEventListener('click', addOne);
+btnFoodMinus.addEventListener('click', removeOne);
+btnWaterMinus.addEventListener('click', removeOne);
+btnPetMinus.addEventListener('click', removeOne);
+form.addEventListener('submit', dealWithForm);
 images.forEach((item) => {
-    item.addEventListener('click', doThing);
+    item.addEventListener('click', pickedCat);
 });
 
-let current = undefined;
-
-function doThing(event) {
-    // beautiful!
+function pickedCat(event) {
+    // Set the output image before we ever go display nameCreator screen
     catImageOutput.src = event.target.src;
-    console.log(event.target.src); // get this value to event listener
     imagesContainer.style.display = 'none';
     nameCreator.style.display = 'block';
-    // use src to reprint image into the "cat-name-creator"
 }
 
 function dealWithForm(event) {
     nameCreator.style.display = 'none';
     gameboardContainer.style.display = 'block';
-    console.log(event.target[0].value);
+    catNameOutput.firstElementChild.innerText = event.target[0].value;
 }
 
-form.addEventListener('submit', dealWithForm);
+function removeOne(event) {
+    let stripped = event.target.id.split('-');
+    let number = parseInt(arr[stripped[1]].innerText);
+    if (number !== 0) {
+        arr[stripped[1]].innerText = number - 1;
+    }
+}
+
+function addOne(event) {
+    let stripped = event.target.id.split('-');
+    let number = parseInt(arr[stripped[1]].innerText);
+    if (number !== 10) {
+        arr[stripped[1]].innerText = number + 1;
+    }
+}
+
+const messageHunger = document.getElementById('message-out-hunger');
+const messageThirst = document.getElementById('message-out-thirst');
+const messageLove = document.getElementById('message-out-love');
+
+function changeMessage() {
+
+}
