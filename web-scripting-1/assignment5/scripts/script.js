@@ -7,5 +7,7 @@ images.forEach((item, key) => {
 });
 
 function doThing(event) {
+    console.log(event.target.src);
+    // use src to reprint image into the "cat-name-creator"
     console.log(event);
 }
