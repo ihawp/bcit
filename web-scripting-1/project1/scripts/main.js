@@ -18,6 +18,12 @@ class Game {
         this.enemiesDefeated = 0;
         this.lives = 3;
         this.speed = 10;
+
+        this.w = undefined;
+        this.a = undefined;
+        this.s = undefined;
+        this.d = undefined;
+
         this.init();
     }
 
@@ -43,13 +49,42 @@ class Game {
         player.style.position = 'absolute';
         this.game.appendChild(player);
 
-        document.addEventListener('keypress', this.keyDown);
+        document.addEventListener('keydown', this.keyDown);
+        document.addEventListener('keyup', this.keyUp);
 
         this.gameId = setInterval(() => {
 
             this.updatePosition();
 
-        }, 50);
+            if (this.w) player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
+            if (this.a) player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
+            if (this.s) player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
+            if (this.d) player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
+
+            // will need to check for each individual key up or down.
+
+        }, 25);
+    }
+
+    keyUp = (event) => {
+        switch(event.key) {
+            case ('w'):
+                this.w = false;
+                break;
+            case ('a'):
+                this.a = false;
+                break;
+            case ('s'):
+                this.s = false;
+                break;
+            case ('d'):
+                this.d = false;
+                break;
+            case (' '):
+                event.preventDefault();
+
+                break;
+        }
     }
 
     keyDown = (event) => {
@@ -64,19 +99,24 @@ class Game {
             console.log(event.key);
 
         }
+
         this.keyDownLastEvent = event;
+
 
         switch(event.key) {
             case ('w'):
-                player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
+                this.w = true;
                 break;
             case ('a'):
+                this.a = true;
                 player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
                 break;
             case ('s'):
+                this.s = true;
                 player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
                 break;
             case ('d'):
+                this.d = true;
                 player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
                 break;
             case (' '):
