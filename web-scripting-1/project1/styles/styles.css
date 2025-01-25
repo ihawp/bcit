@@ -1,5 +1,15 @@
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 body {
     background-color: blue;
+
+    margin: 0;
 }
 
 ul {
@@ -14,6 +24,30 @@ ul {
     position: relative;
 
     background-color: purple;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.absolute-center {
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.absolute-top-right {
+    top: 0;
+    right: 0;
+}
+
+.absolute-top-left {
+    top: 0;
+    left: 0;
+}
+
+#pauseGame {
+    display: none;
 }
 
 

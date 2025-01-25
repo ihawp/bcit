@@ -36,16 +36,18 @@ class Game {
 
     startGame = () => {
 
+        document.getElementById('pauseGame').style.display = 'block';
+
         document.getElementById('startGame').setAttribute('disabled', 'disabled');
         document.getElementById('startGame').style.display = 'none';
-
         let player = document.createElement('div');
         player.setAttribute('id', 'player');
         player.style.width = '25px';
         player.style.height = '25px';
         player.style.backgroundColor = 'blue';
-        player.style.bottom = '237.5px';
-        player.style.left = '237.5px';
+        player.style.bottom = '250px';
+        player.style.left = '250px';
+        player.style.transform = 'translate(-50%, -50%)';
         player.style.position = 'absolute';
         this.game.appendChild(player);
 
@@ -56,19 +58,54 @@ class Game {
 
             this.updatePosition();
 
-            if (this.w) player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
-            if (this.a) player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
-            if (this.s) player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
-            if (this.d) player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
+            if (this.w) {
 
-            // will need to check for each individual key up or down.
+                console.log(player.style.bottom);
+
+                console.log(player.style.bottom > '20px');
+
+                player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
+
+                if (player.style.bottom.split('p')[0] >= 450) {
+                    player.style.bottom = `450px`;
+
+                }
+
+            }
+
+            if (this.a) {
+                player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
+                if (player.style.left.split('p')[0] <= 50) {
+                    player.style.left = `50px`;
+
+                }
+            }
+            if (this.s) {
+
+                player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
+
+
+                if (player.style.bottom.split('p')[0] <= 50) {
+                    player.style.bottom = `50px`;
+
+                }
+                console.log(player.style.bottom);
+
+            }
+            if (this.d) {
+                player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
+                if (player.style.left.split('p')[0] >= 450) {
+                    player.style.left = `450px`;
+
+                }
+            }
 
             // run game at 30 FPS => timeout 33ms
         }, 33);
     }
 
     keyUp = (event) => {
-        switch(event.key) {
+        switch (event.key) {
             case ('w'):
                 this.w = false;
                 break;
@@ -82,13 +119,15 @@ class Game {
                 this.d = false;
                 break;
             case (' '):
+                // press spacebar and you can jump forward 5 button presses?
+                // or like equiv
                 event.preventDefault();
                 break;
         }
     }
 
     keyDown = (event) => {
-        switch(event.key) {
+        switch (event.key) {
             case ('w'):
                 this.w = true;
                 break;
@@ -120,8 +159,9 @@ class Game {
 
     pauseGame = () => {
 
-        document.getElementById('startGame').removeAttribute('disabled');
-
+        let start = document.getElementById('startGame');
+        start.removeAttribute('disabled');
+        start.style.display = 'block';
 
         clearInterval(this.gameId);
 
@@ -135,8 +175,9 @@ class Game {
 
     generateMenu() {
         this.game.innerHTML = `
-        
-            <button id="startGame" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">start</button>
+
+            <button id="pauseGame" class="absolute absolute-top-right">pause</button>
+            <button id="startGame" class="absolute absolute-center">start</button>
         
         `;
     }
