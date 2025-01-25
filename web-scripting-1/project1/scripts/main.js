@@ -14,7 +14,7 @@ class Game {
         this.game = document.getElementById('game');
         this.gameId = undefined;
         this.currentRound = 0;
-        this.currentEnemies = [];
+        this.enemies = [];
         this.enemiesDefeated = 0;
         this.lives = 3;
         this.speed = 10;
@@ -63,7 +63,8 @@ class Game {
 
             // will need to check for each individual key up or down.
 
-        }, 25);
+            // run game at 30 FPS => timeout 33ms
+        }, 33);
     }
 
     keyUp = (event) => {
@@ -82,42 +83,23 @@ class Game {
                 break;
             case (' '):
                 event.preventDefault();
-
                 break;
         }
     }
 
     keyDown = (event) => {
-        let player = document.getElementById('player');
-
-        // track whether that other key has arisen? for diagonal movement.
-
-        if (this.keyDownLastEvent && this.keyDownLastEvent.key !== event.key) {
-
-            console.log(this.keyDownLastEvent);
-
-            console.log(event.key);
-
-        }
-
-        this.keyDownLastEvent = event;
-
-
         switch(event.key) {
             case ('w'):
                 this.w = true;
                 break;
             case ('a'):
                 this.a = true;
-                player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
                 break;
             case ('s'):
                 this.s = true;
-                player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
                 break;
             case ('d'):
                 this.d = true;
-                player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
                 break;
             case (' '):
                 event.preventDefault();
@@ -133,8 +115,6 @@ class Game {
             this.stopGame();
         }
 
-
-        // update enemy positions.
 
     }
 
@@ -165,12 +145,12 @@ class Game {
 }
 
 class Enemy {
-    constructor() {
+    constructor(direction) {
         this.positionX = undefined;
         this.positionY = undefined;
-        this.speed = undefined;
+        this.speed = Math.random() * 10;
         this.type = undefined;
-        this.direction = undefined;
+        this.direction = direction;
     }
 
     continueMovement = () => {
