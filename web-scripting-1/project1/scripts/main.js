@@ -17,36 +17,88 @@ class Game {
         this.currentEnemies = [];
         this.enemiesDefeated = 0;
         this.lives = 3;
-        this.positionX = undefined;
-        this.positionY = undefined;
+        this.speed = 10;
         this.init();
     }
 
     init() {
         document.getElementById('startGame').addEventListener('click', this.startGame);
+        document.getElementById('pauseGame').addEventListener('click', this.pauseGame);
         document.getElementById('stopGame').addEventListener('click', this.stopGame);
     }
 
     startGame = () => {
+
+        document.getElementById('startGame').setAttribute('disabled', 'disabled');
+
+
+        let player = document.createElement('div');
+        player.setAttribute('id', 'player');
+        player.style.width = '50px';
+        player.style.height = '50px';
+        player.style.backgroundColor = 'blue';
+        player.style.bottom = '225px';
+        player.style.left = '225px';
+        player.style.position = 'absolute';
+        this.game.appendChild(player);
+
+        document.addEventListener('keydown', this.keyDown);
+
         this.gameId = setInterval(() => {
 
             this.doGame();
 
-            this.move();
-
         }, 50);
     }
 
-    doGame() {
+    keyDown = (event) => {
+        event.preventDefault();
+        console.log(event.key);
+        switch(event.key) {
+            case ('w'):
+                this.doGame();
+                break;
+            case ('a'):
+                break;
+            case ('s'):
+                break;
+            case ('d'):
+                break;
+            case (' '):
+                break;
+        }
+    }
 
-        console.log('wow');
+    doGame = () => {
+
+        // update player position.
+        let player = document.getElementById('player');
+
+        console.log(player);
+
+        // down for now, will move
+
+        let l = player.style.bottom.split('p');
+        let calc = parseInt(l[0]) - this.speed;
+
+        player.style.bottom = `${calc}px`;
+
+        if (player.style.bottom === '25px') {
+            this.stopGame();
+        }
+
+
+        // update enemy positions.
 
     }
 
-    move = () => {
-        document.addEventListener('keypress', (event) => {
-            console.log(event);
-        });
+    pauseGame = () => {
+
+        document.getElementById('startGame').removeAttribute('disabled');
+
+
+        clearInterval(this.gameId);
+
     }
 
     stopGame = () => {
@@ -61,16 +113,6 @@ class Game {
                 <h2>wow things</h2>
         
         `;
-    }
-
-    generateBoard() {
-        const l = document.createElement('div');
-        l.backgroundColor = 'blue';
-        l.height = '500px';
-        l.width = '500px';
-        gameContainer.appendChild(l);
-
-        l.innerText = 'wow';
     }
 
 
