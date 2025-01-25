@@ -31,7 +31,7 @@ class Game {
     startGame = () => {
 
         document.getElementById('startGame').setAttribute('disabled', 'disabled');
-
+        document.getElementById('startGame').style.display = 'none';
 
         let player = document.createElement('div');
         player.setAttribute('id', 'player');
@@ -43,7 +43,7 @@ class Game {
         player.style.position = 'absolute';
         this.game.appendChild(player);
 
-        document.addEventListener('keydown', this.keyDown);
+        document.addEventListener('keypress', this.keyDown);
 
         this.gameId = setInterval(() => {
 
@@ -53,60 +53,31 @@ class Game {
     }
 
     keyDown = (event) => {
-        console.log(event.key);
         let player = document.getElementById('player');
 
-        let l = player.style.bottom.split('p');
-        let calc = parseInt(l[0]) + this.speed;
+        // track whether that other key has arisen? for diagonal movement.
+
+        if (this.keyDownLastEvent && this.keyDownLastEvent.key !== event.key) {
+
+            console.log(this.keyDownLastEvent);
+
+            console.log(event.key);
+
+        }
+        this.keyDownLastEvent = event;
 
         switch(event.key) {
             case ('w'):
-                // update player position.
-
-                console.log(player);
-
-                // down for now, will move
-
-                l = player.style.bottom.split('p');
-                calc = parseInt(l[0]) + this.speed;
-
-                player.style.bottom = `${calc}px`;
+                player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
                 break;
             case ('a'):
-                // update player position.
-
-                console.log(player);
-
-                // down for now, will move
-
-                l = player.style.left.split('p');
-                calc = parseInt(l[0]) - this.speed;
-
-                player.style.left = `${calc}px`;
+                player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
                 break;
             case ('s'):
-                // update player position.
-
-                console.log(player);
-
-                // down for now, will move
-
-                l = player.style.bottom.split('p');
-                calc = parseInt(l[0]) - this.speed;
-
-                player.style.bottom = `${calc}px`;
+                player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
                 break;
             case ('d'):
-                // update player position.
-
-                console.log(player);
-
-                // down for now, will move
-
-                l = player.style.left.split('p');
-                calc = parseInt(l[0]) + this.speed;
-
-                player.style.left = `${calc}px`;
+                player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
                 break;
             case (' '):
                 event.preventDefault();
@@ -162,6 +133,19 @@ class Enemy {
         this.direction = undefined;
     }
 
+    continueMovement = () => {
+
+    }
+
+}
+
+class Powerup extends Enemy {
+    wow = () => {
+        console.log('wow');
+
+        this.type = 'wow';
+        console.log(this.type);
+    }
 }
 
 new Game;
