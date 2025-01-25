@@ -22,6 +22,7 @@ class Game {
     }
 
     init() {
+        this.generateMenu();
         document.getElementById('startGame').addEventListener('click', this.startGame);
         document.getElementById('pauseGame').addEventListener('click', this.pauseGame);
         document.getElementById('stopGame').addEventListener('click', this.stopGame);
@@ -34,11 +35,11 @@ class Game {
 
         let player = document.createElement('div');
         player.setAttribute('id', 'player');
-        player.style.width = '50px';
-        player.style.height = '50px';
+        player.style.width = '25px';
+        player.style.height = '25px';
         player.style.backgroundColor = 'blue';
-        player.style.bottom = '225px';
-        player.style.left = '225px';
+        player.style.bottom = '237.5px';
+        player.style.left = '237.5px';
         player.style.position = 'absolute';
         this.game.appendChild(player);
 
@@ -46,44 +47,78 @@ class Game {
 
         this.gameId = setInterval(() => {
 
-            this.doGame();
+            this.updatePosition();
 
         }, 50);
     }
 
     keyDown = (event) => {
-        event.preventDefault();
         console.log(event.key);
+        let player = document.getElementById('player');
+
+        let l = player.style.bottom.split('p');
+        let calc = parseInt(l[0]) + this.speed;
+
         switch(event.key) {
             case ('w'):
-                this.doGame();
+                // update player position.
+
+                console.log(player);
+
+                // down for now, will move
+
+                l = player.style.bottom.split('p');
+                calc = parseInt(l[0]) + this.speed;
+
+                player.style.bottom = `${calc}px`;
                 break;
             case ('a'):
+                // update player position.
+
+                console.log(player);
+
+                // down for now, will move
+
+                l = player.style.left.split('p');
+                calc = parseInt(l[0]) - this.speed;
+
+                player.style.left = `${calc}px`;
                 break;
             case ('s'):
+                // update player position.
+
+                console.log(player);
+
+                // down for now, will move
+
+                l = player.style.bottom.split('p');
+                calc = parseInt(l[0]) - this.speed;
+
+                player.style.bottom = `${calc}px`;
                 break;
             case ('d'):
+                // update player position.
+
+                console.log(player);
+
+                // down for now, will move
+
+                l = player.style.left.split('p');
+                calc = parseInt(l[0]) + this.speed;
+
+                player.style.left = `${calc}px`;
                 break;
             case (' '):
+                event.preventDefault();
+
                 break;
         }
     }
 
-    doGame = () => {
-
+    updatePosition = () => {
         // update player position.
         let player = document.getElementById('player');
-
-        console.log(player);
-
-        // down for now, will move
-
-        let l = player.style.bottom.split('p');
-        let calc = parseInt(l[0]) - this.speed;
-
-        player.style.bottom = `${calc}px`;
-
-        if (player.style.bottom === '25px') {
+        if (player.style.bottom === '0px') {
             this.stopGame();
         }
 
@@ -110,7 +145,7 @@ class Game {
     generateMenu() {
         this.game.innerHTML = `
         
-                <h2>wow things</h2>
+            <button id="startGame" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">start</button>
         
         `;
     }
@@ -127,13 +162,6 @@ class Enemy {
         this.direction = undefined;
     }
 
-    updatePosition() {
-        if (!this.direction) {
-            return this.positionY -= this.speed;
-        }
-    }
-
 }
 
-let l = new Game;
-l.generateMenu();
+new Game;
