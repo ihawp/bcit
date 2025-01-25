@@ -1,0 +1,15 @@
+body {
+    background-color: blue;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+#game {
+    width: 500px;
+    height: 500px;
+
+    background-color: purple;
+}
