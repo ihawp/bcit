@@ -47,7 +47,6 @@ class Game {
         player.style.backgroundColor = 'blue';
         player.style.bottom = '250px';
         player.style.left = '250px';
-        player.style.transform = 'translate(-50%, -50%)';
         player.style.position = 'absolute';
         this.game.appendChild(player);
 
@@ -66,8 +65,8 @@ class Game {
 
                 player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
 
-                if (player.style.bottom.split('p')[0] >= 450) {
-                    player.style.bottom = `450px`;
+                if (player.style.bottom.split('p')[0] >= 476) {
+                    player.style.bottom = `475px`;
 
                 }
 
@@ -75,8 +74,8 @@ class Game {
 
             if (this.a) {
                 player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
-                if (player.style.left.split('p')[0] <= 50) {
-                    player.style.left = `50px`;
+                if (player.style.left.split('p')[0] <= -1) {
+                    player.style.left = `0px`;
 
                 }
             }
@@ -85,17 +84,16 @@ class Game {
                 player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
 
 
-                if (player.style.bottom.split('p')[0] <= 50) {
-                    player.style.bottom = `50px`;
+                if (player.style.bottom.split('p')[0] <= 0) {
+                    player.style.bottom = `1px`;
 
                 }
-                console.log(player.style.bottom);
 
             }
             if (this.d) {
                 player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
-                if (player.style.left.split('p')[0] >= 450) {
-                    player.style.left = `450px`;
+                if (player.style.left.split('p')[0] >= 476) {
+                    player.style.left = `475px`;
 
                 }
             }
@@ -116,6 +114,7 @@ class Game {
                 this.s = false;
                 break;
             case ('d'):
+                console.log('wow');
                 this.d = false;
                 break;
             case (' '):
