@@ -261,7 +261,7 @@ class Enemy {
         // these functionality should be quick since it will be fired and check so often no matter what.
 
 
-        if (thisHTMLLeft - documentPlayerLeft >= -12.5 && thisHTMLLeft - documentPlayerLeft <= 0 && thisHTMLLeft - documentPlayerLeft >= -12.5 && thisHTMLLeft - documentPlayerLeft <= 0) {
+        if ((thisHTMLLeft + 25) - documentPlayerLeft <= 12.5 && (thisHTMLLeft + 25) - documentPlayerLeft >= 0 && (thisHTMLLeft + 25) - documentPlayerLeft <= 12.5 && (thisHTMLLeft + 25) - documentPlayerLeft >= 0) {
             console.log(parseInt(this.html.style.left.split('p')[0]) - parseInt(document.getElementById('player').style.left.split('p')[0]));
             console.log('wow');
 
