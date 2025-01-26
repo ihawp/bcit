@@ -10,25 +10,38 @@ document.getElementById('footerYear').innerText = `${new Date().getFullYear()}`;
 
 class Game {
     constructor() {
-        this.username = undefined;
+        this.username = 'ihawp';
         this.game = document.getElementById('game');
         this.gameId = undefined;
-        this.currentRound = 0;
+        this.currentRound = 1;
         this.enemies = [];
         this.enemiesDefeated = 0;
         this.lives = 3;
         this.speed = 10;
 
-        this.w = undefined;
-        this.a = undefined;
-        this.s = undefined;
-        this.d = undefined;
+        this.w = false;
+        this.a = false;
+        this.s = false;
+        this.d = false;
 
         this.init();
     }
 
     init() {
         this.generateMenu();
+
+        // generate player
+        let player = document.createElement('div');
+        player.setAttribute('id', 'player');
+        player.style.width = '25px';
+        player.style.height = '25px';
+        player.style.backgroundColor = 'blue';
+        player.style.bottom = '237.5px';
+        player.style.left = '237.5px';
+        player.style.position = 'absolute';
+        player.style.display = 'none';
+        this.game.appendChild(player);
+
         document.getElementById('startGame').addEventListener('click', this.startGame);
         document.getElementById('pauseGame').addEventListener('click', this.pauseGame);
         document.getElementById('stopGame').addEventListener('click', this.stopGame);
@@ -36,32 +49,31 @@ class Game {
 
     startGame = () => {
 
+
+        let player = document.getElementById('player');
+        player.style.display = 'block';
+
         document.getElementById('pauseGame').style.display = 'block';
 
         document.getElementById('startGame').setAttribute('disabled', 'disabled');
         document.getElementById('startGame').style.display = 'none';
-        let player = document.createElement('div');
-        player.setAttribute('id', 'player');
-        player.style.width = '25px';
-        player.style.height = '25px';
-        player.style.backgroundColor = 'blue';
-        player.style.bottom = '250px';
-        player.style.left = '250px';
-        player.style.position = 'absolute';
-        this.game.appendChild(player);
+
+        for (let i = 0; i < this.currentRound * 8; i++) {
+            this.enemies.push(new Enemy);
+        }
+
+        console.log(this.enemies);
 
         document.addEventListener('keydown', this.keyDown);
         document.addEventListener('keyup', this.keyUp);
 
         this.gameId = setInterval(() => {
 
+            this.updateEnemyPositions();
+
             this.updatePosition();
 
             if (this.w) {
-
-                console.log(player.style.bottom);
-
-                console.log(player.style.bottom > '20px');
 
                 player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
 
@@ -102,6 +114,12 @@ class Game {
         }, 33);
     }
 
+    updateEnemyPositions = () => {
+        for (let i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].continueMovement();
+        }
+    }
+
     keyUp = (event) => {
         switch (event.key) {
             case ('w'):
@@ -114,7 +132,6 @@ class Game {
                 this.s = false;
                 break;
             case ('d'):
-                console.log('wow');
                 this.d = false;
                 break;
             case (' '):
@@ -186,15 +203,34 @@ class Game {
 
 class Enemy {
     constructor(direction) {
-        this.positionX = undefined;
-        this.positionY = undefined;
-        this.speed = Math.random() * 10;
+
+        this.positionX = -(Math.round(Math.random() * 1000) / 2);
+        this.positionY = (Math.round(Math.random() * 1000) / 2);
+        this.speed = Math.random() * 2;
         this.type = undefined;
         this.direction = direction;
+
+        this.html = undefined;
+        this.init();
+    }
+
+    init = () => {
+        this.html = document.createElement('div');
+        this.html.style.width = '5px';
+        this.html.style.height = '5px';
+        this.html.style.position = 'absolute';
+        this.html.style.backgroundColor = 'green';
+        this.html.style.bottom = this.positionY + 'px';
+        this.html.style.left = this.positionX + 'px';
+        document.getElementById('game').appendChild(this.html);
     }
 
     continueMovement = () => {
+        this.html.style.left = `${parseInt(this.html.style.left.split('p')[0]) + this.speed}px`;
+    }
 
+    checkRemove = () => {
+        // check if enemy off screen after travelling across.
     }
 
 }
