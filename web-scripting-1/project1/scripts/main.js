@@ -12,7 +12,12 @@ class Game {
     constructor() {
         this.username = 'ihawp';
         this.game = document.getElementById('game');
+
         this.gameId = undefined;
+        this.enemiesId = undefined;
+
+        this.player = undefined;
+
         this.currentRound = 1;
         this.enemies = [];
         this.enemiesDefeated = 0;
@@ -31,16 +36,16 @@ class Game {
         this.generateMenu();
 
         // generate player
-        let player = document.createElement('div');
-        player.setAttribute('id', 'player');
-        player.style.width = '25px';
-        player.style.height = '25px';
-        player.style.backgroundColor = 'blue';
-        player.style.bottom = '237.5px';
-        player.style.left = '237.5px';
-        player.style.position = 'absolute';
-        player.style.display = 'none';
-        this.game.appendChild(player);
+        this.player = document.createElement('div');
+        this.player.setAttribute('id', 'player');
+        this.player.style.width = '25px';
+        this.player.style.height = '25px';
+        this.player.style.backgroundColor = 'blue';
+        this.player.style.bottom = '237.5px';
+        this.player.style.left = '237.5px';
+        this.player.style.position = 'absolute';
+        this.player.style.display = 'none';
+        this.game.appendChild(this.player);
 
         document.getElementById('startGame').addEventListener('click', this.startGame);
         document.getElementById('pauseGame').addEventListener('click', this.pauseGame);
@@ -58,10 +63,6 @@ class Game {
         document.getElementById('startGame').setAttribute('disabled', 'disabled');
         document.getElementById('startGame').style.display = 'none';
 
-        for (let i = 0; i < this.currentRound * 8; i++) {
-            this.enemies.push(new Enemy);
-        }
-
         console.log(this.enemies);
 
         document.addEventListener('keydown', this.keyDown);
@@ -73,50 +74,21 @@ class Game {
 
             this.updatePosition();
 
-            if (this.w) {
-
-                player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
-
-                if (player.style.bottom.split('p')[0] >= 476) {
-                    player.style.bottom = `475px`;
-
-                }
-
-            }
-
-            if (this.a) {
-                player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
-                if (player.style.left.split('p')[0] <= -1) {
-                    player.style.left = `0px`;
-
-                }
-            }
-            if (this.s) {
-
-                player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
-
-
-                if (player.style.bottom.split('p')[0] <= 0) {
-                    player.style.bottom = `1px`;
-
-                }
-
-            }
-            if (this.d) {
-                player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
-                if (player.style.left.split('p')[0] >= 476) {
-                    player.style.left = `475px`;
-
-                }
-            }
-
             // run game at 30 FPS => timeout 33ms
         }, 33);
+
+        this.enemiesId = setInterval(() => {
+            for (let i = 0; i < this.currentRound * 8; i++) {
+                this.enemies.push(new Enemy('left', this.stopGame));
+            }
+        }, 5000);
     }
 
     updateEnemyPositions = () => {
         for (let i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].checkRemove();
             this.enemies[i].continueMovement();
+            this.enemies[i].checkIntersection();
         }
     }
 
@@ -164,10 +136,42 @@ class Game {
     }
 
     updatePosition = () => {
-        // update player position.
         let player = document.getElementById('player');
-        if (player.style.bottom === '0px') {
-            this.stopGame();
+        if (this.w) {
+
+            player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
+
+            if (player.style.bottom.split('p')[0] >= 476) {
+                player.style.bottom = `475px`;
+
+            }
+
+        }
+
+        if (this.a) {
+            player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
+            if (player.style.left.split('p')[0] <= -1) {
+                player.style.left = `0px`;
+
+            }
+        }
+        if (this.s) {
+
+            player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
+
+
+            if (player.style.bottom.split('p')[0] <= 0) {
+                player.style.bottom = `1px`;
+
+            }
+
+        }
+        if (this.d) {
+            player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
+            if (player.style.left.split('p')[0] >= 476) {
+                player.style.left = `475px`;
+
+            }
         }
 
 
@@ -202,13 +206,15 @@ class Game {
 }
 
 class Enemy {
-    constructor(direction) {
+    constructor(direction, stopGame) {
 
-        this.positionX = -(Math.round(Math.random() * 1000) / 2);
+        this.positionX = -(Math.round(Math.random() * (500 - 1 + 1) + 1));
         this.positionY = (Math.round(Math.random() * 1000) / 2);
-        this.speed = Math.random() * 2;
+        this.speed = Math.random() * (5 - 1 + 1) + 1;
         this.type = undefined;
         this.direction = direction;
+
+        this.stopGame = stopGame;
 
         this.html = undefined;
         this.init();
@@ -216,8 +222,8 @@ class Enemy {
 
     init = () => {
         this.html = document.createElement('div');
-        this.html.style.width = '5px';
-        this.html.style.height = '5px';
+        this.html.style.width = '25px';
+        this.html.style.height = '25px';
         this.html.style.position = 'absolute';
         this.html.style.backgroundColor = 'green';
         this.html.style.bottom = this.positionY + 'px';
@@ -230,7 +236,38 @@ class Enemy {
     }
 
     checkRemove = () => {
+
+
+        if (parseInt(this.html.style.left.split('p')[0]) >= 500) {
+            this.html.remove();
+        }
         // check if enemy off screen after travelling across.
+    }
+
+    checkIntersection = () => {
+
+        let thisHTMLLeft = parseInt(this.html.style.left.split('p')[0]);
+        let thisHTMLBottom = parseInt(this.html.style.bottom.split('p')[0]);
+        let documentPlayerLeft = parseInt(document.getElementById('player').style.left.split('p')[0]);
+        let documentPlayerBottom = parseInt(document.getElementById('player').style.bottom.split('p')[0]);
+
+        // calculate intersection
+
+        // axis: x, y
+        // x: top
+        // y: bottom
+
+        // need to outline cube in math... but what if I want custom shape?
+        // these functionality should be quick since it will be fired and check so often no matter what.
+
+
+        if (thisHTMLLeft - documentPlayerLeft >= -12.5 && thisHTMLLeft - documentPlayerLeft <= 0 && thisHTMLLeft - documentPlayerLeft >= -12.5 && thisHTMLLeft - documentPlayerLeft <= 0) {
+            console.log(parseInt(this.html.style.left.split('p')[0]) - parseInt(document.getElementById('player').style.left.split('p')[0]));
+            console.log('wow');
+
+            this.stopGame();
+
+        }
     }
 
 }
