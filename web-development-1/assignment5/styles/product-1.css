@@ -160,10 +160,12 @@ a.site-name {
 		padding: 0 1rem;
 		flex: 1 1 auto;
 		position: unset;
+		display: flex;
+		justify-content: end;
 	}
 
 	.site-navigation ul {
-		width: 50%;
+		flex-grow: 1;
 	}
 
 	.site-navigation a {
@@ -259,8 +261,6 @@ a.cart-link {
 		width: 100%;
 		height: 38rem;
 		position: relative;
-
-		background: red;
 	}
 
 	.lemon-photo-1 {
