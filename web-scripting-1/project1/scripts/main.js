@@ -15,6 +15,7 @@ class Game {
 
         this.gameId = undefined;
         this.enemiesId = undefined;
+        this.powerupId = undefined;
 
         this.player = undefined;
 
@@ -28,6 +29,8 @@ class Game {
         this.a = false;
         this.s = false;
         this.d = false;
+
+        this.stopped = true;
 
         this.init();
     }
@@ -53,6 +56,8 @@ class Game {
 
     startGame = () => {
 
+        this.stopped = !this.stopped;
+
         document.getElementById('pauseGame').style.display = 'inline';
 
         let player = document.getElementById('player');
@@ -75,24 +80,24 @@ class Game {
             // run game at 30 FPS => timeout 33ms
         }, 33);
 
-        // add powerup every 20 seconds
-        setInterval(() => {
+        // add power up every 20 seconds
+        this.powerupId = setInterval(() => {
             new Powerup('down', this.stopGame);
         }, 20000);
 
         this.enemiesId = setInterval(() => {
-            for (let i = 0; i < this.currentRound * 8; i++) {
+            for (let i = 0; i < 1; i++) {
                 this.enemies.push(new Enemy('right', this.stopGame));
             }
         }, 5000);
     }
 
     updateEnemyPositions = () => {
-        for (let i = 0; i < this.enemies.length; i++) {
-            this.enemies[i].checkRemove();
-            this.enemies[i].continueMovement();
-            this.enemies[i].checkIntersection();
-        }
+        this.enemies.map((item) => {
+            item.checkRemove();
+            item.continueMovement();
+            item.checkIntersection();
+        })
     }
 
 
@@ -174,27 +179,21 @@ class Game {
 
         let player = document.getElementById('player');
 
-        const bottomF = player.style.bottom.split('p')[0];
-        const leftF = player.style.left.split('p')[0];
-        const bottom = parseInt(player.style.bottom.split('p')[0]);
-        const left = parseInt(player.style.left.split('p')[0]);
-
         if (this.w) {
             player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
-            if (player.style.bottom.split('p')[0] >= 476) { player.style.bottom = `475px`; }
+            if (player.style.bottom.split('p')[0] >= 476) player.style.bottom = `475px`;
         }
         if (this.a) {
             player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
-            if (player.style.left.split('p')[0] <= -1) { player.style.left = `0px`; }
+            if (player.style.left.split('p')[0] <= -1) player.style.left = `0px`;
         }
         if (this.s) {
             player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
-            if (player.style.bottom.split('p')[0] <= 0) { player.style.bottom = `1px`; }
-
+            if (player.style.bottom.split('p')[0] <= 0) player.style.bottom = `1px`;
         }
         if (this.d) {
             player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
-            if (player.style.left.split('p')[0] >= 476) { player.style.left = `475px`; }
+            if (player.style.left.split('p')[0] >= 476) player.style.left = `475px`;
         }
 
 
@@ -211,16 +210,23 @@ class Game {
 
         clearInterval(this.enemiesId);
         clearInterval(this.gameId);
+        clearInterval(this.powerupId);
 
     }
 
     stopGame = () => {
 
-        document.addEventListener('keydown', this.keyDown);
-        document.addEventListener('keyup', this.keyUp);
+        if (!this.stopped) {
+            this.stopped = !this.stopped;
+            this.game.innerHTML += 'You lost!';
 
-        clearInterval(this.gameId);
-        clearInterval(this.enemiesId);
+            document.removeEventListener('keydown', this.keyDown);
+            document.removeEventListener('keyup', this.keyUp);
+
+            clearInterval(this.gameId);
+            clearInterval(this.enemiesId);
+            clearInterval(this.powerupId);
+        }
 
     }
 
@@ -271,6 +277,7 @@ class Enemy {
     }
 
     checkRemove = () => {
+        console.log(this.html.style.left);
         if (parseInt(this.html.style.left.split('p')[0]) >= 500) {
             this.html.remove();
         }

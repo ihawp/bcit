@@ -31,14 +31,14 @@ ul {
 
     position: relative;
 
-    display: none;
-
+    /* display: none;
+*/
     background-color: yellow;
 }
 
 .width-height-none {
     width: 0;
-    height: 0 ;
+    height: 0;
 }
 
 .absolute {

@@ -1,0 +1,332 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Generic (CALLED IN NORMALIZE.CSS)
+	- Normalize
+	- Box sizing
+	- Media width
+# Base
+	- Typography
+	- Elements
+	- Links
+# Components
+	- Header
+	- Main
+	- Footer
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+
+/* Typography
+--------------------------------------------- */
+body {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #282828;
+	background-color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	margin: .5em 0;
+	text-align: center;
+}
+
+h1 {
+	font-size: 3.5rem;
+	margin: 0 0 .5em;
+}
+
+h2 {
+	font-size: 1.75rem;
+}
+
+p {
+	margin: 0 0 1.5em;
+}
+
+
+/* Elements
+--------------------------------------------- */
+ul,
+ol {
+	margin: 1em 0;
+	padding: 0 0 0 2.5em;
+}
+
+
+/* Links
+--------------------------------------------- */
+a,
+a:visited { 
+	color: #D45837;
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: #D45837;
+}
+
+a:focus {
+	outline: 1px dotted #D45837;
+}
+
+
+/*--------------------------------------------------------------
+# Components
+--------------------------------------------------------------*/
+
+/* Header
+--------------------------------------------- */
+.site-header {
+	background-color: #46555C;
+}
+
+a.site-name {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 1.75rem;
+	color: #ffffff;
+	text-decoration: none;
+	display: inline-block;
+	padding: 1rem;
+}
+
+.site-navigation {
+	position: relative;
+}
+
+.site-navigation ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	background-color: #46555C;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+}
+
+.site-navigation.toggled ul {
+	display: block;
+}
+
+.site-navigation a {
+	display: block;
+	padding: 1rem;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 1.25rem;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.menu-toggle {
+	display: block;
+	background-color: transparent;
+	border: 0;
+	padding: 1rem;
+	position: absolute;
+	top: -4.5rem;
+	right: 1rem;
+	z-index: 2;
+}
+
+.menu-toggle svg path {
+	fill: #ffffff;
+}
+
+.menu-toggle:focus {
+	border: 0;
+	outline: 1px dotted;
+}
+
+@media screen and (min-width: 68em) {
+
+	.menu-toggle {
+		display: none;
+	}
+
+	.site-header {
+		width: 100%;
+		position: fixed;
+		top: 0;
+		z-index: 10000;
+		display: grid;
+		grid-template-columns: 1fr minmax(auto, 25rem) minmax(auto, 37.5rem) 1fr;
+	}
+
+	.site-name {
+		grid-column: 2 / 3;
+		text-align: left;
+	}
+
+	.site-navigation ul,
+	.site-navigation.toggled ul {
+		display: flex;
+		justify-content: flex-end;
+		position: relative;
+	}
+
+	.site-navigation a {
+		line-height: 4.5rem;
+		padding: 0 1rem;
+	}
+
+}
+
+
+/* Main
+--------------------------------------------- */
+
+/* Section 1 - Banner */
+.banner {
+	text-align: center;
+	position: relative;
+}
+
+.banner h1 {
+	position: absolute;
+	bottom: 3rem;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #ffffff;
+	padding: 2rem 3rem;
+	font-size: 2.75rem;
+	border-radius: 200% / 200%;
+	backdrop-filter: blur(5px);
+}
+.banner img {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 450px;
+	object-position: bottom;
+}
+
+@media screen and (min-width: 50em) {
+
+	/* Section 2 - Cards */
+	.grid-center {
+		display: grid;
+		justify-content: center;
+	}
+	.cards {
+		gap: 1rem;
+		background-color: #d45837;
+		grid-template-columns: 15rem 15rem 15rem;
+	}
+	.cards article {
+		background-color: #ffffff;
+	}
+	.cards, .cards article p {
+		padding: 1rem;
+	}
+
+	/* Section 3 - Large Text */
+	.large-text {
+		display: grid;
+		grid-template-columns: 100%;
+		background-color: #46555c;
+	}
+	.large-text h2, .large-text p {
+		color: #ffffff;
+		font-size: 2.5rem;
+	}
+	.large-text p {
+		font-size: 1.25rem;
+		width: 41rem;
+		justify-self: center;
+	}
+
+
+	/* Section 4 - Full Width Boxes */
+	.grid-full {
+		display: grid;
+		grid-template-columns: 50% 50%;
+		gap: .125rem;
+	}
+	.grid-full-item {
+		background-color: #d45837;
+		padding: 2rem;
+	}
+
+
+	/* Section 5 - Grid Map */
+	.grid-map {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto;
+		gap: .5rem;
+		grid-auto-flow: row dense;
+	}
+
+	.grid-map div {
+		min-width: 6rem;
+		min-height: 8rem;
+		/* could not see the colour*/
+		background-color: #167aa6;
+	}
+
+	.grid-map .park {
+		grid-row-start: 2;
+		grid-row-end: 4;
+		grid-column-start: 2;
+		grid-column-end: 4;
+		background-color: #69c869;
+	}
+
+	.grid-map .building {
+		grid-row-start: 1;
+		grid-row-end: 3;
+		grid-column: 5;
+
+		background-color: #872d2d;
+	}
+
+	.grid-map .retail {
+		grid-row-start: 2;
+		grid-row-end: 4;
+		grid-column: 1;
+		background-color: #825099;
+	}
+
+	.grid-map .school {
+		grid-row: 4;
+		grid-column-start: 4;
+		grid-column-end: 6;
+		background-color: #f2d254;
+	}
+}
+
+
+/* Footer
+--------------------------------------------- */
+.site-footer {
+	border-top: 1px solid #888888;
+	text-align: center;
+	padding: 2rem;
+	margin-bottom: 3.5rem;
+}
+
+.site-footer p {
+	margin: 0;
+}
+
+@media (min-width: 50em) {
+	.site-footer {
+		margin-bottom: 0;
+	}
+}
+
+
