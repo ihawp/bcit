@@ -10,7 +10,10 @@ html {
 }
 
 body {
-    background-color: blue;
+
+    font-family: Arial, sans-serif;
+    font-size: 1.125rem;
+    background-color: limegreen;
 
     margin: 0;
 }
@@ -28,7 +31,14 @@ ul {
 
     position: relative;
 
-    background-color: purple;
+    display: none;
+
+    background-color: yellow;
+}
+
+.width-height-none {
+    width: 0;
+    height: 0 ;
 }
 
 .absolute {
@@ -53,6 +63,17 @@ ul {
 
 #pauseGame {
     display: none;
+}
+
+
+button {
+    outline: none;
+    border: 2px solid black;
+
+    cursor: pointer;
+}
+button:hover {
+
 }
 
 

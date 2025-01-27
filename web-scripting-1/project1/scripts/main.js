@@ -9,8 +9,8 @@ document.getElementById('footerYear').innerText = `${new Date().getFullYear()}`;
 
 
 class Game {
-    constructor() {
-        this.username = 'ihawp';
+    constructor(username) {
+        this.username = username;
         this.game = document.getElementById('game');
 
         this.gameId = undefined;
@@ -49,14 +49,14 @@ class Game {
 
         document.getElementById('startGame').addEventListener('click', this.startGame);
         document.getElementById('pauseGame').addEventListener('click', this.pauseGame);
-        document.getElementById('stopGame').addEventListener('click', this.stopGame);
     }
 
     startGame = () => {
 
+        document.getElementById('pauseGame').style.display = 'inline';
 
         let player = document.getElementById('player');
-        player.style.display = 'block';
+        player.style.display = 'inline';
 
         document.getElementById('pauseGame').style.display = 'block';
 
@@ -203,10 +203,13 @@ class Game {
 
     pauseGame = () => {
 
+        document.getElementById('pauseGame').style.display = 'none';
+
         let start = document.getElementById('startGame');
         start.removeAttribute('disabled');
         start.style.display = 'block';
 
+        clearInterval(this.enemiesId);
         clearInterval(this.gameId);
 
     }
@@ -223,6 +226,8 @@ class Game {
 
     generateMenu() {
         this.game.innerHTML = `
+
+            <h2 class="width-height-none">${this.username}</h2>
 
             <button id="pauseGame" class="absolute absolute-top-right">pause</button>
             <button id="startGame" class="absolute absolute-center">start</button>
@@ -320,11 +325,13 @@ class Enemy {
 
 class Powerup extends Enemy {
     wow = () => {
-        console.log('wow');
-
         this.type = 'wow';
-        console.log(this.type);
     }
 }
 
-new Game;
+document.getElementById('formm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    new Game(event.target[0].value);
+    document.getElementById('game').style.display = 'block';
+    document.getElementById('welcome').style.display = 'none';
+});
