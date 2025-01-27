@@ -63,8 +63,6 @@ class Game {
         document.getElementById('startGame').setAttribute('disabled', 'disabled');
         document.getElementById('startGame').style.display = 'none';
 
-        console.log(this.enemies);
-
         document.addEventListener('keydown', this.keyDown);
         document.addEventListener('keyup', this.keyUp);
 
@@ -77,9 +75,14 @@ class Game {
             // run game at 30 FPS => timeout 33ms
         }, 33);
 
+        // add powerup every 20 seconds
+        setInterval(() => {
+            new Powerup('down', this.stopGame);
+        }, 20000);
+
         this.enemiesId = setInterval(() => {
             for (let i = 0; i < this.currentRound * 8; i++) {
-                this.enemies.push(new Enemy('left', this.stopGame));
+                this.enemies.push(new Enemy('right', this.stopGame));
             }
         }, 5000);
     }
@@ -92,6 +95,8 @@ class Game {
         }
     }
 
+
+    // PLAYER MOVEMENT
     keyUp = (event) => {
         switch (event.key) {
             case ('w'):
@@ -136,46 +141,65 @@ class Game {
     }
 
     updatePosition = () => {
+
+        /*
+
+        THIS CODE CAUSES BOUNCING OFF THE EDGES:
+
         let player = document.getElementById('player');
+
+        const bottomF = player.style.bottom.split('p')[0];
+        const leftF = player.style.left.split('p')[0];
+        const bottom = parseInt(bottomF);
+        const left = parseInt(leftF);
+
         if (this.w) {
-
-            player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
-
-            if (player.style.bottom.split('p')[0] >= 476) {
-                player.style.bottom = `475px`;
-
-            }
-
+            player.style.bottom = `${bottom + this.speed}px`;
+            if (bottomF >= 476) { player.style.bottom = `475px`; }
         }
-
         if (this.a) {
-            player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
-            if (player.style.left.split('p')[0] <= -1) {
-                player.style.left = `0px`;
-
-            }
+            player.style.left = `${left - this.speed}px`;
+            if (leftF <= -1) { player.style.left = `0px`; }
         }
         if (this.s) {
+            player.style.bottom = `${bottom - this.speed}px`;
+            if (bottomF <= 0) { player.style.bottom = `1px`; }
 
+        }
+        if (this.d) {
+            player.style.left = `${left + this.speed}px`;
+            if (leftF >= 476) { player.style.left = `475px`; }
+        }
+         */
+
+        let player = document.getElementById('player');
+
+        const bottomF = player.style.bottom.split('p')[0];
+        const leftF = player.style.left.split('p')[0];
+        const bottom = parseInt(player.style.bottom.split('p')[0]);
+        const left = parseInt(player.style.left.split('p')[0]);
+
+        if (this.w) {
+            player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) + this.speed}px`;
+            if (player.style.bottom.split('p')[0] >= 476) { player.style.bottom = `475px`; }
+        }
+        if (this.a) {
+            player.style.left = `${parseInt(player.style.left.split('p')[0]) - this.speed}px`;
+            if (player.style.left.split('p')[0] <= -1) { player.style.left = `0px`; }
+        }
+        if (this.s) {
             player.style.bottom = `${parseInt(player.style.bottom.split('p')[0]) - this.speed}px`;
-
-
-            if (player.style.bottom.split('p')[0] <= 0) {
-                player.style.bottom = `1px`;
-
-            }
+            if (player.style.bottom.split('p')[0] <= 0) { player.style.bottom = `1px`; }
 
         }
         if (this.d) {
             player.style.left = `${parseInt(player.style.left.split('p')[0]) + this.speed}px`;
-            if (player.style.left.split('p')[0] >= 476) {
-                player.style.left = `475px`;
-
-            }
+            if (player.style.left.split('p')[0] >= 476) { player.style.left = `475px`; }
         }
 
 
     }
+    // END OF PLAYER MOVEMENT
 
     pauseGame = () => {
 
@@ -189,7 +213,11 @@ class Game {
 
     stopGame = () => {
 
+        document.addEventListener('keydown', this.keyDown);
+        document.addEventListener('keyup', this.keyUp);
+
         clearInterval(this.gameId);
+        clearInterval(this.enemiesId);
 
     }
 
@@ -216,14 +244,16 @@ class Enemy {
 
         this.stopGame = stopGame;
 
+        this.stopped = false;
+
         this.html = undefined;
         this.init();
     }
 
     init = () => {
         this.html = document.createElement('div');
-        this.html.style.width = '25px';
-        this.html.style.height = '25px';
+        this.html.style.width = '15px';
+        this.html.style.height = '15px';
         this.html.style.position = 'absolute';
         this.html.style.backgroundColor = 'green';
         this.html.style.bottom = this.positionY + 'px';
@@ -236,8 +266,6 @@ class Enemy {
     }
 
     checkRemove = () => {
-
-
         if (parseInt(this.html.style.left.split('p')[0]) >= 500) {
             this.html.remove();
         }
@@ -260,14 +288,32 @@ class Enemy {
         // need to outline cube in math... but what if I want custom shape?
         // these functionality should be quick since it will be fired and check so often no matter what.
 
+        let checkEnemyRight = (thisHTMLLeft + 15) - documentPlayerLeft >= 0 && (thisHTMLLeft + 15) - documentPlayerLeft <= 25;
 
-        if ((thisHTMLLeft + 25) - documentPlayerLeft <= 12.5 && (thisHTMLLeft + 25) - documentPlayerLeft >= 0 && (thisHTMLLeft + 25) - documentPlayerLeft <= 12.5 && (thisHTMLLeft + 25) - documentPlayerLeft >= 0) {
-            console.log(parseInt(this.html.style.left.split('p')[0]) - parseInt(document.getElementById('player').style.left.split('p')[0]));
-            console.log('wow');
+        let checkEnemyLeft = thisHTMLLeft - (documentPlayerLeft + 25) <= 0 && thisHTMLLeft - (documentPlayerLeft + 25) >= -25;
 
-            this.stopGame();
+        let checkEnemyTop = (thisHTMLBottom + 15) - documentPlayerBottom >= 0 && (thisHTMLBottom + 15) - documentPlayerBottom <= 25;
 
+        let checkEnemyBottom = thisHTMLBottom - (documentPlayerBottom + 25) <= 0 && thisHTMLBottom - (documentPlayerBottom + 25) >= -25;
+
+
+        const check = () => {
+            if (checkEnemyLeft) {
+                this.stopGame();
+            }
+            if (checkEnemyRight) {
+                this.stopGame();
+            }
         }
+
+        if (checkEnemyTop) {
+            check();
+        }
+
+        if (checkEnemyBottom) {
+            check();
+        }
+
     }
 
 }
