@@ -82,7 +82,7 @@ class Game {
 
         // add power up every 20 seconds
         this.powerupId = setInterval(() => {
-            new Powerup('down', this.stopGame);
+            new PowerUp('down', this.stopGame);
         }, 20000);
 
         this.enemiesId = setInterval(() => {
@@ -330,7 +330,7 @@ class Enemy {
 
 }
 
-class Powerup extends Enemy {
+class PowerUp extends Enemy {
     wow = () => {
         this.type = 'wow';
     }
