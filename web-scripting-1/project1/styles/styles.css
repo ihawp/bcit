@@ -11,69 +11,25 @@ html {
 
 body {
 
-    font-family: Arial, sans-serif;
-    font-size: 1.125rem;
-    background-color: limegreen;
-
-    margin: 0;
 }
 
-ul {
-    padding: 0;
-    list-style: none;
-}
 
+/* game board */
 #game {
     width: 500px;
     height: 500px;
-
-    overflow: hidden;
-
+    background: red;
     position: relative;
-
-    /* display: none;
-*/
-    background-color: yellow;
+    display: none;
+    overflow: hidden;
 }
 
-.width-height-none {
-    width: 0;
-    height: 0;
-}
-
-.absolute {
-    position: absolute;
-}
-
-.absolute-center {
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.absolute-top-right {
-    top: 0;
-    right: 0;
-}
-
-.absolute-top-left {
-    top: 0;
-    left: 0;
-}
-
-#pauseGame {
+/* navigation */
+#remove-mobile-nav, .site-nav {
     display: none;
 }
 
 
-button {
-    outline: none;
-    border: 2px solid black;
-
-    cursor: pointer;
-}
-button:hover {
+@media (min-width: 50em) {
 
 }
-
-

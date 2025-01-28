@@ -3,6 +3,16 @@
     GOAL: Update the game screen so that we create 30 frames per second (this number may change depending on the whatnot and who how of yada yada)
 
 */
+document.getElementById('mobile-nav').addEventListener('click', (event) => {
+    event.target.style.display = 'none';
+    event.target.nextElementSibling.style.display = 'flex';
+    event.target.previousElementSibling.style.display = 'inline';
+});
+document.getElementById('remove-mobile-nav').addEventListener('click', (event) => {
+    event.target.style.display = 'none';
+    event.target.nextElementSibling.style.display = 'inline';
+    event.target.nextElementSibling.nextElementSibling.style.display = 'none';
+});
 
 // set current year in footer
 document.getElementById('footerYear').innerText = `${new Date().getFullYear()}`;
@@ -336,7 +346,7 @@ class PowerUp extends Enemy {
     }
 }
 
-document.getElementById('formm').addEventListener('submit', (event) => {
+document.getElementById('usernameForm').addEventListener('submit', (event) => {
     event.preventDefault();
     new Game(event.target[0].value);
     document.getElementById('game').style.display = 'block';
