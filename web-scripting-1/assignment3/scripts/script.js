@@ -27,8 +27,9 @@ class HorizontalCarousel {
 
     */
     constructor() {
-        this.count = document.querySelectorAll('.slide img');
-        this.current = 0;
+        this.current = 1;
+        this.maxImages = 34;
+        this.slide = document.getElementById('slide');
         this.init();
     }
     init() {
@@ -41,34 +42,7 @@ class HorizontalCarousel {
         document.getElementById('btn-turn-clockwise').addEventListener('click', this.click);
         document.getElementById('btn-turn-counter-clockwise').addEventListener('click', this.click);
 
-        /*
-
-            Set display 'none'
-
-        */
-        this.count.forEach((item, keys) => {
-           return keys !== 0 ? item.style.display = 'none' : 0;
-        });
     }
-
-    /*
-
-        Display 'none' for current slide
-
-    */
-    removeCurrent() {
-        this.count[this.current].style.display = 'none';
-    }
-
-    /*
-
-        Display 'block' for current slide
-
-    */
-    showCurrent() {
-        this.count[this.current].style.display = 'block';
-    }
-
     /*
 
         Handle click event from turn
@@ -78,18 +52,11 @@ class HorizontalCarousel {
     click = (event) => {
         /*
 
-            Remove current slide
-
-        */
-        this.removeCurrent();
-
-        /*
-
             Change count based on whether the
             left button or not
 
         */
-        event.target.id === 'btn-turn-clockwise' ? this.current += 1 : this.current -= 1;
+        event.target.id === 'btn-turn-clockwise' ? this.current++ : this.current--;
 
         /*
 
@@ -97,11 +64,11 @@ class HorizontalCarousel {
             and change to correct value
 
         */
-        if (this.current === -1) {
-            this.current = this.count.length - 1;
+        if (this.current === 0) {
+            this.current = this.maxImages;
         }
-        if (this.current >= this.count.length) {
-            this.current = 0;
+        if (this.current > this.maxImages) {
+            this.current = 1;
         }
 
         /*
@@ -109,8 +76,12 @@ class HorizontalCarousel {
             Show the next slide
 
         */
-        this.showCurrent();
+        this.slide.src = 'images/bike-' + this.current + '.jpg';
+
     }
+
+
+
 }
 
 /*
