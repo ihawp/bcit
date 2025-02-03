@@ -66,6 +66,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
     <!-- Icons -->
 
     <link rel="icon" href="media/icon/fake-travel-canada.webp" type="image/x-icon">
+
     <link rel="apple-touch-icon" href="media/icon/fake-travel-canada.webp">
 
     <!-- Title of Page -->
@@ -78,7 +79,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
 <nav aria-label="Skip To Content">
 
-    <a href="#contact-form-submission" class="screen-reader-text">Skip To Content</a>
+    <a href="#contact-form-submission" class="screen-reader-text" title="Skip To Content">Skip To Content</a>
 
 </nav>
 
