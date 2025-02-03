@@ -370,8 +370,11 @@ summary,
 }
 
 /* outline */
-.outline-none {
+.outline-none:active {
     outline: none;
+}
+.outline-black:active {
+    outline: black;
 }
 
 /* form */
@@ -447,7 +450,6 @@ input[type="range"]::-moz-range-thumb {
     background: var(--2);
     border-radius: 150px;
     border: 3px solid var(--2);
-
 }
 
 /* media */

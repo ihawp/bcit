@@ -59,7 +59,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 
     <!-- Styles -->
 
-    <link rel="preload stylesheet" href="css/normalize-fwd.min.css" as="style" type="text/css">
+    <link rel="preload stylesheet" href="css/normalize-fwd.css" as="style" type="text/css">
 
     <link rel="preload stylesheet" href="css/style.css" as="style" type="text/css">
 
@@ -75,6 +75,12 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
 </head>
 
 <body>
+
+<nav aria-label="Skip To Content">
+
+    <a href="#contact-form-submission" class="screen-reader-text">Skip To Content</a>
+
+</nav>
 
 <header class="flex-col items-center py-1 pt-1 gap-1">
 
@@ -205,7 +211,7 @@ $query = htmlspecialchars(stripcslashes($_POST['name']));
     </nav>
 </header>
 
-<main class="flex-col p-1">
+<main class="flex-col p-1" id="contact-form-submission">
 
     <!-- Contact Form Submission -->
 

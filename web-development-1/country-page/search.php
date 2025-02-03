@@ -59,7 +59,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 
     <!-- Styles -->
 
-    <link rel="preload stylesheet" href="css/normalize-fwd.min.css" as="style" type="text/css">
+    <link rel="preload stylesheet" href="css/normalize-fwd.css" as="style" type="text/css">
 
     <link rel="preload stylesheet" href="css/style.css" as="style" type="text/css">
 
@@ -75,6 +75,12 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
 </head>
 
 <body>
+
+<nav aria-label="Skip To Content">
+
+    <a href="#search-form-submission" class="screen-reader-text">Skip To Content</a>
+
+</nav>
 
 <header class="flex-col items-center py-1 pt-1 gap-1">
 
@@ -205,7 +211,7 @@ $query = htmlspecialchars(stripcslashes($_POST['search']));
     </nav>
 </header>
 
-<main class="flex-col p-1">
+<main class="flex-col p-1" id="search-form-submission">
 
     <!-- Search Result -->
 
