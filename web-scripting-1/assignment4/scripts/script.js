@@ -17,51 +17,41 @@ const slide = document.getElementById('slide');
 const slides = document.querySelectorAll('.slide-thumbnails-container img');
 const addToCart = document.getElementById('btn-add-to-cart');
 const sizeInput = document.querySelectorAll('input[name="shirt-size"]');
+let lastColour = document.getElementById('selected-color-out').innerText.toLowerCase();
 
-colourInput.forEach(function(item) {
-    item.addEventListener('change', colour);
-});
+let tshirtImage = `images/`;
 
-sizeInput.forEach(function(item) {
-    item.addEventListener('change', size);
-});
+colourInput.forEach(item =>
+    item.addEventListener('change', updateColourImages)
+);
 
-slides.forEach((item) => {
-    item.addEventListener('mouseover', () => slide.src = item.src);
-});
+sizeInput.forEach(item =>
+    item.addEventListener('change', updateSize)
+);
 
-function colour(event) {
+slides.forEach(item =>
+    item.addEventListener('mouseover', () => slide.src = item.src)
+);
+
+function updateColourImages(event) {
+
+    const text = event.target.nextElementSibling.innerText;
+    const color = event.target.value;
+    const shirtOptions = {
+        'th-no-model': `images/t-shirt-${color}-no-model.jpg`,
+        'th-front': `images/t-shirt-${color}-front.jpg`,
+        'th-back': `images/t-shirt-${color}-back.jpg`
+    }
+
     slides.forEach((item) => {
-
-        let p = item.src.split('/');
-        let q = p[7].split('-');
-        let newP = '';
-
-        q[2] = event.target.value;
-
-        p.forEach((item, key) => {
-            if (key !== p.length - 1) {
-                newP += item + '/';
-            }
-        });
-
-        q.forEach((item, key) => {
-            newP += item;
-            if (key !== q.length - 1) {
-                newP += '-';
-            }
-        });
-
-        if (item.src === slide.src) {
-            slide.src = newP;
-        }
-        item.src = newP;
-
+        let w = item.parentElement.parentElement.classList[1]
+        if (item.src === slide.src) slide.src = shirtOptions[w];
+        item.src = shirtOptions[w];
     });
-    document.getElementById('selected-color-out').innerText = event.target.nextElementSibling.innerText;
+    lastColour = document.getElementById('selected-color-out').innerText = text;
 }
 
-function size(event) {
+function updateSize(event) {
     addToCart.removeAttribute('disabled');
     document.getElementById('selected-size-out').innerText = event.target.nextElementSibling.lastElementChild.innerText;
 }
