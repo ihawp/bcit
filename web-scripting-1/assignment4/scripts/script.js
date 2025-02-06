@@ -19,8 +19,6 @@ const addToCart = document.getElementById('btn-add-to-cart');
 const sizeInput = document.querySelectorAll('input[name="shirt-size"]');
 let lastColour = document.getElementById('selected-color-out').innerText.toLowerCase();
 
-let tshirtImage = `images/`;
-
 colourInput.forEach(item =>
     item.addEventListener('change', updateColourImages)
 );
