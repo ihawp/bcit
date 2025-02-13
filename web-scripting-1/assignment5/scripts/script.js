@@ -10,6 +10,12 @@
 
 */
 
+function Car() {
+    this.wow = 10;
+    this.cool = 11;
+}
+let p = Car();
+console.log(p.wow, p.cool);
 
 
 const Player = {
