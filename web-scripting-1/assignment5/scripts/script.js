@@ -10,6 +10,22 @@
 
 */
 
+
+
+const Player = {
+    init: function() {
+        console.log('wow');
+        this.username = 'ihawp';
+        this.bananaphone = 10;
+    }
+}
+let wow = Object.create(Player);
+console.log(wow.username, wow.bananaphone);
+let l = Player;
+l.init();
+console.log(l.username, l.bananaphone);
+
+
 const images = document.querySelectorAll('.cat-image-container');
 const imagesContainer = document.querySelector('.cat-images-container');
 const nameCreator = document.querySelector('.cat-name-creator');
