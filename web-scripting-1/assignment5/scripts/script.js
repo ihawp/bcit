@@ -8,7 +8,6 @@
 
     More functional programming!
 
-*/
 
 function Car() {
     this.wow = 10;
@@ -31,6 +30,7 @@ let l = Player;
 l.init();
 console.log(l.username, l.bananaphone);
 
+ */
 
 const images = document.querySelectorAll('.cat-image-container');
 const imagesContainer = document.querySelector('.cat-images-container');
