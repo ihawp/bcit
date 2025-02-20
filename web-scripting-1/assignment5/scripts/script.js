@@ -146,7 +146,9 @@ class CatGame {
         */
 
         if (item - 1 === 0 && add !== this.gameOutput["btn-pet-plus"]) this.dead();
+        let l = this.recursive(add, item);
         add.numb.innerText = `${item - 1}`;
+        add.output.innerText = `${add[l]}`
     }
     increment(item, add) {
 
@@ -166,21 +168,17 @@ class CatGame {
         let addOutput = add.output;
         let addThanks = add.thanks;
         if (item !== 10) {
-            console.log(add, item);
-            let l = this.recursive(add, item);
-            add.numb.innerText = `${l + 1}`;
             addOutput.innerText = `${addThanks}`;
-        } else if (add === this.gameOutput["btn-pet-plus"]) {
-            addOutput.innerText = `${addThanks}`;
+            add.numb.innerText = `${item + 1}`;
         } else {
             addOutput.innerText = `${add[item]}`;
         }
     }
 
+    // Find the heightened
     recursive(add, item) {
-        console.log(this.gameOutput["btn-food-plus"][item], this.gameOutput["btn-food-plus"][item] !== undefined);
-        if (this.gameOutput["btn-food-plus"][item] !== undefined) return parseInt(item);
-        this.recursive(add, item + 1);
+        if (this.gameOutput["btn-food-plus"][item] !== undefined) return item;
+        return this.recursive(add, item + 1);
     }
 
     updateText(mytems, calc) {
