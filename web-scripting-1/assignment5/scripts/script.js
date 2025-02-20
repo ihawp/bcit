@@ -4,97 +4,215 @@
     BCIT | Web Scripting 1
     Assignment 5
 
-    --------------
+*/
 
-    More functional programming!
+class CatGame {
+    constructor() {
+        this.name = undefined;
 
+        this.gameOutput = {
+            "btn-food-plus": {
+                numb: document.getElementById('hunger-out'),
+                output: document.getElementById('message-out-hunger'),
+                thanks: "Yummy! Thank you for the food!",
+                10: "I'm full",
+                9: "I'm hungry!",
+                6: "I'm starving please feed me!",
+                3: "I'm feeling very weak. Any food would help!",
+                0: "I'm dead!!!",
+                timeout: 3500,
+                intervalId: undefined
+            },
+            "btn-water-plus": {
+                numb: document.getElementById('thirst-out'),
+                output: document.getElementById('message-out-thirst'),
+                thanks: "Ah, refreshing! Thank you!",
+                10: "I'm full",
+                9: "I'm thirsty!",
+                6: "I'm dehydrated, please give me water!",
+                3: "I'm not going to make it I need water!!!",
+                0: "I'm dead!!!",
+                timeout: 2500,
+                intervalId: undefined
+            },
+            "btn-pet-plus": {
+                numb: document.getElementById('love-out'),
+                output: document.getElementById('message-out-love'),
+                thanks: "I love you! Prrrr!!!",
+                9: "I need some love!",
+                6: "I feel unloved, please pet me!",
+                3: "I'm going to ignore you now!",
+                0: "I'M DISOWNING YOU",
+                timeout: 5500,
+                intervalId: undefined
+            },
+        }
 
-function Car() {
-    this.wow = 10;
-    this.cool = 11;
-}
-let p = Car();
-console.log(p.wow, p.cool);
+        // Get DOM nodes
+        this.buttons = document.querySelectorAll('.game-controls button');
+        this.images = document.querySelectorAll('.cat-images-container .cat-image-container img');
+        this.nameCreator = document.querySelector('.cat-name-creator');
+        this.nameForm = document.querySelectorAll('.cat-name-creator form input');
+        this.gameBoardContainer = document.querySelector('.gameboard-container');
+        this.gameImageOutput = document.querySelector('.game-image-output');
+        this.playAgainButton = document.getElementById('btn-play-again');
+        this.catSelector = document.querySelector('.cat-selector');
 
-
-const Player = {
-    init: function() {
-        console.log('wow');
-        this.username = 'ihawp';
-        this.bananaphone = 10;
+        // 'Global' event listeners (ones that can stay between plays)
+        this.playAgainButton.addEventListener('mousedown', this.playAgain.bind(this));
+        this.images.forEach(item => item.addEventListener('mousedown', this.choseCat.bind(this)));
+        this.nameForm[1].addEventListener('mousedown', this.choseName.bind(this));
+        /*
+            Define a handler to hold reference to the this.click bounding to this value
+            required for event listener removal later on (which is required because example
+            does not show disabling buttons).
+         */
+        this.clickHandler = this.click.bind(this);
     }
-}
-let wow = Object.create(Player);
-console.log(wow.username, wow.bananaphone);
-let l = Player;
-l.init();
-console.log(l.username, l.bananaphone);
 
- */
-
-const images = document.querySelectorAll('.cat-image-container');
-const imagesContainer = document.querySelector('.cat-images-container');
-const nameCreator = document.querySelector('.cat-name-creator');
-const gameboardContainer = document.querySelector('.gameboard-container');
-const catImageOutput = document.querySelector('.cat-image-output');
-const catNameOutput = document.querySelector('.cat-name-output');
-const form = document.querySelector('form');
-let arr = {
-    'food': document.getElementById('hunger-out'),
-    'water': document.getElementById('thirst-out'),
-    'pet': document.getElementById('love-out')
-}
-const btnFoodPlus = document.getElementById('btn-food-plus');
-const btnFoodMinus = document.getElementById('btn-food-minus');
-const btnWaterPlus = document.getElementById('btn-water-plus');
-const btnWaterMinus = document.getElementById('btn-water-minus');
-const btnPetPlus = document.getElementById('btn-pet-plus');
-const btnPetMinus = document.getElementById('btn-pet-minus');
-
-btnFoodPlus.addEventListener('click', addOne);
-btnWaterPlus.addEventListener('click', addOne);
-btnPetPlus.addEventListener('click', addOne);
-btnFoodMinus.addEventListener('click', removeOne);
-btnWaterMinus.addEventListener('click', removeOne);
-btnPetMinus.addEventListener('click', removeOne);
-form.addEventListener('submit', dealWithForm);
-images.forEach((item) => {
-    item.addEventListener('click', pickedCat);
-});
-
-function pickedCat(event) {
-    // Set the output image before we ever go display nameCreator screen
-    catImageOutput.src = event.target.src;
-    imagesContainer.style.display = 'none';
-    nameCreator.style.display = 'block';
-}
-
-function dealWithForm(event) {
-    nameCreator.style.display = 'none';
-    gameboardContainer.style.display = 'block';
-    catNameOutput.firstElementChild.innerText = event.target[0].value;
-}
-
-function removeOne(event) {
-    let stripped = event.target.id.split('-');
-    let number = parseInt(arr[stripped[1]].innerText);
-    if (number !== 0) {
-        arr[stripped[1]].innerText = number - 1;
+    init() {
+        this.show(this.catSelector);
     }
-}
 
-function addOne(event) {
-    let stripped = event.target.id.split('-');
-    let number = parseInt(arr[stripped[1]].innerText);
-    if (number !== 10) {
-        arr[stripped[1]].innerText = number + 1;
+    playAgain() {
+        // Reset function
+        this.hide(this.playAgainButton);
+        this.hide(this.gameBoardContainer);
+        this.hide(this.gameImageOutput.lastElementChild);
+        this.show(this.gameImageOutput.firstElementChild);
+        for (const item in this.gameOutput) {
+            let mytems = this.gameOutput[item];
+            mytems.numb.innerText = '10';
+        }
+        this.nameForm[0].value = '';
+        this.init();
     }
+
+    choseCat(event) {
+        this.hide(this.catSelector);
+        this.show(this.nameCreator);
+        this.gameImageOutput.firstElementChild.src = event.target.src;
+    }
+    choseName() {
+        let val = this.nameForm[0];
+        let value = val.value;
+        this.gameBoardContainer.firstElementChild.firstElementChild.firstElementChild.innerText = this.name = value;
+        val.value = '';
+        this.hide(this.nameCreator);
+        this.show(this.gameBoardContainer);
+        this.runGame();
+    }
+
+    runGame() {
+        this.buttons.forEach((item) =>
+            item.addEventListener('mousedown', this.clickHandler)
+        );
+
+
+        // run hunger
+        for (const item in this.gameOutput) {
+            const mytems = this.gameOutput[item];
+            const welt = () => {
+                let l = parseInt(mytems.numb.innerText);
+                this.decrement(l, mytems);
+                this.updateText(mytems, l - 1);
+            }
+            // Set intervals (and track IDs for clearing)
+            mytems.intervalId = setInterval(welt, mytems.timeout);
+        }
+    }
+
+    click(event) {
+        const mytems = this.gameOutput[event.target.id];
+        this.increment(parseInt(mytems.numb.innerText), mytems);
+    }
+
+    show(item) {
+        item.style.display = 'block';
+    }
+    hide(item) {
+        item.style.display = 'none';
+    }
+
+    decrement(item, add) {
+
+        /*
+
+            add: object; this.gameOutput["btn-name"]
+            item: int; 0-10
+            add.numb: DOM element
+            this.dead(): class method (from CatGame)
+
+        */
+
+        if (item - 1 === 0 && add !== this.gameOutput["btn-pet-plus"]) this.dead();
+        add.numb.innerText = `${item - 1}`;
+    }
+    increment(item, add) {
+
+        /*
+
+            add: object; this.gameOutput["btn-name"]
+            item: int; 0-10
+            add.output: DOM element
+            add.numb: DOM element
+
+            if (item is NOT equal to 10)
+            Increment and thank the user
+            OR
+            Change output text of current output to current item value
+
+        */
+        let addOutput = add.output;
+        let addThanks = add.thanks;
+        if (item !== 10) {
+            console.log(add, item);
+            let l = this.recursive(add, item);
+            add.numb.innerText = `${l + 1}`;
+            addOutput.innerText = `${addThanks}`;
+        } else if (add === this.gameOutput["btn-pet-plus"]) {
+            addOutput.innerText = `${addThanks}`;
+        } else {
+            addOutput.innerText = `${add[item]}`;
+        }
+    }
+
+    recursive(add, item) {
+        if (this.gameOutput["btn-food-plus"][item] !== undefined || item === 9) {
+            return item;
+        } else {
+            this.recursive(item + 1);
+        }
+    }
+
+    updateText(mytems, calc) {
+        if (mytems[calc]) {
+            mytems.output.innerText = mytems[calc];
+        }
+    }
+
+    dead() {
+
+        // Hide Cat image
+        this.hide(this.gameImageOutput.firstElementChild);
+
+        // Display Grim Reaper image
+        this.show(this.gameImageOutput.lastElementChild);
+
+        // Remove button event listeners (enacts functionality of increment and etc)
+        this.buttons.forEach((item) =>
+            item.removeEventListener('mousedown', this.clickHandler)
+        );
+
+        // Run clearInterval on saved IDs
+        let l = this.gameOutput;
+        for (const item in l) clearInterval(l[item].intervalId);
+
+        // Show "Play Again" button.
+        this.show(this.playAgainButton);
+
+    }
+
 }
 
-const messageHunger = document.getElementById('message-out-hunger');
-const messageThirst = document.getElementById('message-out-thirst');
-const messageLove = document.getElementById('message-out-love');
-
-function changeMessage() {
-
-}
+new CatGame();
