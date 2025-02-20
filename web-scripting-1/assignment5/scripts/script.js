@@ -178,11 +178,9 @@ class CatGame {
     }
 
     recursive(add, item) {
-        if (this.gameOutput["btn-food-plus"][item] !== undefined || item === 9) {
-            return item;
-        } else {
-            this.recursive(item + 1);
-        }
+        console.log(this.gameOutput["btn-food-plus"][item], this.gameOutput["btn-food-plus"][item] !== undefined);
+        if (this.gameOutput["btn-food-plus"][item] !== undefined) return parseInt(item);
+        this.recursive(add, item + 1);
     }
 
     updateText(mytems, calc) {
