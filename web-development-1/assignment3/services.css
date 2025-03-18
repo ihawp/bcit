@@ -2,9 +2,9 @@
     box-sizing: border-box;
 }
 :root {
-    --1: #282828;
-    --2: #caffca;
-    --3: #347034
+    --c-1: #282828;
+    --c-2: #caffca;
+    --c-3: #347034
 }
 body {
     max-width: 31.25rem;
@@ -36,7 +36,7 @@ img {
 }
 
 a:visited {
-   color: var(--3);
+   color: var(--c-3);
 }
 a:hover, a:focus, a:active {
     color: rgb(52, 112, 52, 0.8);
@@ -98,21 +98,21 @@ a:hover, a:focus, a:active {
 
 /* color */
 .c-1 {
-    color: var(--1);
+    color: var(--c-1);
 }
 .c-2 {
-    color: var(--2);
+    color: var(--c-2);
 }
 .c-3 {
-    color: var(--3);
+    color: var(--c-3);
 }
 
 /* background */
 .bg-2 {
-    background: var(--2);
+    background: var(--c-2);
 }
 .bg-3 {
-    background: var(--3);
+    background: var(--c-3);
 }
 
 /* gap */

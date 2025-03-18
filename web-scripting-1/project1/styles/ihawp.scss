@@ -1,8 +1,11 @@
+:root {
+
+}
+
 html {
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
-
 *, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
@@ -11,29 +14,41 @@ html {
 
 body {
   background: purple;
+
+  // delete below
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
+#usernameForm {
+
+}
+
 #game {
   width: 500px;
   height: 500px;
-  display: none;
-  background: #6da1fa;
-}
-#game .enemy.boopa {
-  width: 15px;
-  height: 15px;
-}
-#game .enemy.gunner {
-  width: 25px;
-  height: 25px;
-}
-#game .player {
-  width: 25px;
-  height: 25px;
-}
 
-/*# sourceMappingURL=ihawp.css.map */
+  display: none;
+
+  background: #6da1fa;
+
+  .enemy {
+    &.boopa {
+      width: 15px;
+      height: 15px;
+    }
+    &.gunner {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+
+  .player {
+    width: 25px;
+    height: 25px;
+  }
+
+}
