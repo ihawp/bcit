@@ -1,3 +1,5 @@
+@use 'magical-borders';
+
 :root {
 
 }
@@ -13,7 +15,7 @@ html {
 }
 
 body {
-  background: purple;
+  background: #0a0118;
 
   // delete below
   display: flex;
@@ -22,33 +24,17 @@ body {
   height: 100vh;
 }
 
-#usernameForm {
-
-}
-
 #game {
-  width: 500px;
+  width: 100%;
   height: 500px;
 
-  display: none;
+  border-radius: 16px;
+  overflow: hidden;
 
-  background: #6da1fa;
-
-  .enemy {
-    &.boopa {
-      width: 15px;
-      height: 15px;
-    }
-    &.gunner {
-      width: 25px;
-      height: 25px;
-    }
-  }
-
-
-  .player {
-    width: 25px;
-    height: 25px;
-  }
-
+  background: #0a0118;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
+
+
