@@ -1,75 +1,98 @@
-let username = undefined;
+// Canvas API
+
+const game = document.getElementById('game');
+let context = game.getContext('2d');
+context.fillStyle = "green";
+context.fillRect(10, 10, 20, 10);
+console.log(context);
 
 
-const usernameForm = document.getElementById('usernameForm');
-const gameBoard = document.getElementById('game');
-usernameForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    username = event.target.children[1].value;
-    usernameForm.style.display = 'none';
-    gameBoard.style.display = 'block';
-});
-
-gameBoard.addEventListener('click', startGame);
-
-function startGame(event) {
-    gameBoard.removeEventListener('click', startGame);
+/*
+NO CANVAS
 
 
-    // Create Enemies
-    let enemies = [];
-    for (let i = 0; i < 20; i++) {
-        enemies.push(new Enemy(i));
-    }
-
-    for (let i = 0; i < enemies.length; i++) {
-        console.log(enemies[i]);
-    }
-
-    // Create Game()
-    new Game(enemies, );
+function start() {
+    game.removeEventListener('click', start);
+    new Game();
 }
 
 class Game {
-    constructor(username) {
-        this.username = username;
-        this.player = undefined;
-        this.lives = 3;
+    constructor() {
+        this.enemies = [];
+        this.player = new Player(this.CreateDOMItem(['player'], '237.5px', '237.5px'));
+        for (let i = 0; i < 20; i++) this.enemies.push(new Enemy(this.CreateDOMItem(['enemy', i % 2 === 0 ? 'boopa' : 'gunner'], '0px', `${(Math.random() * 500) + 1}px`)));
+        this.powerup = new PowerUp(this.CreateDOMItem(['powerup'], '500px', `${Math.floor(Math.random() * 500) + 1}px`));
         this.enemiesDefeated = 0;
-        this.init();
+        this.Init();
     }
-    init() {
-        let runGame = setInterval(() => {
 
-        }, 0.303030303);
-        clearInterval(runGame);
+    Init() {
+        let id = setInterval(() => {
+            this.RunGame();
+        }, 33.3333333);
+        clearInterval(id);
+    }
+
+    CreateDOMItem(classList, x, y) {
+        let DOMItem = document.createElement('div');
+        DOMItem.style.top = y;
+        DOMItem.style.left = x;
+        for (let i = 0; i < classList.length; i++) {
+            DOMItem.classList.add(classList[i]);
+        }
+        game.insertAdjacentElement('beforeend', DOMItem);
+        return DOMItem;
+    }
+
+    RunGame() {
+        let id = setInterval(() => {
+            console.log('30 fps');
+        }, 33.3333333);
+        clearInterval(id);
+    }
+
+    Reset() {
+
+    }
+
+}
+
+
+class Player {
+    constructor(dom) {
+        this.dom = dom;
+        document.addEventListener('keydown', this.Move.bind(this));
+    }
+
+    Move(event) {
+        console.log(event.keyCode);
+        switch(event.keyCode) {
+            case(87):
+                document.documentElement.style.setProperty("--x", `${this.dom.offsetTop - 5}`);
+                this.dom.style.top = `${this.dom.offsetTop - 5}px`;
+                break;
+            case (68):
+                this.dom.style.left = `${this.dom.offsetLeft + 5}px`;
+                break;
+            case (65):
+                this.dom.style.left = `${this.dom.offsetLeft - 5}px`;
+                break;
+            case (83):
+                this.dom.style.top = `${this.dom.offsetTop + 5}px`;
+                break;
+        }
+    }
+}
+class PowerUp {
+    constructor(dom) {
+        this.dom = dom;
     }
 }
 
 class Enemy {
-    constructor(direction) {
-        this.direction = direction % 2 === 0 ? this.moveLeft : this.moveRight;
-        this.x = Math.floor(Math.random() * (500 - 1 + 1) + 1);
-        this.y = Math.floor(Math.random() * (500 - 1 + 1) + 1);
-        this.this = document.createElement('div');
-        this.this.classList.add(`enemy`);
-        this.this.classList.add(`${this.direction === this.moveLeft ? 'gunner' : 'boopa'}`);
-        document.getElementById('game').innerHTML += this.this;
-    }
-    moveLeft() {
-        this.this.style.left = this.x -= this.speed;
-    }
-    moveRight() {
-        this.this.style.left = this.x += this.speed;
+    constructor(dom) {
+        this.dom = dom;
     }
 }
+ */
 
-class Powerup {
-    constructor() {
-
-    }
-    Rainbow() {
-
-    }
-
-}

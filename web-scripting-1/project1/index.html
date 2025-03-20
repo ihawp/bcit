@@ -10,28 +10,18 @@
 
     <main>
 
-        <section id="welcome">
-
-            <form action="#" id="usernameForm" method="POST">
-
-                <label for="username">Username:</label>
-                <input type="text" id="username" placeholder="Username" autocomplete="on" required>
-                <button id="username-submit">Submit</button>
-
-            </form>
-
-        </section>
-
-        <section id="game">
-            <h2>Click anywhere on the gameBoard to start the game!</h2>
-            <video loop autoplay>
-                <source src="">
-            </video>
-        </section>
+        <div class="magical-borders-container">
+            <div class="magical-borders" style="width: 500px; height: 500px;">
+                <div class="magical-borders-inner">
+                    <canvas id="game"></canvas>
+                </div>
+            </div>
+        </div>
 
     </main>
 
     <script src="scripts/retry.js"></script>
+    <script src="scripts/magical-borders.js"></script>
 
 </body>
 
