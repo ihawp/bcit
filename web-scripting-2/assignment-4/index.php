@@ -234,19 +234,25 @@
     <section class="div-media flex-col gap-1 bg-2 c-1 p-1">
         <h2>getMessage():</h2>
         <?php
-            getMessage($userName, SPECIAL_DAYS);
+            if (!getMessage($userName, SPECIAL_DAYS)) {
+                echo 'Error (500): Invalid function input.';
+            };
         ?>
     </section>
     <section class="div-media flex-col gap-1 bg-2 c-1 p-1">
         <h2>formatName():</h2>
         <?php
-            formatName($customerNames01);
+            if (!formatName($customerNames02)) {
+                echo 'Error (500): Invalid function input.';
+            }
         ?>
     </section>
     <section class="div-media flex-col gap-1 bg-2 c-1 p-1">
         <h2>buildListOfLinks():</h2>
         <?php
-            buildListOfLinks($webDevLinks);
+            if (!buildListOfLinks($webDevLinks)) {
+                echo 'Error (500): Invalid function input. Please input an array that contains 1 or more items.';
+            }
         ?>
     </section>
 
