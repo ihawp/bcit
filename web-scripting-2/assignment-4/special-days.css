@@ -1,0 +1,35 @@
+@charset "utf-8";
+/*
+ 
+*/
+.birthday{
+    background-color: rgb(11, 114, 241);
+    color:aliceblue;
+    padding:10px;
+    border:solid 3px rgb(18, 43, 102);
+    border-radius: 10px;
+}
+.birthday:before, .birthday:after{
+    content: "🎂"; 
+}
+
+.halloween{
+    background-color: rgb(227, 153, 17);
+    color:aliceblue;
+    padding:10px;
+    border:solid 3px rgb(116, 82, 20);
+    border-radius: 10px;
+}
+.halloween:before, .halloween:after{
+    content: "🎃"; 
+}
+.christmas{
+    background-color: rgb(16, 172, 37);
+    color:aliceblue;
+    padding:10px;
+    border:solid 3px rgb(13, 81, 37);    
+    border-radius: 10px;
+}
+.christmas:before, .christmas:after{
+    content: "🎅"; 
+}
