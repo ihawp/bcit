@@ -4,6 +4,8 @@ const game = document.getElementById('game');
 let context = game.getContext('2d');
 context.fillStyle = "green";
 context.fillRect(10, 10, 20, 10);
+let q = context.getContext;
+console.log({q});
 console.log(context);
 
 
