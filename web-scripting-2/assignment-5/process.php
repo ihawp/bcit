@@ -234,6 +234,7 @@
         $lastNameExistence = checkExistence('last-name');
         $studentNumberExistence = checkExistence('student-number');
         $genderExistence = checkExistence('gender');
+        $describeYourselfExistence = checkExistence('describe-yourself');
 
         /*
 
@@ -286,46 +287,32 @@
             echo '<p>Hello '.$gender.' '.formatString($firstName).' '.formatString($lastName).'</p>';
 
             // Checkbox checking
-            $count = 0;
-            $buildUl = '';
-
-            // After determining that a value has been posted for that key
-            // a string is create from template and added to $buildUl for later printing
-            if (checkExistence('healthy')) {
-                $buildUl = $buildUl.'<li>'.cleanString($_POST['healthy']).'</li>';
-                $count++;
-            }
-            if (checkExistence('wealthy')) {
-                $buildUl = $buildUl.'<li>'.cleanString($_POST['wealthy']).'</li>';
-                $count++;
-            }
-            if (checkExistence('wise')) {
-                $buildUl = $buildUl.'<li>'.cleanString($_POST['wise']).'</li>';
-                $count++;
-            }
-
-            // If the count is not 0 after checking all checkboxes then some checkboxes were checked
-            // and we can print the built <ul> from $buildUl
-            if ($count !== 0) {
-                echo '<p class="font-weight-600">You are:</p>';
-                echo '<ul>'.$buildUl.'</ul>';
-            }
-
-            // Create message variable
+            // Was not aware of the name[] convention for checkbox grouping, thanks Jeff!
             $message = 'Chin up!';
+            if ($describeYourselfExistence) {
+                $describeYourself = $_POST['describe-yourself'];
 
-            switch ($count) {
-                case 1:
-                    $message = "Gee, that's swell!";
-                    break;
-                case 2:
-                    $message = 'Glad to hear it! Keep it up!';
-                    break;
-                case 3:
-                    $message = "WOW! That's great!";
-                    break;
+                if (is_array($describeYourself)) {
+                    for ($i = 0; $i < count($describeYourself);) {
+                        if (is_string($describeYourself[$i])) {
+                            echo '<li>'.cleanString($describeYourself[$i]).'</li>';
+                        }
+                        $i++;
+                    }
+    
+                    switch ($i) {
+                        case 1:
+                            $message = "Gee, that's swell!";
+                            break;
+                        case 2:
+                            $message = 'Glad to hear it! Keep it up!';
+                            break;
+                        case 3:
+                            $message = "WOW! That's great!";
+                            break;
+                    }
+                }
             }
-
             echo '<p>'.$message.'</p>';
         } else {
             // Check '...Existence' variables individually
