@@ -31,28 +31,29 @@ function Game() {
     this.powerups = undefined;
     this.init = function(context) {
         
+        // Create Enemies
+        for (let i = 0; i < 20; i++) this.enemies.push(new Enemy());
 
-        this.players.push(new Player());
-
-        for (let i = 0; i < 20; i++) {
-            let q = new Enemy();
-            this.enemies.push(q);
-            q.draw(context);
-        }
-
-        // Create player
+        // Create Players
+        // Could have array of starting positions here.
+        let sX = [-250, 750, 250, 250, 250];
+        let sY = [250, 250, 750, -250, 250];
+        for (let i = 0; i < 5; i++) this.players.push(new Player(sX[i], sY[i]));
         // If going to do 5 player thing for going off edges
         // have counting for offscreen enemies (don't render anything).
         // Once the enemy would be expected to be on screen begin rendering
         // and clearing, etc.
+
+        // Create PowerUps
+        
     }
     this.draw = function(context) {
         
-        context.save();
+        // context.save();
 
+        // Players
         for (let i = 0; i < this.players.length; i++) {
             let p = this.players[i];
-
             p.remove(context);
             p.draw(context);
         }
@@ -60,38 +61,43 @@ function Game() {
         // Enemies
         for (let i = 0; i < this.enemies.length; i++) {
 
-            // Update position
-            let p = this.enemies[i];
+            let enemy = this.enemies[i];
 
-            if (p.x > 500) {
-                p.x = -(randomNumberInRange(1, 500));
+            // Check if enemy is out of distance.
+            if (enemy.x > 500) {
+                enemy.x = -(randomNumberInRange(1, 500));
             }
+
+            this.moveEnemy(enemy, context);
 
             // check intersection
             // use radius idea.
 
-            p.remove(context);
-            p.update();
-            p.draw(context);
-    
-            // Check position
-    
+            // check radius of player 25px
+            
+            // create square in code of enemy / player
+            if (this.players) {
+
+            }
+
         }
-
-        // Player
-
 
         // Powerups (if any active)
 
 
-        context.restore();
+        // context.restore();
 
+    }
+    this.moveEnemy = (enemy, context) => {
+        enemy.remove(context);
+        enemy.update();
+        enemy.draw(context);
     }
 }
 
-function Player() {
-    this.x = 237;
-    this.y = 237;
+function Player(x, y) {
+    this.x = x;
+    this.y = y;
     this.lastX;
     this.lastY;
     this.size = 25;
@@ -99,8 +105,21 @@ function Player() {
     this.velocityX = 0;
     this.velocityY = 0;
     this.draw = function(context) {
+
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+
+        // Block the user in.
+        // Removable if using 5 player method.
+        /*
+        if (this.y < 0) this.y = 0;
+        if (this.y > 475) this.y = 475;
+        if (this.x < 0) this.x = 0;
+        if (this.x > 475) this.x = 475;
+        */
         context.fillStyle = 'black';
-        context.fillRect(this.x += this.velocityX, this.y += this.velocityY, this.size, this.size);
+        context.fillRect(this.x, this.y, this.size, this.size);
+
     }
     this.remove = function(context) {
         if (this.lastX !== undefined && this.lastY !== undefined) {
@@ -111,12 +130,6 @@ function Player() {
     this.keyDown = event => {
         event.preventDefault();
         let q = event.key;
-    
-        // MOVEMENT IS NOT SMOOTH AT ALL.
-        // Need to have a value added constantly while keydown
-        // If keyup stop adding that value to x/y
-        // This is what the p5.js framework did for me last year.
-    
         switch (q) {
             case ('w'):
                 this.lastY = this.y;
