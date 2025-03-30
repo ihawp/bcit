@@ -100,12 +100,7 @@ function Player() {
     this.velocityY = 0;
     this.draw = function(context) {
         context.fillStyle = 'black';
-        this.x += this.velocityX;
-        this.y += this.velocityY;
-        if (this.velocityX > 0) {
-            this.x += this.velocityX;
-        }
-        context.fillRect(this.x, this.y, this.size, this.size);
+        context.fillRect(this.x += this.velocityX, this.y += this.velocityY, this.size, this.size);
     }
     this.remove = function(context) {
         if (this.lastX !== undefined && this.lastY !== undefined) {
@@ -113,7 +108,7 @@ function Player() {
             context.fillRect(this.lastX, this.lastY, this.size, this.size);
         }
     }
-    this.keyDown = function(event) {
+    this.keyDown = event => {
         event.preventDefault();
         let q = event.key;
     
@@ -141,13 +136,19 @@ function Player() {
                 break;
         }
     }
-    this.keyUp = function(event) {
+    this.keyUp = event => {
         event.preventDefault();
         let q = event.key;
         switch (q) {
             case ('w'):
-            case ('a'):
+                this.velocityY = 0;
+                break;
             case ('s'):
+                this.velocityY = 0;
+                break;
+            case ('a'):
+                this.velocityX = 0;
+                break;
             case ('d'):
                 this.velocityX = 0;
                 break;
