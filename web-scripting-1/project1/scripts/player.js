@@ -1,12 +1,11 @@
-import { backgroundColor } from "./functions.js";
-
 export function Player(x, y) {
     this.x = x;
     this.y = y;
     this.size = 25;
-    this.speed = 5;
+    this.speed = 10;
     this.velocityX = 0;
     this.velocityY = 0;
+
     this.draw = function(context) {
 
         // Update player position (if velocity)
@@ -22,40 +21,38 @@ export function Player(x, y) {
         // Draw Player
         context.fillStyle = 'black';
         context.fillRect(this.x, this.y, this.size, this.size);
-
+        
     }
     this.keyDown = event => {
         event.preventDefault();
-        let q = event.key;
-        switch (q) {
-            case ('w'):
+        switch (event.keyCode) {
+            case (87):
                 this.velocityY = -(this.speed);
                 break;
-            case ('a'):
+            case (65):
                 this.velocityX = -(this.speed);
                 break;
-            case ('s'):
+            case (83):
                 this.velocityY = this.speed;
                 break;
-            case ('d'):
+            case (68):
                 this.velocityX = this.speed;
                 break;
         }
     }
     this.keyUp = event => {
         event.preventDefault();
-        let q = event.key;
-        switch (q) {
-            case ('w'):
+        switch (event.keyCode) {
+            case (87):
                 this.velocityY = 0;
                 break;
-            case ('s'):
+            case (83):
                 this.velocityY = 0;
                 break;
-            case ('a'):
+            case (65):
                 this.velocityX = 0;
                 break;
-            case ('d'):
+            case (68):
                 this.velocityX = 0;
                 break;
         }

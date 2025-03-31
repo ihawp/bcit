@@ -1,22 +1,15 @@
-import { randomNumberInRange, backgroundColor } from "./functions.js";
+import { randomNumberInRange } from "./functions.js";
 
 export function Enemy() {
 
     this.directionOdd = randomNumberInRange(0, 1);
     this.directionEven = randomNumberInRange(0, 1);
 
-    // How to best calculate or define the this.y/this.x based on directionOdd/Even and this.round (in Game)?
-    /*
-
-
-
-    */
-    
     // All for ODD
     this.y = randomNumberInRange(1, 500);
     this.x = -(randomNumberInRange(1, 500));
-    this.xAlt = randomNumberInRange(500, 1000);
 
+    this.xAlt = randomNumberInRange(500, 1000);
     // All for EVEN
     this.yEven = -(randomNumberInRange(1, 500));
     this.xEven = randomNumberInRange(1, 500);
@@ -26,33 +19,24 @@ export function Enemy() {
     this.size = this.type ? 8 : 13;
     this.color = this.type ? 'green' : 'red';
     this.lastX = undefined;
+    this.speed = 5;
 
     this.draw = function(context) {
         context.fillStyle = this.color;
         context.fillRect(this.x, this.y, this.size, this.size);
     }
-    this.remove = function(context) {
-        context.fillStyle = backgroundColor;
-        context.fillRect(this.x, this.y, this.size, this.size);
-    }
+
     this.moveRight = function() {
-        this.x += 5;
+        this.x += this.speed;
     }
     this.moveLeft = function() {
-        this.x -= 5;
+        this.x -= this.speed;
     }
     this.moveDown = function() {
-        this.y -= 5;
+        this.y -= this.speed;
     }
     this.moveUp = function() {
-        this.y += 5;
+        this.y += this.speed;
     }
-}
 
-function Gunner() {
-    this.gunner = 'gunner';
-}
-
-function Boopa() {
-    this.boopa = 'boopa';
 }
