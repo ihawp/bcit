@@ -16,12 +16,10 @@ export function Player(x, y) {
 
         // Block the user in.
         // Removable if using 5 player method.
-        /*
         if (this.y < 0) this.y = 0;
         if (this.y > 475) this.y = 475;
         if (this.x < 0) this.x = 0;
         if (this.x > 475) this.x = 475;
-        */
         context.fillStyle = 'black';
         context.fillRect(this.x, this.y, this.size, this.size);
 
