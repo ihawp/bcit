@@ -1,40 +1,46 @@
-import { randomNumberInRange } from "./functions.js";
+import { randomNumberInRange, backgroundColor } from "./functions.js";
 import { Enemy } from './enemy.js';
 import { Player } from './player.js';
+
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext("2d");
+const lives = document.getElementById('lives');
+const round = document.getElementById('round');
 
 export function Game() {
     this.thing = 10;
     this.enemies = [];
     this.players = [];
     this.powerups = undefined;
-    this.round = 0;
+    this.round = 1;
     this.lives = 3;
     this.totalEnemiesDefeated = 0;
-    this.init = function(context) {
+    this.intervalId = undefined;
+
+    this.init = function() {
         
         // Create Enemies
         for (let i = 0; i < 20; i++) this.enemies.push(new Enemy());
 
-        // Create Players
-        // Could have array of starting positions here.
-        let sX = [250, -250, 750, 250, 250];
-        let sY = [250, 250, 250, 750, -250];
-        for (let i = 0; i < 1; i++) this.players.push(new Player(sX[i], sY[i]));
-        // If going to do 5 player thing for going off edges
-        // have counting for offscreen enemies (don't render anything).
-        // Once the enemy would be expected to be on screen begin rendering
-        // and clearing, etc.
+        // Create Player(s... potentially)
+        for (let i = 0; i < 1; i++) this.players.push(new Player(250, 250));
 
         // Create PowerUps
+
+        this.start();
+
+        canvas.addEventListener('click', this.pauseController);
         
     }
-    this.draw = function(context) {
-        
+    this.draw = function() {
+
         // context.save();
+
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, 500, 500);
 
         // Players
         this.players.forEach(player => {
-            player.remove(context);
             player.draw(context);
         });
 
@@ -51,12 +57,21 @@ export function Game() {
                 console.log(this.totalEnemiesDefeated);
             }
 
-            enemy.remove(context);
+
             if (this.round % 2 == 0) {
-                this.moveEnemy(enemy, context);
+                if (enemy.directionEven) {
+                    enemy.moveUp();
+                } else {
+                    enemy.moveDown();
+                }
             } else {
-                enemy.directionEven();
+                if (enemy.directionOdd) {
+                    enemy.moveRight();
+                } else {
+                    enemy.moveLeft();
+                }
             }
+            
             enemy.draw(context);
 
             // check intersection
@@ -68,17 +83,21 @@ export function Game() {
 
         // Powerups (if any active)
 
-
         // Lives Count
 
         // context.restore();
 
     }
-
-    // Move an enemy.
-    this.moveEnemy = (enemy, context) => {
-        enemy.remove(context);
-        enemy.update();
-        enemy.draw(context);
+    this.start = function() {
+        return this.intervalId = setInterval(() => this.draw(), 33.03030);
+    }
+    this.pause = function() {
+        return clearInterval(this.intervalId);
+    }
+    this.pauseController = () => {
+        if (this.intervalId) {
+            return this.intervalId = this.pause();
+        }
+        this.intervalId = this.start();
     }
 }
