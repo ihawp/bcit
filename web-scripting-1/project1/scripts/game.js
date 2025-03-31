@@ -113,18 +113,21 @@ export function Game() {
             let enemyTop = enemy.y;
             let enemyBottom = enemy.y + enemy.size;
 
-            // Named based on side of enemy that would be 'hit'
-            let ifBottom = enemyTop < playerTop && enemyTop > playerBottom;
-            let ifTop = enemyBottom > playerTop && enemyBottom < playerBottom;
-            let ifLeft = enemyRight > playerLeft && enemyRight < playerRight;
-            let ifRight = enemyLeft < playerRight && enemyLeft > playerLeft;
+            let ifTop = enemyTop > playerTop && enemyTop < playerBottom;
+            let ifBottom = enemyBottom > playerTop && enemyBottom < playerBottom;
+            let ifRight = enemyRight > playerLeft && enemyRight < playerRight;
+            let ifLeft = enemyLeft < playerRight && enemyLeft > playerLeft;
+
+            if (ifTop) {
+                console.log('top');
+            }
 
             if (ifTop && ifLeft || ifBottom && ifLeft) {
-                console.log('RIGHT SIDE');
+                console.log('LEFT SIDE');
                 this.pause();
             }
             if (ifTop && ifRight || ifBottom && ifRight) {
-                console.log('LEFTw SIDE');
+                console.log('RIGHT SIDE');
                 this.pause();
             }
 
