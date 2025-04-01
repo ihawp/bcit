@@ -7,6 +7,8 @@ export function Player(x, y) {
     this.velocityX = 0;
     this.velocityY = 0;
 
+    this.invincible = false;
+
     this.draw = function(context) {
 
         // Update player position (if velocity)
@@ -54,15 +56,14 @@ export function Player(x, y) {
             this.x = 0;
         }
 
-
         // Draw Player
         context.fillStyle = 'black';
         context.fillRect(this.x, this.y, this.size, this.size);
         
     }
 
-    this.handling = function() {
-        // deal with intersection of player and enemy when mirroring before teleport.
+    this.invincibility = function(boolean) {
+        this.invincible = boolean;
     }
 
     this.keyDown = event => {
@@ -104,10 +105,6 @@ export function Player(x, y) {
     this.reset = function() {
         this.x = 250;
         this.y = 250;
-    }
-
-    this.edging = function() {
-
     }
 
     document.addEventListener('keydown', this.keyDown);

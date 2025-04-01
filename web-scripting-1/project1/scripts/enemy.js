@@ -41,7 +41,7 @@ export function Enemy() {
     // Shoot shots
     // Only for gunner enemy.
     this.shot = {
-        current: false,
+        happening: false,
         x: undefined,
         y: undefined,
         speed: 8,
@@ -67,6 +67,22 @@ export function Enemy() {
         // "Shoots boopas rather then bullets"
         context.fillStyle = 'green';
         context.fillRect(this.shot.x, this.shot.y, this.shot.size, this.shot.size);
+    }
+
+    this.setSpeed = function(speed) {
+        this.speed = speed;
+    }
+
+    this.setShotSpeed = function(speed) {
+        this.shot.speed = speed;
+    }
+
+    this.setShotSize = function(size) {
+        this.shot.size = size;
+    }
+
+    this.setSize = function(size) {
+        this.size = size;
     }
 
     this.moveRight = function() {

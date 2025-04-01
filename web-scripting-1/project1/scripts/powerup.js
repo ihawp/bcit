@@ -5,20 +5,27 @@ import { context } from './main.js';
 
 
 export function PowerUp() {
-    console.log('this is powerup');
 
-    this.type = randomNumberInRange(1, 4);
+    this.newType = function() {
+        this.type = randomNumberInRange(1, 4);
+    }
+
+    this.type = undefined;
+    this.newType();
+    
+    this.direction = randomNumberInRange(0, 1);
     this.x = undefined;
     this.y = undefined;
     this.speed = 7;
     this.size = 20;
     this.happening = false;
-
-    this.type = randomNumberInRange(1, 4);
+    this.waiting = false;
+    this.timeoutId = undefined;
 
     this.reset = function() {
         this.x = randomNumberInRange(1, 500);
-        this.y = this.type ? -(randomNumberInRange(0, 500)) : randomNumberInRange(500, 1000);
+        this.y = this.direction ? -(randomNumberInRange(0, 500)) : randomNumberInRange(500, 1000);
+        this.newType();
     }
 
     this.draw = function() {
@@ -38,4 +45,15 @@ export function PowerUp() {
     this.moveLeft = function() {
         this.x -= this.speed;
     }
+
+    this.resetTimeout = function() {
+        this.happening = false;
+        this.waiting = false;
+    }
+
+    this.clearTimeout = function() {
+        this.resetTimeout();
+        clearTimeout(this.timeoutId);
+    }
+
 }

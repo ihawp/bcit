@@ -30,9 +30,7 @@ export function Game() {
         this.player = new Player(250, 250);
 
         // Create PowerUps
-        for (let i = 0; i < 2; i++) {
-            this.powerups.push(new PowerUp());
-        }
+        this.powerup = new PowerUp();
 
 
         // Could be swapped to animation start or something prior to game beginning.
@@ -83,6 +81,7 @@ export function Game() {
         this.lives = 3;
         round.innerText = this.round;
         lives.innerText = this.lives;
+        enemiesDefeated.innerText = this.totalEnemiesDefeated;
 
     }
 
@@ -126,6 +125,7 @@ export function Game() {
         // context.save();
 
         // Background
+        context.save();
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
 
@@ -158,8 +158,10 @@ export function Game() {
             let ifRight = enemyRight > playerLeft && enemyRight < playerRight;
             let ifLeft = enemyLeft < playerRight && enemyLeft > playerLeft;
 
-            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-                this.enemyIntersection();
+            if (!this.player.invincible) {
+                if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+                    this.enemyIntersection();
+                }
             }
 
             // Check if enemy is out of distance.
@@ -173,29 +175,16 @@ export function Game() {
             }
 
             // Update Enemy Position
-            if (this.round % 2 == 0) {
-                if (enemy.directionEven) {
-                    enemy.moveUp();
-                } else {
-                    enemy.moveDown();
-                }
-            } else {
-                if (enemy.directionOdd) {
-                    enemy.moveRight();
-                } else {
-                    enemy.moveLeft();
-                }
-            }
+            this.round % 2 == 0 ? enemy.directionEven ? enemy.moveUp() : enemy.moveDown() : enemy.directionOdd ? enemy.moveRight() : enemy.moveLeft();
 
             // Draw the enemy in new position.
             enemy.draw(context);
 
             // Shoot shots
             if (enemy.type === 0) {
-                if (!enemy.shot.current) {
+                if (!enemy.shot.happening) {
                     enemy.adjustShot();
-                    enemy.shot.current = randomNumberInRange(1, 4);
-                    setTimeout(() => enemy.shot.current = false, 5000);
+                    enemy.shot.happening = randomNumberInRange(1, 4);
                 }
 
                 // Check intersection of shot and player
@@ -210,55 +199,64 @@ export function Game() {
                 ifRight = shotRight > playerLeft && shotRight < playerRight;
                 ifLeft = shotLeft < playerRight && shotLeft > playerLeft;
     
-                if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-                    this.shotIntersection();
+                if (!this.player.invincible) {
+                    if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+                        enemy.shot.happening = false;
+                        enemy.adjustShot();
+                        this.shotIntersection();
+                    }
                 }
 
-                switch (enemy.shot.current) {
-                    case (1):
-                        enemy.shootDown();
-                        break;
-                    case (2):
-                        enemy.shootLeft();
-                        break;
-                    case (3):
-                        enemy.shootUp();
-                        break;
-                    case (4):
-                        enemy.shootRight();
-                        break;
+                if (enemy.shot.happening) {
+                    switch (enemy.shot.happening) {
+                        case (1):
+                            enemy.shootDown();
+                            break;
+                        case (2):
+                            enemy.shootLeft();
+                            break;
+                        case (3):
+                            enemy.shootUp();
+                            break;
+                        case (4):
+                            enemy.shootRight();
+                            break;
+                    }
+                    enemy.drawShot();
                 }
-                enemy.drawShot();
+
+                // Check if off-screen
+                if (enemy.shot.x > 500 || enemy.shot.x < 0 || enemy.shot.y > 500 || enemy.shot.y < 0) {
+                    enemy.shot.happening = false;
+                }
             }
 
         });
 
         // Powerups (if any active)
-        this.powerups.forEach(powerup => {
+        let powerUpLeft = this.powerup.x;
+        let powerUpRight = this.powerup.x + this.powerup.size;
+        let powerUpTop = this.powerup.y;
+        let powerUpBottom = this.powerup.y + this.powerup.size;
 
-            let powerUpLeft = powerup.x;
-            let powerUpRight = powerup.x + powerup.size;
-            let powerUpTop = powerup.y;
-            let powerUpBottom = powerup.y + powerup.size;
+        let ifTop = powerUpTop > playerTop && powerUpTop < playerBottom;
+        let ifBottom = powerUpBottom > playerTop && powerUpBottom < playerBottom;
+        let ifRight = powerUpRight > playerLeft && powerUpRight < playerRight;
+        let ifLeft = powerUpLeft < playerRight && powerUpLeft > playerLeft;
 
-            let ifTop = powerUpTop > playerTop && powerUpTop < playerBottom;
-            let ifBottom = powerUpBottom > playerTop && powerUpBottom < playerBottom;
-            let ifRight = powerUpRight > playerLeft && powerUpRight < playerRight;
-            let ifLeft = powerUpLeft < playerRight && powerUpLeft > playerLeft;
+        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+            this.powerUpIntersection();
+        }
 
-            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-                this.powerUpIntersection();
-            }
-
-            if (!powerup.happening) {
-                powerup.reset();
-                powerup.happening = true;
-                setTimeout(() => powerup.happening = false, 30000); 
-            }
-            powerup.type ? powerup.moveDown() : powerup.moveUp();
-            powerup.draw();
-
-        });
+        if (!this.powerup.happening) {
+            this.powerup.reset();
+            this.powerup.happening = true;
+            this.powerup.timeoutId = setTimeout(() => this.powerup.resetTimeout(), 25000); 
+        }
+        if (!this.powerup.waiting) {
+            this.powerup.direction ? this.powerup.moveDown() : this.powerup.moveUp();
+            this.powerup.draw();
+        }
 
         // Lives Count
 
@@ -272,6 +270,7 @@ export function Game() {
         } else {
             enemy.resetOdd();
         }
+        enemy.adjustShot();
     }
 
     this.resetEnemies = function() {
@@ -283,33 +282,100 @@ export function Game() {
         this.resetEnemies();
     }
 
-    this.enemyIntersection = function() {
-
+    this.intersection = function() {
         this.resetEnemies();
         
         this.pause();
 
-        if (this.lives === 0) {
+        if (this.lives <= 0) {
             return this.dead();
         }
 
         this.respawn();
+    }
+
+    this.setLives = function() {
+        lives.innerText = this.lives;
+    }
+
+    this.enemyIntersection = function() {
 
         this.lives--;
-        lives.innerText = this.lives;
+
+        this.intersection();
+
+        this.setLives();
 
     }
 
     this.shotIntersection = function() {
 
-        this.pause();
+        this.lives -= .5;
+
+        this.intersection();
+
+        this.setLives();
 
     }
 
     this.powerUpIntersection = function() {
 
-        this.pause();
+        this.powerup.waiting = true;
 
+        this.powerup.reset();
+
+        switch (this.powerup.type) {
+            case (1):
+                // Slowdown
+                // Perhaps add 3 powerups that are forgotten about later
+                this.setEnemiesSpeed(1);
+                setTimeout(() => this.setEnemiesSpeed(5), 5000);
+                break;
+            case (2):
+                // Rainbow
+                this.setEnemiesSpeed(10);
+                this.setEnemiesSize(0);
+                this.player.invincibility(true);
+                setTimeout(() => {
+                    this.setEnemiesSpeed(5);
+                    this.resetEnemiesSize();
+                }, 5000);
+                setTimeout(() => {
+                    this.player.invincibility(false);
+                }, 7500);
+                break;
+            case (3):
+                // Trick
+                this.player.speed = 3;
+                setTimeout(() => this.player.speed = 5, 5000);
+                break;
+            case (4):
+                // Free Life
+                this.lives++;
+                break;
+        }
+
+    }
+
+    this.setEnemiesSpeed = function(speed) {
+        this.enemies.forEach(enemy => {
+            enemy.setSpeed(speed);
+            enemy.setShotSpeed(speed * 1.6);
+        });
+    }
+
+    this.setEnemiesSize = function(size) {
+        this.enemies.forEach(enemy => {
+            enemy.setSize(size)
+            enemy.setShotSize(size);
+        });
+    }
+
+    this.resetEnemiesSize = function() {
+        this.enemies.forEach(enemy => {
+            enemy.type ? enemy.setSize(8) : enemy.setSize(13)
+            enemy.shot.size = 8;
+        });
     }
 
     this.startGame = function() {
