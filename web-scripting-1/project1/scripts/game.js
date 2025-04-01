@@ -8,9 +8,10 @@ const enemiesDefeated = document.getElementById('enemies-defeated');
 const backgroundColor = 'purple';
 
 export function Game() {
-    this.enemies = [];
+
     this.player;
-    this.powerups = undefined;
+    this.enemies = [];
+    this.powerups = [];
     this.plays = 0;
     this.round = 1;
     this.lives = 3;
@@ -19,33 +20,103 @@ export function Game() {
 
     this.init = function() {
         
-        for (let i = 0; i < 20; i++) this.enemies.push(new Enemy());
+        for (let i = 0; i < 20; i++) {
+            let enemy = new Enemy();
+            this.resetEnemy(enemy);
+            this.enemies.push(enemy);
+        }
+        
         this.player = new Player(250, 250);
 
         // Create PowerUps
 
 
         // Could be swapped to animation start or something prior to game beginning.
-        if (this.plays === 1) {
-            this.startWelcome();
+        if (this.plays === 0) {
+            this.intervalId = this.home();
+            canvas.addEventListener('click', this.pauseController);
         } else {
             this.startGame();
-            canvas.addEventListener('click', this.pauseController);
         }
     }
-    this.welcome = function() {
 
+    this.home = function() {
+
+        // Clean up.
+        context.save();
         context.fillStyle = 'red';
         context.fillRect(0, 0, 500, 500);
-
+        context.save();
         context.fillStyle = 'blue';
         context.fillText('Welcome to Breakthrough v2', 250, 250);
-
-        setTimeout(() => {
-            console.log('5 seconds later');
-        }, 5000);
+        context.fillText('Click anywhere to begin', 250, 270);
+        context.restore();
 
     }
+
+    this.welcome = function() {
+        // animation showing how to play game or something?
+    }
+
+    this.dead = function() {
+
+        this.resetBetween();
+
+        // Clean up.
+        context.save();
+        context.fillStyle = 'red';
+        context.fillRect(0, 0, 500, 500);
+        context.save();
+        context.fillStyle = 'blue';
+        context.fillText('You died.', 250, 250);
+        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 250, 270);
+        context.fillText(`You made it to round ${this.round}`, 250, 290);
+        context.restore();
+
+        this.plays++;
+        this.round = 1;
+        this.totalEnemiesDefeated = 0;
+        this.lives = 3;
+        round.innerText = this.round;
+        lives.innerText = this.lives;
+
+    }
+
+    this.respawn = function() {
+
+        this.resetBetween();
+
+        // Clean up.
+        context.save();
+        context.fillStyle = 'red';
+        context.fillRect(0, 0, 500, 500);
+        context.save();
+        context.fillStyle = 'blue';
+        context.fillText('You died.', 250, 250);
+        context.fillText('Click anywhere to respawn.', 250, 270);
+        context.restore();
+
+    }
+
+    this.nextRound = function() {
+
+        this.resetBetween();
+
+        // Clean up.
+        context.save();
+        context.fillStyle = 'red';
+        context.fillRect(0, 0, 500, 500);
+        context.save();
+        context.fillStyle = 'blue';
+        context.fillText(`You completed round ${this.round}!`, 250, 250);
+        context.fillText('Click anywhere to respawn.', 250, 270);
+        context.restore();
+
+        this.round++;
+        round.innerText = this.round;
+
+    }
+
     this.draw = function() {
 
         // context.save();
@@ -53,6 +124,12 @@ export function Game() {
         // Background
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
+
+        // Check Round Completion
+        if (this.totalEnemiesDefeated >= this.round * 100) {
+            this.pause();
+            return this.nextRound();
+        }
 
         // Players
         this.player.draw(context);
@@ -66,46 +143,15 @@ export function Game() {
         // Enemies
         this.enemies.forEach(enemy => {
 
-            /* For enemy out of distance reset... etc.
-            // All for ODD
-            this.y = randomNumberInRange(1, 500);
-            this.x = -(randomNumberInRange(1, 500));
-            this.xAlt = randomNumberInRange(500, 1000);
-
-            // All for EVEN
-            this.yEven = -(randomNumberInRange(1, 500));
-            this.xEven = randomNumberInRange(1, 500);
-            this.yAlt = randomNumberInRange(500, 1000);
-            */
             // Check if enemy is out of distance.
-            if (enemy.x > 500 && enemy.directionOdd ) {
-                enemy.x = -(randomNumberInRange(1, 500));
+            if (enemy.x > 500 && enemy.directionOdd || enemy.x < 0 && !enemy.directionOdd) {
+                enemy.resetOdd();
                 enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
             }
-
-            
-
-            // Update Enemy Position
-            if (this.enemiesDefeated > 1) {
-
-            } else {
-                if (this.round % 2 == 0) {
-                    if (enemy.directionEven) {
-                        enemy.moveUp();
-                    } else {
-                        enemy.moveDown();
-                    }
-                } else {
-                    if (enemy.directionOdd) {
-                        enemy.moveRight();
-                    } else {
-                        enemy.moveLeft();
-                    }
-                }
+            if (enemy.y > 500 && enemy.directionEven || enemy.y < 0 && !enemy.directionEven) {
+                enemy.resetEven();
+                enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
             }
-            
-            // Draw the enemy in new position.
-            enemy.draw(context);
 
             // Check Intersection
             let enemyLeft = enemy.x;
@@ -118,37 +164,83 @@ export function Game() {
             let ifRight = enemyRight > playerLeft && enemyRight < playerRight;
             let ifLeft = enemyLeft < playerRight && enemyLeft > playerLeft;
 
-            if (ifTop) {
-                console.log('top');
+            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+                this.intersection();
             }
 
-            if (ifTop && ifLeft || ifBottom && ifLeft) {
-                console.log('LEFT SIDE');
-                this.pause();
+            // Update Enemy Position
+            if (this.round % 2 == 0) {
+                if (enemy.directionEven) {
+                    enemy.moveUp();
+                } else {
+                    enemy.moveDown();
+                }
+            } else {
+                if (enemy.directionOdd) {
+                    enemy.moveRight();
+                } else {
+                    enemy.moveLeft();
+                }
             }
-            if (ifTop && ifRight || ifBottom && ifRight) {
-                console.log('RIGHT SIDE');
-                this.pause();
-            }
+            
+            // Draw the enemy in new position.
+            enemy.draw(context);
 
         });
 
         // Powerups (if any active)
+        this.powerups.forEach(powerup => {
+
+        });
 
         // Lives Count
 
         // context.restore();
 
     }
-    this.startWelcome = function() {
-        return this.intervalId = setInterval(() => this.welcome(), framerate);
+
+    this.resetEnemy = function(enemy) {
+        if (this.round % 2 === 0) {
+            enemy.resetEven();
+        } else {
+            enemy.resetOdd();
+        }
     }
+
+    this.resetEnemies = function() {
+        this.enemies.forEach(enemy => this.resetEnemy(enemy));
+    }
+
+    this.resetBetween = function() {
+        this.player.reset();
+        this.resetEnemies();
+    }
+
+    this.intersection = function() {
+
+        this.resetEnemies();
+        
+        this.pause();
+
+        if (this.lives === 0) {
+            return this.dead();
+        }
+
+        this.respawn();
+
+        this.lives--;
+        lives.innerText = this.lives;
+
+    }
+
     this.startGame = function() {
         return this.intervalId = setInterval(() => this.draw(), framerate);
     }
+
     this.pause = function() {
-        return clearInterval(this.intervalId);
+        return this.intervalId = clearInterval(this.intervalId);
     }
+
     this.pauseController = () => {
         if (this.intervalId) {
             return this.intervalId = this.pause();
