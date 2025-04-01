@@ -22,29 +22,30 @@ export function Enemy() {
 
     this.resetOdd = function() {
         if (this.directionOdd) {
-            this.x = -(randomNumberInRange(0, 500));
+            this.x = -(randomNumberInRange(100, 600));
         } else {
-            this.x = randomNumberInRange(500, 1000);
+            this.x = randomNumberInRange(600, 1100);
         }
         this.y = randomNumberInRange(0, 500);
     }
 
     this.resetEven = function() {
         if (this.directionEven) {
-            this.y = -(randomNumberInRange(0, 500));
+            this.y = -(randomNumberInRange(100, 600));
         } else {
-            this.y = randomNumberInRange(500, 1000);
+            this.y = randomNumberInRange(600, 1100);
         }
         this.x = randomNumberInRange(0, 500);
     }
 
     // Shoot shots
+    // Only for gunner enemy.
     this.shot = {
         current: false,
         x: undefined,
         y: undefined,
-        speed: 10,
-        size: 15,
+        speed: 8,
+        size: 8,
     }
     this.adjustShot = function() {
         this.shot.x = this.x;
@@ -63,7 +64,8 @@ export function Enemy() {
         this.shot.y -= this.shot.speed;
     }
     this.drawShot = function() {
-        context.fillStyle = this.color;
+        // "Shoots boopas rather then bullets"
+        context.fillStyle = 'green';
         context.fillRect(this.shot.x, this.shot.y, this.shot.size, this.shot.size);
     }
 
