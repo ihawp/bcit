@@ -186,7 +186,11 @@ export function Game() {
             // Draw the enemy in new position.
             enemy.draw(context);
 
-            // Shoot shots
+            // Shoot shots --- CLEANUP
+            // Needs to have intersection checked as well
+            // Make some X result smaller as round number grows
+            // Perhaps make it so 'Gunner' can just shoot any direction all the time
+            // ^ ?? ^ 
             if (enemy.type === 0) {
                 if (this.round % 2 == 0) {
                     if (enemy.directionEven) {
