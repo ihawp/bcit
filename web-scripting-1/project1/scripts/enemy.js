@@ -1,4 +1,5 @@
 import { randomNumberInRange } from "./functions.js";
+import { context } from "./main.js";
 
 export function Enemy() {
 
@@ -27,6 +28,7 @@ export function Enemy() {
         }
         this.y = randomNumberInRange(0, 500);
     }
+
     this.resetEven = function() {
         if (this.directionEven) {
             this.y = -(randomNumberInRange(0, 500));
@@ -34,6 +36,35 @@ export function Enemy() {
             this.y = randomNumberInRange(500, 1000);
         }
         this.x = randomNumberInRange(0, 500);
+    }
+
+    // Shoot shots
+    this.shot = {
+        current: false,
+        x: undefined,
+        y: undefined,
+        speed: 10,
+        size: 15,
+    }
+    this.adjustShot = function() {
+        this.shot.x = this.x;
+        this.shot.y = this.y;
+    }
+    this.shootLeft = function() {
+        this.shot.x -= this.shot.speed;
+    }
+    this.shootRight = function() {
+        this.shot.x += this.shot.speed;
+    }
+    this.shootDown = function() {
+        this.shot.y += this.shot.speed;
+    }
+    this.shootUp = function() {
+        this.shot.y -= this.shot.speed;
+    }
+    this.drawShot = function() {
+        context.fillStyle = this.color;
+        context.fillRect(this.shot.x, this.shot.y, this.shot.size, this.shot.size);
     }
 
     this.moveRight = function() {

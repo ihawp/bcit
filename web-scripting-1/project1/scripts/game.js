@@ -182,9 +182,49 @@ export function Game() {
                     enemy.moveLeft();
                 }
             }
-            
+
             // Draw the enemy in new position.
             enemy.draw(context);
+
+            // Shoot shots
+            if (enemy.type === 0) {
+                if (this.round % 2 == 0) {
+                    if (enemy.directionEven) {
+                        if (!enemy.shot.current) {
+                            enemy.adjustShot();
+                            enemy.shot.current = true;
+                            setTimeout(() => enemy.shot.current = false, 5000);
+                        }
+                        enemy.shootDown();
+                    } else {
+                        if (!enemy.shot.current) {
+                            enemy.adjustShot();
+                            enemy.shot.current = true;
+                            setTimeout(() => enemy.shot.current = false, 5000);
+                        }
+                        enemy.shootUp();
+                    }
+                } else {
+                    if (enemy.directionOdd) {
+                        console.log(enemy.shot.current);
+                        if (!enemy.shot.current) {
+                            enemy.adjustShot();
+                            enemy.shot.current = true;
+                            setTimeout(() => enemy.shot.current = false, 5000);
+                        }
+                        console.log(enemy.x, enemy.shot.x);
+                        enemy.shootRight();
+                    } else {
+                        if (!enemy.shot.current) {
+                            enemy.adjustShot();
+                            enemy.shot.current = true;
+                            setTimeout(() => enemy.shot.current = false, 5000);
+                        }
+                        enemy.shootLeft();
+                    }
+                }
+                enemy.drawShot();
+            }
 
         });
 
