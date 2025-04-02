@@ -16,7 +16,7 @@ export function Game() {
     this.plays = 0;
     this.round = 1;
     this.lives = 3;
-    this.totalEnemiesDefeated = 99;
+    this.totalEnemiesDefeated = 100;
     this.intervalId = undefined;
 
     this.init = function() {
@@ -91,8 +91,8 @@ export function Game() {
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'blue';
-        context.font = '25px sans-serif';
         context.fillStyle = 'white';
+        context.font = '25px sans-serif';
         context.fillText('You died.', 210, 250);
         context.font = '15px sans-serif';
         context.fillText('Click anywhere to respawn.', 170, 290);
@@ -124,7 +124,6 @@ export function Game() {
         // context.save();
 
         // Background
-        context.save();
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
 
@@ -140,6 +139,9 @@ export function Game() {
         this.player.draw(context);
 
         // Player square.
+        // Perhaps revert to making 4 new var here
+        // that are passed to each of the ..checkIntersection.. functions.
+        // State of this.player.left..etc might be new when called later by the intersection function.
         this.player.left = this.player.x;
         this.player.right = this.player.x + this.player.size;
         this.player.top = this.player.y;
@@ -180,7 +182,7 @@ export function Game() {
 
             // Shoot shots
             if (enemy.type === 0) {
-                
+
                 if (!enemy.shot.happening) {
                     enemy.adjustShot();
                     enemy.shot.happening = randomNumberInRange(1, 4);
@@ -296,14 +298,34 @@ export function Game() {
         let powerUpTop = this.powerup.y;
         let powerUpBottom = this.powerup.y + this.powerup.size;
 
-        let ifTop = powerUpTop > this.player.top && powerUpTop < this.player.bottom;
-        let ifBottom = powerUpBottom > this.player.top && powerUpBottom < this.player.bottom;
-        let ifRight = powerUpRight > this.player.left && powerUpRight < this.player.right;
-        let ifLeft = powerUpLeft < this.player.right && powerUpLeft > this.player.left;
-
-        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-            return 1;
+        if (!this.player.overedge) {
+            let ifTop = powerUpTop > this.player.top && powerUpTop < this.player.bottom;
+            let ifBottom = powerUpBottom > this.player.top && powerUpBottom < this.player.bottom;
+            let ifRight = powerUpRight > this.player.left && powerUpRight < this.player.right;
+            let ifLeft = powerUpLeft < this.player.right && powerUpLeft > this.player.left;
+            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+                return 1;
+            }
+        } else {
+            let ifTop = powerUpTop > this.player.top && powerUpTop < this.player.bottom;
+            let ifBottom = powerUpBottom > this.player.top && powerUpBottom < this.player.bottom;
+            let ifRight = powerUpRight > this.player.left && powerUpRight < this.player.right;
+            let ifLeft = powerUpLeft < this.player.right && powerUpLeft > this.player.left;
+            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+                return 1;
+            }
+            switch (this.player.distorted) {
+                case (1):
+                    break;
+                case (2):
+                    break;
+                case (3):
+                    break;
+                case (4):
+                    break;
+            }
         }
+
         return 0;
     }
 
@@ -318,8 +340,32 @@ export function Game() {
         let ifRight = enemyRight > this.player.left && enemyRight < this.player.right;
         let ifLeft = enemyLeft < this.player.right && enemyLeft > this.player.left;
 
-        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-            return 1;
+        if (!this.player.overedge) {
+            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+                return 1;
+            }
+        } else {
+            switch (this.player.distorted) {
+                case (1):
+                    // off top
+                    ifTop = enemyTop > this.player.top + 500 && enemyTop < this.player.bottom + 500;
+                    break;
+                case (2):
+                    // off bottom
+                    ifBottom = enemyBottom > this.player.top - 500 && enemyBottom < this.player.bottom - 500;
+                    break;
+                case (3):
+                    // off left
+                    ifLeft = enemyLeft < this.player.right + 500 && enemyLeft > this.player.left + 500;
+                    break;
+                case (4):
+                    // off right
+                    ifRight = enemyRight > this.player.left - 500 && enemyRight < this.player.right - 500;
+                    break;
+            }
+            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+                return 1;
+            }
         }
         return 0;
     }

@@ -12,6 +12,9 @@ export function Player(x, y) {
     this.left = undefined;
     this.right = undefined;
 
+    this.overedge = false;
+    this.distorted = undefined;
+
     this.invincible = false;
 
     this.draw = function(context) {
@@ -31,6 +34,7 @@ export function Player(x, y) {
         context.fillStyle = 'black';
         if (this.y < 25) {
             context.fillRect(this.x, this.y + 500, this.size, this.size);
+            this.distorted = 1;
         }
 
         if (this.y < 0) {
@@ -39,6 +43,7 @@ export function Player(x, y) {
 
         if (this.y > 475) {
             context.fillRect(this.x, this.y - 500, this.size, this.size);
+            this.distorted = 2;
         }
 
         if (this.y > 500) {
@@ -47,6 +52,7 @@ export function Player(x, y) {
 
         if (this.x < 25) {
             context.fillRect(this.x + 500, this.y, this.size, this.size);
+            this.distorted = 3;
         }
 
         if (this.x < 0) {
@@ -55,10 +61,20 @@ export function Player(x, y) {
 
         if (this.x > 475) {
             context.fillRect(this.x - 500, this.y, this.size, this.size);
+            this.distorted = 4;
         }
 
         if (this.x > 500) {
             this.x = 0;
+        }
+
+        // Set overedge value
+        if (this.y < 25 || this.y > 475 || this.x < 25 || this.x > 475) {
+            this.overedge = true;
+        }
+
+        if (this.y > 25 && this.y < 475 && this.x > 25 && this.x < 475) {
+            this.overedge = false;
         }
 
         // Draw Player
