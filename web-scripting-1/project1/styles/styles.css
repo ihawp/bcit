@@ -21,6 +21,7 @@ body {
 #canvas {
     cursor: pointer;
     box-shadow: 0 0 25px 25px rgb(255, 255, 255, .05);
+    z-index: 999;
 }
 #canvas:active {
     cursor: default;
@@ -72,23 +73,22 @@ header, main, footer {
     width: 100%;
 }
 
+/*
+
 #panel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     animation: rotate infinite 100s ease;
 }
 
 @keyframes rotate {
     0% {
-        transform: rotate(0deg);
+        rotate: 0deg;
     }
     100% {
-        transform: rotate(360deg);
+        rotate: 360deg;
     }
 }
+
+*/
 
 @media (min-width: 50em) {
     header, main, footer {
