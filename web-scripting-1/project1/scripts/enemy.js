@@ -35,7 +35,7 @@ export function Enemy() {
         } else {
             this.y = randomNumberInRange(600, 1100);
         }
-        this.x = randomNumberInRange(0, 500);
+        this.x = randomNumberInRange(490, 500);
     }
 
     // Shoot shots

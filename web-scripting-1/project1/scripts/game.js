@@ -14,7 +14,7 @@ export function Game() {
     this.enemies = [];
     this.powerups = [];
     this.plays = 0;
-    this.round = 1;
+    this.round = 2;
     this.lives = 3;
     this.totalEnemiesDefeated = 100;
     this.intervalId = undefined;
