@@ -115,6 +115,8 @@ export function Game() {
         this.round++;
         round.innerText = this.round;
 
+        this.resetEnemies();
+
     }
 
     this.draw = function() {
@@ -159,11 +161,13 @@ export function Game() {
             // Check if enemy is out of distance.
             if (round) {
                 if (enemy.y > 500 && enemy.directionEven || enemy.y < 0 && !enemy.directionEven) {
+                    console.log('even');
                     enemy.resetEven();
                     enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
                 }
             } else {
                 if (enemy.x > 500 && enemy.directionOdd || enemy.x < 0 && !enemy.directionOdd) {
+                    console.log('idd');
                     enemy.resetOdd();
                     enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
                 }
