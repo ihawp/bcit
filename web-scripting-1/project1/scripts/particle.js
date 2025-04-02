@@ -10,6 +10,7 @@ export default function Panel() {
     this.style.left = '0';
     this.style.width = '100vw';
     this.style.height = '100vh';
+    this.style.zIndex = '-1';
 
     this.particles = [];
 
