@@ -7,15 +7,27 @@ html {
     padding: 0;
 }
 
+body {
+    font-family: sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: purple;
+    color: #fff;
+}
+
 #canvas {
     cursor: pointer;
+    box-shadow: 0 0 25px 25px rgb(255, 255, 255, .05);
+    z-index: 999;
 }
 #canvas:active {
     cursor: default;
 }
 
 #lives {
-    list-style: none;
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -27,9 +39,66 @@ html {
 #lives svg {
     width: 30px;
 }
+#lives svg path {
+    fill: #fff;
+}
+
+#game, #ui {
+    display: flex;
+    justify-content: center;
+}
+
+#canvas {
+    border: 2px solid #fff;
+}
 
 #ui {
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0 0 0;
+    gap: 2rem;
+}
+
+header {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    margin: 0 0 50px 0;
+}
+
+ul {
+    list-style: none;
+}
+
+header, main, footer {
+    width: 100%;
+}
+
+#panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    animation: rotate infinite 100s ease;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (min-width: 50em) {
+    header, main, footer {
+        width: 50rem;
+    }
+}
+
+@media (min-width: 75em) {
+    header, main, footer {
+        width: 75rem;
+    }
 }

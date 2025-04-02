@@ -265,6 +265,8 @@ export function Game() {
         }
 
         // Test if checkable item is intersecting with player
+        // Could have mixed this with the checking of the mirrored player... but
+        // for now I will leave the if statements seperated.
         if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
             return 1;
         }
