@@ -23,8 +23,8 @@ export function PowerUp(x, y) {
     this.timeoutId = undefined;
 
     this.reset = function() {
-        this.x = randomNumberInRange(1, 500);
-        this.y = this.direction ? -(randomNumberInRange(0, 500)) : randomNumberInRange(500, 1000);
+        this.x = randomNumberInRange(0 + this.size, 500 - this.size);
+        this.y = this.direction ? -(randomNumberInRange(1, 500)) : randomNumberInRange(500, 1000);
         this.newType();
     }
 

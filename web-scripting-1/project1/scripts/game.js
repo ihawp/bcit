@@ -151,7 +151,7 @@ export function Game() {
         this.enemies.forEach(enemy => {
 
             // Check intersection of enemy and player
-            if (this.checkEnemyIntersection(enemy)) {
+            if (this.checkIntersection(enemy)) {
                 if (!this.player.invincible) {
                     this.enemyIntersection();
                 }
@@ -189,7 +189,7 @@ export function Game() {
                 }
 
                 // Check intersection of shot and player
-                if (this.checkEnemyShotIntersection(enemy)) {
+                if (this.checkIntersection(enemy.shot)) {
                     if (!this.player.invincible) {
                         setTimeout(() => enemy.shot.happening = false, 2000);
                         enemy.adjustShot();
@@ -225,7 +225,7 @@ export function Game() {
         });
 
         // Powerups
-        if (this.checkPowerUpIntersection()) {
+        if (this.checkIntersection(this.powerup)) {
             this.powerUpIntersection();
         }
         if (!this.powerup.happening) this.powerup.notHappening();
@@ -292,96 +292,37 @@ export function Game() {
 
     }
 
-    this.checkPowerUpIntersection = function() {
-        let powerUpLeft = this.powerup.x;
-        let powerUpRight = this.powerup.x + this.powerup.size;
-        let powerUpTop = this.powerup.y;
-        let powerUpBottom = this.powerup.y + this.powerup.size;
+    this.checkIntersection = function(checkable) {
+        let left = checkable.x;
+        let right = checkable.x + checkable.size;
+        let top = checkable.y;
+        let bottom = checkable.y + checkable.size;
 
-        if (!this.player.overedge) {
-            let ifTop = powerUpTop > this.player.top && powerUpTop < this.player.bottom;
-            let ifBottom = powerUpBottom > this.player.top && powerUpBottom < this.player.bottom;
-            let ifRight = powerUpRight > this.player.left && powerUpRight < this.player.right;
-            let ifLeft = powerUpLeft < this.player.right && powerUpLeft > this.player.left;
-            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-                return 1;
-            }
-        } else {
-            let ifTop = powerUpTop > this.player.top && powerUpTop < this.player.bottom;
-            let ifBottom = powerUpBottom > this.player.top && powerUpBottom < this.player.bottom;
-            let ifRight = powerUpRight > this.player.left && powerUpRight < this.player.right;
-            let ifLeft = powerUpLeft < this.player.right && powerUpLeft > this.player.left;
-            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-                return 1;
-            }
-            switch (this.player.distorted) {
-                case (1):
-                    break;
-                case (2):
-                    break;
-                case (3):
-                    break;
-                case (4):
-                    break;
-            }
-        }
+        let ifTop = top > this.player.top && top < this.player.bottom;
+        let ifBottom = bottom > this.player.top && bottom < this.player.bottom;
+        let ifRight = right > this.player.left && right < this.player.right;
+        let ifLeft = left < this.player.right && left > this.player.left;
 
-        return 0;
-    }
-
-    this.checkEnemyIntersection = function(enemy) {
-        let enemyLeft = enemy.x;
-        let enemyRight = enemy.x + enemy.size;
-        let enemyTop = enemy.y;
-        let enemyBottom = enemy.y + enemy.size;
-
-        let ifTop = enemyTop > this.player.top && enemyTop < this.player.bottom;
-        let ifBottom = enemyBottom > this.player.top && enemyBottom < this.player.bottom;
-        let ifRight = enemyRight > this.player.left && enemyRight < this.player.right;
-        let ifLeft = enemyLeft < this.player.right && enemyLeft > this.player.left;
-
-        if (!this.player.overedge) {
-            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-                return 1;
-            }
-        } else {
+        if (this.player.overedge) {
             switch (this.player.distorted) {
                 case (1):
                     // off top
-                    ifTop = enemyTop > this.player.top + 500 && enemyTop < this.player.bottom + 500;
+                    ifTop = top > this.player.top + 500 && top < this.player.bottom + 500;
                     break;
                 case (2):
                     // off bottom
-                    ifBottom = enemyBottom > this.player.top - 500 && enemyBottom < this.player.bottom - 500;
+                    ifBottom = bottom > this.player.top - 500 && bottom < this.player.bottom - 500;
                     break;
                 case (3):
                     // off left
-                    ifLeft = enemyLeft < this.player.right + 500 && enemyLeft > this.player.left + 500;
+                    ifLeft = left < this.player.right + 500 && left > this.player.left + 500;
                     break;
                 case (4):
                     // off right
-                    ifRight = enemyRight > this.player.left - 500 && enemyRight < this.player.right - 500;
+                    ifRight = right > this.player.left - 500 && right < this.player.right - 500;
                     break;
             }
-            if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-                return 1;
-            }
         }
-        return 0;
-    }
-
-    this.checkEnemyShotIntersection = function(enemy) {
-        let enemyShot = enemy.shot;
-        let shotLeft = enemyShot.x;
-        let shotRight = enemyShot.x + enemyShot.size;
-        let shotTop = enemyShot.y;
-        let shotBottom = enemyShot.y + enemyShot.size;
-
-        let ifTop = shotTop > this.player.top && shotTop < this.player.bottom;
-        let ifBottom = shotBottom > this.player.top && shotBottom < this.player.bottom;
-        let ifRight = shotRight > this.player.left && shotRight < this.player.right;
-        let ifLeft = shotLeft < this.player.right && shotLeft > this.player.left;
-
         if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
             return 1;
         }
