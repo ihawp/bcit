@@ -91,10 +91,10 @@ export function Enemy() {
     this.moveLeft = function() {
         this.x -= this.speed;
     }
-    this.moveDown = function() {
+    this.moveUp = function() {
         this.y -= this.speed;
     }
-    this.moveUp = function() {
+    this.moveDown = function() {
         this.y += this.speed;
     }
 

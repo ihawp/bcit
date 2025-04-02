@@ -16,7 +16,7 @@ export function Game() {
     this.plays = 0;
     this.round = 1;
     this.lives = 3;
-    this.totalEnemiesDefeated = 0;
+    this.totalEnemiesDefeated = 99;
     this.intervalId = undefined;
 
     this.init = function() {
@@ -43,14 +43,15 @@ export function Game() {
 
     this.home = function() {
 
-        // Clean up.
         context.save();
-        context.fillStyle = 'red';
+        context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
         context.save();
-        context.fillStyle = 'blue';
-        context.fillText('Welcome to Breakthrough v2', 250, 250);
-        context.fillText('Click anywhere to begin', 250, 270);
+        context.font = '25px sans-serif';
+        context.fillStyle = 'white';
+        context.fillText('Welcome to Breakthrough v2', 90, 250);
+        context.font = '15px sans-serif';
+        context.fillText('Click anywhere to begin', 170, 290);
         context.restore();
 
     }
@@ -63,20 +64,22 @@ export function Game() {
 
         this.resetBetween();
 
-        // Clean up.
-        context.fillStyle = 'red';
+        context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'blue';
-        context.fillText('You died.', 250, 250);
-        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 250, 270);
-        context.fillText(`You made it to round ${this.round}`, 250, 290);
+        context.font = '25px sans-serif';
+        context.fillStyle = 'white';
+        context.fillText('You died.', 210, 250);
+        context.font = '15px sans-serif';
+        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 170, 290);
+        context.fillText(`You made it to round ${this.round}`, 180, 330);
 
         this.plays++;
         this.round = 1;
         this.totalEnemiesDefeated = 0;
         this.lives = 3;
         round.innerText = this.round;
-        lives.innerText = this.lives;
+        this.setLives();
         enemiesDefeated.innerText = this.totalEnemiesDefeated;
 
     }
@@ -85,15 +88,15 @@ export function Game() {
 
         this.resetBetween();
 
-        // Clean up.
-        context.save();
-        context.fillStyle = 'red';
+        context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
-        context.save();
         context.fillStyle = 'blue';
-        context.fillText('You died.', 250, 250);
-        context.fillText('Click anywhere to respawn.', 250, 270);
-        context.restore();
+        context.font = '25px sans-serif';
+        context.fillStyle = 'white';
+        context.fillText('You died.', 210, 250);
+        context.font = '15px sans-serif';
+        context.fillText('Click anywhere to respawn.', 170, 290);
+
 
     }
 
@@ -101,15 +104,13 @@ export function Game() {
 
         this.resetBetween();
 
-        // Clean up.
-        context.save();
         context.fillStyle = 'green';
         context.fillRect(0, 0, 500, 500);
-        context.save();
         context.fillStyle = 'black';
-        context.fillText(`You completed round ${this.round}!`, 250, 250);
-        context.fillText('Click anywhere to respawn.', 250, 270);
-        context.restore();
+        context.font = '25px sans-serif';
+        context.fillText(`You completed round ${this.round}!`, 130, 250);
+        context.font = '15px sans-serif';
+        context.fillText('Click anywhere to continue...', 170, 290);
 
         this.round++;
         round.innerText = this.round;
@@ -125,6 +126,8 @@ export function Game() {
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
 
+        let round = this.round % 2 == 0;
+
         // Check Round Completion
         if (this.totalEnemiesDefeated >= this.round * 100) {
             this.pause();
@@ -135,43 +138,36 @@ export function Game() {
         this.player.draw(context);
 
         // Player square.
-        let playerLeft = this.player.x;
-        let playerRight = this.player.x + this.player.size;
-        let playerTop = this.player.y;
-        let playerBottom = this.player.y + this.player.size;
+        this.player.left = this.player.x;
+        this.player.right = this.player.x + this.player.size;
+        this.player.top = this.player.y;
+        this.player.bottom = this.player.y + this.player.size;
 
         // Enemies
         this.enemies.forEach(enemy => {
 
             // Check intersection of enemy and player
-            let enemyLeft = enemy.x;
-            let enemyRight = enemy.x + enemy.size;
-            let enemyTop = enemy.y;
-            let enemyBottom = enemy.y + enemy.size;
-
-            let ifTop = enemyTop > playerTop && enemyTop < playerBottom;
-            let ifBottom = enemyBottom > playerTop && enemyBottom < playerBottom;
-            let ifRight = enemyRight > playerLeft && enemyRight < playerRight;
-            let ifLeft = enemyLeft < playerRight && enemyLeft > playerLeft;
-
-            if (!this.player.invincible) {
-                if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+            if (this.checkEnemyIntersection(enemy)) {
+                if (!this.player.invincible) {
                     this.enemyIntersection();
                 }
             }
 
-            // Check if enemy is out of distance.
-            if (enemy.x > 500 && enemy.directionOdd || enemy.x < 0 && !enemy.directionOdd) {
-                enemy.resetOdd();
-                enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
-            }
-            if (enemy.y > 500 && enemy.directionEven || enemy.y < 0 && !enemy.directionEven) {
-                enemy.resetEven();
-                enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
-            }
-
             // Update Enemy Position
-            this.round % 2 == 0 ? enemy.directionEven ? enemy.moveUp() : enemy.moveDown() : enemy.directionOdd ? enemy.moveRight() : enemy.moveLeft();
+            round ? enemy.directionEven ? enemy.moveDown() : enemy.moveUp() : enemy.directionOdd ? enemy.moveRight() : enemy.moveLeft();
+
+            // Check if enemy is out of distance.
+            if (round) {
+                if (enemy.y > 500 && enemy.directionEven || enemy.y < 0 && !enemy.directionEven) {
+                    enemy.resetEven();
+                    enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
+                }
+            } else {
+                if (enemy.x > 500 && enemy.directionOdd || enemy.x < 0 && !enemy.directionOdd) {
+                    enemy.resetOdd();
+                    enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
+                }
+            }
 
             // Draw the enemy in new position.
             enemy.draw(context);
@@ -184,19 +180,8 @@ export function Game() {
                 }
 
                 // Check intersection of shot and player
-                let enemyShot = enemy.shot;
-                let shotLeft = enemyShot.x;
-                let shotRight = enemyShot.x + enemyShot.size;
-                let shotTop = enemyShot.y;
-                let shotBottom = enemyShot.y + enemyShot.size;
-    
-                ifTop = shotTop > playerTop && shotTop < playerBottom;
-                ifBottom = shotBottom > playerTop && shotBottom < playerBottom;
-                ifRight = shotRight > playerLeft && shotRight < playerRight;
-                ifLeft = shotLeft < playerRight && shotLeft > playerLeft;
-    
-                if (!this.player.invincible) {
-                    if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+                if (this.checkEnemyShotIntersection(enemy)) {
+                    if (!this.player.invincible) {
                         enemy.shot.happening = false;
                         enemy.adjustShot();
                         this.shotIntersection();
@@ -230,36 +215,18 @@ export function Game() {
         });
 
         // Powerups (if any active)
-        let powerUpLeft = this.powerup.x;
-        let powerUpRight = this.powerup.x + this.powerup.size;
-        let powerUpTop = this.powerup.y;
-        let powerUpBottom = this.powerup.y + this.powerup.size;
-
-        let ifTop = powerUpTop > playerTop && powerUpTop < playerBottom;
-        let ifBottom = powerUpBottom > playerTop && powerUpBottom < playerBottom;
-        let ifRight = powerUpRight > playerLeft && powerUpRight < playerRight;
-        let ifLeft = powerUpLeft < playerRight && powerUpLeft > playerLeft;
-
-        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+        if (this.checkPowerUpIntersection()) {
             this.powerUpIntersection();
         }
-
-        if (!this.powerup.happening) {
-            this.powerup.reset();
-            this.powerup.happening = true;
-            this.powerup.timeoutId = setTimeout(() => this.powerup.resetTimeout(), 25000); 
-        }
-        if (!this.powerup.waiting) {
-            this.powerup.direction ? this.powerup.moveDown() : this.powerup.moveUp();
-            this.powerup.draw();
-        }
+        if (!this.powerup.happening) this.powerup.notHappening();
+        if (!this.powerup.waiting) this.powerup.notWaiting();
 
         // context.restore();
 
     }
 
     this.resetEnemy = function(enemy) {
-        if (this.round % 2 === 0) {
+        if (this.round % 2 == 0) {
             enemy.resetEven();
         } else {
             enemy.resetOdd();
@@ -289,7 +256,10 @@ export function Game() {
     }
 
     this.setLives = function() {
-        lives.innerText = this.lives;
+        lives.innerText = '';
+        for (let i = 0; i < this.lives; i++) {
+            lives.innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>';
+        }
     }
 
     this.enemyIntersection = function() {
@@ -304,12 +274,64 @@ export function Game() {
 
     this.shotIntersection = function() {
 
-        this.lives -= .5;
+        this.lives--;
 
         this.intersection();
 
         this.setLives();
 
+    }
+
+    this.checkPowerUpIntersection = function() {
+        let powerUpLeft = this.powerup.x;
+        let powerUpRight = this.powerup.x + this.powerup.size;
+        let powerUpTop = this.powerup.y;
+        let powerUpBottom = this.powerup.y + this.powerup.size;
+
+        let ifTop = powerUpTop > this.player.top && powerUpTop < this.player.bottom;
+        let ifBottom = powerUpBottom > this.player.top && powerUpBottom < this.player.bottom;
+        let ifRight = powerUpRight > this.player.left && powerUpRight < this.player.right;
+        let ifLeft = powerUpLeft < this.player.right && powerUpLeft > this.player.left;
+
+        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+            return 1;
+        }
+        return 0;
+    }
+
+    this.checkEnemyIntersection = function(enemy) {
+        let enemyLeft = enemy.x;
+        let enemyRight = enemy.x + enemy.size;
+        let enemyTop = enemy.y;
+        let enemyBottom = enemy.y + enemy.size;
+
+        let ifTop = enemyTop > this.player.top && enemyTop < this.player.bottom;
+        let ifBottom = enemyBottom > this.player.top && enemyBottom < this.player.bottom;
+        let ifRight = enemyRight > this.player.left && enemyRight < this.player.right;
+        let ifLeft = enemyLeft < this.player.right && enemyLeft > this.player.left;
+
+        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+            return 1;
+        }
+        return 0;
+    }
+
+    this.checkEnemyShotIntersection = function(enemy) {
+        let enemyShot = enemy.shot;
+        let shotLeft = enemyShot.x;
+        let shotRight = enemyShot.x + enemyShot.size;
+        let shotTop = enemyShot.y;
+        let shotBottom = enemyShot.y + enemyShot.size;
+
+        let ifTop = shotTop > this.player.top && shotTop < this.player.bottom;
+        let ifBottom = shotBottom > this.player.top && shotBottom < this.player.bottom;
+        let ifRight = shotRight > this.player.left && shotRight < this.player.right;
+        let ifLeft = shotLeft < this.player.right && shotLeft > this.player.left;
+
+        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+            return 1;
+        }
+        return 0;
     }
 
     this.powerUpIntersection = function() {
@@ -346,6 +368,7 @@ export function Game() {
             case (4):
                 // Free Life
                 this.lives++;
+                this.setLives();
                 break;
         }
 

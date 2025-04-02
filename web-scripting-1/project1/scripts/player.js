@@ -7,6 +7,11 @@ export function Player(x, y) {
     this.velocityX = 0;
     this.velocityY = 0;
 
+    this.top = undefined;
+    this.bottom = undefined;
+    this.left = undefined;
+    this.right = undefined;
+
     this.invincible = false;
 
     this.draw = function(context) {

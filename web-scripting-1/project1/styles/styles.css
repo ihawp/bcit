@@ -24,3 +24,9 @@ html {
 #lives svg {
     width: 30px;
 }
+
+#ui {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}

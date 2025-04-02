@@ -33,6 +33,17 @@ export function PowerUp(x, y) {
         context.fillRect(this.x, this.y, this.size, this.size);
     }
 
+    this.notHappening = function() {
+        this.reset();
+        this.happening = true;
+        this.timeoutId = setTimeout(() => this.resetTimeout(), 25000); 
+    }
+
+    this.notWaiting = function() {
+        this.direction ? this.moveDown() : this.moveUp();
+        this.draw();
+    }
+
     this.moveDown = function() {
         this.y += this.speed;
     }
