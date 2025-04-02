@@ -4,7 +4,7 @@ import { randomNumberInRange } from "./functions.js";
 import { context } from './main.js';
 
 
-export function PowerUp() {
+export function PowerUp(x, y) {
 
     this.newType = function() {
         this.type = randomNumberInRange(1, 4);
@@ -14,8 +14,8 @@ export function PowerUp() {
     this.newType();
     
     this.direction = randomNumberInRange(0, 1);
-    this.x = undefined;
-    this.y = undefined;
+    this.x = x;
+    this.y = y;
     this.speed = 7;
     this.size = 20;
     this.happening = false;

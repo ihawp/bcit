@@ -32,7 +32,6 @@ export function Game() {
         // Create PowerUps
         this.powerup = new PowerUp();
 
-
         // Could be swapped to animation start or something prior to game beginning.
         if (this.plays === 0) {
             this.intervalId = this.home();
@@ -65,15 +64,12 @@ export function Game() {
         this.resetBetween();
 
         // Clean up.
-        context.save();
         context.fillStyle = 'red';
         context.fillRect(0, 0, 500, 500);
-        context.save();
         context.fillStyle = 'blue';
         context.fillText('You died.', 250, 250);
         context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 250, 270);
         context.fillText(`You made it to round ${this.round}`, 250, 290);
-        context.restore();
 
         this.plays++;
         this.round = 1;
@@ -258,8 +254,6 @@ export function Game() {
             this.powerup.draw();
         }
 
-        // Lives Count
-
         // context.restore();
 
     }
@@ -345,7 +339,7 @@ export function Game() {
                 }, 7500);
                 break;
             case (3):
-                // Trick
+                // Trick (this one is dumb)
                 this.player.speed = 3;
                 setTimeout(() => this.player.speed = 5, 5000);
                 break;
