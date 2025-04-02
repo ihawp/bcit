@@ -14,14 +14,14 @@ export function Game() {
     this.enemies = [];
     this.powerups = [];
     this.plays = 0;
-    this.round = 2;
+    this.round = 1;
     this.lives = 3;
-    this.totalEnemiesDefeated = 100;
+    this.totalEnemiesDefeated = 0;
     this.intervalId = undefined;
 
     this.init = function() {
         
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 1; i++) {
             let enemy = new Enemy();
             this.resetEnemy(enemy);
             this.enemies.push(enemy);
@@ -32,6 +32,8 @@ export function Game() {
         // Create PowerUps
         this.powerup = new PowerUp();
 
+        this.setLives();
+
         // Could be swapped to animation start or something prior to game beginning.
         if (this.plays === 0) {
             this.intervalId = this.home();
@@ -41,83 +43,8 @@ export function Game() {
         }
     }
 
-    this.home = function() {
-
-        context.save();
-        context.fillStyle = backgroundColor;
-        context.fillRect(0, 0, 500, 500);
-        context.save();
-        context.font = '25px sans-serif';
-        context.fillStyle = 'white';
-        context.fillText('Welcome to Breakthrough v2', 90, 250);
-        context.font = '15px sans-serif';
-        context.fillText('Click anywhere to begin', 170, 290);
-        context.restore();
-
-    }
-
-    this.welcome = function() {
-        // animation showing how to play game or something?
-    }
-
-    this.dead = function() {
-
-        this.resetBetween();
-
-        context.fillStyle = backgroundColor;
-        context.fillRect(0, 0, 500, 500);
-        context.fillStyle = 'blue';
-        context.font = '25px sans-serif';
-        context.fillStyle = 'white';
-        context.fillText('You died.', 210, 250);
-        context.font = '15px sans-serif';
-        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 170, 290);
-        context.fillText(`You made it to round ${this.round}`, 180, 330);
-
-        this.plays++;
-        this.round = 1;
-        this.totalEnemiesDefeated = 0;
-        this.lives = 3;
-        round.innerText = this.round;
-        this.setLives();
-        enemiesDefeated.innerText = this.totalEnemiesDefeated;
-
-    }
-
-    this.respawn = function() {
-
-        this.resetBetween();
-
-        context.fillStyle = backgroundColor;
-        context.fillRect(0, 0, 500, 500);
-        context.fillStyle = 'blue';
-        context.fillStyle = 'white';
-        context.font = '25px sans-serif';
-        context.fillText('You died.', 210, 250);
-        context.font = '15px sans-serif';
-        context.fillText('Click anywhere to respawn.', 170, 290);
-
-
-    }
-
-    this.nextRound = function() {
-
-        this.resetBetween();
-
-        context.fillStyle = 'green';
-        context.fillRect(0, 0, 500, 500);
-        context.fillStyle = 'black';
-        context.font = '25px sans-serif';
-        context.fillText(`You completed round ${this.round}!`, 130, 250);
-        context.font = '15px sans-serif';
-        context.fillText('Click anywhere to continue...', 170, 290);
-
-        this.round++;
-        round.innerText = this.round;
-
-        this.resetEnemies();
-
-    }
+    // ------------------------------------------------------------------
+    // UPDATE GAME FRAME:
 
     this.draw = function() {
 
@@ -234,6 +161,9 @@ export function Game() {
         // context.restore();
 
     }
+    
+    // ------------------------------------------------------------------
+    // RESET:
 
     this.resetEnemy = function(enemy) {
         if (this.round % 2 == 0) {
@@ -253,6 +183,19 @@ export function Game() {
         this.resetEnemies();
     }
 
+    this.resetStats = function() {
+        this.plays++;
+        this.round = 1;
+        this.totalEnemiesDefeated = 0;
+        this.lives = 3;
+        round.innerText = this.round;
+        this.setLives();
+        enemiesDefeated.innerText = this.totalEnemiesDefeated;
+    }
+
+    // ------------------------------------------------------------------
+    // GENERAL CHECK INTERSECTION:
+
     this.intersection = function() {
         this.resetEnemies();
         
@@ -263,33 +206,6 @@ export function Game() {
         }
 
         this.respawn();
-    }
-
-    this.setLives = function() {
-        lives.innerText = '';
-        for (let i = 0; i < this.lives; i++) {
-            lives.innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>';
-        }
-    }
-
-    this.enemyIntersection = function() {
-
-        this.lives--;
-
-        this.intersection();
-
-        this.setLives();
-
-    }
-
-    this.shotIntersection = function() {
-
-        this.lives--;
-
-        this.intersection();
-
-        this.setLives();
-
     }
 
     this.checkIntersection = function(checkable) {
@@ -303,38 +219,54 @@ export function Game() {
         let ifRight = right > this.player.left && right < this.player.right;
         let ifLeft = left < this.player.right && left > this.player.left;
 
+        let ifThisBottom;
+        let ifThisTop;
+        let ifThisLeft;
+        let ifThisRight;
+
         if (this.player.overedge) {
+
+            // Could create new full square on opposite edge for checking.
             switch (this.player.distorted) {
                 case (1):
                     // off top
-                    ifTop = top > this.player.top + 500 && top < this.player.bottom + 500;
+                    ifThisBottom = bottom > this.player.top + 500 && bottom < this.player.bottom + 500;
+                    ifThisTop = top > this.player.top + 500 && top < this.player.bottom + 500;
                     break;
                 case (2):
                     // off bottom
-                    ifBottom = bottom > this.player.top - 500 && bottom < this.player.bottom - 500;
+                    ifThisBottom = bottom > this.player.top - 500 && bottom < this.player.bottom - 500;
+                    ifThisTop = top > this.player.top - 500 && top < this.player.bottom - 500;
                     break;
                 case (3):
                     // off left
                     ifLeft = left < this.player.right + 500 && left > this.player.left + 500;
+                    ifRight = right < this.player.right + 500 && right > this.player.left + 500;
                     break;
                 case (4):
                     // off right
+                    ifLeft = left < this.player.right - 500 && left > this.player.left - 500;
                     ifRight = right > this.player.left - 500 && right < this.player.right - 500;
                     break;
             }
+            
         }
-        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight ||
+            ifThisTop && ifLeft || ifThisBottom && ifLeft || ifThisTop && ifRight || ifThisBottom && ifRight) {
             return 1;
         }
         return 0;
     }
 
+    // ------------------------------------------------------------------
+    // SPECIFIC INTERSECTIONS:
+
     this.powerUpIntersection = function() {
 
         this.powerup.waiting = true;
-
         this.powerup.reset();
 
+        // Run powerup
         switch (this.powerup.type) {
             case (1):
                 // Slowdown
@@ -369,6 +301,36 @@ export function Game() {
 
     }
 
+    this.enemyIntersection = function() {
+
+        this.lives--;
+
+        this.intersection();
+
+        this.setLives();
+
+    }
+
+    this.shotIntersection = function() {
+
+        this.lives--;
+
+        this.intersection();
+
+        this.setLives();
+
+    }
+
+    // ------------------------------------------------------------------
+    // SET VALUE(s):
+
+    this.setLives = function() {
+        lives.innerHTML = '';
+        for (let i = 0; i < this.lives; i++) {
+            lives.innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>';
+        }
+    }
+
     this.setEnemiesSpeed = function(speed) {
         this.enemies.forEach(enemy => {
             enemy.setSpeed(speed);
@@ -390,6 +352,9 @@ export function Game() {
         });
     }
 
+    // ------------------------------------------------------------------
+    // START/PAUSE:
+
     this.startGame = function() {
         return this.intervalId = setInterval(() => this.draw(), framerate);
     }
@@ -404,4 +369,67 @@ export function Game() {
         }
         this.intervalId = this.startGame();
     }
+
+    // ------------------------------------------------------------------
+    // SCREENS:
+    
+    this.home = function() {
+
+        context.save();
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, 500, 500);
+        context.save();
+        context.font = '25px sans-serif';
+        context.fillStyle = 'white';
+        context.fillText('Welcome to Breakthrough v2', 90, 250);
+        context.font = '15px sans-serif';
+        context.fillText('Click anywhere to begin', 170, 290);
+        context.restore();
+
+    }
+
+    this.welcome = function() {
+        // animation showing how to play game or something?
+    }
+
+    this.dead = function() {
+        this.resetBetween();
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, 500, 500);
+        context.fillStyle = 'blue';
+        context.font = '25px sans-serif';
+        context.fillStyle = 'white';
+        context.fillText('You died.', 210, 250);
+        context.font = '15px sans-serif';
+        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 170, 290);
+        context.fillText(`You made it to round ${this.round}`, 180, 330);
+        this.resetStats();
+    }
+
+    this.respawn = function() {
+        this.resetBetween();
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, 500, 500);
+        context.fillStyle = 'blue';
+        context.fillStyle = 'white';
+        context.font = '25px sans-serif';
+        context.fillText('You died.', 210, 250);
+        context.font = '15px sans-serif';
+        context.fillText('Click anywhere to respawn.', 170, 290);
+    }
+
+    this.nextRound = function() {
+        this.resetBetween();
+        context.fillStyle = 'green';
+        context.fillRect(0, 0, 500, 500);
+        context.fillStyle = 'black';
+        context.font = '25px sans-serif';
+        context.fillText(`You completed round ${this.round}!`, 130, 250);
+        context.font = '15px sans-serif';
+        context.fillText('Click anywhere to continue...', 170, 290);
+        this.round++;
+        round.innerText = this.round;
+        this.resetEnemies();
+    }
+
 }

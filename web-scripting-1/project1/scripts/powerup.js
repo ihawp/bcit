@@ -17,13 +17,13 @@ export function PowerUp(x, y) {
     this.x = x;
     this.y = y;
     this.speed = 7;
-    this.size = 20;
+    this.size = 25;
     this.happening = false;
     this.waiting = false;
     this.timeoutId = undefined;
 
     this.reset = function() {
-        this.x = randomNumberInRange(0 + this.size, 500 - this.size);
+        this.x = randomNumberInRange(0, 500);
         this.y = this.direction ? -(randomNumberInRange(1, 500)) : randomNumberInRange(500, 1000);
         this.newType();
     }

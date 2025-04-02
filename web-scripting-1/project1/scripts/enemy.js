@@ -26,7 +26,7 @@ export function Enemy() {
         } else {
             this.x = randomNumberInRange(600, 1100);
         }
-        this.y = randomNumberInRange(0, 500);
+        this.y = randomNumberInRange(490, 500);
     }
 
     this.resetEven = function() {
@@ -35,7 +35,7 @@ export function Enemy() {
         } else {
             this.y = randomNumberInRange(600, 1100);
         }
-        this.x = randomNumberInRange(490, 500);
+        this.x = randomNumberInRange(0, 500);
     }
 
     // Shoot shots
