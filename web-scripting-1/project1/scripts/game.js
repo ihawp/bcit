@@ -155,22 +155,24 @@ export function Game() {
                 }
             }
 
-            // Update Enemy Position
-            round ? enemy.directionEven ? enemy.moveDown() : enemy.moveUp() : enemy.directionOdd ? enemy.moveRight() : enemy.moveLeft();
-
             // Check if enemy is out of distance.
             if (round) {
                 if (enemy.y > 500 && enemy.directionEven || enemy.y < 0 && !enemy.directionEven) {
-                    console.log('even');
                     enemy.resetEven();
                     enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
                 }
             } else {
                 if (enemy.x > 500 && enemy.directionOdd || enemy.x < 0 && !enemy.directionOdd) {
-                    console.log('idd');
                     enemy.resetOdd();
                     enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
                 }
+            }
+
+            // Update Enemy Position
+            if (round) {
+                enemy.directionEven ? enemy.moveDown() : enemy.moveUp();
+            } else {
+                enemy.directionOdd ? enemy.moveRight() : enemy.moveLeft();
             }
 
             // Draw the enemy in new position.
@@ -178,6 +180,7 @@ export function Game() {
 
             // Shoot shots
             if (enemy.type === 0) {
+                
                 if (!enemy.shot.happening) {
                     enemy.adjustShot();
                     enemy.shot.happening = randomNumberInRange(1, 4);
@@ -186,7 +189,7 @@ export function Game() {
                 // Check intersection of shot and player
                 if (this.checkEnemyShotIntersection(enemy)) {
                     if (!this.player.invincible) {
-                        enemy.shot.happening = false;
+                        setTimeout(() => enemy.shot.happening = false, 2000);
                         enemy.adjustShot();
                         this.shotIntersection();
                     }
@@ -210,15 +213,16 @@ export function Game() {
                     enemy.drawShot();
                 }
 
-                // Check if off-screen
+                // Check if enemy shot off-screen
                 if (enemy.shot.x > 500 || enemy.shot.x < 0 || enemy.shot.y > 500 || enemy.shot.y < 0) {
                     enemy.shot.happening = false;
                 }
+
             }
 
         });
 
-        // Powerups (if any active)
+        // Powerups
         if (this.checkPowerUpIntersection()) {
             this.powerUpIntersection();
         }
