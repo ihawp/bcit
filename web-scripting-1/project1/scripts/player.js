@@ -30,15 +30,17 @@ export function Player(x, y) {
         if (this.x < 0) this.x = 0;
         if (this.x > 475) this.x = 475;
         */
-        // Build in-out-around.
+        // Over Edge
+
         context.fillStyle = 'black';
+
         if (this.y < 25) {
             context.fillRect(this.x, this.y + 500, this.size, this.size);
             this.distorted = 1;
         }
 
-        if (this.y < 0) {
-            this.y = 500;
+        if (this.y + this.size < 0) {
+            this.y = 475;
         }
 
         if (this.y > 475) {
@@ -78,7 +80,6 @@ export function Player(x, y) {
         }
 
         // Draw Player
-        context.fillStyle = 'black';
         context.fillRect(this.x, this.y, this.size, this.size);
         
     }

@@ -21,7 +21,7 @@ export function Game() {
 
     this.init = function() {
         
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < 20; i++) {
             let enemy = new Enemy();
             this.resetEnemy(enemy);
             this.enemies.push(enemy);
@@ -181,6 +181,7 @@ export function Game() {
     this.resetBetween = function() {
         this.player.reset();
         this.resetEnemies();
+        this.powerup.reset();
     }
 
     this.resetStats = function() {
@@ -205,57 +206,72 @@ export function Game() {
             return this.dead();
         }
 
+        this.setLives();
+
         this.respawn();
     }
 
     this.checkIntersection = function(checkable) {
+
+        // Square representing where edges are of checkable item
         let left = checkable.x;
         let right = checkable.x + checkable.size;
         let top = checkable.y;
         let bottom = checkable.y + checkable.size;
 
+        // Gather if checkable item is intersecting with player
         let ifTop = top > this.player.top && top < this.player.bottom;
         let ifBottom = bottom > this.player.top && bottom < this.player.bottom;
         let ifRight = right > this.player.left && right < this.player.right;
         let ifLeft = left < this.player.right && left > this.player.left;
 
-        let ifThisBottom;
-        let ifThisTop;
-        let ifThisLeft;
-        let ifThisRight;
-
+        // Over Edge
         if (this.player.overedge) {
 
-            // Could create new full square on opposite edge for checking.
+            // Create variables for possible use
+            let ifThisBottom;
+            let ifThisTop;
+            let ifThisLeft;
+            let ifThisRight;
+
             switch (this.player.distorted) {
                 case (1):
-                    // off top
+                    // Off Top
                     ifThisBottom = bottom > this.player.top + 500 && bottom < this.player.bottom + 500;
                     ifThisTop = top > this.player.top + 500 && top < this.player.bottom + 500;
                     break;
                 case (2):
-                    // off bottom
+                    // Off Bottom
                     ifThisBottom = bottom > this.player.top - 500 && bottom < this.player.bottom - 500;
                     ifThisTop = top > this.player.top - 500 && top < this.player.bottom - 500;
                     break;
                 case (3):
-                    // off left
-                    ifLeft = left < this.player.right + 500 && left > this.player.left + 500;
-                    ifRight = right < this.player.right + 500 && right > this.player.left + 500;
+                    // Off Left
+                    ifThisLeft = left < this.player.right + 500 && left > this.player.left + 500;
+                    ifThisRight = right < this.player.right + 500 && right > this.player.left + 500;
                     break;
                 case (4):
-                    // off right
-                    ifLeft = left < this.player.right - 500 && left > this.player.left - 500;
-                    ifRight = right > this.player.left - 500 && right < this.player.right - 500;
+                    // Off Right
+                    ifThisLeft = left < this.player.right - 500 && left > this.player.left - 500;
+                    ifThisRight = right > this.player.left - 500 && right < this.player.right - 500;
                     break;
+            }
+
+            // Test if checkable item is intersecting with MIRRORED player.
+            if (ifThisTop && ifLeft || ifThisBottom && ifLeft || ifThisTop && ifRight || ifThisBottom && ifRight) {
+                return 1;
             }
             
         }
-        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight ||
-            ifThisTop && ifLeft || ifThisBottom && ifLeft || ifThisTop && ifRight || ifThisBottom && ifRight) {
+
+        // Test if checkable item is intersecting with player
+        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
             return 1;
         }
+
+        // No intersection
         return 0;
+
     }
 
     // ------------------------------------------------------------------
@@ -307,8 +323,6 @@ export function Game() {
 
         this.intersection();
 
-        this.setLives();
-
     }
 
     this.shotIntersection = function() {
@@ -316,8 +330,6 @@ export function Game() {
         this.lives--;
 
         this.intersection();
-
-        this.setLives();
 
     }
 
