@@ -6,6 +6,9 @@ import { context } from './main.js';
 
 export function PowerUp() {
 
+    // RETHINK
+    // Need better system for managing powerups and which type and when and whatnot.
+
     this.newType = function() {
         this.type = randomNumberInRange(1, 4);
     }
@@ -29,8 +32,11 @@ export function PowerUp() {
     }
 
     this.draw = function() {
-        context.fillStyle = 'yellow';
+        context.save();
+        // Lemon Yellow
+        context.fillStyle = '#FFF700';
         context.fillRect(this.x, this.y, this.size, this.size);
+        context.restore();
         /*
         context.beginPath();
         context.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);

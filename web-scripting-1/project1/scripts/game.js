@@ -3,11 +3,9 @@ import { Enemy } from './enemy.js';
 import { Player } from './player.js';
 import { PowerUp } from './powerup.js';
 import { canvas, context, framerate } from './main.js';
-const lives = document.getElementById('lives');
-const enemiesDefeated = document.getElementById('enemies-defeated');
 const backgroundColor = 'purple';
 
-export function Game() {
+export default function Game() {
 
     this.player;
     this.enemies = [];
@@ -16,7 +14,9 @@ export function Game() {
     this.round = 1;
     this.lives = 3;
     this.totalEnemiesDefeated = 99;
+
     this.intervalId = undefined;
+    this.welcomeId = undefined;
 
     this.target = 100;
 
@@ -31,8 +31,6 @@ export function Game() {
 
         // Create PowerUps
         this.powerup = new PowerUp();
-
-        this.setLives();
 
         // Could be swapped to animation start or something prior to game beginning.
         if (this.plays === 0) {
@@ -58,24 +56,48 @@ export function Game() {
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
 
-        // Print Round
-        context.fillStyle = 'rgb(255, 255, 255, 0.1)';
-        context.font = '25px Boldonse';
-        context.fillText('Round: ' + convertIntToRoman(this.round), 25, 50);
+        // Print Lives
+        let x = 450;
+        for (let i = 0; i < this.lives; i++) {
+            let y = (i * 43) + 5;
+            context.fillStyle = 'rgb(255, 255, 255, 0.2)';
+            context.beginPath();
+            context.moveTo(x + 22.5, y + 20);
+            context.bezierCurveTo(x + 22.5, y + 11.1, x + 21, y + 7.5, x + 15, y + 7.5);
+            context.bezierCurveTo(x + 6, y + 7.5, x + 6, y + 18.75, x + 6, y + 18.75);
+            context.bezierCurveTo(x + 6, y + 24, x + 12, y + 30.6, x + 22.5, y + 36);
+            context.bezierCurveTo(x + 33, y + 30.6, x + 39, y + 24, x + 39, y + 18.75);
+            context.bezierCurveTo(x + 39, y + 18.75, x + 39, y + 7.5, x + 30, y + 7.5);
+            context.bezierCurveTo(x + 25.5, y + 7.5, x + 22.5, y + 11.1, x + 22.5, y + 12);
+            context.fill();
+        }
 
+        // Print Round
+        context.save();
+        context.font = '25px Boldonse';
+        context.fillText('Round: ' + convertIntToRoman(this.round), 12.5, 45);
+        context.restore();
 
         let round = this.round % 2 == 0;
         
         // Print progress
-        const barX = 25;
-        const barY = 475;
+        const barX = 325;
+        const barY = 478;
         const barLength = 150;
         const thisRoundEnemies = this.totalEnemiesDefeated - ((this.round - 1) * this.target);
         const currentProgress = (thisRoundEnemies / this.target);
         const barPosition = barX + (currentProgress * barLength);
+        context.save();
         context.fillRect(barX, barY, 150, 7);
-        context.fillStyle = 'red';
+        context.fillStyle = 'gray';
         context.fillRect (barPosition, barY - 3, 3, 13);
+        context.restore();
+
+        // Print enemies defeated
+        context.save();
+        context.font = '15px Boldonse';
+        context.fillText(`Enemies Defeated: ${this.totalEnemiesDefeated}`, 12.5, 485);
+        context.restore();
 
         // Players
         this.player.draw(context);
@@ -103,15 +125,15 @@ export function Game() {
             if (round) {
                 if (enemy.y > 500 && enemy.directionEven || enemy.y < 0 && !enemy.directionEven) {
                     enemy.resetEven();
-                    enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
+                    this.defeated();
                 }
             } else {
                 if (enemy.x > 500 && enemy.directionOdd || enemy.x < 0 && !enemy.directionOdd) {
                     enemy.resetOdd();
-                    enemiesDefeated.innerText = this.totalEnemiesDefeated += 1;
+                    this.defeated();
                 }
             }
-
+            
             // Update Enemy Position
             if (round) {
                 enemy.directionEven ? this.moveDown(enemy) : this.moveUp(enemy);
@@ -228,7 +250,6 @@ export function Game() {
         this.player.reset();
         this.resetEnemies();
         this.powerup.reset();
-        this.powerup.clearTimeout(this.powerup.timeout);
     }
 
     this.resetStats = function() {
@@ -236,12 +257,14 @@ export function Game() {
         this.round = 1;
         this.totalEnemiesDefeated = 0;
         this.lives = 3;
-        this.setLives();
-        enemiesDefeated.innerText = this.totalEnemiesDefeated;
     }
 
     // ------------------------------------------------------------------
     // GENERAL CHECK INTERSECTION:
+
+    this.defeated = function() {
+        this.totalEnemiesDefeated += 1;
+    }
 
     this.intersection = function() {
         this.resetEnemies();
@@ -251,8 +274,6 @@ export function Game() {
         if (this.lives <= 0) {
             return this.dead();
         }
-
-        this.setLives();
 
         this.respawn();
     }
@@ -363,7 +384,6 @@ export function Game() {
             case (4):
                 // Free Life
                 this.lives++;
-                this.setLives();
                 break;
         }
 
@@ -387,13 +407,6 @@ export function Game() {
 
     // ------------------------------------------------------------------
     // SET VALUE(s):
-
-    this.setLives = function() {
-        lives.innerHTML = '';
-        for (let i = 0; i < this.lives; i++) {
-            lives.innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>';
-        }
-    }
 
     this.setEnemiesSpeed = function(speed) {
         this.enemies.forEach(enemy => {
@@ -444,6 +457,8 @@ export function Game() {
         canvas.removeEventListener('click', this.homeListener);
         canvas.addEventListener('click', this.pauseController);
 
+        clearInterval(this.welcomeId);
+
 
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
@@ -455,30 +470,59 @@ export function Game() {
 
     }
 
+    this.slide = 0;
+    this.lastTime = new Date().getUTCSeconds();
+
+    this.welcomeSceneHandler = () => this.welcomeScene();
+
     this.welcome = function() {
-        // animation showing how to play game or something?
+        this.welcomeId = setInterval(this.welcomeSceneHandler, 1000);
+        this.welcomeScene();
+    }
 
-
+    this.welcomeScene = function() {
         context.fillStyle = '#fff';
         context.fillRect(0, 0, 500, 500);
-
         context.fillStyle = 'purple';
-        context.font = '25px Boldonse';
-        context.fillText('Welcome to Breakthrough v2!', 28, 250);
+        switch (this.slide) {
+            case (0):
+                context.font = '25px Boldonse';
+                context.fillText('Welcome to Breakthrough v2!', 28, 250);
+                break;
+            case (1):
+                context.font = '15px Boldonse';
+                context.fillText('Use WASD to move the', 50, 260);
+                context.fillText('player around the gameboard', 50, 320);
+                break;
+            case (2):
+                context.font = '15px Boldonse';
+                context.fillText('Use W A S D to move the', 50, 260);
+                context.fillText('player around the gameboard', 50, 320);
+                break;
+            default:
+                clearInterval(this.welcomeId);
+                this.home();
+                break;
+        }
 
+        let thisTime = new Date().getUTCSeconds();
+        if (thisTime > this.lastTime + 2) {
+            this.lastTime = thisTime;
+            this.slide++;
+        }
     }
 
     this.dead = function() {
         this.resetBetween();
-        context.fillStyle = backgroundColor;
+        context.fillStyle = '#F10040';
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'blue';
-        context.font = '25px';
+        context.font = '25px Boldonse';
         context.fillStyle = 'white';
-        context.fillText('You died.', 185, 200);
-        context.font = '15px';
-        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 60, 260);
-        context.fillText(`You made it to round ${this.round}`, 80, 320);
+        context.fillText('You died.', 190, 200);
+        context.font = '15px Boldonse';
+        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 135, 260);
+        context.fillText(`You made it to round ${this.round}.`, 155, 310);
         this.resetStats();
     }
 
@@ -488,21 +532,21 @@ export function Game() {
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'blue';
         context.fillStyle = 'white';
-        context.font = '25px';
+        context.font = '25px Boldonse';
         context.fillText('You lost a life!', 150, 250);
-        context.font = '15px';
-        context.fillText('Click anywhere to respawn.', 35, 310);
+        context.font = '15px Boldonse';
+        context.fillText('Click anywhere to respawn.', 130, 310);
     }
 
     this.nextRound = function() {
         this.resetBetween();
-        context.fillStyle = 'green';
+        context.fillStyle = '#16a34a';
         context.fillRect(0, 0, 500, 500);
-        context.fillStyle = 'black';
-        context.font = '25px';
+        context.fillStyle = '#fff';
+        context.font = '25px Boldonse';
         context.fillText(`You completed round ${this.round}!`, 70, 250);
-        context.font = '15px';
-        context.fillText('Click anywhere to continue...', 20, 310);
+        context.font = '15px Boldonse';
+        context.fillText('Click anywhere to continue...', 110, 310);
         this.round++;
         this.resetEnemies();
     }

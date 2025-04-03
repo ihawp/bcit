@@ -18,92 +18,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
 
     background: #800080;
     color: #fff;
 }
 
 #canvas {
+    display: block;
     cursor: pointer;
-    box-shadow: 0 0 25px 25px rgb(255, 255, 255, .05);
     z-index: 999;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px 1px rgb(255, 255, 255, 0.5);
 }
 #canvas:active {
     cursor: default;
-}
-
-#game, #ui {
-    display: flex;
-    justify-content: center;
-}
-
-#game {
-    position: relative;
-}
-
-#round-container {
-    position: absolute;
-    top: -25px;
-    left: -25px;
-    z-index: 1000;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 150px;
-    height: 50px;
-
-    border-radius: 150px;
-}
-
-#round {
-    margin-left: 25px;
-    font-size: 1.125rem;
-}
-
-#canvas {
-    border: 2px solid #fff;
-}
-
-#ui {
-    flex-direction: row;
-    align-items: center;
-    margin: 10px 0 0 0;
-    gap: 2rem;
-
-    width: 500px;
-}
-
-#lives {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    min-width: 150px;
-    max-width: 150px;
-    flex-wrap: wrap;
-}
-
-#lives svg {
-    width: 30px;
-}
-#lives svg path {
-    fill: #fff;
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    margin: 0 0 50px 0;
-}
-
-ul {
-    list-style: none;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }

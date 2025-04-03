@@ -32,6 +32,8 @@ export function Player(x, y) {
         */
         // Over Edge
 
+        context.save();
+
         context.fillStyle = 'black';
 
         if (this.y < 25) {
@@ -81,6 +83,8 @@ export function Player(x, y) {
 
         // Draw Player
         context.fillRect(this.x, this.y, this.size, this.size);
+
+        context.restore();
         
     }
 
@@ -125,8 +129,8 @@ export function Player(x, y) {
     }
 
     this.reset = function() {
-        this.x = 250;
-        this.y = 250;
+        this.x = 237.5;
+        this.y = 237.5;
     }
 
     document.addEventListener('keydown', this.keyDown);

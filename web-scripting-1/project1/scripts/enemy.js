@@ -12,15 +12,17 @@ export function Enemy() {
     this.y;
     this.x;
     
-    this.type = randomNumberInRange(0, 10) > 9 ? 0 : 1;
+    this.type = randomNumberInRange(0, 7) > 5 ? 0 : 1;
     this.size = this.type ? 8 : 13;
-    this.color = this.type ? 'green' : 'red';
+    this.color = this.type ? '#16a34a' : '#F10040';
     this.lastX = undefined;
     this.speed = 5;
 
     this.draw = function(context) {
+        context.save();
         context.fillStyle = this.color;
         context.fillRect(this.x, this.y, this.size, this.size);
+        context.restore();
     }
 
     this.resetOdd = function() {
