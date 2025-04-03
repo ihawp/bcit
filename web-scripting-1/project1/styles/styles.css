@@ -14,7 +14,7 @@ body {
     flex-direction: column;
     align-items: center;
 
-    background: purple;
+    background: #800080;
     color: #fff;
 }
 
@@ -70,7 +70,7 @@ ul {
 }
 
 header, main, footer {
-    width: 100%;
+    width: 320px;
 }
 
 /*

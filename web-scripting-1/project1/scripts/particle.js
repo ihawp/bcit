@@ -50,9 +50,6 @@ export default function Panel() {
     }
 }
 
-// Move in circle around radius from center of screen?
-// Update position on each draw.
-
 // Canvas Version
 export function ParticleBackground() {
 
@@ -64,27 +61,84 @@ export function ParticleBackground() {
     this.style.position = 'absolute';
     this.style.top = '0';
     this.style.left = '0';
-    this.canvas.setAttribute('width', `${window.innerWidth}`);
-    this.canvas.setAttribute('height', `${window.innerHeight}`);
     this.style.zIndex = '-1';
+    this.intervalId = undefined;
 
-    this.init = function() {
-        document.body.insertAdjacentElement('afterbegin', this.canvas);
+    // center of screen.
+    this.center = undefined;
 
-        this.context.fillStyle = '#fff';
-        for (let i = 0; i < 500; i++) {
+    this.setDimensions = function() {
+        this.canvas.setAttribute('width', `${window.innerWidth}`);
+        this.canvas.setAttribute('height', `${window.innerHeight}`);
+    }
 
-            let particle = new Particle();
+    this.resetParticles = function() {
+        this.particles = [];
+    }
 
-            this.context.fillRect(particle.x, particle.y, 1, 1);
+    this.generateParticles = function() {
+        for (let i = 0; i < 400; i++) {
+
+            let particle = new Particle(this.center);
 
             this.particles.push(particle);
 
         }
     }
+
+    this.updateParticles = function() {
+        this.particles.forEach(particle => {
+            this.context.fillStyle = '#800080';
+            particle.draw(this.context, particle.last.x, particle.last.y, 5, 5);
+            particle.rotate();
+            this.context.fillStyle = 'white';
+            particle.draw(this.context, particle.x, particle.y, particle.size, particle.size);
+        });
+    }
+
+    this.updateHandler = () => this.updateParticles();
+
+    this.init = function() {
+
+        this.center = {x: window.innerWidth / 2, y: window.innerHeight / 2}
+
+        this.setDimensions();
+
+        this.resetParticles();
+
+        this.generateParticles();
+
+        document.body.insertAdjacentElement('afterbegin', this.canvas);
+
+    }
+
+    this.initHandler = () => this.init();
+
+    window.addEventListener('resize', this.initHandler);
+
+    setInterval(this.updateHandler, 75);
+
 }
 
-function Particle() {
+function Particle(center) {
     this.x = randomNumberInRange(0, window.innerWidth);
     this.y = randomNumberInRange(0, window.innerHeight);
+    this.last = { x: undefined, y: undefined };
+    this.speed = randomNumberInRange(0, 1);
+    this.size = 1;
+    this.center = center;
+    this.radius = Math.sqrt(Math.pow(this.x - this.center.x, 2) + Math.pow(this.y - this.center.y, 2));
+    this.angle = Math.atan2(this.y - center.y, this.x - center.x);
+
+    this.rotate = function() {
+        this.last.x = this.x;
+        this.last.y = this.y;
+        this.x = this.center.x + this.radius * Math.cos(this.angle);
+        this.y = this.center.y + this.radius * Math.sin(this.angle);
+        this.angle -= 0.002;
+    }
+
+    this.draw = function(context, x, y, size) {
+        context.fillRect(x, y, size, size);
+    }
 }

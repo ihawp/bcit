@@ -48,8 +48,6 @@ export function Game() {
 
     this.draw = function() {
 
-        // context.save();
-
         // Background
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
@@ -157,8 +155,6 @@ export function Game() {
         }
         if (!this.powerup.happening) this.powerup.notHappening();
         if (!this.powerup.waiting) this.powerup.notWaiting();
-
-        // context.restore();
 
     }
     

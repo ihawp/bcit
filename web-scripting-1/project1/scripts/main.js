@@ -14,9 +14,15 @@ export const framerate = 33.3333333333;
 // Particle Background Instance (DOM)
 // new Panel().init();
 
-// Particle Background Instance (Canvas)
-new ParticleBackground().init();
-
 // Game Instance / Run Game
-const game = new Game();
-game.init();
+window.addEventListener('load', function() {
+    
+    // Particle Background Instance (Canvas)
+    let particleBackground = new ParticleBackground();
+    particleBackground.init();
+
+    // Game Instance / Run Game
+    const game = new Game();
+    game.init();
+
+});
