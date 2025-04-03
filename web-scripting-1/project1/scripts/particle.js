@@ -77,7 +77,7 @@ export function ParticleBackground() {
     }
 
     this.generateParticles = function() {
-        for (let i = 0; i < 400; i++) {
+        for (let i = 0; i < 125; i++) {
 
             let particle = new Particle(this.center);
 

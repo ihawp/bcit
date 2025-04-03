@@ -4,7 +4,7 @@ import { randomNumberInRange } from "./functions.js";
 import { context } from './main.js';
 
 
-export function PowerUp(x, y) {
+export function PowerUp() {
 
     this.newType = function() {
         this.type = randomNumberInRange(1, 4);
@@ -14,8 +14,8 @@ export function PowerUp(x, y) {
     this.newType();
     
     this.direction = randomNumberInRange(0, 1);
-    this.x = x;
-    this.y = y;
+    this.x = undefined;
+    this.y = undefined;
     this.speed = 7;
     this.size = 25;
     this.happening = false;
@@ -24,37 +24,31 @@ export function PowerUp(x, y) {
 
     this.reset = function() {
         this.x = randomNumberInRange(0, 500);
-        this.y = this.direction ? -(randomNumberInRange(1, 500)) : randomNumberInRange(500, 1000);
+        this.y = this.direction ? -500 : 1000;
         this.newType();
     }
 
     this.draw = function() {
         context.fillStyle = 'yellow';
         context.fillRect(this.x, this.y, this.size, this.size);
+        /*
+        context.beginPath();
+        context.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+        context.fill();
+        */
     }
+
+    /*
+    this.drawIndicator = function(context) {
+        context.fillStyle = 'yellow';
+        this.direction ? context.fillRect(this.x, 0, this.size, this.size) : context.fillRect(this.x, 500 - this.size, this.size, this.size);
+    }
+    */
 
     this.notHappening = function() {
-        this.reset();
         this.happening = true;
-        this.timeoutId = setTimeout(() => this.resetTimeout(), 25000); 
-    }
-
-    this.notWaiting = function() {
-        this.direction ? this.moveDown() : this.moveUp();
-        this.draw();
-    }
-
-    this.moveDown = function() {
-        this.y += this.speed;
-    }
-    this.moveUp = function() {
-        this.y -= this.speed;
-    }
-    this.moveRight = function() {
-        this.x += this.speed;
-    }
-    this.moveLeft = function() {
-        this.x -= this.speed;
+        this.reset();
+        this.timeoutId = setTimeout(() => this.clearTimeout(this.timeoutId), 25000); 
     }
 
     this.resetTimeout = function() {
@@ -62,9 +56,9 @@ export function PowerUp(x, y) {
         this.waiting = false;
     }
 
-    this.clearTimeout = function() {
+    this.clearTimeout = function(id) {
         this.resetTimeout();
-        clearTimeout(this.timeoutId);
+        clearTimeout(id);
     }
 
 }

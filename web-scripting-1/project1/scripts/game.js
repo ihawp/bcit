@@ -1,10 +1,9 @@
-import { randomNumberInRange } from "./functions.js";
+import { randomNumberInRange, convertIntToRoman } from "./functions.js";
 import { Enemy } from './enemy.js';
 import { Player } from './player.js';
 import { PowerUp } from './powerup.js';
 import { canvas, context, framerate } from './main.js';
 const lives = document.getElementById('lives');
-const round = document.getElementById('round');
 const enemiesDefeated = document.getElementById('enemies-defeated');
 const backgroundColor = 'purple';
 
@@ -16,8 +15,10 @@ export function Game() {
     this.plays = 0;
     this.round = 1;
     this.lives = 3;
-    this.totalEnemiesDefeated = 0;
+    this.totalEnemiesDefeated = 99;
     this.intervalId = undefined;
+
+    this.target = 100;
 
     this.init = function() {
         
@@ -26,8 +27,7 @@ export function Game() {
             this.resetEnemy(enemy);
             this.enemies.push(enemy);
         }
-        
-        this.player = new Player(250, 250);
+        this.player = new Player(237.5, 237.5);
 
         // Create PowerUps
         this.powerup = new PowerUp();
@@ -36,8 +36,8 @@ export function Game() {
 
         // Could be swapped to animation start or something prior to game beginning.
         if (this.plays === 0) {
-            this.intervalId = this.home();
-            canvas.addEventListener('click', this.pauseController);
+            this.intervalId = this.welcome();
+            canvas.addEventListener('click', this.homeListener);
         } else {
             this.startGame();
         }
@@ -48,17 +48,34 @@ export function Game() {
 
     this.draw = function() {
 
+        // Check Round Completion
+        if (this.totalEnemiesDefeated >= this.round * this.target) {
+            this.pause();
+            return this.nextRound();
+        }
+
         // Background
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
 
-        let round = this.round % 2 == 0;
+        // Print Round
+        context.fillStyle = 'rgb(255, 255, 255, 0.1)';
+        context.font = '25px Boldonse';
+        context.fillText('Round: ' + convertIntToRoman(this.round), 25, 50);
 
-        // Check Round Completion
-        if (this.totalEnemiesDefeated >= this.round * 100) {
-            this.pause();
-            return this.nextRound();
-        }
+
+        let round = this.round % 2 == 0;
+        
+        // Print progress
+        const barX = 25;
+        const barY = 475;
+        const barLength = 150;
+        const thisRoundEnemies = this.totalEnemiesDefeated - ((this.round - 1) * this.target);
+        const currentProgress = (thisRoundEnemies / this.target);
+        const barPosition = barX + (currentProgress * barLength);
+        context.fillRect(barX, barY, 150, 7);
+        context.fillStyle = 'red';
+        context.fillRect (barPosition, barY - 3, 3, 13);
 
         // Players
         this.player.draw(context);
@@ -97,9 +114,9 @@ export function Game() {
 
             // Update Enemy Position
             if (round) {
-                enemy.directionEven ? enemy.moveDown() : enemy.moveUp();
+                enemy.directionEven ? this.moveDown(enemy) : this.moveUp(enemy);
             } else {
-                enemy.directionOdd ? enemy.moveRight() : enemy.moveLeft();
+                enemy.directionOdd ? this.moveRight(enemy) : this.moveLeft(enemy);
             }
 
             // Draw the enemy in new position.
@@ -125,16 +142,16 @@ export function Game() {
                 if (enemy.shot.happening) {
                     switch (enemy.shot.happening) {
                         case (1):
-                            enemy.shootDown();
+                            this.moveDown(enemy.shot);
                             break;
                         case (2):
-                            enemy.shootLeft();
+                            this.moveLeft(enemy.shot);
                             break;
                         case (3):
-                            enemy.shootUp();
+                            this.moveUp(enemy.shot);
                             break;
                         case (4):
-                            enemy.shootRight();
+                            this.moveRight(enemy.shot);
                             break;
                     }
                     enemy.drawShot();
@@ -153,9 +170,42 @@ export function Game() {
         if (this.checkIntersection(this.powerup)) {
             this.powerUpIntersection();
         }
-        if (!this.powerup.happening) this.powerup.notHappening();
-        if (!this.powerup.waiting) this.powerup.notWaiting();
 
+        // Powerup Indicator
+        /*
+        if ((this.powerup.y < 0 || this.powerup.y > 500) && this.powerup.happening && !this.powerup.waiting) {
+            this.powerup.drawIndicator(context);
+        }
+        */
+
+        if (!this.powerup.happening) this.powerup.notHappening();
+
+        if (!this.powerup.waiting) {
+
+            this.powerup.direction ? this.moveDown(this.powerup) : this.moveUp(this.powerup);
+
+            this.powerup.draw();
+
+        }
+
+    }
+
+    // ------------------------------------------------------------------
+    // MOVEMENT:
+    // make used by all for movement, no point in redefining... 
+    // although I understand the concept of only updating properties of a class from methods defined inside that class.
+
+    this.moveRight = function(item) {
+        item.x += item.speed;
+    }
+    this.moveLeft = function(item) {
+        item.x -= item.speed;
+    }
+    this.moveUp = function(item) {
+        item.y -= item.speed;
+    }
+    this.moveDown = function(item) {
+        item.y += item.speed;
     }
     
     // ------------------------------------------------------------------
@@ -178,6 +228,7 @@ export function Game() {
         this.player.reset();
         this.resetEnemies();
         this.powerup.reset();
+        this.powerup.clearTimeout(this.powerup.timeout);
     }
 
     this.resetStats = function() {
@@ -185,7 +236,6 @@ export function Game() {
         this.round = 1;
         this.totalEnemiesDefeated = 0;
         this.lives = 3;
-        round.innerText = this.round;
         this.setLives();
         enemiesDefeated.innerText = this.totalEnemiesDefeated;
     }
@@ -255,6 +305,10 @@ export function Game() {
 
             // Test if checkable item is intersecting with MIRRORED player.
             if (ifThisTop && ifLeft || ifThisBottom && ifLeft || ifThisTop && ifRight || ifThisBottom && ifRight) {
+                return 1;
+            }
+
+            if (ifTop && ifThisLeft || ifBottom && ifThisLeft || ifTop && ifThisRight || ifBottom && ifThisRight) {
                 return 1;
             }
             
@@ -382,24 +436,36 @@ export function Game() {
 
     // ------------------------------------------------------------------
     // SCREENS:
-    
+
+    this.homeListener = () => this.home();
+
     this.home = function() {
 
-        context.save();
+        canvas.removeEventListener('click', this.homeListener);
+        canvas.addEventListener('click', this.pauseController);
+
+
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
-        context.save();
-        context.font = '25px sans-serif';
+        context.font = '25px Boldonse';
         context.fillStyle = 'white';
-        context.fillText('Welcome to Breakthrough v2', 90, 250);
-        context.font = '15px sans-serif';
-        context.fillText('Click anywhere to begin', 170, 290);
-        context.restore();
+        context.fillText('Welcome to Breakthrough v2!', 28, 250);
+        context.font = '15px Boldonse';
+        context.fillText('Click anywhere to begin', 135, 290);
 
     }
 
     this.welcome = function() {
         // animation showing how to play game or something?
+
+
+        context.fillStyle = '#fff';
+        context.fillRect(0, 0, 500, 500);
+
+        context.fillStyle = 'purple';
+        context.font = '25px Boldonse';
+        context.fillText('Welcome to Breakthrough v2!', 28, 250);
+
     }
 
     this.dead = function() {
@@ -407,12 +473,12 @@ export function Game() {
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'blue';
-        context.font = '25px sans-serif';
+        context.font = '25px';
         context.fillStyle = 'white';
-        context.fillText('You died.', 210, 250);
-        context.font = '15px sans-serif';
-        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 170, 290);
-        context.fillText(`You made it to round ${this.round}`, 180, 330);
+        context.fillText('You died.', 185, 200);
+        context.font = '15px';
+        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 60, 260);
+        context.fillText(`You made it to round ${this.round}`, 80, 320);
         this.resetStats();
     }
 
@@ -422,10 +488,10 @@ export function Game() {
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'blue';
         context.fillStyle = 'white';
-        context.font = '25px sans-serif';
-        context.fillText('You died.', 210, 250);
-        context.font = '15px sans-serif';
-        context.fillText('Click anywhere to respawn.', 170, 290);
+        context.font = '25px';
+        context.fillText('You lost a life!', 150, 250);
+        context.font = '15px';
+        context.fillText('Click anywhere to respawn.', 35, 310);
     }
 
     this.nextRound = function() {
@@ -433,12 +499,11 @@ export function Game() {
         context.fillStyle = 'green';
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'black';
-        context.font = '25px sans-serif';
-        context.fillText(`You completed round ${this.round}!`, 130, 250);
-        context.font = '15px sans-serif';
-        context.fillText('Click anywhere to continue...', 170, 290);
+        context.font = '25px';
+        context.fillText(`You completed round ${this.round}!`, 70, 250);
+        context.font = '15px';
+        context.fillText('Click anywhere to continue...', 20, 310);
         this.round++;
-        round.innerText = this.round;
         this.resetEnemies();
     }
 

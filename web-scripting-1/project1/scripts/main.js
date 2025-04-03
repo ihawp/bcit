@@ -6,6 +6,7 @@ import { ParticleBackground } from './particle.js';
 
 export const canvas = document.getElementById('canvas');
 export const context = canvas.getContext("2d");
+context.save();
 
 // 30 fps: 33.3333333333 (intended fps)
 // 60 fps: 16.6666666667 (speeds game up)

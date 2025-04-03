@@ -7,8 +7,13 @@ html {
     padding: 0;
 }
 
+@font-face {
+    font-family: 'Boldonse';
+    src: url("../fonts/Boldonse-Regular.ttf");
+}
+
 body {
-    font-family: sans-serif;
+    font-family: 'Boldonse';
 
     display: flex;
     flex-direction: column;
@@ -27,25 +32,34 @@ body {
     cursor: default;
 }
 
-#lives {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-
-    max-width: 200px;
-    flex-wrap: wrap;
-}
-
-#lives svg {
-    width: 30px;
-}
-#lives svg path {
-    fill: #fff;
-}
-
 #game, #ui {
     display: flex;
     justify-content: center;
+}
+
+#game {
+    position: relative;
+}
+
+#round-container {
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 50px;
+
+    border-radius: 150px;
+}
+
+#round {
+    margin-left: 25px;
+    font-size: 1.125rem;
 }
 
 #canvas {
@@ -57,6 +71,24 @@ body {
     align-items: center;
     margin: 10px 0 0 0;
     gap: 2rem;
+
+    width: 500px;
+}
+
+#lives {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    min-width: 150px;
+    max-width: 150px;
+    flex-wrap: wrap;
+}
+
+#lives svg {
+    width: 30px;
+}
+#lives svg path {
+    fill: #fff;
 }
 
 header {
@@ -69,35 +101,9 @@ ul {
     list-style: none;
 }
 
-header, main, footer {
-    width: 320px;
-}
-
-/*
-
-#panel {
-    animation: rotate infinite 100s ease;
-}
-
-@keyframes rotate {
-    0% {
-        rotate: 0deg;
-    }
-    100% {
-        rotate: 360deg;
-    }
-}
-
-*/
-
-@media (min-width: 50em) {
-    header, main, footer {
-        width: 50rem;
-    }
-}
-
-@media (min-width: 75em) {
-    header, main, footer {
-        width: 75rem;
-    }
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

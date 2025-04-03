@@ -1,6 +1,9 @@
 import { randomNumberInRange } from "./functions.js";
 import { context } from "./main.js";
 
+import { Gunner } from './gunner.js';
+import { Boopa } from './boopa.js';
+
 export function Enemy() {
 
     this.directionOdd = randomNumberInRange(0, 1);
@@ -9,7 +12,7 @@ export function Enemy() {
     this.y;
     this.x;
     
-    this.type = randomNumberInRange(0, 5) > 4 ? 0 : 1;
+    this.type = randomNumberInRange(0, 10) > 9 ? 0 : 1;
     this.size = this.type ? 8 : 13;
     this.color = this.type ? 'green' : 'red';
     this.lastX = undefined;
@@ -51,18 +54,6 @@ export function Enemy() {
         this.shot.x = this.x;
         this.shot.y = this.y;
     }
-    this.shootLeft = function() {
-        this.shot.x -= this.shot.speed;
-    }
-    this.shootRight = function() {
-        this.shot.x += this.shot.speed;
-    }
-    this.shootDown = function() {
-        this.shot.y += this.shot.speed;
-    }
-    this.shootUp = function() {
-        this.shot.y -= this.shot.speed;
-    }
     this.drawShot = function() {
         // "Shoots boopas rather then bullets"
         context.fillStyle = 'green';
@@ -83,19 +74,6 @@ export function Enemy() {
 
     this.setSize = function(size) {
         this.size = size;
-    }
-
-    this.moveRight = function() {
-        this.x += this.speed;
-    }
-    this.moveLeft = function() {
-        this.x -= this.speed;
-    }
-    this.moveUp = function() {
-        this.y -= this.speed;
-    }
-    this.moveDown = function() {
-        this.y += this.speed;
     }
 
 }
