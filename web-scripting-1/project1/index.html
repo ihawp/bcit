@@ -7,15 +7,24 @@
         <meta name="description" content="Play Breakthrough v2, the most intense WASD avoider game of all time.">
         <link rel="preload stylesheet" as="style" href="styles/styles.css">
     </head>
-    <body>
+    <body class="home">
+        <header id="header">
+            <nav aria-label="Page Navigation" class="nav nav-top nav-right">
+                <ul>
+                    <li class="rotating-button">
+                        <span></span>
+                        <a href="./leaderboard" title="View Leaderboard" id="navigation"></a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         <main>
-            <section>
-                <canvas id="canvas" width="500" height="500"></canvas>
+            <section id="main">
+
             </section>
         </main>
 
         <script src="scripts/main.js" type="module"></script>
-        <script src="scripts/particle.js" type="module"></script>
 
     </body>
 </html>
