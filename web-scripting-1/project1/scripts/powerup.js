@@ -6,27 +6,35 @@ import { context } from './main.js';
 export function Powerup() {
 
     this.direction = randomNumberInRange(0, 1);
-
     this.type = undefined;
-
     this.x = undefined;
     this.y = undefined;
-
+    this.lastTime = undefined;
+    this.timeoutId = undefined;
+    this.invincible = false;
     this.size = 25;
     this.speed = 7;
-
-    this.lastTime = undefined;
 
     this.draw = function(context) {
         context.fillStyle = '#FFF700';
         context.fillRect(this.x, this.y, this.size, this.size);
     }
 
+    this.setSpeed = function(speed) {
+        this.speed = speed;
+    }
+
+    this.invincibility = function(value) {
+        this.invincible = value;
+    }
+
+    this.clearTimeout = function() {
+        clearTimeout(this.timeoutId);
+    }
+
     this.resetLastTime = function() {
         this.lastTime = new Date().getUTCSeconds();
     }
-
-    this.resetLastTime();
 
     this.resetType = function() {
         this.type = randomNumberInRange(0, 3);
@@ -40,13 +48,18 @@ export function Powerup() {
         this.y = this.direction ? -500 : 1000;
     }
 
-    this.reset = function() {
-        this.resetType();
+    this.resetXY = function() {
         this.resetX();
         this.resetY();
     }
 
-    // set initial: x, y, type
+    this.reset = function() {
+        this.resetType();
+        this.resetXY();
+        this.resetLastTime();
+    }
+
+    // set initial: x, y, type, lastTime
     this.reset();
 
 }

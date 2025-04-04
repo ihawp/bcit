@@ -190,17 +190,25 @@ export default function Game() {
 
         // Powerups
         let thisTime = new Date().getUTCSeconds();
-        if (thisTime > this.powerup.lastTime + 25) {
+        if (thisTime === this.powerup.lastTime + 5) {
+            this.cancelPowerup();
+        }
+        if (thisTime > this.powerup.lastTime + 10) {
 
             this.powerup.direction ? this.moveDown(this.powerup) : this.moveUp(this.powerup);
-            
-            this.powerup.draw(context);
             
             if (this.checkIntersection(this.powerup)) {
                 this.powerUpIntersection();
             }
 
+            // Check if Powerup is offscreen
+            if (this.powerup.y + this.powerup.size < 0 && !this.powerup.direction || this.powerup.y > 500 && this.powerup.direction) {
+                this.powerup.reset();
+            }
+
         }
+
+        this.powerup.draw(context);
 
         /*
         // Powerups
@@ -364,32 +372,35 @@ export default function Game() {
     // ------------------------------------------------------------------
     // SPECIFIC INTERSECTIONS:
 
-    this.powerUpIntersection = function() {
+    this.cancelPowerup = function() {
+        this.setEnemiesSpeed(5);
+        this.resetEnemiesSize();
+        this.player.invincibility(false);
+        this.player.setSpeed(5);
+    }
 
-        console.log(this.powerup.x, this.powerup.y, this.powerup.type);
+    this.powerUpIntersection = function() {
 
         this.powerup.reset();
 
-        this.powerup.lastTime = new Date().getUTCSeconds();
-
-        console.log(this.powerup.x, this.powerup.y, this.powerup.type);
-
         switch (this.powerup.type) {
+            case (0):
+                // Slowdown
+                this.setEnemiesSpeed(1);
+                break;
             case (1):
-
-                // Set a timeout to revert the powerup.
-                // This timeout should be cancellable (and then whatever code was TO BE CALLED is CALLED)
-                // 
-
+                // Rainbow
+                this.setEnemiesSpeed(10);
+                this.setEnemiesSize(1);
+                this.player.invincibility(true);
                 break;
             case (2):
-
+                // Trick (this one is dumb)
+                this.player.setSpeed(3);
                 break;
             case (3):
-
-                break;
-            case (4):
-
+                // Free Life
+                this.lives++;
                 break;
         }
 
