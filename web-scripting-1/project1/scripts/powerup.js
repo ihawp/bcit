@@ -10,7 +10,7 @@ export function Powerup() {
     this.x = undefined;
     this.y = undefined;
     this.lastTime = undefined;
-    this.timeoutId = undefined;
+    this.active = false;
     this.invincible = false;
     this.size = 25;
     this.speed = 7;
@@ -20,20 +20,17 @@ export function Powerup() {
         context.fillRect(this.x, this.y, this.size, this.size);
     }
 
-    this.setSpeed = function(speed) {
-        this.speed = speed;
+    this.drawIndicator = function(context) {
+        context.fillStyle = '$FFF700';
+        context.fillRect(this.x, this.direction ? 0 : 498, this.size, 2);
     }
 
-    this.invincibility = function(value) {
-        this.invincible = value;
-    }
-
-    this.clearTimeout = function() {
-        clearTimeout(this.timeoutId);
+    this.setActive = (value) => {
+        this.active = value;
     }
 
     this.resetLastTime = function() {
-        this.lastTime = new Date().getUTCSeconds();
+        this.lastTime = Date.now();
     }
 
     this.resetType = function() {
@@ -57,6 +54,7 @@ export function Powerup() {
         this.resetType();
         this.resetXY();
         this.resetLastTime();
+        this.setActive(false);
     }
 
     // set initial: x, y, type, lastTime

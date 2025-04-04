@@ -88,8 +88,12 @@ export function Player(x, y) {
         
     }
 
-    this.invincibility = function(boolean) {
+    this.invincibility = (boolean) => {
         this.invincible = boolean;
+    }
+
+    this.setSpeed = (speed) => {
+        this.speed = speed;
     }
 
     this.keyDown = event => {

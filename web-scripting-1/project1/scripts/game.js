@@ -189,14 +189,16 @@ export default function Game() {
         });
 
         // Powerups
-        let thisTime = new Date().getUTCSeconds();
-        if (thisTime === this.powerup.lastTime + 5) {
+        let thisTime = Date.now();
+        if (this.powerup.active && thisTime - this.powerup.lastTime > 5000) {
             this.cancelPowerup();
         }
-        if (thisTime > this.powerup.lastTime + 10) {
+        if (thisTime - this.powerup.lastTime > 15000) {
 
             this.powerup.direction ? this.moveDown(this.powerup) : this.moveUp(this.powerup);
-            
+
+            this.powerup.draw(context);
+
             if (this.checkIntersection(this.powerup)) {
                 this.powerUpIntersection();
             }
@@ -206,31 +208,12 @@ export default function Game() {
                 this.powerup.reset();
             }
 
-        }
-
-        this.powerup.draw(context);
-
-        /*
-        // Powerups
-        if (this.checkIntersection(this.powerup)) {
-            this.powerUpIntersection();
-        }
-
-        // Powerup Indicator
-        if ((this.powerup.y < 0 || this.powerup.y > 500) && this.powerup.happening && !this.powerup.waiting) {
-            this.powerup.drawIndicator(context);
-        }
-
-        if (!this.powerup.happening) this.powerup.notHappening();
-
-        if (!this.powerup.waiting) {
-
-            this.powerup.direction ? this.moveDown(this.powerup) : this.moveUp(this.powerup);
-
-            this.powerup.draw();
+            // Check if Powerup is offscreen for indicator
+            if (this.powerup.y + this.powerup.size < 0 && this.powerup.direction || this.powerup.y > 500 && !this.powerup.direction) {
+                this.powerup.drawIndicator(context);
+            }
 
         }
-        */
 
     }
 
@@ -372,16 +355,18 @@ export default function Game() {
     // ------------------------------------------------------------------
     // SPECIFIC INTERSECTIONS:
 
-    this.cancelPowerup = function() {
+    this.cancelPowerup = () => {
         this.setEnemiesSpeed(5);
         this.resetEnemiesSize();
         this.player.invincibility(false);
         this.player.setSpeed(5);
+        this.powerup.setActive(false);
     }
 
     this.powerUpIntersection = function() {
 
         this.powerup.reset();
+        this.powerup.setActive(true);
 
         switch (this.powerup.type) {
             case (0):
@@ -530,7 +515,7 @@ export default function Game() {
     }
 
     this.slide = 0;
-    this.lastTime = new Date().getUTCSeconds();
+    this.lastTime = Date.now();
 
     this.welcomeSceneHandler = () => this.welcomeScene();
 
@@ -564,8 +549,8 @@ export default function Game() {
                 break;
         }
 
-        let thisTime = new Date().getUTCSeconds();
-        if (thisTime > this.lastTime + 2) {
+        let thisTime = Date.now();
+        if (thisTime - this.lastTime > 2000) {
             this.lastTime = thisTime;
             this.slide++;
         }
