@@ -3,6 +3,53 @@
 import { randomNumberInRange } from "./functions.js";
 import { context } from './main.js';
 
+export function Powerup() {
+
+    this.direction = randomNumberInRange(0, 1);
+
+    this.type = undefined;
+
+    this.x = undefined;
+    this.y = undefined;
+
+    this.size = 25;
+    this.speed = 7;
+
+    this.lastTime = undefined;
+
+    this.draw = function(context) {
+        context.fillStyle = '#FFF700';
+        context.fillRect(this.x, this.y, this.size, this.size);
+    }
+
+    this.resetLastTime = function() {
+        this.lastTime = new Date().getUTCSeconds();
+    }
+
+    this.resetLastTime();
+
+    this.resetType = function() {
+        this.type = randomNumberInRange(0, 3);
+    }
+
+    this.resetX = function() {
+        this.x = randomNumberInRange(0, 500);
+    }
+
+    this.resetY = function() {
+        this.y = this.direction ? -500 : 1000;
+    }
+
+    this.reset = function() {
+        this.resetType();
+        this.resetX();
+        this.resetY();
+    }
+
+    // set initial: x, y, type
+    this.reset();
+
+}
 
 export function PowerUp() {
 

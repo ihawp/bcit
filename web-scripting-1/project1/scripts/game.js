@@ -1,7 +1,7 @@
 import { randomNumberInRange, convertIntToRoman } from "./functions.js";
 import { Enemy } from './enemy.js';
 import { Player } from './player.js';
-import { PowerUp } from './powerup.js';
+import { PowerUp, Powerup } from './powerup.js';
 import { canvas, context, framerate } from './main.js';
 const backgroundColor = 'purple';
 
@@ -30,7 +30,7 @@ export default function Game() {
         this.player = new Player(237.5, 237.5);
 
         // Create PowerUps
-        this.powerup = new PowerUp();
+        this.powerup = new Powerup();
 
         // Could be swapped to animation start or something prior to game beginning.
         if (this.plays === 0) {
@@ -189,16 +189,29 @@ export default function Game() {
         });
 
         // Powerups
+        let thisTime = new Date().getUTCSeconds();
+        if (thisTime > this.powerup.lastTime + 25) {
+
+            this.powerup.direction ? this.moveDown(this.powerup) : this.moveUp(this.powerup);
+            
+            this.powerup.draw(context);
+            
+            if (this.checkIntersection(this.powerup)) {
+                this.powerUpIntersection();
+            }
+
+        }
+
+        /*
+        // Powerups
         if (this.checkIntersection(this.powerup)) {
             this.powerUpIntersection();
         }
 
         // Powerup Indicator
-        /*
         if ((this.powerup.y < 0 || this.powerup.y > 500) && this.powerup.happening && !this.powerup.waiting) {
             this.powerup.drawIndicator(context);
         }
-        */
 
         if (!this.powerup.happening) this.powerup.notHappening();
 
@@ -209,6 +222,7 @@ export default function Game() {
             this.powerup.draw();
 
         }
+        */
 
     }
 
@@ -352,10 +366,35 @@ export default function Game() {
 
     this.powerUpIntersection = function() {
 
-        this.powerup.waiting = true;
+        console.log(this.powerup.x, this.powerup.y, this.powerup.type);
+
         this.powerup.reset();
 
+        this.powerup.lastTime = new Date().getUTCSeconds();
+
+        console.log(this.powerup.x, this.powerup.y, this.powerup.type);
+
+        switch (this.powerup.type) {
+            case (1):
+
+                // Set a timeout to revert the powerup.
+                // This timeout should be cancellable (and then whatever code was TO BE CALLED is CALLED)
+                // 
+
+                break;
+            case (2):
+
+                break;
+            case (3):
+
+                break;
+            case (4):
+
+                break;
+        }
+
         // Run powerup
+        /*
         switch (this.powerup.type) {
             case (1):
                 // Slowdown
@@ -386,12 +425,13 @@ export default function Game() {
                 this.lives++;
                 break;
         }
+        */
 
     }
 
     this.enemyIntersection = function() {
 
-        this.lives--;
+        this.removeLife();
 
         this.intersection();
 
@@ -399,7 +439,7 @@ export default function Game() {
 
     this.shotIntersection = function() {
 
-        this.lives--;
+        this.removeLife();
 
         this.intersection();
 
@@ -407,6 +447,14 @@ export default function Game() {
 
     // ------------------------------------------------------------------
     // SET VALUE(s):
+
+    this.addLife = function() {
+        this.lives++;
+    }
+
+    this.removeLife = function() {
+        this.lives--;
+    }
 
     this.setEnemiesSpeed = function(speed) {
         this.enemies.forEach(enemy => {
