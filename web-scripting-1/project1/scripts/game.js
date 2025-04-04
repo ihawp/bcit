@@ -1,4 +1,3 @@
-import { canvas, context, framerate } from './main.js';
 import { randomNumberInRange, convertIntToRoman } from "./functions.js";
 import Enemy from './enemy.js';
 import { Gunner } from './gunner.js';
@@ -6,10 +5,20 @@ import Player from './player.js';
 import Powerup from './powerup.js';
 
 const backgroundColor = 'purple';
+const framerate = 33.3333333333;
+
+let canvas = document.createElement('canvas');
+canvas.id = 'canvas';
+canvas.setAttribute('width', '500');
+canvas.setAttribute('height', '500');
+const context = canvas.getContext("2d");
+
+
 
 export default function Game() {
 
     this.player;
+    this.username = 'ihawp';
     this.enemies = [];
     this.powerups = [];
     this.plays = 0;
@@ -25,7 +34,7 @@ export default function Game() {
     this.init = function() {
         
         for (let i = 0; i < 20; i++) {
-            let enemy = new Enemy();
+            let enemy = new Enemy(context);
             this.resetEnemy(enemy);
             this.enemies.push(enemy);
         }
@@ -41,6 +50,10 @@ export default function Game() {
         } else {
             this.startGame();
         }
+    }
+
+    this.display = function(main) {
+        main.insertAdjacentElement('afterbegin', canvas);
     }
 
     // ------------------------------------------------------------------
@@ -81,6 +94,7 @@ export default function Game() {
         context.restore();
 
         let round = this.round % 2 == 0;
+        let thisTime = Date.now();
         
         // Print progress
         const barX = 325;
@@ -190,7 +204,6 @@ export default function Game() {
         });
 
         // Powerups
-        let thisTime = Date.now();
 
         // Check if powerup has been active for 5 seconds (stop it if so)
         if (this.powerup.active && thisTime - this.powerup.lastTime > 5000) {
@@ -384,7 +397,7 @@ export default function Game() {
             case (1):
                 // Rainbow
                 this.setEnemiesSpeed(10);
-                this.setEnemiesSize(1);
+                this.setEnemiesSize(0);
                 this.player.invincibility(true);
                 break;
             case (2):
@@ -531,7 +544,25 @@ export default function Game() {
         }
     }
 
-    this.dead = function() {
+    this.dead = async function() {
+
+        let response = await fetch('http://localhost/project1/php/leaderboard.php', {
+            method: "POST",
+            header: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: this.username,
+                enemiesDefeated: this.totalEnemiesDefeated,
+                roundLost: this.round,
+            })
+        });
+        if (!response.ok) {
+            console.error(response);
+        } else {
+            console.log(response);
+        }
+
         this.addPlay();
         context.fillStyle = '#F10040';
         context.fillRect(0, 0, 500, 500);

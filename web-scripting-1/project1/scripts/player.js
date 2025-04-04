@@ -97,8 +97,11 @@ export default function Player(x, y) {
     }
 
     this.keyDown = event => {
-        event.preventDefault();
-        switch (event.keyCode) {
+        let code = event.keyCode;
+        if (code === 87 || code === 65 || code === 83 || code === 68) {
+            event.preventDefault();
+        }
+        switch (code) {
             case (87):
                 this.velocityY = -(this.speed);
                 break;
@@ -115,8 +118,11 @@ export default function Player(x, y) {
     }
 
     this.keyUp = event => {
-        event.preventDefault();
-        switch (event.keyCode) {
+        let code = event.keyCode;
+        if (code === 87 || code === 65 || code === 83 || code === 68) {
+            event.preventDefault();
+        }
+        switch (code) {
             case (87):
                 this.velocityY = 0;
                 break;

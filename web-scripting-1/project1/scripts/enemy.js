@@ -1,10 +1,9 @@
 import { randomNumberInRange } from "./functions.js";
-import { context } from "./main.js";
 
 import { Gunner } from './gunner.js';
 import { Boopa } from './boopa.js';
 
-export default function Enemy() {
+export default function Enemy(context) {
     this.directionOdd = randomNumberInRange(0, 1);
     this.directionEven = randomNumberInRange(0, 1);
     this.y;
@@ -12,6 +11,7 @@ export default function Enemy() {
     this.lastX = undefined;
     this.type = randomNumberInRange(0, 7) > 5 ? new Gunner() : new Boopa();
     this.lastX = undefined;
+    this.context = context;
     this.shot = {
         happening: false,
         x: undefined,
@@ -20,11 +20,11 @@ export default function Enemy() {
         size: 8,
     }
 
-    this.draw = function(context) {
-        context.save();
-        context.fillStyle = this.type.color;
-        context.fillRect(this.x, this.y, this.type.size, this.type.size);
-        context.restore();
+    this.draw = function() {
+        this.context.save();
+        this.context.fillStyle = this.type.color;
+        this.context.fillRect(this.x, this.y, this.type.size, this.type.size);
+        this.context.restore();
     }
 
     this.resetOdd = function() {
@@ -49,8 +49,8 @@ export default function Enemy() {
     // Extendable for sure so leaving it in here, although as of now it is only used for the gunner class
     this.drawShot = function() {
         // "Shoots boopas rather than bullets"
-        context.fillStyle = '#16a34a';
-        context.fillRect(this.shot.x, this.shot.y, this.shot.size, this.shot.size);
+        this.context.fillStyle = '#16a34a';
+        this.context.fillRect(this.shot.x, this.shot.y, this.shot.size, this.shot.size);
     }
 
     this.adjustShot = function() {

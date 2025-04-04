@@ -12,7 +12,7 @@
 import { randomNumberInRange } from './functions.js';
 
 // DOM Version
-export default function Panel() {
+export function Panel() {
     this.panel = document.createElement('div');
     this.panel.id = ('panel');
     this.style = this.panel.style;
@@ -51,7 +51,7 @@ export default function Panel() {
 }
 
 // Canvas Version
-export function ParticleBackground() {
+export default function ParticleBackground() {
 
     this.canvas = document.createElement('canvas');
     this.particles = [];
