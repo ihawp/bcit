@@ -116,8 +116,6 @@ export default function Game() {
         // Enemies
         this.enemies.forEach(enemy => {
 
-            console.log(enemy.x, enemy.y);
-
             // Check intersection of enemy and player
             if (this.checkIntersection(enemy)) {
                 if (!this.player.invincible) {
@@ -126,14 +124,11 @@ export default function Game() {
             }
 
             // Update Enemy Position
-            console.log(round, enemy.directionEven, enemy.directionOdd);
             if (round) {
                 enemy.directionEven ? this.moveDown(enemy, enemy.type.speed) : this.moveUp(enemy, enemy.type.speed);
             } else {
                 enemy.directionOdd ? this.moveRight(enemy, enemy.type.speed) : this.moveLeft(enemy, enemy.type.speed);
             }
-
-            console.log(enemy.x, enemy.y);
 
             // Check if enemy is out of distance.
             if (round && (enemy.y > 500 && enemy.directionEven || enemy.y + enemy.type.size < 0 && !enemy.directionEven)) {
@@ -519,8 +514,9 @@ export default function Game() {
                 break;
             case (2):
                 context.font = '15px Boldonse';
-                context.fillText('Use W A S D to move the', 50, 260);
-                context.fillText('player around the gameboard', 50, 320);
+                context.fillText('Your player can go over the edge', 50, 260);
+                context.fillText('of the gameboard and appear on the', 50, 320);
+                context.fillText('opposing edge.', 50, 380);
                 break;
             default:
                 clearInterval(this.welcomeId);
