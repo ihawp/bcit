@@ -5,23 +5,25 @@ import { Gunner } from './gunner.js';
 import { Boopa } from './boopa.js';
 
 export default function Enemy() {
-
     this.directionOdd = randomNumberInRange(0, 1);
     this.directionEven = randomNumberInRange(0, 1);
-
     this.y;
     this.x;
-    
-    this.type = randomNumberInRange(0, 7) > 5 ? 0 : 1;
-    this.size = this.type ? 8 : 13;
-    this.color = this.type ? '#16a34a' : '#F10040';
     this.lastX = undefined;
-    this.speed = 5;
+    this.type = randomNumberInRange(0, 7) > 5 ? new Gunner() : new Boopa();
+    this.lastX = undefined;
+    this.shot = {
+        happening: false,
+        x: undefined,
+        y: undefined,
+        speed: 8,
+        size: 8,
+    }
 
     this.draw = function(context) {
         context.save();
-        context.fillStyle = this.color;
-        context.fillRect(this.x, this.y, this.size, this.size);
+        context.fillStyle = this.type.color;
+        context.fillRect(this.x, this.y, this.type.size, this.type.size);
         context.restore();
     }
 
@@ -44,26 +46,16 @@ export default function Enemy() {
     }
 
     // Shoot shots
-    // Only for gunner enemy.
-    this.shot = {
-        happening: false,
-        x: undefined,
-        y: undefined,
-        speed: 8,
-        size: 8,
-    }
-    this.adjustShot = function() {
-        this.shot.x = this.x;
-        this.shot.y = this.y;
-    }
+    // Extendable for sure so leaving it in here, although as of now it is only used for the gunner class
     this.drawShot = function() {
-        // "Shoots boopas rather then bullets"
+        // "Shoots boopas rather than bullets"
         context.fillStyle = '#16a34a';
         context.fillRect(this.shot.x, this.shot.y, this.shot.size, this.shot.size);
     }
 
-    this.setSpeed = function(speed) {
-        this.speed = speed;
+    this.adjustShot = function() {
+        this.shot.x = this.x;
+        this.shot.y = this.y;
     }
 
     this.setShotSpeed = function(speed) {
@@ -74,8 +66,12 @@ export default function Enemy() {
         this.shot.size = size;
     }
 
+    this.setSpeed = function(speed) {
+        this.type.speed = speed;
+    }
+
     this.setSize = function(size) {
-        this.size = size;
+        this.type.size = size;
     }
 
 }

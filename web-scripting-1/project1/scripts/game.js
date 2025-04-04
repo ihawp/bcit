@@ -1,6 +1,7 @@
 import { canvas, context, framerate } from './main.js';
 import { randomNumberInRange, convertIntToRoman } from "./functions.js";
 import Enemy from './enemy.js';
+import { Gunner } from './gunner.js';
 import Player from './player.js';
 import Powerup from './powerup.js';
 
@@ -14,7 +15,7 @@ export default function Game() {
     this.plays = 0;
     this.round = 1;
     this.lives = 3;
-    this.totalEnemiesDefeated = 99;
+    this.totalEnemiesDefeated = 0;
 
     this.intervalId = undefined;
     this.welcomeId = undefined;
@@ -115,6 +116,8 @@ export default function Game() {
         // Enemies
         this.enemies.forEach(enemy => {
 
+            console.log(enemy.x, enemy.y);
+
             // Check intersection of enemy and player
             if (this.checkIntersection(enemy)) {
                 if (!this.player.invincible) {
@@ -123,31 +126,22 @@ export default function Game() {
             }
 
             // Update Enemy Position
+            console.log(round, enemy.directionEven, enemy.directionOdd);
             if (round) {
-                enemy.directionEven ? this.moveDown(enemy) : this.moveUp(enemy);
+                enemy.directionEven ? this.moveDown(enemy, enemy.type.speed) : this.moveUp(enemy, enemy.type.speed);
             } else {
-                enemy.directionOdd ? this.moveRight(enemy) : this.moveLeft(enemy);
+                enemy.directionOdd ? this.moveRight(enemy, enemy.type.speed) : this.moveLeft(enemy, enemy.type.speed);
             }
 
+            console.log(enemy.x, enemy.y);
+
             // Check if enemy is out of distance.
-            /*
-                CAUSING GLITCH:
-
-                    If you beat round 1 and then lose and restart
-                    and make it to round 2 the first 20 enemies will be gained as progress...
-                    but ONLY on the second (2nd) round. If you keep playing and lose again
-                    the enemies will not be added as progress.
-                    zzz
-
-            */
-            if (round && (enemy.y > 500 && enemy.directionEven || enemy.y + enemy.size < 0 && !enemy.directionEven)) {
-                console.log('this one');
+            if (round && (enemy.y > 500 && enemy.directionEven || enemy.y + enemy.type.size < 0 && !enemy.directionEven)) {
                 enemy.resetEven();
                 this.defeated();
             }
             
-            if (!round && (enemy.x > 500 && enemy.directionOdd || enemy.x + enemy.size < 0 && !enemy.directionOdd)) {
-                console.log('that one');
+            if (!round && (enemy.x > 500 && enemy.directionOdd || enemy.x + enemy.type.size < 0 && !enemy.directionOdd)) {
                 enemy.resetOdd();
                 this.defeated();
             }
@@ -156,7 +150,7 @@ export default function Game() {
             enemy.draw(context);
 
             // Shoot shots
-            if (enemy.type === 0) {
+            if (enemy.type instanceof Gunner) {
 
                 if (!enemy.shot.happening) {
                     enemy.adjustShot();
@@ -172,19 +166,20 @@ export default function Game() {
                     }
                 }
 
+                // Check if enemy shot is happening, if so move the shot
                 if (enemy.shot.happening) {
                     switch (enemy.shot.happening) {
                         case (1):
-                            this.moveDown(enemy.shot);
+                            this.moveDown(enemy.shot, enemy.shot.speed);
                             break;
                         case (2):
-                            this.moveLeft(enemy.shot);
+                            this.moveLeft(enemy.shot, enemy.shot.speed);
                             break;
                         case (3):
-                            this.moveUp(enemy.shot);
+                            this.moveUp(enemy.shot, enemy.shot.speed);
                             break;
                         case (4):
-                            this.moveRight(enemy.shot);
+                            this.moveRight(enemy.shot, enemy.shot.speed);
                             break;
                     }
                     enemy.drawShot();
@@ -211,7 +206,7 @@ export default function Game() {
         if (thisTime - this.powerup.lastTime > 15000) {
 
             // Move the powerup
-            this.powerup.direction ? this.moveDown(this.powerup) : this.moveUp(this.powerup);
+            this.powerup.direction ? this.moveDown(this.powerup, this.powerup.speed) : this.moveUp(this.powerup, this.powerup.speed);
 
             // Draw the powerup
             this.powerup.draw(context);
@@ -237,20 +232,18 @@ export default function Game() {
 
     // ------------------------------------------------------------------
     // MOVEMENT:
-    // make used by all for movement, no point in redefining... 
-    // although I understand the concept of only updating properties of a class from methods defined inside that class.
 
-    this.moveRight = function(item) {
-        item.x += item.speed;
+    this.moveRight = function(item, speed) {
+        item.x += speed;
     }
-    this.moveLeft = function(item) {
-        item.x -= item.speed;
+    this.moveLeft = function(item, speed) {
+        item.x -= speed;
     }
-    this.moveUp = function(item) {
-        item.y -= item.speed;
+    this.moveUp = function(item, speed) {
+        item.y -= speed;
     }
-    this.moveDown = function(item) {
-        item.y += item.speed;
+    this.moveDown = function(item, speed) {
+        item.y += speed;
     }
     
     // ------------------------------------------------------------------
@@ -262,7 +255,9 @@ export default function Game() {
         } else {
             enemy.resetOdd();
         }
-        enemy.adjustShot();
+        if (enemy.type instanceof Gunner) {
+            enemy.adjustShot();
+        }
     }
 
     this.resetEnemies = function() {
@@ -275,8 +270,8 @@ export default function Game() {
         this.powerup.reset();
     }
 
+    // Reset the player/game stats
     this.resetStats = function() {
-        this.plays++;
         this.round = 1;
         this.totalEnemiesDefeated = 0;
         this.lives = 3;
@@ -407,40 +402,6 @@ export default function Game() {
                 break;
         }
 
-        // Run powerup
-        /*
-        switch (this.powerup.type) {
-            case (1):
-                // Slowdown
-                // Perhaps add 3 powerups that are forgotten about later
-                this.setEnemiesSpeed(1);
-                setTimeout(() => this.setEnemiesSpeed(5), 5000);
-                break;
-            case (2):
-                // Rainbow
-                this.setEnemiesSpeed(10);
-                this.setEnemiesSize(0);
-                this.player.invincibility(true);
-                setTimeout(() => {
-                    this.setEnemiesSpeed(5);
-                    this.resetEnemiesSize();
-                }, 5000);
-                setTimeout(() => {
-                    this.player.invincibility(false);
-                }, 7500);
-                break;
-            case (3):
-                // Trick (this one is dumb)
-                this.player.speed = 3;
-                setTimeout(() => this.player.speed = 5, 5000);
-                break;
-            case (4):
-                // Free Life
-                this.lives++;
-                break;
-        }
-        */
-
     }
 
     this.enemyIntersection = function() {
@@ -479,14 +440,14 @@ export default function Game() {
 
     this.setEnemiesSize = function(size) {
         this.enemies.forEach(enemy => {
-            enemy.setSize(size)
+            enemy.setSize(size);
             enemy.setShotSize(size);
         });
     }
 
     this.resetEnemiesSize = function() {
         this.enemies.forEach(enemy => {
-            enemy.type ? enemy.setSize(8) : enemy.setSize(13)
+            enemy.type instanceof Gunner ? enemy.setSize(13) : enemy.setSize(8);
             enemy.shot.size = 8;
         });
     }
@@ -575,6 +536,7 @@ export default function Game() {
     }
 
     this.dead = function() {
+        this.addPlay();
         context.fillStyle = '#F10040';
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'blue';
@@ -584,8 +546,17 @@ export default function Game() {
         context.font = '15px Boldonse';
         context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 135, 260);
         context.fillText(`You made it to round ${this.round}.`, 155, 310);
+        context.fillText(`You have played ${this.plays} times.`, 150, 360);
         this.resetStats();
         this.resetBetween();
+    }
+
+    this.addPlay = function() {
+        this.plays++;
+    }
+
+    this.addRound = function() {
+        this.round++;
     }
 
     this.respawn = function() {
@@ -609,7 +580,7 @@ export default function Game() {
         context.fillText(`You completed round ${this.round}!`, 70, 250);
         context.font = '15px Boldonse';
         context.fillText('Click anywhere to continue...', 110, 310);
-        this.round++;
+        this.addRound();
         this.resetEnemies();
     }
 
