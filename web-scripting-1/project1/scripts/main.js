@@ -10,7 +10,7 @@ export const context = canvas.getContext("2d");
 // 60 fps: 16.6666666667 (speeds game up)
 export const framerate = 33.3333333333;
 
-window.addEventListener('load', function() {
+window.addEventListener('load', () => {
     
 
     // Game Instance / Run Game

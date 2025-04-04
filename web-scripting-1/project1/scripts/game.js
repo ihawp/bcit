@@ -1,8 +1,9 @@
-import { randomNumberInRange, convertIntToRoman } from "./functions.js";
-import { Enemy } from './enemy.js';
-import { Player } from './player.js';
-import { PowerUp, Powerup } from './powerup.js';
 import { canvas, context, framerate } from './main.js';
+import { randomNumberInRange, convertIntToRoman } from "./functions.js";
+import Enemy from './enemy.js';
+import Player from './player.js';
+import Powerup from './powerup.js';
+
 const backgroundColor = 'purple';
 
 export default function Game() {
@@ -121,19 +122,6 @@ export default function Game() {
                 }
             }
 
-            // Check if enemy is out of distance.
-            if (round) {
-                if (enemy.y > 500 && enemy.directionEven || enemy.y < 0 && !enemy.directionEven) {
-                    enemy.resetEven();
-                    this.defeated();
-                }
-            } else {
-                if (enemy.x > 500 && enemy.directionOdd || enemy.x < 0 && !enemy.directionOdd) {
-                    enemy.resetOdd();
-                    this.defeated();
-                }
-            }
-            
             // Update Enemy Position
             if (round) {
                 enemy.directionEven ? this.moveDown(enemy) : this.moveUp(enemy);
@@ -141,6 +129,29 @@ export default function Game() {
                 enemy.directionOdd ? this.moveRight(enemy) : this.moveLeft(enemy);
             }
 
+            // Check if enemy is out of distance.
+            /*
+                CAUSING GLITCH:
+
+                    If you beat round 1 and then lose and restart
+                    and make it to round 2 the first 20 enemies will be gained as progress...
+                    but ONLY on the second (2nd) round. If you keep playing and lose again
+                    the enemies will not be added as progress.
+                    zzz
+
+            */
+            if (round && (enemy.y > 500 && enemy.directionEven || enemy.y + enemy.size < 0 && !enemy.directionEven)) {
+                console.log('this one');
+                enemy.resetEven();
+                this.defeated();
+            }
+            
+            if (!round && (enemy.x > 500 && enemy.directionOdd || enemy.x + enemy.size < 0 && !enemy.directionOdd)) {
+                console.log('that one');
+                enemy.resetOdd();
+                this.defeated();
+            }
+            
             // Draw the enemy in new position.
             enemy.draw(context);
 
@@ -190,15 +201,22 @@ export default function Game() {
 
         // Powerups
         let thisTime = Date.now();
+
+        // Check if powerup has been active for 5 seconds (stop it if so)
         if (this.powerup.active && thisTime - this.powerup.lastTime > 5000) {
             this.cancelPowerup();
         }
+
+        // Check if player has been alive for 15 seconds
         if (thisTime - this.powerup.lastTime > 15000) {
 
+            // Move the powerup
             this.powerup.direction ? this.moveDown(this.powerup) : this.moveUp(this.powerup);
 
+            // Draw the powerup
             this.powerup.draw(context);
 
+            // Check player intersection with Powerup
             if (this.checkIntersection(this.powerup)) {
                 this.powerUpIntersection();
             }
@@ -557,7 +575,6 @@ export default function Game() {
     }
 
     this.dead = function() {
-        this.resetBetween();
         context.fillStyle = '#F10040';
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'blue';
@@ -568,6 +585,7 @@ export default function Game() {
         context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 135, 260);
         context.fillText(`You made it to round ${this.round}.`, 155, 310);
         this.resetStats();
+        this.resetBetween();
     }
 
     this.respawn = function() {

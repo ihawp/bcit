@@ -1,9 +1,8 @@
 // this the place for powerups and !!
 
 import { randomNumberInRange } from "./functions.js";
-import { context } from './main.js';
 
-export function Powerup() {
+export default function Powerup() {
 
     this.direction = randomNumberInRange(0, 1);
     this.type = undefined;
@@ -62,6 +61,8 @@ export function Powerup() {
 
 }
 
+// First Try
+/*
 export function PowerUp() {
 
     // RETHINK
@@ -95,19 +96,15 @@ export function PowerUp() {
         context.fillStyle = '#FFF700';
         context.fillRect(this.x, this.y, this.size, this.size);
         context.restore();
-        /*
         context.beginPath();
         context.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
         context.fill();
-        */
     }
 
-    /*
     this.drawIndicator = function(context) {
         context.fillStyle = 'yellow';
         this.direction ? context.fillRect(this.x, 0, this.size, this.size) : context.fillRect(this.x, 500 - this.size, this.size, this.size);
     }
-    */
 
     this.notHappening = function() {
         this.happening = true;
@@ -126,3 +123,4 @@ export function PowerUp() {
     }
 
 }
+*/

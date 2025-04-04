@@ -4,7 +4,7 @@ import { context } from "./main.js";
 import { Gunner } from './gunner.js';
 import { Boopa } from './boopa.js';
 
-export function Enemy() {
+export default function Enemy() {
 
     this.directionOdd = randomNumberInRange(0, 1);
     this.directionEven = randomNumberInRange(0, 1);
@@ -58,7 +58,7 @@ export function Enemy() {
     }
     this.drawShot = function() {
         // "Shoots boopas rather then bullets"
-        context.fillStyle = 'green';
+        context.fillStyle = '#16a34a';
         context.fillRect(this.shot.x, this.shot.y, this.shot.size, this.shot.size);
     }
 

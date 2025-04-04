@@ -1,4 +1,4 @@
-export function Player(x, y) {
+export default function Player(x, y) {
 
     this.x = x;
     this.y = y;
