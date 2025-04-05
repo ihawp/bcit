@@ -29,35 +29,42 @@ body {
     background-color: rgb(255, 255, 255, 0.5);
 }
 
-body.home, body.leaderboard {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
 }
 
-body.home {
+body {
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
+}
+aside nav ul {
+    display: flex;
+    flex-direction: column;
+}
+aside nav ul li:first-of-type {
+    margin-bottom: .75rem;
 }
 
-header#header {
-    position: fixed;
-
-    width: 100vw;
-
+#main {
+    width: max-content;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 nav.nav-top {
     position: fixed;
-    top: 0;
+    top: 15px;
 }
 
 nav.nav-right {
-    right: 0;
+    right: 15px;
 }
 nav.nav-left {
-    left: 0;
+    left: 15px;
 }
 
 .text-center {
@@ -70,54 +77,13 @@ nav.nav a, .go-home {
     cursor: pointer;
 }
 
-#navigation {
-    height: 43px;
-    background: red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.rotating-button {
-    position: relative;
-    width: 80px;
-    height: 43px;
-    overflow: hidden;
-}
-.rotating-button svg {
-
-}
-.rotating-button a {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
-}
 svg {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
 }
+
 svg path {
     fill: #fff;
-}
-
-@keyframes rotateClockwise {
-    0% {
-        rotate: 0;
-    }
-    100% {
-        rotate: 360deg;
-    }
-}
-
-.rotating-button span {
-    position: absolute;
-    content: '';
-    background-color: blue;
-    width: 100%;
-    height: 100%;
-    animation: rotateClockwise infinite 3s ease;
 }
 
 .none {
@@ -142,11 +108,11 @@ ul {
 }
 
 ul.leaderboard {
-    margin-right: 10px;
+    padding: 0 0 50px 0;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 13px 0;
+    width: 500px;
 }
 li.leaderboard {
     padding: 1rem;
@@ -169,13 +135,25 @@ li.leaderboard div.absolute span.smaller {
     font-size: 11px;
 }
 
-#overflow {
-    margin: 25px 0 0 0;
-    height: calc(100vh - 125px);
-    overflow-y: scroll;
-    overflow-x: visible;
-    width: 320px;
+#canvas {
+    width: 500px;
+    height: 500px;
 }
+
+main {
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#overflow {
+    height: calc(100vh - 125px);
+    overflow-y: visible;
+
+
+}
+
 
 .first {
     background-color: gold;
@@ -184,16 +162,11 @@ li.leaderboard div.absolute span.smaller {
     background-color: silver;
 }
 .third {
-    background-color: brown;
+    background-color: #FF5733;
 }
 
 @media (min-width: 50em) {
-    #overflow {
+    main {
         width: 50rem;
-    }
-}
-@media (min-width: 75em) {
-    #overflow {
-        width: 75rem;
     }
 }

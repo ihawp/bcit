@@ -21,7 +21,7 @@ export default function Powerup() {
 
     this.drawIndicator = function(context) {
         context.fillStyle = '$FFF700';
-        context.fillRect(this.x, this.direction ? 0 : 498, this.size, 2);
+        context.fillRect(this.x, this.direction ? 0 : 490, this.size, 10);
     }
 
     this.setActive = function(value) {

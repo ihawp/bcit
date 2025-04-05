@@ -27,7 +27,7 @@ function Main() {
 
     this.error = new Error;
 
-    this.main = document.querySelector('main');
+    this.main = document.getElementById('main');
 
     this.navigation = document.getElementById('navigation');
 

@@ -53,7 +53,9 @@ export default function Game() {
     }
 
     this.display = function(main) {
-        main.insertAdjacentElement('afterbegin', canvas);
+
+        main.insertAdjacentElement('beforeend', canvas);
+
     }
 
     // ------------------------------------------------------------------
@@ -431,6 +433,14 @@ export default function Game() {
     // ------------------------------------------------------------------
     // SET VALUE(s):
 
+    this.addPlay = function() {
+        this.plays++;
+    }
+
+    this.addRound = function() {
+        this.round++;
+    }
+
     this.addLife = function() {
         this.lives++;
     }
@@ -507,7 +517,7 @@ export default function Game() {
     this.welcomeSceneHandler = () => this.welcomeScene();
 
     this.welcome = function() {
-        this.welcomeId = setInterval(this.welcomeSceneHandler, 1000);
+        this.welcomeId = setInterval(this.welcomeSceneHandler, 33.3333333);
         this.welcomeScene();
     }
 
@@ -528,8 +538,30 @@ export default function Game() {
             case (2):
                 context.font = '15px Boldonse';
                 context.fillText('Your player can go over the edge', 50, 260);
-                context.fillText('of the gameboard and appear on the', 50, 320);
-                context.fillText('opposing edge.', 50, 380);
+                context.fillText('and appear on the opposing edge', 50, 320);
+
+                context.fillStyle = '#000';
+                context.fillRect(485, 200, 15, 50);
+                context.fillRect(0, 200, 35, 50);
+                break;
+            case(3):
+                context.font = '15px Boldonse';
+                context.fillText('Collect powerups as they fall', 50, 260);
+                context.fillText('up or down. They are yellow.', 50, 320);
+                context.fillText('They will be indicated by an indicator.', 50, 380);
+
+                context.fillStyle = 'yellow';
+                context.fillRect(237.5, 180, 25, 25);
+                break;
+            case(4):
+                context.font = '15px Boldonse';
+                context.fillText('There are 2 enemy types.', 50, 260);
+                context.fillText('Greens and Gunners.', 50, 320);
+
+                context.fillStyle = 'green';
+                context.fillRect(200, 200, 16, 16);
+                context.fillStyle = 'green';
+                context.fillRect(270, 200, 26, 26);
                 break;
             default:
                 clearInterval(this.welcomeId);
@@ -538,7 +570,7 @@ export default function Game() {
         }
 
         let thisTime = Date.now();
-        if (thisTime - this.lastTime > 2000) {
+        if (thisTime - this.lastTime > 4000) {
             this.lastTime = thisTime;
             this.slide++;
         }
@@ -576,14 +608,6 @@ export default function Game() {
         context.fillText(`You have played ${this.plays} times.`, 150, 360);
         this.resetStats();
         this.resetBetween();
-    }
-
-    this.addPlay = function() {
-        this.plays++;
-    }
-
-    this.addRound = function() {
-        this.round++;
     }
 
     this.respawn = function() {
