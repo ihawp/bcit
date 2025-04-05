@@ -14,16 +14,116 @@ html {
 
 body {
     font-family: 'Boldonse';
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-
     background: #800080;
     color: #fff;
 }
+
+::-webkit-scrollbar {
+    background-color: rgb(255, 255, 255, 0.2);
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255, 0.8);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+body.home, body.leaderboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+body.home {
+    justify-content: center;
+    overflow: hidden;
+}
+
+header#header {
+    position: fixed;
+
+    width: 100vw;
+
+}
+
+nav.nav-top {
+    position: fixed;
+    top: 0;
+}
+
+nav.nav-right {
+    right: 0;
+}
+nav.nav-left {
+    left: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+nav.nav a, .go-home {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#navigation {
+    height: 43px;
+    background: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rotating-button {
+    position: relative;
+    width: 80px;
+    height: 43px;
+    overflow: hidden;
+}
+.rotating-button svg {
+
+}
+.rotating-button a {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+}
+svg {
+    width: 20px;
+    height: 20px;
+}
+svg path {
+    fill: #fff;
+}
+
+@keyframes rotateClockwise {
+    0% {
+        rotate: 0;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
+
+.rotating-button span {
+    position: absolute;
+    content: '';
+    background-color: blue;
+    width: 100%;
+    height: 100%;
+    animation: rotateClockwise infinite 3s ease;
+}
+
+.none {
+    display: none;
+}
+
 
 #canvas {
     display: block;
@@ -32,6 +132,68 @@ body {
     border: 2px solid #fff;
     box-shadow: 0 0 10px 1px rgb(255, 255, 255, 0.5);
 }
+
 #canvas:active {
     cursor: default;
+}
+
+ul {
+    list-style: none;
+}
+
+ul.leaderboard {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 13px 0;
+}
+li.leaderboard {
+    padding: 1rem;
+    position: relative;
+}
+
+li.leaderboard div.absolute {
+    position: absolute;
+    width: 50px;
+    height: 43px;
+    top: -15px;
+    right: 15px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li.leaderboard div.absolute span.smaller {
+    font-size: 11px;
+}
+
+#overflow {
+    margin: 25px 0 0 0;
+    height: calc(100vh - 125px);
+    overflow-y: scroll;
+    overflow-x: visible;
+    width: 320px;
+}
+
+.first {
+    background-color: gold;
+}
+.second {
+    background-color: silver;
+}
+.third {
+    background-color: brown;
+}
+
+@media (min-width: 50em) {
+    #overflow {
+        width: 50rem;
+    }
+}
+@media (min-width: 75em) {
+    #overflow {
+        width: 75rem;
+    }
 }
