@@ -5,6 +5,7 @@ import ParticleBackground from './particle.js';
 import Fullscreen from './fullscreen.js';
 import Leaderboard, { LeaderboardFetch } from './leaderboard.js';
 import Error from './error.js';
+import Username from './username.js';
 
 function Main() {
 
@@ -17,7 +18,6 @@ function Main() {
     }
 
     this.game = new Game();
-    this.game.init();
 
     this.particleBackground = new ParticleBackground().init();
 
@@ -27,16 +27,14 @@ function Main() {
 
     this.error = new Error;
 
+    this.username = new Username();
+
     this.main = document.getElementById('main');
 
     this.navigation = document.getElementById('navigation');
 
-    this.svg = {
-        leaderboard: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M160 80c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 352c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-352zM0 272c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 160c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48L0 272zM368 96l32 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48z"/></svg>',
-        play: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>'
-    }
-
     this.updateState = (state) => {
+        if (this.state === state) return;
         this.state = state;
         this.displayState();
     }
@@ -45,21 +43,28 @@ function Main() {
         history.pushState('', '', urlTitle);
     }
 
-    this.updateNavigation = function(url) {
-        this.navigation.innerHTML = this.svg[url];
-        this.navigation.href = './' + url;
-    }
-
     this.displayState = async () => {
         this.main.innerHTML = '';
+
+        // error.js get rid of this logic
+        if (this.navigation.classList.contains('none')) {
+            this.navigation.classList.remove('none');
+        }
+
+        if (this.state !== 'play') {
+            this.game.pause();
+        }
+
         switch (this.state) {
             case ('play'):
-                this.updateNavigation('leaderboard');
-                this.game.display(this.main);
+                if (!this.game.initiated) {
+                    this.game.init();
+                    this.game.setInitiated(true);
+                }
+                this.game.display(this.main, this.username.name);
                 break;
+
             case ('leaderboard'):
-                this.game.pause();
-                this.updateNavigation('play');
                 let data = await LeaderboardFetch();
                 if (data) {
                     this.leaderboard.display(this.main, data);
@@ -67,8 +72,19 @@ function Main() {
                     this.error.display(this.main);
                 }
                 break;
+
+            case ('username'):
+
+                // So that w a s d can be entered (I could also remove this logic and not prevent default with the keydown and keyup listeners... more buttons could be used eventually so it's not unreasonable to leave the functions in place (as someone might want to ctrl+w out of the tab ))
+                if (this.game.initiated) {
+                    this.game.player.removeKeyDown();
+                    this.game.player.removeKeyUp();
+                }
+                this.username.display(this.main);
+                break;
+
             default:
-                this.error.display(this.main);
+                this.error.display(this.main, this.navigation);
                 break;
         }
         this.pushState(this.state);
@@ -76,13 +92,14 @@ function Main() {
 
     this.displayState();
 
-    this.func = (event) => {
-        event.preventDefault();
-        let q = this.navigation.href.split('/');
-        this.updateState(q[q.length - 1]);
-    }
-
-    this.navigation.addEventListener('click', this.func);
+    this.leta = document.querySelectorAll('a');
+    this.leta.forEach(item => {
+        item.addEventListener('click', (event) => {
+            event.preventDefault();
+            let q = item.href.split('/');
+            this.updateState(q[q.length - 1]);
+        });
+    });
 }
 
 new Main();

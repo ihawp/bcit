@@ -1,4 +1,8 @@
+/* ---------------------------------------------------------------- */
+/* BREAKTHROUGH.IHAWP.COM */
+
 html {
+    scroll-behavior: smooth;
     box-sizing: border-box;
 }
 *, *:before, *:after {
@@ -16,7 +20,17 @@ body {
     font-family: 'Boldonse';
     background: #800080;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    overflow-x: hidden;
 }
+
+
+/* ---------------------------------------------------------------- */
+/* SCROLLBAR */
 
 ::-webkit-scrollbar {
     background-color: rgb(255, 255, 255, 0.2);
@@ -29,24 +43,31 @@ body {
     background-color: rgb(255, 255, 255, 0.5);
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
+/* ---------------------------------------------------------------- */
+/* SIDEBAR (navigation) */
+
+aside {
+    background-color: rgb(255, 255, 255, 0.2);
+    height: min-content;
+    padding: 1rem;
 }
 
-body {
-    justify-content: center;
-    overflow-x: hidden;
-}
 aside nav ul {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
 }
-aside nav ul li:first-of-type {
-    margin-bottom: .75rem;
+
+/* ---------------------------------------------------------------- */
+/* ERROR PAGE */
+
+#error404 {
+    height: 500px;
+    width: 500px;
 }
+
+/* ---------------------------------------------------------------- */
+/* MAIN (section id="main") */
 
 #main {
     width: max-content;
@@ -55,20 +76,29 @@ aside nav ul li:first-of-type {
     flex-direction: column;
 }
 
-nav.nav-top {
-    position: fixed;
-    top: 15px;
+/* ---------------------------------------------------------------- */
+/* MAIN (main) */
+
+main {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
-nav.nav-right {
-    right: 15px;
-}
-nav.nav-left {
-    left: 15px;
-}
+/* ---------------------------------------------------------------- */
+/* SINGLE PROPERTY */
 
 .text-center {
     text-align: center;
+}
+
+.go-home {
+    margin-top: 10px;
+}
+
+.none {
+    display: none;
+    visibility: hidden;
 }
 
 nav.nav a, .go-home {
@@ -86,16 +116,52 @@ svg path {
     fill: #fff;
 }
 
-.none {
-    display: none;
+.flex {
+    display: flex;
 }
 
+.row {
+    flex-direction: row;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.gap-0-5 {
+    gap: .5rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+ul {
+    list-style: none;
+}
+
+.max-width-300 {
+    max-width: 300px;
+}
+
+.font-0-8 {
+    font-size: .8rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* CANVAS */
 
 #canvas {
     display: block;
     cursor: pointer;
     z-index: 999;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
+    box-shadow: 0 0 10px 1px rgb(255, 255, 255, 0.5);
+    width: 500px;
+    height: 500px;
+}
+
+#canvas, #leaderboard-container, #username-form input, #username-form button {
     box-shadow: 0 0 10px 1px rgb(255, 255, 255, 0.5);
 }
 
@@ -103,66 +169,106 @@ svg path {
     cursor: default;
 }
 
-ul {
-    list-style: none;
-}
+/* ---------------------------------------------------------------- */
+/* LEADERBOARD */
 
 ul.leaderboard {
-    padding: 0 0 50px 0;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    width: 500px;
 }
+
 li.leaderboard {
     padding: 1rem;
     position: relative;
+    color: #fff;
+
+    display: flex;
+    font-family: sans-serif;
 }
 
-li.leaderboard div.absolute {
+li.guide {
+    font-weight: 700;
+    border-bottom: 1px solid white;
+}
+
+li.leaderboard .rank {
+    width: 100px;
+}
+li.leaderboard .round {
+    text-align: end;
+    width: 100px;
+}
+li.leaderboard .enemies {
+    width: 200px;
+}
+li.leaderboard .username {
+    width: 200px;
+}
+
+
+#leaderboard-container, #usernameForm {
+    height: 500px;
+    width: 500px;
+}
+
+#leaderboard-container {
+    overflow-y: scroll;
+    border: 1px solid #fff;
+}
+
+#leaderboard-container::-webkit-scrollbar {
+    width: 0;
+}
+
+/* ---------------------------------------------------------------- */
+/* HEADER (breakthrough logo*) */
+
+header.header {
     position: absolute;
-    width: 50px;
-    height: 43px;
-    top: -15px;
-    right: 15px;
-    background-color: red;
+    top: 15px;
+    left: 15px;
+}
+
+
+/* ---------------------------------------------------------------- */
+/* USERNAME FORM */
+
+#usernameForm {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
-li.leaderboard div.absolute span.smaller {
-    font-size: 11px;
-}
-
-#canvas {
-    width: 500px;
-    height: 500px;
-}
-
-main {
-    width: 320px;
+#username-form {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: .5rem;
+    margin: 30px 0 30px 0;
 }
 
-#overflow {
-    height: calc(100vh - 125px);
-    overflow-y: visible;
-
-
+#username-form input, #username-form button {
+    font-family: 'Boldonse';
+    border: 1px solid white;
+    outline: none;
+    padding: 1rem;
+    background-color: transparent;
+    color: white;
+}
+#username-form button {
+    background-color: #fff;
+    color: purple;
 }
 
+input::placeholder {
+    color: white;
+}
 
-.first {
-    background-color: gold;
+input:is(:-webkit-autofill, :autofill) {
+    background-color: transparent;
 }
-.second {
-    background-color: silver;
-}
-.third {
-    background-color: #FF5733;
+
+button {
+    cursor: pointer;
 }
 
 @media (min-width: 50em) {

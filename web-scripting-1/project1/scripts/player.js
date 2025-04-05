@@ -143,7 +143,12 @@ export default function Player(x, y) {
         this.y = 237.5;
     }
 
-    document.addEventListener('keydown', this.keyDown);
-    document.addEventListener('keyup', this.keyUp);
+    this.addKeyDown = () => document.addEventListener('keydown', this.keyDown);
+    this.addKeyUp = () => document.addEventListener('keyup', this.keyUp);
+    this.removeKeyDown = () => document.removeEventListener('keydown', this.keyDown);
+    this.removeKeyUp = () => document.removeEventListener('keyup', this.keyUp);
+
+    this.addKeyDown();
+    this.addKeyUp();
 
 }

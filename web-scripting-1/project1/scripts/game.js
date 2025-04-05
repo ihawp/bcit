@@ -18,41 +18,56 @@ const context = canvas.getContext("2d");
 export default function Game() {
 
     this.player;
-    this.username = 'ihawp';
+    this.username = undefined;
     this.enemies = [];
     this.powerups = [];
     this.plays = 0;
     this.round = 1;
     this.lives = 3;
     this.totalEnemiesDefeated = 0;
-
     this.intervalId = undefined;
     this.welcomeId = undefined;
-
     this.target = 100;
+    this.slide = 0;
+    this.lastTime = undefined;
+
+    this.initiated = false;
+    this.setInitiated = function(value) {
+        this.initiated = value;
+    }
 
     this.init = function() {
         
+        // Create Enemies
         for (let i = 0; i < 20; i++) {
             let enemy = new Enemy(context);
             this.resetEnemy(enemy);
             this.enemies.push(enemy);
         }
+
+        // Create Player
         this.player = new Player(237.5, 237.5);
 
         // Create PowerUps
         this.powerup = new Powerup();
 
-        // Could be swapped to animation start or something prior to game beginning.
-        if (this.plays === 0) {
-            this.intervalId = this.welcome();
-            canvas.addEventListener('click', this.homeListener);
-        } else {
-            this.startGame();
-        }
+        // Update time for tutorial
+        this.lastTime = Date.now();
+
+        // Play Tutorial
+        this.startWelcome();
+
+        // Add 'click' listener to skip the tutorial
+        this.addHomeListener();
+        
     }
 
-    this.display = function(main) {
+    this.display = function(main, name) {
+
+        this.player.addKeyDown();
+        this.player.addKeyUp();
+
+        this.username = name;
 
         main.insertAdjacentElement('beforeend', canvas);
 
@@ -493,78 +508,128 @@ export default function Game() {
 
     this.homeListener = () => this.home();
 
-    this.home = function() {
-
-        canvas.removeEventListener('click', this.homeListener);
-        canvas.addEventListener('click', this.pauseController);
-
-        clearInterval(this.welcomeId);
-
-
-        context.fillStyle = backgroundColor;
-        context.fillRect(0, 0, 500, 500);
-        context.font = '25px Boldonse';
-        context.fillStyle = 'white';
-        context.fillText('Welcome to Breakthrough v2!', 28, 250);
-        context.font = '15px Boldonse';
-        context.fillText('Click anywhere to begin', 135, 290);
-
+    this.addHomeListener = () => {
+        canvas.addEventListener('click', this.homeListener);
     }
 
-    this.slide = 0;
-    this.lastTime = Date.now();
+    this.removeHomeListener = () => {
+        canvas.removeEventListener('click', this.homeListener);
+    }
 
-    this.welcomeSceneHandler = () => this.welcomeScene();
+    this.addPauseListener = () => {
+        canvas.addEventListener('click', this.pauseController);
+    }
 
-    this.welcome = function() {
-        this.welcomeId = setInterval(this.welcomeSceneHandler, 33.3333333);
+    this.removePauseListener = () => {
+        canvas.removeEventListener('click', this.pauseController);
+    }
+
+    this.welcomeHandler = () => this.welcomeScene();
+
+    this.startWelcome = function() {
         this.welcomeScene();
+        this.welcomeId = setInterval(this.welcomeHandler, 1000);
+    }
+
+    this.endWelcome = function() {
+        this.welcomeId = clearInterval(this.welcomeId);
     }
 
     this.welcomeScene = function() {
         context.fillStyle = '#fff';
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = 'purple';
+
+        context.font = '9px Boldonse';
+        context.fillText('Click anywhere to skip the tutorial.', 150, 485);
+
         switch (this.slide) {
             case (0):
                 context.font = '25px Boldonse';
-                context.fillText('Welcome to Breakthrough v2!', 28, 250);
+                context.fillText('Welcome to Breakthrough v2!', 28, 230);
+                context.font = '15px Boldonse';
+                context.fillText('Click nothing to watch the tutorial.', 90, 290);
                 break;
             case (1):
+                context.font = '25px Boldonse';
+                context.fillText('How do I move the player?', 52, 230);
                 context.font = '15px Boldonse';
-                context.fillText('Use WASD to move the', 50, 260);
-                context.fillText('player around the gameboard', 50, 320);
+                context.fillText('Use the WASD keys on your keyboard.', 85, 290);
+                context.fillStyle = '#000';
+                context.fillRect(225, 100, 50, 50);
                 break;
             case (2):
+                context.font = '25px Boldonse';
+                context.fillText('What if I reach the edge?', 52, 230);
                 context.font = '15px Boldonse';
-                context.fillText('Your player can go over the edge', 50, 260);
-                context.fillText('and appear on the opposing edge', 50, 320);
+                context.fillText('Your player will mirror on the opposing edge', 47, 290);
+                context.fillText('of the screen.', 180, 325);
 
                 context.fillStyle = '#000';
-                context.fillRect(485, 200, 15, 50);
-                context.fillRect(0, 200, 35, 50);
+                context.fillRect(485, 50, 15, 50);
+                context.fillRect(0, 50, 35, 50);
                 break;
             case(3):
+                context.font = '25px Boldonse';
+                context.fillText('What are the enemy types?', 45, 230);
                 context.font = '15px Boldonse';
-                context.fillText('Collect powerups as they fall', 50, 260);
-                context.fillText('up or down. They are yellow.', 50, 320);
-                context.fillText('They will be indicated by an indicator.', 50, 380);
-
-                context.fillStyle = 'yellow';
-                context.fillRect(237.5, 180, 25, 25);
+                context.fillText("Greens and Gunners.", 155, 290);
+                context.fillStyle = 'green';
+                context.fillRect(225, 110, 16, 16);
+                context.fillStyle = 'red';
+                context.fillRect(249, 100, 26, 26);
                 break;
             case(4):
+                context.font = '25px Boldonse';
+                context.fillText('What do Greens do?', 90, 230);
                 context.font = '15px Boldonse';
-                context.fillText('There are 2 enemy types.', 50, 260);
-                context.fillText('Greens and Gunners.', 50, 320);
-
+                context.fillText('Nothing... unless you run into one.', 95, 290);
                 context.fillStyle = 'green';
-                context.fillRect(200, 200, 16, 16);
+                context.fillRect(242, 100, 16, 16);
+                break;
+            case(5):
+                context.font = '25px Boldonse';
+                context.fillText('What do Gunners do?', 85, 230);
+                context.font = '15px Boldonse';
+                context.fillText('They shoot Greens in all directions.', 84, 290);
+                context.fillStyle = 'red';
+                context.fillRect(237, 100, 26, 26);
                 context.fillStyle = 'green';
-                context.fillRect(270, 200, 26, 26);
+                context.fillRect(300, 104, 16, 16);
+                break;
+            case(6):
+                context.font = '25px Boldonse';
+                context.fillText('How do enemies move?', 65, 230);
+                context.font = '15px Boldonse';
+                context.fillText('Even Round: Top / Bottom.', 115, 290);
+                context.fillText('Odd Round: Left / Right.', 130, 325);
+                break;
+            case(7):
+                context.font = '25px Boldonse';
+                context.fillText('Are there powerups?', 85, 230);
+                context.font = '15px Boldonse';
+                context.fillText('Yes! They fall from the top and bottom', 75, 290);
+                context.fillText('of the screen.', 180, 325);
+                context.fillStyle = 'yellow';
+                context.fillRect(225, 100, 50, 50);
+                break;
+            case(8):
+                context.font = '25px Boldonse';
+                context.fillText('Do powerups have indicators?', 25, 230);
+                context.font = '15px Boldonse';
+                context.fillText('Yes! They are 10 pixels tall and will match', 65, 290);
+                context.fillText('the powerups Y value.', 153, 325);
+                context.fillStyle = 'yellow';
+                context.fillRect(225, 0, 50, 10);
+                break;
+            case(9):
+                context.font = '25px Boldonse';
+                context.fillText('Can I pause the game?', 85, 230);
+                context.font = '15px Boldonse';
+                context.fillText('You can pause the game at anytime', 95, 290);
+                context.fillText('by pressing anywhere on the screen.', 90, 325);
                 break;
             default:
-                clearInterval(this.welcomeId);
                 this.home();
                 break;
         }
@@ -574,6 +639,22 @@ export default function Game() {
             this.lastTime = thisTime;
             this.slide++;
         }
+    }
+
+    this.home = function() {
+
+        this.endWelcome();
+        this.removeHomeListener();
+        this.addPauseListener();
+
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, 500, 500);
+        context.fillStyle = '#fff';
+        context.font = '25px Boldonse';
+        context.fillText('Welcome to Breakthrough v2!', 24, 230);
+        context.font = '15px Boldonse';
+        context.fillText("Click anywhere to start playing.", 100, 290);
+
     }
 
     this.dead = async function() {
@@ -591,8 +672,6 @@ export default function Game() {
         });
         if (!response.ok) {
             console.error(response);
-        } else {
-            console.log(response);
         }
 
         this.addPlay();

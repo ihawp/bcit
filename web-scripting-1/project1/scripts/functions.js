@@ -73,3 +73,6 @@ export function monthIntToString(month) {
   }
 }
 
+export function firstLetterUpper(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

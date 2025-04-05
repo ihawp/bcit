@@ -12,7 +12,6 @@ export default function Fullscreen() {
 
     this.fullscreen = () => {
         let element = document.documentElement;
-
         if (element.requestFullscreen) {
             element.requestFullscreen();
         } else if (element.mozRequestFullScreen) {
@@ -38,12 +37,12 @@ export default function Fullscreen() {
 
     this.disableButton = (button) => {
         button.setAttribute('disabled', 'disabled');
-        this.hideButton(button);
+        this.hideButton(button.parentElement);
     }
 
     this.enableButton = (button) => {
         button.removeAttribute('disabled');
-        this.showButton(button);
+        this.showButton(button.parentElement);
     }
 
     this.hideButton = (button) => {

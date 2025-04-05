@@ -12,8 +12,10 @@ if (isset($data['username']) && isset($data['enemiesDefeated']) && isset($data['
     $username = clean($data['username']);
     $enemiesDefeated = clean($data['enemiesDefeated']);
     $roundLost = clean($data['roundLost']);
+    $stringRegex = '/^[A-Za-z]+$/';
+    $intRegex = '/^[0-9]+$/';
 
-    if (is_string($username) && is_numeric($enemiesDefeated) && is_numeric($roundLost)) {
+    if (($roundLost + 1) * 100 > $enemiesDefeated && preg_match($stringRegex, $username) && preg_match($intRegex, $enemiesDefeated) && preg_match($intRegex, $enemiesDefeated) && is_string($username) && is_numeric($enemiesDefeated) && is_numeric($roundLost)) {
     
         $query = $conn->prepare("INSERT INTO `leaderboard` (`username`, `enemies_defeated`, `round_lost`) VALUES (?, ?, ?)");
         $query->bind_param('sii', $username, $enemiesDefeated, $roundLost);

@@ -1,4 +1,4 @@
-import { makeFetch, monthIntToString } from './functions.js';
+import { makeFetch, monthIntToString, convertIntToRoman } from './functions.js';
 
 export async function LeaderboardFetch() {
     let q = await makeFetch('http://localhost/project1/php/fetchLeaderboard.php');
@@ -10,24 +10,30 @@ export default function Leaderboard() {
     this.display = (main, data) => {
 
         let string = `
-            <section id="overflow">
+            <section id="leaderboard-container">
                 <ul class="leaderboard">
+                    <li class="leaderboard guide font-0-8">
+                        <p class="rank">Rank</p>
+                        <p class="username">Username</p>
+                        <p class="enemies">Enemies Defeated</p>
+                        <p class="round">Round Lost</p>
+                    </li>
         `;
         
         data.forEach((item, key) => {
 
             switch (key) {
                 case (0):
-                    string += '<li class="leaderboard first">';
+                    string += '<li class="leaderboard first ';
                     break;
                 case (1):
-                    string += '<li class="leaderboard second">';
+                    string += '<li class="leaderboard second ';
                     break;
                 case (2):
-                    string += '<li class="leaderboard third">';
+                    string += '<li class="leaderboard third ';
                     break;
                 default:
-                    string += '<li class="leaderboard">';
+                    string += '<li class="leaderboard ';
                     break;
             }
 
@@ -43,12 +49,13 @@ export default function Leaderboard() {
                 amPM = 'PM';
             }
 
+            string += `font-0-8" title="${monthIntToString(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${hours}:${minutes} ${amPM}">`;
+
             string += `
-                    <div class="absolute"><span class="smaller">#</span>${key + 1}</div>
-                    <p>${item.username}</p>
-                    <p>Enemies Defeated: ${item['enemies_defeated']}</p>
-                    <p>Round Lost: ${item['round_lost']}</p>
-                    <p>${monthIntToString(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${hours}:${minutes} ${amPM}</p>
+                    <p class="rank">#${key + 1}</p>
+                    <p class="username font-0-8">${item.username}</p>
+                    <p class="enemies">${item['enemies_defeated']}</p>
+                    <p class="round">${convertIntToRoman(item['round_lost'])}</p>
                 </li>
             `
         });
