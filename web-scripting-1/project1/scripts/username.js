@@ -14,14 +14,14 @@ export default function Username() {
 
     this.display = function(main) {
         main.innerHTML = `
-            <section id="usernameForm" class="gap-0-5">
+            <section id="usernameForm" class="gap-0-5 flex">
                 <form id="username-form" class="flex col gap-0-5">
                     <div class="flex row justify-between">
-                        <label for="username-input">Change Username:</label>
+                        <label for="username-input" class="font-0-8">Change Username:</label>
                     </div>
                     <div>
-                        <input type="text" id="username-input" pattern="^[A-Za-z]+$" value="" placeholder="${this.name}" name="username" minlength="1" maxlength="16" required>
-                        <button type="submit">Update</button>
+                        <input class="b-1-2 c-2 boldonse" type="text" id="username-input" pattern="^[A-Za-z]+$" value="" placeholder="${this.name}" name="username" minlength="1" maxlength="16" required>
+                        <button class="b-1-2 c-1 bg-2 boldonse" type="submit">Update</button>
                     </div>
                 </form>
             </section>

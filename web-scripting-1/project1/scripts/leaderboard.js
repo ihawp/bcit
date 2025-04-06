@@ -10,30 +10,35 @@ export default function Leaderboard() {
     this.display = (main, data) => {
 
         let string = `
-            <section id="leaderboard-container">
-                <ul class="leaderboard">
-                    <li class="leaderboard guide font-0-8">
-                        <p class="rank">Rank</p>
-                        <p class="username">Username</p>
-                        <p class="enemies">Enemies Defeated</p>
-                        <p class="round">Round Lost</p>
-                    </li>
+            <section id="leaderboard-container" class="b-1-2">
+                <table class="leaderboard flex col">
+                    <thead class="leaderboard guide font-0-8 flex c-2">
+                        <tr>
+                            <td class="rank">Rank</td>
+                            <td class="username">Username</td>
+                            <td class="enemies">Enemies Defeated</td>
+                            <td class="round">Round Lost</td>
+                        </tr>
+                    </thead>
+                    <tbody>
         `;
         
         data.forEach((item, key) => {
 
+            string += '<tr class="leaderboard '
+
             switch (key) {
                 case (0):
-                    string += '<li class="leaderboard first ';
+                    string += 'first';
                     break;
                 case (1):
-                    string += '<li class="leaderboard second ';
+                    string += 'second';
                     break;
                 case (2):
-                    string += '<li class="leaderboard third ';
+                    string += 'third';
                     break;
-                default:
-                    string += '<li class="leaderboard ';
+                case (3):
+                    string += 'fourth';
                     break;
             }
 
@@ -49,16 +54,18 @@ export default function Leaderboard() {
                 amPM = 'PM';
             }
 
-            string += `font-0-8" title="${monthIntToString(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${hours}:${minutes} ${amPM}">`;
-
             string += `
-                    <p class="rank">#${key + 1}</p>
-                    <p class="username font-0-8">${item.username}</p>
-                    <p class="enemies">${item['enemies_defeated']}</p>
-                    <p class="round">${convertIntToRoman(item['round_lost'])}</p>
-                </li>
+                    font-0-8 flex c-2" title="${monthIntToString(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${hours}:${minutes} ${amPM}">
+                    <td class="rank">#${key + 1}</td>
+                    <td class="username font-0-8">${item.username}</td>
+                    <td class="enemies">${item['enemies_defeated']}</td>
+                    <td class="round">${convertIntToRoman(item['round_lost'])}</td>
+                </tr>
             `
         });
+
+        string += `</tbody></table>`;
+
         main.innerHTML = string;
     }
 }

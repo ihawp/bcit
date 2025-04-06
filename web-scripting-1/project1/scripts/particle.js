@@ -87,12 +87,9 @@ export default function ParticleBackground() {
     }
 
     this.updateParticles = function() {
-        /* 
-            Without lines:
 
             this.context.fillStyle = 'purple';
             this.context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-        */
         this.particles.forEach(particle => {
             this.context.fillStyle = '#800080';
             particle.draw(this.context, particle.last.x, particle.last.y, 5, 5);

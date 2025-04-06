@@ -10,7 +10,6 @@ export default function Powerup() {
     this.y = undefined;
     this.lastTime = undefined;
     this.active = false;
-    this.invincible = false;
     this.size = 25;
     this.speed = 7;
 
@@ -24,7 +23,7 @@ export default function Powerup() {
         context.fillRect(this.x, this.direction ? 0 : 490, this.size, 10);
     }
 
-    this.setActive = function(value) {
+    this.setActive = (value) => {
         this.active = value;
     }
 
@@ -45,15 +44,14 @@ export default function Powerup() {
     }
 
     this.resetXY = function() {
-        this.resetX();
         this.resetY();
+        this.resetX();
     }
 
     this.reset = function() {
         this.resetType();
         this.resetXY();
         this.resetLastTime();
-        this.setActive(false);
     }
 
     // set initial: x, y, type, lastTime

@@ -11,9 +11,8 @@ let canvas = document.createElement('canvas');
 canvas.id = 'canvas';
 canvas.setAttribute('width', '500');
 canvas.setAttribute('height', '500');
+canvas.classList.add('b-1-2');
 const context = canvas.getContext("2d");
-
-
 
 export default function Game() {
 
@@ -48,7 +47,7 @@ export default function Game() {
         // Create Player
         this.player = new Player(237.5, 237.5);
 
-        // Create PowerUps
+        // Create Powerup
         this.powerup = new Powerup();
 
         // Update time for tutorial
@@ -221,14 +220,20 @@ export default function Game() {
         });
 
         // Powerups
-
         // Check if powerup has been active for 5 seconds (stop it if so)
         if (this.powerup.active && thisTime - this.powerup.lastTime > 5000) {
-            this.cancelPowerup();
+            this.setEnemiesSpeed(5);
+            this.resetEnemiesSize();
+            this.player.setSpeed(5);
+            this.powerup.setActive(false);
+        }
+
+        if (!this.powerup.active && this.player.invincible && thisTime - this.powerup.lastTime > 7500) {
+            this.player.invincibility(false);
         }
 
         // Check if player has been alive for 15 seconds
-        if (thisTime - this.powerup.lastTime > 15000) {
+        if (!this.powerup.active && thisTime - this.powerup.lastTime > 10000) {
 
             // Move the powerup
             this.powerup.direction ? this.moveDown(this.powerup, this.powerup.speed) : this.moveUp(this.powerup, this.powerup.speed);
@@ -236,12 +241,7 @@ export default function Game() {
             // Draw the powerup
             this.powerup.draw(context);
 
-            // Check player intersection with Powerup
-            if (this.checkIntersection(this.powerup)) {
-                this.powerUpIntersection();
-            }
-
-            // Check if Powerup is offscreen
+            // Check if Powerup is offscreen for 'removal'
             if (this.powerup.y + this.powerup.size < 0 && !this.powerup.direction || this.powerup.y > 500 && this.powerup.direction) {
                 this.powerup.reset();
             }
@@ -249,6 +249,11 @@ export default function Game() {
             // Check if Powerup is offscreen for indicator
             if (this.powerup.y + this.powerup.size < 0 && this.powerup.direction || this.powerup.y > 500 && !this.powerup.direction) {
                 this.powerup.drawIndicator(context);
+            }
+
+            // Check player intersection with Powerup
+            if (this.checkIntersection(this.powerup)) {
+                this.powerUpIntersection();
             }
 
         }
@@ -274,6 +279,7 @@ export default function Game() {
     // ------------------------------------------------------------------
     // RESET:
 
+    // Reset single enemy
     this.resetEnemy = function(enemy) {
         if (this.round % 2 == 0) {
             enemy.resetEven();
@@ -285,14 +291,18 @@ export default function Game() {
         }
     }
 
+    // Reset all enemies
     this.resetEnemies = function() {
         this.enemies.forEach(enemy => this.resetEnemy(enemy));
     }
 
+    // Reset between rounds
     this.resetBetween = function() {
         this.player.reset();
         this.resetEnemies();
         this.powerup.reset();
+        this.powerup.setActive(false);
+        this.cancelPowerup();
     }
 
     // Reset the player/game stats
@@ -305,10 +315,12 @@ export default function Game() {
     // ------------------------------------------------------------------
     // GENERAL CHECK INTERSECTION:
 
+    // +1 to totalEnemiesDefeated count
     this.defeated = function() {
         this.totalEnemiesDefeated += 1;
     }
 
+    // Intersection has happened... do this
     this.intersection = function() {
         this.resetEnemies();
         
@@ -321,6 +333,7 @@ export default function Game() {
         this.respawn();
     }
 
+    // Check if an intersection is happening
     this.checkIntersection = function(checkable) {
 
         // Square representing where edges are of checkable item
@@ -401,10 +414,10 @@ export default function Game() {
         this.powerup.setActive(false);
     }
 
-    this.powerUpIntersection = function() {
+    this.powerUpIntersection = () => {
 
-        this.powerup.reset();
         this.powerup.setActive(true);
+        this.powerup.resetLastTime();
 
         switch (this.powerup.type) {
             case (0):
@@ -418,14 +431,17 @@ export default function Game() {
                 this.player.invincibility(true);
                 break;
             case (2):
-                // Trick (this one is dumb)
+                // Trick
                 this.player.setSpeed(3);
+                this.lives++;
                 break;
             case (3):
                 // Free Life
                 this.lives++;
                 break;
         }
+
+        this.powerup.reset();
 
     }
 
@@ -564,7 +580,6 @@ export default function Game() {
                 context.font = '15px Boldonse';
                 context.fillText('Your player will mirror on the opposing edge', 47, 290);
                 context.fillText('of the screen.', 180, 325);
-
                 context.fillStyle = '#000';
                 context.fillRect(485, 50, 15, 50);
                 context.fillRect(0, 50, 35, 50);
@@ -635,10 +650,12 @@ export default function Game() {
         }
 
         let thisTime = Date.now();
-        if (thisTime - this.lastTime > 4000) {
+
+        if (thisTime - this.lastTime > 3000) {
             this.lastTime = thisTime;
             this.slide++;
         }
+        
     }
 
     this.home = function() {
@@ -670,6 +687,7 @@ export default function Game() {
                 roundLost: this.round,
             })
         });
+
         if (!response.ok) {
             console.error(response);
         }

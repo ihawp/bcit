@@ -5,17 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Warren Chemerika | ihawp.com">
         <meta charset="UTF-8">
-        <meta name="description" content="Play Breakthrough v2, the most intense WASD avoider game of all time.">
+        <meta name="description" content="Play Breakthrough v2, the most intense WASD avoider game since Breakthrough v1!">
         <link rel="preload stylesheet" as="style" href="styles/styles.css">
     </head>
-    <body>
+    <body class="flex col c-2 bg-1">
         <header class="header">
             <img src="media/breakthrough-logo-fire.webp" alt="thing" width="228px" height="50px" draggable="false">
         </header>
-        <main>
+        <main class="flex">
             <aside id="navigation">
                 <nav aria-label="Main Navigation">
-                    <ul>
+                    <ul class="flex col gap-2">
                         <li>
                             <a href="./play" title="Play" id="play">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
@@ -44,7 +44,7 @@
                     </ul>
                 </nav>
             </aside>
-            <section id="main"></section>
+            <section id="main" class="flex"></section>
         </main>
 
         <script src="scripts/main.js" type="module"></script>
