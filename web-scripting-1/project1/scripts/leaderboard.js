@@ -63,7 +63,7 @@ export default function Leaderboard() {
 
         string += `</tbody></table>`;
 
-        main.innerHTML = string;
+        main.replaceChildren(string);
     }
 }
 

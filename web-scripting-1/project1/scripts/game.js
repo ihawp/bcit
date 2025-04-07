@@ -64,7 +64,7 @@ export default function Game() {
 
         this.username = name;
 
-        main.insertAdjacentElement('beforeend', canvas);
+        main.replaceChildren(canvas);
 
     }
 
@@ -728,6 +728,8 @@ export default function Game() {
         this.updateEnemiesBasedOnRound();
         this.resetEnemies();
     }
+
+
 
     this.updateEnemiesBasedOnRound = function() {
         if (this.enemies.length === 0) {

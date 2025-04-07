@@ -36,6 +36,12 @@ function Main() {
         this.state = this.actual;
     }
 
+    this.loader = document.createElement('section');
+    this.loader.classList.add('flex', 'items-center', 'justify-center');
+    this.div = document.createElement('div');
+    this.div.classList.add('loader');
+    this.loader.replaceChildren(this.div);
+
     this.game = new Game();
 
     this.particleBackground = new ParticleBackground().init();
@@ -61,7 +67,6 @@ function Main() {
     }
 
     this.displayState = async () => {
-        this.main.innerHTML = '';
 
         // error.js get rid of this logic
         if (this.navigation.classList.contains('none')) {
@@ -71,6 +76,8 @@ function Main() {
         if (this.state !== 'play') {
             this.game.pause();
         }
+
+        this.main.replaceChildren(this.loader);
 
         switch (this.state) {
             case ('play'):
