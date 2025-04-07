@@ -135,20 +135,14 @@ export default function Game() {
         this.player.draw(context);
 
         // Player square.
-        // Perhaps revert to making 4 new var here
-        // that are passed to each of the ..checkIntersection.. functions.
-        // State of this.player.left..etc might be new when called later by the intersection function.
-        this.player.left = this.player.x;
-        this.player.right = this.player.x + this.player.size;
-        this.player.top = this.player.y;
-        this.player.bottom = this.player.y + this.player.size;
+        let player = { top: this.player.y, bottom: this.player.y + this.player.size, left: this.player.x, right: this.player.x + this.player.size, size: this.player.size }
 
         // Enemies
         this.enemies.forEach(enemy => {
 
             // Check intersection of enemy and player
-            if (this.checkIntersection(enemy)) {
-                if (!this.player.invincible) {
+            if (!this.player.invincible) {
+                if (this.checkIntersection(enemy, player)) {
                     this.enemyIntersection();
                 }
             }
@@ -183,9 +177,8 @@ export default function Game() {
                 }
 
                 // Check intersection of shot and player
-                if (this.checkIntersection(enemy.shot)) {
-                    if (!this.player.invincible) {
-                        setTimeout(() => enemy.shot.happening = false, 2000);
+                if (!this.player.invincible) {
+                    if (this.checkIntersection(enemy.shot, player)) {
                         enemy.adjustShot();
                         this.shotIntersection();
                     }
@@ -252,7 +245,7 @@ export default function Game() {
             }
 
             // Check player intersection with Powerup
-            if (this.checkIntersection(this.powerup)) {
+            if (this.checkIntersection(this.powerup, player)) {
                 this.powerUpIntersection();
             }
 
@@ -334,7 +327,7 @@ export default function Game() {
     }
 
     // Check if an intersection is happening
-    this.checkIntersection = function(checkable) {
+    this.checkIntersection = function(checkable, player) {
 
         // Square representing where edges are of checkable item
         let left = checkable.x;
@@ -343,42 +336,52 @@ export default function Game() {
         let bottom = checkable.y + checkable.size;
 
         // Gather if checkable item is intersecting with player
-        let ifTop = top > this.player.top && top < this.player.bottom;
-        let ifBottom = bottom > this.player.top && bottom < this.player.bottom;
-        let ifRight = right > this.player.left && right < this.player.right;
-        let ifLeft = left < this.player.right && left > this.player.left;
+        let ifTop = top >= player.top && top <= player.bottom;
+        let ifBottom = bottom >= player.top && bottom <= player.bottom;
+        let ifRight = right >= player.left && right <= player.right;
+        let ifLeft = left <= player.right && left >= player.left;
+
+        // Test if checkable item is intersecting with player
+        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
+            return 1;
+        }
 
         // Over Edge
         if (this.player.overedge) {
 
             // Create variables for possible use
-            let ifThisBottom;
-            let ifThisTop;
-            let ifThisLeft;
-            let ifThisRight;
+            let t;
+            let b;
+            let l;
+            let r;
 
             switch (this.player.distorted) {
                 case (1):
                     // Off Top
-                    ifThisBottom = bottom > this.player.top + 500 && bottom < this.player.bottom + 500;
-                    ifThisTop = top > this.player.top + 500 && top < this.player.bottom + 500;
+                    t = player.top + 500;
+                    b = player.bottom + 500;
                     break;
                 case (2):
                     // Off Bottom
-                    ifThisBottom = bottom > this.player.top - 500 && bottom < this.player.bottom - 500;
-                    ifThisTop = top > this.player.top - 500 && top < this.player.bottom - 500;
+                    t = player.top - 500;
+                    b = player.bottom - 500;
                     break;
                 case (3):
                     // Off Left
-                    ifThisLeft = left < this.player.right + 500 && left > this.player.left + 500;
-                    ifThisRight = right < this.player.right + 500 && right > this.player.left + 500;
+                    l = player.left + 500;
+                    r = player.right + 500;
                     break;
                 case (4):
                     // Off Right
-                    ifThisLeft = left < this.player.right - 500 && left > this.player.left - 500;
-                    ifThisRight = right > this.player.left - 500 && right < this.player.right - 500;
+                    l = player.left - 500;
+                    r = player.right - 500;
                     break;
             }
+
+            let ifThisTop = top >= t && top <= b;
+            let ifThisBottom = bottom >= t && bottom <= b;
+            let ifThisLeft = left <= r && left >= l;
+            let ifThisRight = right <= r && right >= l;
 
             // Test if checkable item is intersecting with MIRRORED player.
             if (ifThisTop && ifLeft || ifThisBottom && ifLeft || ifThisTop && ifRight || ifThisBottom && ifRight) {
@@ -388,14 +391,7 @@ export default function Game() {
             if (ifTop && ifThisLeft || ifBottom && ifThisLeft || ifTop && ifThisRight || ifBottom && ifThisRight) {
                 return 1;
             }
-            
-        }
 
-        // Test if checkable item is intersecting with player
-        // Could have mixed this with the checking of the mirrored player... but
-        // for now I will leave the if statements seperated.
-        if (ifTop && ifLeft || ifBottom && ifLeft || ifTop && ifRight || ifBottom && ifRight) {
-            return 1;
         }
 
         // No intersection

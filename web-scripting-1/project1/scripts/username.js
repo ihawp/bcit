@@ -13,6 +13,7 @@ export default function Username() {
     this.alert.innerText = 'success';
 
     this.display = function(main) {
+
         main.innerHTML = `
             <section id="usernameForm" class="gap-0-5 flex">
                 <form id="username-form" class="flex col gap-0-5">
@@ -31,17 +32,23 @@ export default function Username() {
         this.currentName = document.getElementById('username-current');
 
         this.form.addEventListener('submit', event => {
+
             event.preventDefault();
+
             let data = new FormData(this.form);
             let name = data.get('username');
+
             if (name.length > 0 && name.length < 17 && this.regex.test(name)) {
 
                 localStorage.setItem('username', name);
-
+                
                 let input = this.form[0];
                 input.value = '';
                 this.name = input.placeholder = name;
+
             }
+
         });
+
     }
 }

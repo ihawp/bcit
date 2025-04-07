@@ -19,22 +19,29 @@ export default function Player(x, y) {
 
     this.draw = function(context) {
 
-        // Update player position (if velocity)
+        // Update player position (if velocity !== 0 the player will move)
         this.x += this.velocityX;
         this.y += this.velocityY;
 
-        // Block the user in.
+        context.fillStyle = 'black';
+
+        // Block the user in (could be feature)
         /*
         if (this.y < 0) this.y = 0;
         if (this.y > 475) this.y = 475;
         if (this.x < 0) this.x = 0;
         if (this.x > 475) this.x = 475;
         */
+        
         // Over Edge
+        if (this.y < 25 || this.y > 475 || this.x < 25 || this.x > 475) {
+            this.overedge = true;
+        }
 
-        context.save();
-
-        context.fillStyle = 'black';
+        if (this.y > 25 && this.y < 475 && this.x > 25 && this.x < 475) {
+            this.overedge = false;
+            this.distorted = false;
+        }
 
         if (this.y < 25) {
             context.fillRect(this.x, this.y + 500, this.size, this.size);
@@ -54,13 +61,13 @@ export default function Player(x, y) {
             this.y = 0;
         }
 
-        if (this.x < 25) {
+        if (this.x + this.size < 25) {
             context.fillRect(this.x + 500, this.y, this.size, this.size);
             this.distorted = 3;
         }
 
-        if (this.x < 0) {
-            this.x = 500;
+        if (this.x + this.size < 0) {
+            this.x = 475;
         }
 
         if (this.x > 475) {
@@ -72,19 +79,8 @@ export default function Player(x, y) {
             this.x = 0;
         }
 
-        // Set overedge value
-        if (this.y < 25 || this.y > 475 || this.x < 25 || this.x > 475) {
-            this.overedge = true;
-        }
-
-        if (this.y > 25 && this.y < 475 && this.x > 25 && this.x < 475) {
-            this.overedge = false;
-        }
-
         // Draw Player
         context.fillRect(this.x, this.y, this.size, this.size);
-
-        context.restore();
         
     }
 

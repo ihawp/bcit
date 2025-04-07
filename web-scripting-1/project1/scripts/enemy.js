@@ -10,6 +10,7 @@ export default function Enemy(context) {
     this.x;
     this.lastX = undefined;
     this.type = randomNumberInRange(0, 7) > 5 ? new Gunner() : new Boopa();
+    this.size = this.type.size;
     this.lastX = undefined;
     this.context = context;
     this.shot = {
