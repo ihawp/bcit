@@ -299,6 +299,9 @@ export default function Game() {
         this.round = 1;
         this.totalEnemiesDefeated = 0;
         this.lives = 3;
+        this.enemies.forEach(enemy => {
+            enemy.makeBoopa();
+        });
     }
 
     // ------------------------------------------------------------------
