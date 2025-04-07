@@ -1,16 +1,15 @@
-export default function Username() {
+export default function Username(sendAlert) {
+
+    this.sendAlert = sendAlert;
     this.name = 'Anonymous';
+
     if (localStorage.getItem('username')) {
         this.name = localStorage.getItem('username');
     }
+
     this.form = undefined;
     this.timeoutId = undefined;
     this.regex = new RegExp("^[A-Za-z]+$");
-
-    this.alert = document.createElement('div');
-    this.alert.style.width = 'max-content';
-    this.alert.style.height = 'max-content';
-    this.alert.innerText = 'success';
 
     this.display = function(main) {
 
@@ -30,25 +29,32 @@ export default function Username() {
         
         this.form = document.getElementById('username-form');
         this.currentName = document.getElementById('username-current');
-
-        this.form.addEventListener('submit', event => {
-
+    
+        this.form.addEventListener('submit', (event) => {
+    
             event.preventDefault();
-
+    
             let data = new FormData(this.form);
             let name = data.get('username');
-
+    
             if (name.length > 0 && name.length < 17 && this.regex.test(name)) {
-
+    
                 localStorage.setItem('username', name);
                 
                 let input = this.form[0];
                 input.value = '';
                 this.name = input.placeholder = name;
-
+    
+                this.sendAlert('green', 'Success!');
+    
+            } else {
+    
+                this.sendAlert('red', 'Error.');
+    
             }
-
+    
         });
-
+    
     }
+
 }

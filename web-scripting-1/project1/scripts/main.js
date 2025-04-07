@@ -6,6 +6,7 @@ import Fullscreen from './fullscreen.js';
 import Leaderboard, { LeaderboardFetch } from './leaderboard.js';
 import Error from './error.js';
 import Username from './username.js';
+import Alert from './alert.js';
 
 function Main() {
 
@@ -27,7 +28,9 @@ function Main() {
 
     this.error = new Error;
 
-    this.username = new Username();
+    this.alert = new Alert();
+
+    this.username = new Username(this.alert.sendAlert);
 
     this.main = document.getElementById('main');
 

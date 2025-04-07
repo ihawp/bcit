@@ -1,7 +1,7 @@
 import { makeFetch, monthIntToString, convertIntToRoman } from './functions.js';
 
 export async function LeaderboardFetch() {
-    let q = await makeFetch('http://localhost/project1/php/fetchLeaderboard.php');
+    let q = await makeFetch('https://ihawp.com/api/breakthrough');
     if (q) return q;
 }
 
@@ -36,9 +36,6 @@ export default function Leaderboard() {
                     break;
                 case (2):
                     string += 'third';
-                    break;
-                case (3):
-                    string += 'fourth';
                     break;
             }
 
