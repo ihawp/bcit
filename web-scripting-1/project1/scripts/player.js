@@ -92,6 +92,11 @@ export default function Player(x, y) {
         this.speed = speed;
     }
 
+    this.w = false;
+    this.a = false;
+    this.s = false;
+    this.d = false;
+
     this.keyDown = event => {
         let code = event.keyCode;
         if (code === 87 || code === 65 || code === 83 || code === 68) {
@@ -100,18 +105,22 @@ export default function Player(x, y) {
         switch (code) {
             case 87:
             case 38:
+                this.w = true;
                 this.velocityY = -(this.speed);
                 break;
             case 65:
             case 37:
+                this.a = true;
                 this.velocityX = -(this.speed);
                 break;
             case 83:
             case 40:
+                this.s = true;
                 this.velocityY = this.speed;
                 break;
             case 68:
             case 39:
+                this.d = true;
                 this.velocityX = this.speed;
                 break;
         }
@@ -126,19 +135,31 @@ export default function Player(x, y) {
         switch (code) {
             case 87:
             case 38:
-                this.velocityY = 0;
+                this.w = false;
+                if (this.s === false) {
+                    this.velocityY = 0;
+                }
                 break;
             case 83:
             case 40:
-                this.velocityY = 0;
+                this.s = false;
+                if (this.w === false) {
+                    this.velocityY = 0;
+                }
                 break;
             case 65:
             case 37:
-                this.velocityX = 0;
+                this.a = false;
+                if (this.d === false) {
+                    this.velocityX = 0;
+                }
                 break;
             case 68:
             case 39:
-                this.velocityX = 0;
+                this.d = false;
+                if (this.a === false) {
+                    this.velocityX = 0;
+                }
                 break;
         }
     }
