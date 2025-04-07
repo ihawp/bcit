@@ -98,19 +98,24 @@ export default function Player(x, y) {
             event.preventDefault();
         }
         switch (code) {
-            case (87):
+            case 87:
+            case 38:
                 this.velocityY = -(this.speed);
                 break;
-            case (65):
+            case 65:
+            case 37:
                 this.velocityX = -(this.speed);
                 break;
-            case (83):
+            case 83:
+            case 40:
                 this.velocityY = this.speed;
                 break;
-            case (68):
+            case 68:
+            case 39:
                 this.velocityX = this.speed;
                 break;
         }
+        
     }
 
     this.keyUp = event => {
@@ -119,16 +124,20 @@ export default function Player(x, y) {
             event.preventDefault();
         }
         switch (code) {
-            case (87):
+            case 87:
+            case 38:
                 this.velocityY = 0;
                 break;
-            case (83):
+            case 83:
+            case 40:
                 this.velocityY = 0;
                 break;
-            case (65):
+            case 65:
+            case 37:
                 this.velocityX = 0;
                 break;
-            case (68):
+            case 68:
+            case 39:
                 this.velocityX = 0;
                 break;
         }

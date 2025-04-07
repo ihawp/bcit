@@ -9,8 +9,7 @@ export default function Enemy(context) {
     this.y;
     this.x;
     this.lastX = undefined;
-    this.type = randomNumberInRange(0, 7) > 5 ? new Gunner() : new Boopa();
-    this.size = this.type.size;
+    this.type = undefined;
     this.lastX = undefined;
     this.context = context;
     this.shot = {
@@ -19,6 +18,14 @@ export default function Enemy(context) {
         y: undefined,
         speed: 8,
         size: 8,
+    }
+
+    this.makeGunner = function() {
+        this.type = new Gunner();
+    }
+
+    this.makeBoopa = function() {
+        this.type = new Boopa();
     }
 
     this.draw = function() {

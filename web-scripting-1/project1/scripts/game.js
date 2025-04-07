@@ -1,6 +1,7 @@
 import { randomNumberInRange, convertIntToRoman } from "./functions.js";
 import Enemy from './enemy.js';
 import { Gunner } from './gunner.js';
+import { Boopa } from './boopa.js';
 import Player from './player.js';
 import Powerup from './powerup.js';
 
@@ -36,13 +37,8 @@ export default function Game() {
     }
 
     this.init = function() {
-        
-        // Create Enemies
-        for (let i = 0; i < 20; i++) {
-            let enemy = new Enemy(context);
-            this.resetEnemy(enemy);
-            this.enemies.push(enemy);
-        }
+
+        this.updateEnemiesBasedOnRound();
 
         // Create Player
         this.player = new Player(237.5, 237.5);
@@ -725,7 +721,58 @@ export default function Game() {
         context.font = '15px Boldonse';
         context.fillText('Click anywhere to continue...', 110, 310);
         this.addRound();
+        console.log(this.round);
+        this.updateEnemiesBasedOnRound();
         this.resetEnemies();
+    }
+
+    this.updateEnemiesBasedOnRound = function() {
+        if (this.enemies.length === 0) {
+            for (let i = 0; i < 20; i++) {
+                let enemy = new Enemy(context);
+                this.resetEnemy(enemy);
+                enemy.type = new Boopa();
+                enemy.size = enemy.type.size;
+                this.enemies.push(enemy);
+            }
+        }
+
+        switch (this.round) {
+            case 3:
+                this.makeGunner(0);
+                break;
+            case 5:
+                this.makeGunner(1);
+                break;
+            case 7:
+                this.makeGunner(2);
+                break;
+            case 9:
+                this.makeGunner(3);
+                break;
+            case 11:
+                this.makeGunner(4);
+                break;
+            case 20:
+                this.makeGunner(5);
+                break;
+            case 30:
+                this.makeGunner(6);
+                break;
+            case 40:
+                this.makeGunner(7);
+                break;
+            case 50:
+                this.makeGunner(8);
+                break;
+            case 60:
+                this.makeGunner(9);
+                break;
+        }
+    }
+
+    this.makeGunner = (index) => {
+        this.enemies[index].makeGunner();
     }
 
 }
