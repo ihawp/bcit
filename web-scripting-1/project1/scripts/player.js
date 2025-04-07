@@ -106,21 +106,33 @@ export default function Player(x, y) {
             case 87:
             case 38:
                 this.w = true;
+                if (this.s === true) {
+                    this.s = false;
+                }
                 this.velocityY = -(this.speed);
                 break;
             case 65:
             case 37:
                 this.a = true;
+                if (this.d === true) {
+                    this.d = false;
+                }
                 this.velocityX = -(this.speed);
                 break;
             case 83:
             case 40:
                 this.s = true;
+                if (this.w === true) {
+                    this.w = false;
+                }
                 this.velocityY = this.speed;
                 break;
             case 68:
             case 39:
                 this.d = true;
+                if (this.a === true) {
+                    this.a = false;
+                }
                 this.velocityX = this.speed;
                 break;
         }
