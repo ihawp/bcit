@@ -668,7 +668,7 @@ export default function Game() {
 
     this.dead = async function() {
 
-        let response = await fetch('https://breakthrough.ihawp.com/php/leaderboard.php', {
+        let response = await fetch('http://localhost/project1/php/leaderboard.php', {
             method: "POST",
             header: {
                 'Content-Type': 'application/json',

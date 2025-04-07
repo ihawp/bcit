@@ -1,7 +1,7 @@
 import { makeFetch, monthIntToString, convertIntToRoman } from './functions.js';
 
 export async function LeaderboardFetch() {
-    let q = await makeFetch('https://ihawp.com/api/breakthrough');
+    let q = await makeFetch('http://localhost/project1/php/fetchLeaderboard.php');
     if (q) return q;
 }
 

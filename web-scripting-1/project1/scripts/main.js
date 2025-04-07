@@ -10,6 +10,24 @@ import Alert from './alert.js';
 
 function Main() {
 
+    this.main = document.getElementById('main');
+
+    this.navigation = document.getElementById('navigation');
+
+    // Test device type
+    this.regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    if (this.regex.test(navigator.userAgent)) {
+        this.navigation.classList.add('none');
+        this.main.style.width = '100vw';
+        this.main.insertAdjacentHTML('afterbegin', `
+            <section class="text-center flex col gap-2 items-center justify-center">
+                <h2>Your screen is too small to play Breakthrough v2.</h2>
+                <p class="max-width-300">Please use a Laptop or Desktop device.</p>
+            </section>
+        `);
+        return;
+    }
+
     this.actual = window.location.pathname.split('/');
     this.actual = this.actual[this.actual.length - 1];
     
@@ -31,10 +49,6 @@ function Main() {
     this.alert = new Alert();
 
     this.username = new Username(this.alert.sendAlert);
-
-    this.main = document.getElementById('main');
-
-    this.navigation = document.getElementById('navigation');
 
     this.updateState = (state) => {
         if (this.state === state) return;

@@ -159,6 +159,14 @@ ul {
     font-family: 'Boldonse';
 }
 
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
 /* ---------------------------------------------------------------- */
 /* CANVAS */
 
@@ -318,8 +326,14 @@ header.header img {
     display: none;
 }
 
-@media (min-height: 677px) and (min-width: 576px) {
+@media (min-height: 677px) {
     header.header img {
         display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        align-items: start;
     }
 }
