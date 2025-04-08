@@ -7,6 +7,7 @@ import Leaderboard, { LeaderboardFetch } from './leaderboard.js';
 import Error from './error.js';
 import Username from './username.js';
 import Alert from './alert.js';
+import Questions from './questions.js';
 
 function Main() {
 
@@ -56,6 +57,8 @@ function Main() {
 
     this.username = new Username(this.alert.sendAlert);
 
+    this.questions = new Questions();
+
     this.updateState = (state) => {
         if (this.state === state) return;
         this.state = state;
@@ -80,21 +83,26 @@ function Main() {
         this.main.replaceChildren(this.loader);
 
         switch (this.state) {
+
+            case ('leaderboard'):
+                let data = await LeaderboardFetch();
+                if (data) {
+                    if (this.state === 'leaderboard') {
+                        this.leaderboard.display(this.main, data);
+                    } else {
+                        this.displayState();
+                    }
+                } else if (this.state === 'leaderboard') {
+                    this.error.display(this.main);
+                }
+                break;
+
             case ('play'):
                 if (!this.game.initiated) {
                     this.game.init();
                     this.game.setInitiated(true);
                 }
                 this.game.display(this.main, this.username.name);
-                break;
-
-            case ('leaderboard'):
-                let data = await LeaderboardFetch();
-                if (data) {
-                    this.leaderboard.display(this.main, data);
-                } else {
-                    this.error.display(this.main);
-                }
                 break;
 
             case ('username'):
@@ -105,6 +113,10 @@ function Main() {
                     this.game.player.removeKeyUp();
                 }
                 this.username.display(this.main);
+                break;
+
+            case 'how-to-play':
+                this.questions.display(this.main);
                 break;
 
             default:

@@ -35,7 +35,7 @@ body {
 
 ::-webkit-scrollbar {
     background-color: rgb(255, 255, 255, 0.2);
-    width: 7px;
+    width: 0;
 }
 ::-webkit-scrollbar-thumb {
     background-color: rgb(255, 255, 255, 0.8);
@@ -119,6 +119,14 @@ svg path {
     fill: var(--color-2);
 }
 
+.list {
+    padding: 0 0 0 1.5rem;
+}
+
+.disc {
+    list-style: disc;
+}
+
 .flex {
     display: flex;
 }
@@ -167,6 +175,10 @@ ul {
     justify-content: center;
 }
 
+.bold {
+    font-weight: 600;
+}
+
 /* ---------------------------------------------------------------- */
 /* CANVAS */
 
@@ -181,12 +193,59 @@ section, #canvas, #main {
     height: 500px;
 }
 
-#canvas, #leaderboard-container, #username-form input, #username-form button {
+#canvas, #leaderboard-container, #username-form input, #username-form button, section#learn-how-to-play {
     box-shadow: 0 0 10px 1px rgb(255, 255, 255, 0.5);
 }
 
 #canvas:active {
     cursor: default;
+}
+
+/* ---------------------------------------------------------------- */
+/* HOW TO PLAY */
+
+section#learn-how-to-play {
+    font-family: sans-serif;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 1rem 2rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Boldonse';
+    font-weight: 100;
+}
+
+section#learn-how-to-play h1 {
+    margin-bottom: 30px;
+    padding: 0 0 25px 0;
+    font-size: 1.25rem;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+}
+
+section#learn-how-to-play h2 {
+    margin-bottom: 20px;
+    margin-top: 30px;
+    font-size: 1rem;
+    padding: 0 0 10px 0;
+}
+
+section#learn-how-to-play h3 {
+    margin-bottom: 20px;
+    margin-top: 30px;
+    font-size: .8rem;
+}
+
+section#learn-how-to-play p {
+    margin-bottom: 15px;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+section#learn-how-to-play .question svg {
+    width: 75px;
+    height: 75px;
+    margin: 15px 0 25px 0;
 }
 
 /* ---------------------------------------------------------------- */
@@ -241,10 +300,6 @@ td.username {
 
 #leaderboard-container {
     overflow-y: scroll;
-}
-
-#leaderboard-container::-webkit-scrollbar {
-    width: 0;
 }
 
 /* ---------------------------------------------------------------- */

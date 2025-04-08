@@ -45,11 +45,11 @@ export default function Username(sendAlert) {
                 input.value = '';
                 this.name = input.placeholder = name;
     
-                this.sendAlert('green', 'Success!');
-    
+                this.sendAlert('#16A34A', 'Success!');
+
             } else {
     
-                this.sendAlert('red', 'Error.');
+                this.sendAlert('#F10040', 'Error.');
     
             }
     
