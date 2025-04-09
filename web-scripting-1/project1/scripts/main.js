@@ -37,6 +37,7 @@ function Main() {
         this.state = this.actual;
     }
 
+    // Create loading animation (generally only ever actually visible on leaderboard load)
     this.loader = document.createElement('div');
     this.loader.classList.add('flex', 'items-center', 'justify-center');
     this.div = document.createElement('div');
@@ -168,9 +169,11 @@ function Main() {
 
 
 window.addEventListener('load', () => {
-    const main = new Main();
+    document.fonts.load('25px "Boldonse"').then(() => {
+        const main = new Main();
 
-    window.addEventListener('popstate', event => {
-        main.updateState(event.state.page);
+        window.addEventListener('popstate', event => {
+            main.updateState(event.state.page);
+        });
     });
 });

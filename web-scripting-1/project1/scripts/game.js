@@ -8,12 +8,6 @@ import Powerup from './powerup.js';
 const backgroundColor = 'purple';
 const framerate = 33.3333333333;
 
-let canvas = document.createElement('canvas');
-canvas.id = 'canvas';
-canvas.setAttribute('width', '500px');
-canvas.setAttribute('height', '500px');
-const context = canvas.getContext("2d");
-
 export default function Game(updateState) {
 
     this.updateState = updateState;
@@ -32,10 +26,15 @@ export default function Game(updateState) {
     this.slide = 0;
     this.lastTime = undefined;
 
+    this.canvas = document.createElement('canvas');
+    this.canvas.id = 'canvas';
+    this.canvas.setAttribute('width', '500px');
+    this.canvas.setAttribute('height', '500px');
+    let context = this.canvas.getContext("2d");
+
 
 
     this.beingPlayed = false;
-    this.tutorialBeingPlayed = false;
 
 
     this.initiated = false;
@@ -62,7 +61,7 @@ export default function Game(updateState) {
     }
 
     this.displayCanvas = (main) => {
-        main.replaceChildren(canvas);
+        main.replaceChildren(this.canvas);
     }
 
     this.displayTutorial = (main) => {
@@ -82,19 +81,21 @@ export default function Game(updateState) {
         context.font = '25px Boldonse';
 
         this.endWelcome();
-
-        if (this.beingPlayed) {
-            this.startGame();
-            setTimeout(() => this.pause(), 50);
-        } else {
-            this.home();
-        }
+        
+        this.beingPlayedCall();
 
     }
 
-    this.startTutorial = () => {
+    this.beingPlayedCall = () => {
+        if (this.beingPlayed) {
+            this.pause();
+            this.drawNoUpdate();
+        } else {
+            this.home();
+        }
+    }
 
-        this.tutorialBeingPlayed = true;
+    this.startTutorial = () => {
 
         // Play Tutorial
         this.startWelcome();
@@ -280,6 +281,94 @@ export default function Game(updateState) {
             // Check player intersection with Powerup
             if (this.checkIntersection(this.powerup, player)) {
                 this.powerUpIntersection();
+            }
+
+        }
+
+    }
+
+    this.purpleBackground = function() {
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, 500, 500);
+    }
+
+    this.drawNoUpdate = function() {
+
+        // Background
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, 500, 500);
+
+        // Print Lives
+        let x = 450;
+        for (let i = 0; i < this.lives; i++) {
+            let y = (i * 43) + 5;
+            context.fillStyle = 'rgb(255, 255, 255, 0.2)';
+            context.beginPath();
+            context.moveTo(x + 22.5, y + 20);
+            context.bezierCurveTo(x + 22.5, y + 11.1, x + 21, y + 7.5, x + 15, y + 7.5);
+            context.bezierCurveTo(x + 6, y + 7.5, x + 6, y + 18.75, x + 6, y + 18.75);
+            context.bezierCurveTo(x + 6, y + 24, x + 12, y + 30.6, x + 22.5, y + 36);
+            context.bezierCurveTo(x + 33, y + 30.6, x + 39, y + 24, x + 39, y + 18.75);
+            context.bezierCurveTo(x + 39, y + 18.75, x + 39, y + 7.5, x + 30, y + 7.5);
+            context.bezierCurveTo(x + 25.5, y + 7.5, x + 22.5, y + 11.1, x + 22.5, y + 12);
+            context.fill();
+        }
+
+        // Print Round
+        context.save();
+        context.font = '25px Boldonse';
+        context.fillText('Round: ' + convertIntToRoman(this.round), 12.5, 45);
+        context.restore();
+
+        let thisTime = Date.now();
+        
+        // Print progress
+        const barX = 325;
+        const barY = 478;
+        const barLength = 150;
+        const thisRoundEnemies = this.totalEnemiesDefeated - ((this.round - 1) * this.target);
+        const currentProgress = (thisRoundEnemies / this.target);
+        const barPosition = barX + (currentProgress * barLength);
+        context.save();
+        context.fillRect(barX, barY, 150, 7);
+        context.fillStyle = 'gray';
+        context.fillRect (barPosition, barY - 3, 3, 13);
+        context.restore();
+
+        // Print enemies defeated
+        context.save();
+        context.font = '15px Boldonse';
+        context.fillText(`Enemies Defeated: ${this.totalEnemiesDefeated}`, 12.5, 485);
+        context.restore();
+
+        // Players
+        this.player.draw(context);
+
+        // Enemies
+        this.enemies.forEach(enemy => {
+
+            // Draw the enemy in new position.
+            enemy.draw(context);
+
+            if (enemy.type instanceof Gunner) {
+                // Check if enemy shot is happening, if so move the shot
+                if (enemy.shot.happening) {
+                    enemy.drawShot();
+                }
+            }
+
+        });
+
+        // Powerups
+        // Check if player has been alive for 15 seconds
+        if (!this.powerup.active && thisTime - this.powerup.lastTime > 10000) {
+
+            // Draw the powerup
+            this.powerup.draw(context);
+
+            // Check if Powerup is offscreen for indicator
+            if (this.powerup.y + this.powerup.size < 0 && this.powerup.direction || this.powerup.y > 500 && !this.powerup.direction) {
+                this.powerup.drawIndicator(context);
             }
 
         }
@@ -556,35 +645,27 @@ export default function Game(updateState) {
     // SCREENS:
 
     this.homeListener = () => {
-
         this.endWelcome();
         this.removeHomeListener();
         this.addPauseListener();
-
         updateState('play');
-
-        if (this.beingPlayed) {
-            this.pause();
-            this.draw();
-        } else {
-            this.home();
-        }
+        this.beingPlayedCall();
     }
 
     this.addHomeListener = () => {
-        canvas.addEventListener('click', this.homeListener);
+        this.canvas.addEventListener('click', this.homeListener);
     }
 
     this.removeHomeListener = () => {
-        canvas.removeEventListener('click', this.homeListener);
+        this.canvas.removeEventListener('click', this.homeListener);
     }
 
     this.addPauseListener = () => {
-        canvas.addEventListener('click', this.pauseController);
+        this.canvas.addEventListener('click', this.pauseController);
     }
 
     this.removePauseListener = () => {
-        canvas.removeEventListener('click', this.pauseController);
+        this.canvas.removeEventListener('click', this.pauseController);
     }
 
     this.welcomeHandler = () => this.welcomeScene();
@@ -599,7 +680,6 @@ export default function Game(updateState) {
     }
 
     this.endWelcome = function() {
-        this.tutorialBeingPlayed = false;
         this.welcomeId = clearInterval(this.welcomeId);
         this.removeHomeListener();
         this.addPauseListener();
