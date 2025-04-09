@@ -31,7 +31,12 @@ export default function Game(updateState) {
     this.target = 100;
     this.slide = 0;
     this.lastTime = undefined;
+
+
+
     this.beingPlayed = false;
+    this.tutorialBeingPlayed = false;
+
 
     this.initiated = false;
     this.setInitiated = function(value) {
@@ -56,22 +61,40 @@ export default function Game(updateState) {
 
     }
 
-    this.display = function(main, name) {
+    this.displayCanvas = (main) => {
+        main.replaceChildren(canvas);
+    }
+
+    this.displayTutorial = (main) => {
+        this.displayCanvas(main);
+        this.startTutorial();
+    }
+
+    this.display = (main, name) => {
 
         this.player.addKeyDown();
         this.player.addKeyUp();
 
         this.username = name;
 
-        main.replaceChildren(canvas);
+        this.displayCanvas(main);
 
-        if (!this.beingPlayed) {
-            context.font = '25px Boldonse';
+        context.font = '25px Boldonse';
+
+        this.endWelcome();
+
+        if (this.beingPlayed) {
+            this.startGame();
+            setTimeout(() => this.pause(), 50);
+        } else {
             this.home();
         }
+
     }
 
     this.startTutorial = () => {
+
+        this.tutorialBeingPlayed = true;
 
         // Play Tutorial
         this.startWelcome();
@@ -244,15 +267,14 @@ export default function Game(updateState) {
 
             // Draw the powerup
             this.powerup.draw(context);
+            // Check if Powerup is offscreen for indicator
+            if (this.powerup.y + this.powerup.size < 0 && this.powerup.direction || this.powerup.y > 500 && !this.powerup.direction) {
+                this.powerup.drawIndicator(context);
+            }
 
             // Check if Powerup is offscreen for 'removal'
             if (this.powerup.y + this.powerup.size < 0 && !this.powerup.direction || this.powerup.y > 500 && this.powerup.direction) {
                 this.powerup.reset();
-            }
-
-            // Check if Powerup is offscreen for indicator
-            if (this.powerup.y + this.powerup.size < 0 && this.powerup.direction || this.powerup.y > 500 && !this.powerup.direction) {
-                this.powerup.drawIndicator(context);
             }
 
             // Check player intersection with Powerup
@@ -534,8 +556,19 @@ export default function Game(updateState) {
     // SCREENS:
 
     this.homeListener = () => {
+
+        this.endWelcome();
+        this.removeHomeListener();
+        this.addPauseListener();
+
         updateState('play');
-        this.home();
+
+        if (this.beingPlayed) {
+            this.pause();
+            this.draw();
+        } else {
+            this.home();
+        }
     }
 
     this.addHomeListener = () => {
@@ -566,7 +599,10 @@ export default function Game(updateState) {
     }
 
     this.endWelcome = function() {
+        this.tutorialBeingPlayed = false;
         this.welcomeId = clearInterval(this.welcomeId);
+        this.removeHomeListener();
+        this.addPauseListener();
     }
 
     this.welcomeScene = function() {
@@ -679,13 +715,6 @@ export default function Game(updateState) {
     }
 
     this.home = function() {
-
-        history.pushState({ page: 'play' }, '', 'play');
-
-        this.endWelcome();
-        this.removeHomeListener();
-        this.addPauseListener();
-
         context.fillStyle = backgroundColor;
         context.fillRect(0, 0, 500, 500);
         context.fillStyle = '#fff';

@@ -100,8 +100,7 @@ function Main() {
         switch (this.state) {
 
             case 'tutorial':
-                this.game.display(this.main, this.username.name);
-                this.game.startTutorial();
+                this.game.displayTutorial(this.main);
                 break;
 
             case 'leaderboard':
@@ -117,7 +116,6 @@ function Main() {
 
             case 'play':
                 this.game.display(this.main, this.username.name);
-                this.game.home();
                 break;
 
             case 'username':
@@ -162,31 +160,6 @@ function Main() {
     this.game.setInitiated(true);
 
     this.questions = new Questions(this.updateState);
-
-
-    /*
-    this.leta = document.querySelectorAll('a');
-    this.leta.forEach(item => {
-        item.addEventListener('click', (event) => {
-            event.preventDefault();
-
-            let q = item.href.split('/');
-            let val = q[q.length - 1];
-            if (val === this.state) return;
-
-            // Class for page selected 
-            // Needs to happen in the displayState loop NOT HERE
-            this.leta.forEach(item => {
-                if (item.classList.contains('nav-hover')) {
-                    item.classList.remove('nav-hover');
-                }
-            });
-            item.classList.add('nav-hover');
-
-            this.updateState(val);
-        });
-    });
-    */
 
     this.pushState(this.state);
     this.updateState(this.state);
