@@ -10,7 +10,7 @@ export default function Fullscreen() {
     this.fullscreenButton = document.getElementById('fullscreen');
     this.exitFullscreenButton = document.getElementById('exit-fullscreen');
 
-    this.fullscreen = () => {
+    this.fullscreen = (event) => {
         let element = document.documentElement;
         if (element.requestFullscreen) {
             element.requestFullscreen();
@@ -23,7 +23,7 @@ export default function Fullscreen() {
         }
     }
 
-    this.exitFullscreen = () => {
+    this.exitFullscreen = (event) => {
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.mozCancelFullScreen) {

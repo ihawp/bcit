@@ -12,7 +12,6 @@ let canvas = document.createElement('canvas');
 canvas.id = 'canvas';
 canvas.setAttribute('width', '500');
 canvas.setAttribute('height', '500');
-canvas.classList.add('b-1-2');
 const context = canvas.getContext("2d");
 
 export default function Game() {

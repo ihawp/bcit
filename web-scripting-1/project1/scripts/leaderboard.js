@@ -10,7 +10,7 @@ export default function Leaderboard() {
     this.display = (main, data) => {
 
         let string = `
-            <section id="leaderboard-container" class="b-1-2">
+            <div id="leaderboard-container">
                 <table class="leaderboard flex col">
                     <thead class="leaderboard guide font-0-8 flex c-2">
                         <tr>
@@ -61,7 +61,7 @@ export default function Leaderboard() {
             `
         });
 
-        string += `</tbody></table>`;
+        string += `</tbody></table></div>`;
 
         main.innerHTML = string;
     }

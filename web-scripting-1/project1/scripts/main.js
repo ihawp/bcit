@@ -37,7 +37,7 @@ function Main() {
         this.state = this.actual;
     }
 
-    this.loader = document.createElement('section');
+    this.loader = document.createElement('div');
     this.loader.classList.add('flex', 'items-center', 'justify-center');
     this.div = document.createElement('div');
     this.div.classList.add('loader');
@@ -57,47 +57,66 @@ function Main() {
 
     this.username = new Username(this.alert.sendAlert);
 
-    this.questions = new Questions();
+    this.lastLeta = undefined;
+
+
+    // INVESTIGATE
+    /*
+    this.dynamicImport = async function(module) {
+        let l = await import('./'+module+'.js');
+        if (l) {
+            console.log(l);
+        }
+    }
+    this.dynamicImport('boopa');
+    */
+    // INVESTIGATE
 
     this.updateState = (state) => {
-        if (this.state === state) return;
         this.state = state;
         this.displayState();
     }
 
-    this.pushState = function(urlTitle) {
-        history.pushState('', '', urlTitle);
+    this.questions = new Questions(this.updateState);
+
+    this.replaceState = function(urlTitle) {
+        history.replaceState({ page: urlTitle }, '', urlTitle);
     }
 
     this.displayState = async () => {
 
         // error.js get rid of this logic
-        if (this.navigation.classList.contains('none')) {
-            this.navigation.classList.remove('none');
-        }
-
         if (this.state !== 'play') {
             this.game.pause();
         }
 
         this.main.replaceChildren(this.loader);
 
+        this.main.scrollTop = 0;
+
+        if (this.last && this.last.classList.contains('nav-hover')) {
+            this.last.classList.remove('nav-hover');
+        }
+        this.last = this.navButtons[this.state];
+        console.log(this.last);
+        this.last.classList.add('nav-hover');
+
         switch (this.state) {
 
-            case ('leaderboard'):
+            case 'leaderboard':
                 let data = await LeaderboardFetch();
                 if (data) {
                     if (this.state === 'leaderboard') {
                         this.leaderboard.display(this.main, data);
                     } else {
-                        this.displayState();
+                        this.uppdateState('error');
                     }
                 } else if (this.state === 'leaderboard') {
                     this.error.display(this.main);
                 }
                 break;
 
-            case ('play'):
+            case 'play':
                 if (!this.game.initiated) {
                     this.game.init();
                     this.game.setInitiated(true);
@@ -105,7 +124,7 @@ function Main() {
                 this.game.display(this.main, this.username.name);
                 break;
 
-            case ('username'):
+            case 'username':
 
                 // So that w a s d can be entered (I could also remove this logic and not prevent default with the keydown and keyup listeners... more buttons could be used eventually so it's not unreasonable to leave the functions in place (as someone might want to ctrl+w out of the tab ))
                 if (this.game.initiated) {
@@ -123,19 +142,56 @@ function Main() {
                 this.error.display(this.main, this.navigation);
                 break;
         }
-        this.pushState(this.state);
+        this.replaceState(this.state);
     }
 
-    this.displayState();
+    this.navButtons = {
+        'play': document.getElementById('play'),
+        'leaderboard': document.getElementById('leaderboard'),
+        'username': document.getElementById('username'),
+        'how-to-play': document.getElementById('how-to-play')
+    }
 
+    for (let key in this.navButtons) {
+        let item = this.navButtons[key];
+        item.addEventListener('click', event => {
+            event.preventDefault();
+            if (key === this.state) return;
+            this.updateState(key);
+        });
+    }
+
+    /*
     this.leta = document.querySelectorAll('a');
     this.leta.forEach(item => {
         item.addEventListener('click', (event) => {
             event.preventDefault();
+
             let q = item.href.split('/');
-            this.updateState(q[q.length - 1]);
+            let val = q[q.length - 1];
+            if (val === this.state) return;
+
+            // Class for page selected 
+            // Needs to happen in the displayState loop NOT HERE
+            this.leta.forEach(item => {
+                if (item.classList.contains('nav-hover')) {
+                    item.classList.remove('nav-hover');
+                }
+            });
+            item.classList.add('nav-hover');
+
+            this.updateState(val);
         });
     });
+    */
+
+    this.replaceState(this.state);
+    this.updateState(this.state);
+
 }
 
-new Main();
+const main = new Main();
+
+window.addEventListener('popstate', event => {
+    main.updateState(event.state.page);
+});
