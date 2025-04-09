@@ -156,7 +156,7 @@ function Main() {
         });
     }
 
-    this.game = new Game(this.updateState);
+    this.game = new Game(this.updateState, this.alert.sendAlert);
     this.game.init();
     this.game.setInitiated(true);
 

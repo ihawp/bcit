@@ -8,7 +8,7 @@ import Powerup from './powerup.js';
 const backgroundColor = 'purple';
 const framerate = 33.3333333333;
 
-export default function Game(updateState) {
+export default function Game(updateState, sendAlert) {
 
     this.updateState = updateState;
 
@@ -31,6 +31,9 @@ export default function Game(updateState) {
     this.canvas.setAttribute('width', '500px');
     this.canvas.setAttribute('height', '500px');
     let context = this.canvas.getContext("2d");
+
+
+    this.sendAlert = sendAlert;
 
 
 
@@ -723,9 +726,9 @@ export default function Game(updateState) {
                 context.fillText('What are the enemy types?', 45, 230);
                 context.font = '15px Boldonse';
                 context.fillText("Greens and Gunners.", 155, 290);
-                context.fillStyle = 'green';
+                context.fillStyle = '#16a34a';
                 context.fillRect(225, 110, 16, 16);
-                context.fillStyle = 'red';
+                context.fillStyle = '#F10040';
                 context.fillRect(249, 100, 26, 26);
                 break;
             case(4):
@@ -733,7 +736,7 @@ export default function Game(updateState) {
                 context.fillText('What do Greens do?', 90, 230);
                 context.font = '15px Boldonse';
                 context.fillText('Nothing... unless you run into one.', 95, 290);
-                context.fillStyle = 'green';
+                context.fillStyle = '#16a34a';
                 context.fillRect(242, 100, 16, 16);
                 break;
             case(5):
@@ -741,9 +744,9 @@ export default function Game(updateState) {
                 context.fillText('What do Gunners do?', 85, 230);
                 context.font = '15px Boldonse';
                 context.fillText('They shoot Greens in all directions.', 84, 290);
-                context.fillStyle = 'red';
+                context.fillStyle = '#F10040';
                 context.fillRect(237, 100, 26, 26);
-                context.fillStyle = 'green';
+                context.fillStyle = '#16a34a';
                 context.fillRect(300, 104, 16, 16);
                 break;
             case(6):
@@ -833,7 +836,17 @@ export default function Game(updateState) {
         });
 
         if (!response.ok) {
-            console.error(response);
+            this.sendAlert('#F10040', 'Error.', '10px');
+        }
+
+        let data = await response.json();
+
+        if (data.error) {
+            this.sendAlert('#F10040', data.error, '10px');
+        }
+
+        if (data.success) {
+            this.sendAlert('#16A34A', data.success, '10px');
         }
 
         this.resetStats();

@@ -7,9 +7,17 @@ $input = file_get_contents('php://input');
 
 $data = json_decode($input, true);
 
+
+
 if (isset($data['username']) && isset($data['enemiesDefeated']) && isset($data['roundLost']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $username = clean($data['username']);
+    // Credit: https://www.cs.cmu.edu/~biglou/resources/bad-words.txt for bad_words.txt
+    $badWords = file_get_contents('bad_words.txt');
+    if (strpos($badWords, $username)) {
+        echo json_encode(['error' => 'Inappropriate Username.']);
+        exit();
+    }
     $enemiesDefeated = clean($data['enemiesDefeated']);
     $roundLost = clean($data['roundLost']);
     $stringRegex = '/^[A-Za-z]+$/';
@@ -21,15 +29,15 @@ if (isset($data['username']) && isset($data['enemiesDefeated']) && isset($data['
         $query->bind_param('sii', $username, $enemiesDefeated, $roundLost);
         $query->execute();
 
-        echo json_encode(['success' => true]);
+        echo json_encode(['success' => 'Leaderboard Updated!']);
 
     } else {
         header('Location: ../index.html');
-        echo json_encode(['error' => true]);
+        echo json_encode(['error' => 'Not Possible']);
     }
 } else {
     header('Location: ../index.html');
-    echo json_encode(['error' => true]);
+    echo json_encode(['error' => 'Hmmm']);
 }
 
 $query->close();
