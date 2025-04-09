@@ -48,6 +48,7 @@ export default function Game() {
         // Update time for tutorial
         this.lastTime = Date.now();
 
+        context.font = 'Boldonse';
         this.home();
 
     }
@@ -61,6 +62,7 @@ export default function Game() {
 
         main.replaceChildren(canvas);
 
+        context.font = 'Boldonse';
         this.home();
 
     }
@@ -653,6 +655,7 @@ export default function Game() {
                 context.fillText('by pressing anywhere on the screen.', 90, 325);
                 break;
             default:
+                context.font = 'Boldonse';
                 this.home();
                 break;
         }
@@ -685,7 +688,7 @@ export default function Game() {
 
     this.dead = async function() {
 
-        let response = await fetch('http://localhost/project1/php/leaderboard.php', {
+        let response = await fetch('https://breakthrough.ihawp.com/php/leaderboard.php', {
             method: "POST",
             header: {
                 'Content-Type': 'application/json',
