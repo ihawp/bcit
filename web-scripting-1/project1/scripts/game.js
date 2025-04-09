@@ -14,7 +14,9 @@ canvas.setAttribute('width', '500px');
 canvas.setAttribute('height', '500px');
 const context = canvas.getContext("2d");
 
-export default function Game() {
+export default function Game(updateState) {
+
+    this.updateState = updateState;
 
     this.player;
     this.username = undefined;
@@ -29,6 +31,7 @@ export default function Game() {
     this.target = 100;
     this.slide = 0;
     this.lastTime = undefined;
+    this.beingPlayed = false;
 
     this.initiated = false;
     this.setInitiated = function(value) {
@@ -48,7 +51,7 @@ export default function Game() {
         // Update time for tutorial
         this.lastTime = Date.now();
 
-        context.font = 'Boldonse';
+        context.font = '25px Boldonse';
         this.home();
 
     }
@@ -62,9 +65,10 @@ export default function Game() {
 
         main.replaceChildren(canvas);
 
-        context.font = 'Boldonse';
-        this.home();
-
+        if (!this.beingPlayed) {
+            context.font = '25px Boldonse';
+            this.home();
+        }
     }
 
     this.startTutorial = () => {
@@ -511,6 +515,7 @@ export default function Game() {
     // START/PAUSE:
 
     this.startGame = function() {
+        this.beingPlayed = true;
         return this.intervalId = setInterval(() => this.draw(), framerate);
     }
 
@@ -528,7 +533,10 @@ export default function Game() {
     // ------------------------------------------------------------------
     // SCREENS:
 
-    this.homeListener = () => this.home();
+    this.homeListener = () => {
+        updateState('play');
+        this.home();
+    }
 
     this.addHomeListener = () => {
         canvas.addEventListener('click', this.homeListener);
@@ -655,6 +663,7 @@ export default function Game() {
                 context.fillText('by pressing anywhere on the screen.', 90, 325);
                 break;
             default:
+                updateState('play');
                 context.font = 'Boldonse';
                 this.home();
                 break;
@@ -671,7 +680,7 @@ export default function Game() {
 
     this.home = function() {
 
-        history.replaceState({ page: 'play'}, '', 'play');
+        history.pushState({ page: 'play' }, '', 'play');
 
         this.endWelcome();
         this.removeHomeListener();
@@ -688,7 +697,21 @@ export default function Game() {
 
     this.dead = async function() {
 
-        let response = await fetch('https://breakthrough.ihawp.com/php/leaderboard.php', {
+        this.beingPlayed = false;
+
+        this.addPlay();
+        context.fillStyle = '#F10040';
+        context.fillRect(0, 0, 500, 500);
+        context.fillStyle = 'blue';
+        context.font = '25px Boldonse';
+        context.fillStyle = 'white';
+        context.fillText('You died.', 190, 200);
+        context.font = '15px Boldonse';
+        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 135, 260);
+        context.fillText(`You made it to round ${this.round}.`, 155, 310);
+        context.fillText(`You have played ${this.plays} times.`, 150, 360);
+
+        let response = await fetch('http://localhost/project1/php/leaderboard.php', {
             method: "POST",
             header: {
                 'Content-Type': 'application/json',
@@ -704,19 +727,9 @@ export default function Game() {
             console.error(response);
         }
 
-        this.addPlay();
-        context.fillStyle = '#F10040';
-        context.fillRect(0, 0, 500, 500);
-        context.fillStyle = 'blue';
-        context.font = '25px Boldonse';
-        context.fillStyle = 'white';
-        context.fillText('You died.', 190, 200);
-        context.font = '15px Boldonse';
-        context.fillText(`You defeated ${this.totalEnemiesDefeated} enemies.`, 135, 260);
-        context.fillText(`You made it to round ${this.round}.`, 155, 310);
-        context.fillText(`You have played ${this.plays} times.`, 150, 360);
         this.resetStats();
         this.resetBetween();
+        
     }
 
     this.respawn = function() {

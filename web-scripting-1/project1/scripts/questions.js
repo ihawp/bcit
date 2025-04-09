@@ -114,7 +114,7 @@ export default function Questions(updateState) {
     this.updateState = (event) => {
         event.preventDefault();
         this.watchTutorial.removeEventListener('click', this.updateState);
-        history.replaceState({ page: 'tutorial' }, '', 'tutorial');
+        history.pushState({ page: 'tutorial' }, '', 'tutorial');
         updateState('tutorial');
     }
 

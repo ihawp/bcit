@@ -43,10 +43,6 @@ function Main() {
     this.div.classList.add('loader');
     this.loader.replaceChildren(this.div);
 
-    this.game = new Game();
-    this.game.init();
-    this.game.setInitiated(true);
-
     this.particleBackground = new ParticleBackground().init();
 
     this.leaderboard = new Leaderboard();
@@ -73,16 +69,13 @@ function Main() {
     this.dynamicImport('boopa');
     */
     // INVESTIGATE
+    this.pushState = function(urlTitle) {
+        history.replaceState({ page: urlTitle }, '', urlTitle);
+    }
 
     this.updateState = (state) => {
         this.state = state;
         this.displayState();
-    }
-
-    this.questions = new Questions(this.updateState);
-
-    this.pushState = function(urlTitle) {
-        history.replaceState({ page: urlTitle }, '', urlTitle);
     }
 
     this.displayState = async () => {
@@ -116,8 +109,6 @@ function Main() {
                 if (data) {
                     if (this.state === 'leaderboard') {
                         this.leaderboard.display(this.main, data);
-                    } else {
-                        this.updateState('error');
                     }
                 } else if (this.state === 'leaderboard') {
                     this.error.display(this.main);
@@ -126,6 +117,7 @@ function Main() {
 
             case 'play':
                 this.game.display(this.main, this.username.name);
+                this.game.home();
                 break;
 
             case 'username':
@@ -165,6 +157,13 @@ function Main() {
         });
     }
 
+    this.game = new Game(this.updateState);
+    this.game.init();
+    this.game.setInitiated(true);
+
+    this.questions = new Questions(this.updateState);
+
+
     /*
     this.leta = document.querySelectorAll('a');
     this.leta.forEach(item => {
@@ -194,8 +193,11 @@ function Main() {
 
 }
 
-const main = new Main();
 
-window.addEventListener('popstate', event => {
-    main.updateState(event.state.page);
+window.addEventListener('load', () => {
+    const main = new Main();
+
+    window.addEventListener('popstate', event => {
+        main.updateState(event.state.page);
+    });
 });
