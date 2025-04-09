@@ -94,8 +94,10 @@ body {
 
 #main {
     flex-direction: column;
-    min-width: max-content;
-    min-height: max-content;
+    width: max-content;
+    height: max-content;
+    min-width: 500px;
+    min-height: 500px;
     box-shadow: 0 0 10px 1px rgb(255, 255, 255, 0.5);
 }
 #main > div {

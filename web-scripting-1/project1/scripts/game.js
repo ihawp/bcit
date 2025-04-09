@@ -10,8 +10,8 @@ const framerate = 33.3333333333;
 
 let canvas = document.createElement('canvas');
 canvas.id = 'canvas';
-canvas.setAttribute('width', '500');
-canvas.setAttribute('height', '500');
+canvas.setAttribute('width', '500px');
+canvas.setAttribute('height', '500px');
 const context = canvas.getContext("2d");
 
 export default function Game() {
@@ -48,12 +48,8 @@ export default function Game() {
         // Update time for tutorial
         this.lastTime = Date.now();
 
-        // Play Tutorial
-        this.startWelcome();
+        this.home();
 
-        // Add 'click' listener to skip the tutorial
-        this.addHomeListener();
-        
     }
 
     this.display = function(main, name) {
@@ -64,6 +60,20 @@ export default function Game() {
         this.username = name;
 
         main.replaceChildren(canvas);
+
+        this.home();
+
+    }
+
+    this.startTutorial = () => {
+
+        // Play Tutorial
+        this.startWelcome();
+
+        this.removePauseListener();
+
+        // Add 'click' listener to skip the tutorial
+        this.addHomeListener();
 
     }
 
@@ -537,7 +547,11 @@ export default function Game() {
     this.welcomeHandler = () => this.welcomeScene();
 
     this.startWelcome = function() {
+        this.slide = 0;
         this.welcomeScene();
+        if (this.welcomeId) {
+            this.endWelcome();
+        }
         this.welcomeId = setInterval(this.welcomeHandler, 1000);
     }
 
@@ -654,6 +668,8 @@ export default function Game() {
 
     this.home = function() {
 
+        history.replaceState({ page: 'play'}, '', 'play');
+
         this.endWelcome();
         this.removeHomeListener();
         this.addPauseListener();
@@ -665,7 +681,6 @@ export default function Game() {
         context.fillText('Welcome to Breakthrough v2!', 24, 230);
         context.font = '15px Boldonse';
         context.fillText("Click anywhere to start playing.", 100, 290);
-
     }
 
     this.dead = async function() {
@@ -723,7 +738,6 @@ export default function Game() {
         context.font = '15px Boldonse';
         context.fillText('Click anywhere to continue...', 110, 310);
         this.addRound();
-        console.log(this.round);
         this.updateEnemiesBasedOnRound();
         this.resetEnemies();
     }

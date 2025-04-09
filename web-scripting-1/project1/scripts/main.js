@@ -44,6 +44,8 @@ function Main() {
     this.loader.replaceChildren(this.div);
 
     this.game = new Game();
+    this.game.init();
+    this.game.setInitiated(true);
 
     this.particleBackground = new ParticleBackground().init();
 
@@ -79,7 +81,7 @@ function Main() {
 
     this.questions = new Questions(this.updateState);
 
-    this.replaceState = function(urlTitle) {
+    this.pushState = function(urlTitle) {
         history.replaceState({ page: urlTitle }, '', urlTitle);
     }
 
@@ -97,11 +99,17 @@ function Main() {
         if (this.last && this.last.classList.contains('nav-hover')) {
             this.last.classList.remove('nav-hover');
         }
-        this.last = this.navButtons[this.state];
-        console.log(this.last);
-        this.last.classList.add('nav-hover');
+        if (this.navButtons[this.state]) {
+            this.last = this.navButtons[this.state];
+            this.last.classList.add('nav-hover');
+        }
 
         switch (this.state) {
+
+            case 'tutorial':
+                this.game.display(this.main, this.username.name);
+                this.game.startTutorial();
+                break;
 
             case 'leaderboard':
                 let data = await LeaderboardFetch();
@@ -109,7 +117,7 @@ function Main() {
                     if (this.state === 'leaderboard') {
                         this.leaderboard.display(this.main, data);
                     } else {
-                        this.uppdateState('error');
+                        this.updateState('error');
                     }
                 } else if (this.state === 'leaderboard') {
                     this.error.display(this.main);
@@ -117,10 +125,6 @@ function Main() {
                 break;
 
             case 'play':
-                if (!this.game.initiated) {
-                    this.game.init();
-                    this.game.setInitiated(true);
-                }
                 this.game.display(this.main, this.username.name);
                 break;
 
@@ -142,7 +146,7 @@ function Main() {
                 this.error.display(this.main, this.navigation);
                 break;
         }
-        this.replaceState(this.state);
+        this.pushState(this.state);
     }
 
     this.navButtons = {
@@ -185,7 +189,7 @@ function Main() {
     });
     */
 
-    this.replaceState(this.state);
+    this.pushState(this.state);
     this.updateState(this.state);
 
 }

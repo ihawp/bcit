@@ -12,7 +12,7 @@ export default function Questions(updateState) {
                 <p>Welcome to Breakthrough v2! Thanks for checking it out.</p>
                 <p>The below contents is intended to outline the rules and regulations of the game.</p>
                 
-                <a href="./play" id="watch-tutorial">Watch Tutorial.</a>
+                <a href="./tutorial" id="watch-tutorial">Watch Tutorial.</a>
 
                 <h2>Overview</h2>
                 <p>You are the player! Your goal is to avoid enemies at all costs.</p>
@@ -114,8 +114,8 @@ export default function Questions(updateState) {
     this.updateState = (event) => {
         event.preventDefault();
         this.watchTutorial.removeEventListener('click', this.updateState);
-        history.replaceState({ page: 'play' }, '', 'play');
-        updateState('play');
+        history.replaceState({ page: 'tutorial' }, '', 'tutorial');
+        updateState('tutorial');
     }
 
 }
