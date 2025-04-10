@@ -1,0 +1,112 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+body > header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: purple;
+    padding: 1rem 2rem;
+}
+
+body > header a {
+    color: #fff;
+}
+body > header ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: purple;
+}
+a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.alert {
+    background-color: purple;
+    color: white;
+    padding: .25rem 0;
+    text-align: center;
+    border-radius: 8px;
+}
+
+main > header {
+    text-align: center;
+    padding: 1rem 0;
+    width: 100vw;
+    color: purple;
+    border-bottom: 1px solid purple;
+    border-inline-start: 0px;
+    border-inline-end: 200px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form, section {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 300px;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+section ul {
+    padding: 0 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+form > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+label {
+    font-weight: 500;
+}
+
+section h2 {
+    margin-top: 30px;
+    padding-bottom: 8px; 
+    margin-bottom: 4px;
+    border-bottom: 1px solid purple;
+}
+
+input, button, select {
+    padding: .5rem;
+    border: 1px solid purple;
+    color: purple;
+    border-radius: 8px;
+}
+
+button, a, select {
+    cursor: pointer;
+}
+
+select {
+
+}
