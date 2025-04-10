@@ -8,10 +8,12 @@ export default function Powerup() {
     this.type = undefined;
     this.x = undefined;
     this.y = undefined;
-    this.lastTime = undefined;
-    this.active = false;
     this.size = 25;
     this.speed = 7;
+
+    this.lastTime = undefined;
+    this.lastPrintTime = undefined;
+    this.active = false;
 
     this.draw = function(context) {
         context.fillStyle = '#FFF700';
@@ -32,7 +34,7 @@ export default function Powerup() {
     }
 
     this.resetType = function() {
-        this.type = randomNumberInRange(0, 3);
+        this.type = randomNumberInRange(0, 1);
     }
 
     this.resetX = function() {

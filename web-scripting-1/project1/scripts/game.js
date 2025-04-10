@@ -251,6 +251,10 @@ export default function Game(updateState, sendAlert) {
         });
 
         // Powerups
+        if (this.powerup.active) {
+            this.powerup.lastPrintTime = thisTime;
+        }
+
         // Check if powerup has been active for 5 seconds (stop it if so)
         if (this.powerup.active && thisTime - this.powerup.lastTime > 5000) {
             this.setEnemiesSpeed(5);
@@ -541,7 +545,6 @@ export default function Game(updateState, sendAlert) {
     this.powerUpIntersection = () => {
 
         this.powerup.setActive(true);
-        this.powerup.resetLastTime();
 
         switch (this.powerup.type) {
             case (0):
@@ -628,8 +631,11 @@ export default function Game(updateState, sendAlert) {
     // ------------------------------------------------------------------
     // START/PAUSE:
 
-    this.startGame = function() {
+    this.startGame = () => {
         this.beingPlayed = true;
+        if (this.powerup.active) {
+            this.powerup.lastTime = Date.now() - (this.powerup.lastPrintTime - this.powerup.lastTime);
+        }
         return this.intervalId = setInterval(() => this.draw(), framerate);
     }
 
@@ -639,9 +645,9 @@ export default function Game(updateState, sendAlert) {
 
     this.pauseController = () => {
         if (this.intervalId) {
-            return this.intervalId = this.pause();
+            return this.pause();
         }
-        this.intervalId = this.startGame();
+        this.startGame();
     }
 
     // ------------------------------------------------------------------
