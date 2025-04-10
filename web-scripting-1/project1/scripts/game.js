@@ -26,6 +26,8 @@ export default function Game(updateState, sendAlert) {
     this.slide = 0;
     this.lastTime = undefined;
 
+    this.lastPrintTime = undefined;
+
     this.canvas = document.createElement('canvas');
     this.canvas.id = 'canvas';
     this.canvas.setAttribute('width', '500px');
@@ -148,7 +150,7 @@ export default function Game(updateState, sendAlert) {
         context.restore();
 
         let round = this.round % 2 == 0;
-        let thisTime = Date.now();
+        let thisTime = this.lastPrintTime = Date.now();
         
         // Print progress
         const barX = 325;
@@ -253,6 +255,8 @@ export default function Game(updateState, sendAlert) {
         // Powerups
         if (this.powerup.active) {
             this.powerup.lastPrintTime = thisTime;
+        } else {
+            this.powerup.lastInactiveTime = thisTime;
         }
 
         // Check if powerup has been active for 5 seconds (stop it if so)
@@ -261,14 +265,19 @@ export default function Game(updateState, sendAlert) {
             this.resetEnemiesSize();
             this.player.setSpeed(5);
             this.powerup.setActive(false);
+            this.powerup.happening = false;
         }
 
         if (!this.powerup.active && this.player.invincible && thisTime - this.powerup.lastTime > 7500) {
             this.player.invincibility(false);
         }
 
-        // Check if player has been alive for 15 seconds
+        // Check if player has been alive for 10 seconds
         if (!this.powerup.active && thisTime - this.powerup.lastTime > 10000) {
+
+            if (!this.powerup.happening) {
+                this.powerup.happening = true;
+            }
 
             // Move the powerup
             this.powerup.direction ? this.moveDown(this.powerup, this.powerup.speed) : this.moveUp(this.powerup, this.powerup.speed);
@@ -632,10 +641,21 @@ export default function Game(updateState, sendAlert) {
     // START/PAUSE:
 
     this.startGame = () => {
+        
         this.beingPlayed = true;
+
+        let time = Date.now();
+
         if (this.powerup.active) {
-            this.powerup.lastTime = Date.now() - (this.powerup.lastPrintTime - this.powerup.lastTime);
+
+            this.powerup.lastTime = time - (this.powerup.lastPrintTime - this.powerup.lastTime);
+        
+        } else if (!this.powerup.happening) {
+
+            this.powerup.lastTime = time;
+
         }
+
         return this.intervalId = setInterval(() => this.draw(), framerate);
     }
 

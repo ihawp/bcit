@@ -13,6 +13,8 @@ export default function Powerup() {
 
     this.lastTime = undefined;
     this.lastPrintTime = undefined;
+    this.lastInactiveTime = undefined;
+    this.happening = false;
     this.active = false;
 
     this.draw = function(context) {

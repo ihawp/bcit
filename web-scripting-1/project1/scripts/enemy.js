@@ -8,9 +8,7 @@ export default function Enemy(context) {
     this.directionEven = randomNumberInRange(0, 1);
     this.y;
     this.x;
-    this.lastX = undefined;
     this.type = undefined;
-    this.lastX = undefined;
     this.context = context;
     this.shot = {
         happening: false,
