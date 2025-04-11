@@ -177,6 +177,55 @@ export default function Game(updateState, sendAlert) {
         // Player square.
         let player = { top: this.player.y, bottom: this.player.y + this.player.size, left: this.player.x, right: this.player.x + this.player.size, size: this.player.size }
 
+        // Powerups
+        if (this.powerup.active) {
+            this.powerup.lastPrintTime = thisTime;
+        } else {
+            this.powerup.lastInactiveTime = thisTime;
+        }
+
+        // Check if powerup has been active for 5 seconds (stop it if so)
+        if (this.powerup.active && thisTime - this.powerup.lastTime > 5000) {
+            this.setEnemiesSpeed(5);
+            this.resetEnemiesSize();
+            this.player.setSpeed(5);
+            this.powerup.setActive(false);
+            this.powerup.happening = false;
+        }
+
+        if (!this.powerup.active && this.player.invincible && thisTime - this.powerup.lastTime > 7500) {
+            this.player.invincibility(false);
+        }
+
+        // Check if player has been alive for 10 seconds
+        if (!this.powerup.active && thisTime - this.powerup.lastTime > 10000) {
+
+            if (!this.powerup.happening) {
+                this.powerup.happening = true;
+            }
+
+            // Move the powerup
+            this.powerup.direction ? this.moveDown(this.powerup, this.powerup.speed) : this.moveUp(this.powerup, this.powerup.speed);
+
+            // Draw the powerup
+            this.powerup.draw(context);
+            // Check if Powerup is offscreen for indicator
+            if (this.powerup.y + this.powerup.size < 0 && this.powerup.direction || this.powerup.y > 500 && !this.powerup.direction) {
+                this.powerup.drawIndicator(context);
+            }
+
+            // Check if Powerup is offscreen for 'removal'
+            if (this.powerup.y + this.powerup.size < 0 && !this.powerup.direction || this.powerup.y > 500 && this.powerup.direction) {
+                this.powerup.reset();
+            }
+
+            // Check player intersection with Powerup
+            if (this.checkIntersection(this.powerup, player)) {
+                this.powerUpIntersection();
+            }
+
+        }
+
         // Enemies
         this.enemies.forEach(enemy => {
 
@@ -251,55 +300,6 @@ export default function Game(updateState, sendAlert) {
             }
 
         });
-
-        // Powerups
-        if (this.powerup.active) {
-            this.powerup.lastPrintTime = thisTime;
-        } else {
-            this.powerup.lastInactiveTime = thisTime;
-        }
-
-        // Check if powerup has been active for 5 seconds (stop it if so)
-        if (this.powerup.active && thisTime - this.powerup.lastTime > 5000) {
-            this.setEnemiesSpeed(5);
-            this.resetEnemiesSize();
-            this.player.setSpeed(5);
-            this.powerup.setActive(false);
-            this.powerup.happening = false;
-        }
-
-        if (!this.powerup.active && this.player.invincible && thisTime - this.powerup.lastTime > 7500) {
-            this.player.invincibility(false);
-        }
-
-        // Check if player has been alive for 10 seconds
-        if (!this.powerup.active && thisTime - this.powerup.lastTime > 10000) {
-
-            if (!this.powerup.happening) {
-                this.powerup.happening = true;
-            }
-
-            // Move the powerup
-            this.powerup.direction ? this.moveDown(this.powerup, this.powerup.speed) : this.moveUp(this.powerup, this.powerup.speed);
-
-            // Draw the powerup
-            this.powerup.draw(context);
-            // Check if Powerup is offscreen for indicator
-            if (this.powerup.y + this.powerup.size < 0 && this.powerup.direction || this.powerup.y > 500 && !this.powerup.direction) {
-                this.powerup.drawIndicator(context);
-            }
-
-            // Check if Powerup is offscreen for 'removal'
-            if (this.powerup.y + this.powerup.size < 0 && !this.powerup.direction || this.powerup.y > 500 && this.powerup.direction) {
-                this.powerup.reset();
-            }
-
-            // Check player intersection with Powerup
-            if (this.checkIntersection(this.powerup, player)) {
-                this.powerUpIntersection();
-            }
-
-        }
 
     }
 
@@ -836,6 +836,7 @@ export default function Game(updateState, sendAlert) {
     this.dead = async function() {
 
         this.beingPlayed = false;
+        this.resetBetween();
 
         this.addPlay();
         context.fillStyle = '#F10040';
@@ -876,7 +877,6 @@ export default function Game(updateState, sendAlert) {
         }
 
         this.resetStats();
-        this.resetBetween();
         
     }
 
