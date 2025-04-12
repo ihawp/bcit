@@ -40,6 +40,13 @@ $sessionID = session_id();
 include 'config.php';
 include 'functions.php';
 
+// RATE LIMITING
+if (isset($_SESSION['time']) && time() - $_SESSION['time'] < 5) {
+    sendHome('error=too_quick');
+}
+
+$_SESSION['time'] = time();
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendHome('error=try_posting');
 }
@@ -61,11 +68,10 @@ if (!isset($_POST['submit'])) {
 }
 
 // Create variables
-$root = $_SERVER['DOCUMENT_ROOT'];
-$zipUploadDir = $root."/".$directory_zip_uploads;
-$extractedFilesDir = $root."/".$directory_extracted_files;
-$watermarkedImagesDir = $root."/".$directory_watermarked_images;
-$zipDownloadDir = $root."/".$directory_zip_downloads;
+$zipUploadDir = $fullPathToFile."/".$directory_zip_uploads;
+$extractedFilesDir = $fullPathToFile."/".$directory_extracted_files;
+$watermarkedImagesDir = $fullPathToFile."/".$directory_watermarked_images;
+$zipDownloadDir = $fullPathToFile."/".$directory_zip_downloads;
 
 $scanZipUpload = scandir($zipUploadDir);
 $targetFile = basename($_FILES["upload"]["name"]);
@@ -123,21 +129,17 @@ if (!mkdir($watermarkedImagesDir.$sessionID)) {
     sendHome('error=500');
 }
 
-$watermark = new Imagick($root.'/'.$watermark_image);
+$watermark = new Imagick($fullPathToFile.'/'.$watermark_image);
 $watermarkedSessionFolder = $watermarkedImagesDir.$sessionID;
-
-$positiveString = '<h3>Watermarked Images:</h3>';
-$negativeString = '<h3>Unable to Watermark:</h3>';
 
 $positiveCount = 0;
 $negativeCount = 0;
-
-$positiveString .= '<ul class="positive">';
-$negativeString .= '<ul class="negative">';
+$positiveString = '<h3>Watermarked Images:</h3><ul class="positive">';
+$negativeString = '<h3>Unable to Watermark:</h3><ul class="negative">';
 
 for ($i = 2; $i < count($scanExtractedSessionFolder); $i++) {
     $potentialImage = $extractedSessionFolder . '/' . $scanExtractedSessionFolder[$i];
-    if (getimagesize($potentialImage)) {
+    if (getimagesize($potentialImage) && in_array(mime_content_type($potentialImage), $web_image_formats)) {
         if (!produceWatermarkedImage($watermark, $potentialImage, $watermarkedSessionFolder)) {
             sendHome('error=500');
         }
@@ -184,6 +186,7 @@ if ($zip->open($zipFilePath, ZipArchive::CREATE) === TRUE) {
         if ($zip->addFile($image, basename($imageOrig)) === FALSE) {
             sendHome('error=500');
         }
+
     }
 
     if ($zip->close() === FALSE) {

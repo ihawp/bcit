@@ -27,8 +27,7 @@ or on MAC OS
 
 //imagick will need a full path to read or write images
 //use this only when reading or writing an Imagick Image
-$fullPathToFile       =  $_SERVER['DOCUMENT_ROOT'] . "/assignment09/uploads";
-
+$fullPathToFile       =  $_SERVER['DOCUMENT_ROOT'];
 
 //some variables for important folder and file locations
 $directory_zip_uploads 		    = "_zip_uploads/";

@@ -1,7 +1,8 @@
 <?php
 
 function sendHome($string) {
-    header('Location: index.php?'.$string);
+    // Could have function call to recursively delete any files that may be lingering from an error attempt.
+    header('Location: index.html?'.$string);
     exit();
 }
 
