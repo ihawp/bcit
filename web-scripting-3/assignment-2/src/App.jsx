@@ -18,10 +18,10 @@ function App() {
   }
 
   return <>
-    {Header()}
-    <div className="quote-outer">{current === -1 ? 'Click to get a quote!' : Quote(quotes[current])}</div>
+    <Header />
+    <div className="quote-outer">{current === -1 ? 'Click to get a quote!' : <Quote quote={quotes[current]} />}</div>
     <button onClick={changeQuote}>{current > -1 ? 'Get Another Quote' : 'Get Quote'}</button>
-    {Footer()}
+    <Footer />
   </>;
 }
 
