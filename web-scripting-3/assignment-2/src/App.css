@@ -1,0 +1,39 @@
+body {
+    background-color: purple;
+    color: white;
+
+    font-family: 'Arial Narrow', sans-serif;
+    font-weight: 100;
+
+    display: flex;
+    justify-content: center;
+}
+
+header {
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+}
+
+.quote-outer {
+    width: 300px;
+    height: 200px;
+}
+
+.quote {
+    font-size: 1.125rem;
+    line-height: 2em;
+    margin: 0;
+    height: 125px;
+}
+.author {
+    text-align: end;
+}
+
+button {
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: greenyellow;
+}
