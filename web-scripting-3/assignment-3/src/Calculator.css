@@ -1,0 +1,59 @@
+.calculator {
+    background-color: #fff;
+    width: max-content;
+    height: 500px;
+}
+
+.calculator .screen {
+    height: 200px;
+    background-color: gray;
+}
+
+.calculator .buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.calculator .memory {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background: green;
+}
+
+.calculator .acs {
+    width: 50px;
+    background: blue;
+}
+
+.calculator .numbers {
+    width: 210px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    background: purple;
+}
+
+.calculator .operators {
+    background: yellow;
+}
+
+/* calculator button groups */
+
+.calculator .acs button {
+    width: 50px;
+    height: 50px;
+}
+
+.calculator .numbers button {
+    width: 70px;
+    height: 70px;
+}
+
+.calculator .operators button {
+    width: 56px;
+    height: 56px;
+}

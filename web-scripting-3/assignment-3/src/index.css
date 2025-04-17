@@ -1,0 +1,38 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --c-1: red;
+  --c-2: blue;
+}
+
+body {
+  background-color: var(--c-1);
+  color: var(--c-2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  list-style: none;
+}
+
+header, main, footer {
+  width: 500px;
+}
+
+@media (min-width: 50em) {
+  header, main, footer {
+    width: 50rem;
+  }
+}
