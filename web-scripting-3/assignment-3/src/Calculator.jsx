@@ -172,7 +172,7 @@ export default function Calculator() {
 
     return <section className={"calculator"} onClick={takeInput}>
         <div className={"screen"}>
-            <p className="memory-display">M: {memory}</p>
+            <p className="memory-display">M: {formatNumber(memory)}</p>
             <p>{lastVal === '' ? '' : formatNumber(lastVal)} {currentOperation} {formatNumber(currentVal)}</p>
         </div>
         <div className={"buttons"}>

@@ -16,7 +16,7 @@ html {
 
 @font-face {
   font-family: 'Boldonse';
-  src: url('./fonts/Boldonse-Regular.ttf');
+  src: url('./fonts/Boldonse-Regular.woff2');
 }
 
 body {
