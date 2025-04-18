@@ -1,18 +1,13 @@
 import { useState } from 'react';
-import { calculatorButtons } from './calculator-data/calculator-base-button-data.js';
+import { calculatorButtons } from './calculator-data/calculator-bonus-03-button-data.js';
 import './Calculator.css';
 
 export default function Calculator() {
 
-    // brain
-
-    // one operation
-    const [currentVal, setCurrentVal] = useState('');
+    // Current Operation
+    const [currentVal, setCurrentVal] = useState('0');
     const [lastVal, setLastVal] = useState('');
     const [currentOperation, setCurrentOperation] = useState('');
-
-    // Not used... yet? no point?
-    const [operationHappening, setOperationHappening] = useState(false);
 
     // Memory
     const [memory, setMemory] = useState('0');
@@ -35,8 +30,21 @@ export default function Calculator() {
         }
 
         setCurrentOperation('');
-        setOperationHappening(false);
         setLastVal('');
+    }
+
+    function addToCurrentVal(val) {
+        if (currentVal === '0') {
+            setCurrentVal(val);
+        } else {
+            setCurrentVal(currentVal + val);
+        }
+    }
+
+    function updateCurrentOperation(operator) {
+        setLastVal(currentVal);
+        setCurrentVal('0');
+        setCurrentOperation(operator);
     }
 
     const takeInput = (event) => {
@@ -44,105 +52,104 @@ export default function Calculator() {
         if (!event.target.dataset.value) return;
 
         switch (event.target.dataset.value) {
-            case 'AC':
-                setCurrentVal('');
+            case 'All Clear':
+                setCurrentVal('0');
                 setLastVal('');
-                setOperationHappening(false);
                 setCurrentOperation('');
                 setMemory('0');
                 break;
-            case 'C':
-                setCurrentVal('');
+            case 'Clear':
+                setCurrentVal('0');
                 break;
-            case 'MS':
+            case 'Clear Entry':
+                if (currentVal.slice(0, currentVal.length - 1).length === 0) {
+                    return setCurrentVal('0');
+                }
+                setCurrentVal(currentVal.slice(0, currentVal.length - 1));
+                break;
+            case 'Memory Save':
                 setMemory(currentVal);
                 break;
-            case 'MC':
+            case 'Memory Clear':
                 setMemory('0');
                 break;
-            case 'MR':
+            case 'Memory Recall':
                 setCurrentVal(memory);
                 break;
-            case 'M+':
+            case 'Memory Addition':
                 setMemory(String(Number(memory) + Number(currentVal)));
                 break;
-            case 'M-':
+            case 'Memory Subtract':
                 setMemory(String(Number(memory) - Number(currentVal)));
                 break;
-            case 'M*':
+            case 'Memory Multiply':
                 setMemory(String(Number(memory) * Number(currentVal)));
                 break;
-            case 'M/':
+            case 'Memory Divide':
                 setMemory(String(Number(memory) / Number(currentVal)));
                 break;
-            case 'x':
-                setLastVal(currentVal);
-                setCurrentVal('');
-                setCurrentOperation('*');
-                setOperationHappening(true);
+            case 'Multiply':
+                updateCurrentOperation('*');
                 break;
-            case '/':
-                setLastVal(currentVal);
-                setCurrentVal('');
-                setCurrentOperation('/');
-                setOperationHappening(true);
+            case 'Divide':
+                updateCurrentOperation('/');
                 break;
-            case '+':
-                setLastVal(currentVal);
-                setCurrentVal('');
-                setCurrentOperation('+');
-                setOperationHappening(true);
+            case 'Add':
+                updateCurrentOperation('+');
                 break;
-            case '-':
-                setLastVal(currentVal);
-                setCurrentVal('');
-                setCurrentOperation('-');
-                setOperationHappening(true);
+            case 'Subtract':
+                updateCurrentOperation('-');
                 break;
-            case '=':
-                // This right here is what I need to figure out.
-                // how to use the saved operation value (string) amongst
-                // the ints here to perform the calculation.
+            case 'Percent':
+                setCurrentVal(String(Number(currentVal) / 100));
+                break;
+            case 'Square Root':
+                setCurrentVal(String(Math.sqrt(Number(currentVal))));
+                break;
+            case 'Equal':
                 calculate();
                 break;
             case '0':
-                setCurrentVal(currentVal + '0');
+                addToCurrentVal('0');
                 break;
             case '1':
-                setCurrentVal(currentVal + '1');
+                addToCurrentVal('1');
                 break;
             case '2':
-                setCurrentVal(currentVal + '2');
+                addToCurrentVal('2');
                 break;
             case '3':
-                setCurrentVal(currentVal + '3');
+                addToCurrentVal('3');
                 break;
             case '4':
-                setCurrentVal(currentVal + '4');
+                addToCurrentVal('4');
                 break;
             case '5':
-                setCurrentVal(currentVal + '5');
+                addToCurrentVal('5');
                 break;           
             case '6':
-                setCurrentVal(currentVal + '6');
+                addToCurrentVal('6');
                 break;
             case '7':
-                setCurrentVal(currentVal + '7');
+                addToCurrentVal('7');
                 break;
             case '8':
-                setCurrentVal(currentVal + '8');
+                addToCurrentVal('8');
                 break;
             case '9':
-                setCurrentVal(currentVal + '9');
+                addToCurrentVal('9');
                 break;
             case '.':
-                if (currentVal.indexOf('.') === -1 && currentVal.length >= 1) {
+                let check = currentVal.indexOf('.') === -1;
+                if (check && currentVal.length === 0) {
+                    setCurrentVal('0.');
+                } else if (check) {
                     setCurrentVal(currentVal + '.');
                 }
                 break;
             case '+/-':
                 if (currentVal[0] === '-') {
-                    setCurrentVal(currentVal.slice(0, 0));
+                    setCurrentVal(currentVal.slice(1, currentVal.length));
                 } else {
                     setCurrentVal('-' + currentVal);
                 }
@@ -150,97 +157,28 @@ export default function Calculator() {
         }
     }
 
-    return <div className={"calculator"} onClick={takeInput}>
+    const ulGroups = [
+        { className: "memory", types: ["memory"] },
+        { className: "acs", types: ["clear"] },
+        { className: "numbers", types: ["number", "decimal", "sign"] },
+        { className: "operators", types: ["operator", "enter"] }
+    ];
+
+    return <section className={"calculator"} onClick={takeInput}>
         <div className={"screen"}>
-            {lastVal} {currentOperation} {currentVal}
+            <p className="memory-display">M: {memory}</p>
+            <p>{lastVal} {currentOperation} {currentVal}</p>
         </div>
         <div className={"buttons"}>
-            <ul className={"memory"}>
-                <li>
-                    <button data-value="MS">MS</button>
+        {ulGroups.map(group => (
+            <ul key={group.className} className={group.className}>
+            {calculatorButtons.filter(item => group.types.includes(item.type)).map(item => (
+                <li key={item.text} className={item.className}>
+                    <button data-value={item.value}>{item.text}</button>
                 </li>
-                <li>
-                    <button data-value="MC">MC</button>
-                </li>
-                <li>
-                    <button data-value="MR">MR</button>
-                </li>
-                <li>
-                    <button data-value="M+">M+</button>
-                </li>
-                <li>
-                    <button data-value="M-">M-</button>
-                </li>
-                <li>
-                    <button data-value="M*">M*</button>
-                </li>
-                <li>
-                    <button data-value="M/">M/</button>
-                </li>
+            ))}
             </ul>
-            <ul className={"acs"}>
-                <li>
-                    <button data-value="AC">AC</button>
-                </li>
-                <li>
-                    <button data-value="C">C</button>
-                </li>
-            </ul>
-            <ul className={"numbers"}>
-                <li>
-                    <button data-value="7">7</button>
-                </li>
-                <li>
-                    <button data-value="8">8</button>
-                </li>
-                <li>
-                    <button data-value="9">9</button>
-                </li>
-                <li>
-                    <button data-value="4">4</button>
-                </li>
-                <li>
-                    <button data-value="5">5</button>
-                </li>
-                <li>
-                    <button data-value="6">6</button>
-                </li>
-                <li>
-                    <button data-value="1">1</button>
-                </li>
-                <li>
-                    <button data-value="2">2</button>
-                </li>
-                <li>
-                    <button data-value="3">3</button>
-                </li>
-                <li>
-                    <button data-value="0">0</button>
-                </li>
-                <li>
-                    <button data-value=".">.</button>
-                </li>
-                <li>
-                    <button data-value="+/-">+/-</button>
-                </li>
-            </ul>
-            <ul className={"operators"}>
-                <li>
-                    <button data-value="x">x</button>
-                </li>
-                <li>
-                    <button data-value="/">/</button>
-                </li>
-                <li>
-                    <button data-value="+">+</button>
-                </li>
-                <li>
-                    <button data-value="-">-</button>
-                </li>
-                <li>
-                    <button data-value="=">=</button>
-                </li>
-            </ul>
+        ))}
         </div>
-    </div>
+    </section>
 }

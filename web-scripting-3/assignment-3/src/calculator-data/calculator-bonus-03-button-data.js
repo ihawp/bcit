@@ -12,6 +12,12 @@ export const calculatorButtons = [
         value: 'Clear'
     },
     {
+        type: 'clear',
+        className: 'ce',
+        text: 'CE',
+        value: 'Clear Entry'
+    },
+    {
         type: 'memory',
         className: 'ms',
         text: 'MS',
@@ -40,6 +46,18 @@ export const calculatorButtons = [
         className: 'm-plus',
         text: 'M+',
         value: 'Memory Addition',
+    },
+    {
+        type: 'memory',
+        className: 'm-multiply',
+        text: 'M\u00d7',
+        value: 'Memory Multiply',
+    },
+    {
+        type: 'memory',
+        className: 'm-divide',
+        text: 'M\u00f7',
+        value: 'Memory Divide',
     },
     {
         type: 'number',

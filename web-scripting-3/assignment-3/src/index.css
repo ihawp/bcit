@@ -10,17 +10,13 @@ html {
 }
 
 :root {
-  --c-1: red;
-  --c-2: blue;
+  --c-1: purple;
+  --c-2: #fff;
 }
 
 body {
   background-color: var(--c-1);
   color: var(--c-2);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 ul {
@@ -29,6 +25,7 @@ ul {
 
 header, main, footer {
   width: 500px;
+  background: green;
 }
 
 @media (min-width: 50em) {
