@@ -377,7 +377,7 @@ export default function Game(updateState, sendAlert) {
 
         // Powerups
         // Check if player has been alive for 15 seconds
-        if (!this.powerup.active && thisTime - this.powerup.lastTime > 10000) {
+        if (this.powerup.happening) {
 
             // Draw the powerup
             this.powerup.draw(context);
@@ -850,6 +850,8 @@ export default function Game(updateState, sendAlert) {
         context.fillText(`You made it to round ${this.round}.`, 155, 310);
         context.fillText(`You have played ${this.plays} times.`, 150, 360);
 
+
+        /*
         let response = await fetch('http://localhost/project1/php/leaderboard.php', {
             method: "POST",
             header: {
@@ -871,11 +873,12 @@ export default function Game(updateState, sendAlert) {
         if (data.error) {
             this.sendAlert('#F10040', data.error, '10px');
         }
-
+    
         if (data.success) {
             this.sendAlert('#16A34A', data.success, '10px');
         }
-
+        */
+       
         this.resetStats();
         
     }
