@@ -67,10 +67,11 @@ export default function Calculator() {
                 setCurrentVal('0');
                 break;
             case 'Clear Entry':
-                if (currentVal.slice(0, currentVal.length - 1).length === 0) {
+                let q = currentVal.slice(0, currentVal.length - 1);
+                if (q.length === 0) {
                     return setCurrentVal('0');
                 }
-                setCurrentVal(currentVal.slice(0, currentVal.length - 1));
+                setCurrentVal(q);
                 break;
             case 'Memory Save':
                 setMemory(currentVal);
