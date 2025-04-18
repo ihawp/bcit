@@ -8,6 +8,7 @@ export default function Calculator() {
     const [currentVal, setCurrentVal] = useState('0');
     const [lastVal, setLastVal] = useState('');
     const [currentOperation, setCurrentOperation] = useState('');
+    const [operationHappening, setOperationHappening] = useState(false);
 
     // Memory
     const [memory, setMemory] = useState('0');
@@ -42,9 +43,12 @@ export default function Calculator() {
     }
 
     function updateCurrentOperation(operator) {
-        setLastVal(currentVal);
-        setCurrentVal('0');
-        setCurrentOperation(operator);
+        if (!operationHappening) {
+            setLastVal(currentVal);
+            setCurrentVal('0');
+            setCurrentOperation(operator);
+            setOperationHappening(true);       
+        }
     }
 
     const takeInput = (event) => {
@@ -57,6 +61,7 @@ export default function Calculator() {
                 setLastVal('');
                 setCurrentOperation('');
                 setMemory('0');
+                setOperationHappening(false);
                 break;
             case 'Clear':
                 setCurrentVal('0');
@@ -107,6 +112,7 @@ export default function Calculator() {
                 setCurrentVal(String(Math.sqrt(Number(currentVal))));
                 break;
             case 'Equal':
+                setOperationHappening(false);
                 calculate();
                 break;
             case '0':
