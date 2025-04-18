@@ -1,17 +1,19 @@
 .calculator {
-    background-color: #fff;
-    border: 4px solid black;
-    width: 220px;
+    background-color: #222;
+    padding: 1rem;
+    border: 4px solid #111;
+    width: 384px;
 }
 
 .calculator .screen {
     height: 100px;
-    background-color: gray;
+    background-color: #333;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 4px solid black;
+    border: 4px solid black;
+    margin: 0 0 10px 0;
     position: relative;
 }
 
@@ -21,16 +23,50 @@
     left: 5px;
 }
 
-
-.calculator .buttons {
-    gap: 1rem;
-    background-color: blue;
+.calculator button {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    color: #222;
+    font-size: 1.43rem;
+    border: 1px solid #222;
+    border-radius: 50px;
 }
 
 .calculator .buttons ul, .calculator .buttons {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    align-items: start;
+    gap: .25rem;
+}
+
+.calculator .memory {
+    justify-content: center;
+}
+
+.calculator .memory button {
+    background-color: orange;
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.operators button {
+    background-color: dodgerblue;
+}
+
+.calculator .buttons {
+    gap: 1rem;
+}
+
+/* put zero in center */
+.zero {
+    order: 2;
+}
+.sign {
+    order: 9;
 }
 
 .memory {
@@ -38,22 +74,22 @@
 }
 
 .acs {
-    width: 30px;
+    width: 50px;
 }
 
 .numbers {
-    width: 90px;
+    width: 158px;
 }
 
 .operators {
-    width: 60px;
+    width: 104px;
 }
 
-.calculator button {
-    width: 30px;
-    height: 30px;
+.ac button {
+    background-color: red;
+    color: #fff;
 }
 
-.calculator .buttons button {
-    cursor: pointer;
+.equal button {
+    background-color: yellowgreen;
 }

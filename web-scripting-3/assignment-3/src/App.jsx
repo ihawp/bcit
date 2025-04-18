@@ -1,17 +1,8 @@
-import './App.css'
 import Calculator from './Calculator.jsx';
+import { Year } from './year.js';
 
 export default function App() {
   return <>
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Calculator</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
     <main>
       <header>
         <h1>React Calculator!</h1>
@@ -19,7 +10,7 @@ export default function App() {
       <Calculator />
     </main>
     <footer>
-
+      <p>&copy; ihawp {Year}</p>
     </footer>
   </>
 }

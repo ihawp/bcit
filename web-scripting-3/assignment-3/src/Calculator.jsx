@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { calculatorButtons } from './calculator-data/calculator-bonus-03-button-data.js';
+import { calculatorButtons } from './calculator-bonus-03-button-data.js';
 import './Calculator.css';
 
 export default function Calculator() {
@@ -150,6 +150,8 @@ export default function Calculator() {
             case '+/-':
                 if (currentVal[0] === '-') {
                     setCurrentVal(currentVal.slice(1, currentVal.length));
+                } else if (currentVal[0] === '0') {
+                    setCurrentVal('-');
                 } else {
                     setCurrentVal('-' + currentVal);
                 }
@@ -164,10 +166,14 @@ export default function Calculator() {
         { className: "operators", types: ["operator", "enter"] }
     ];
 
+    function formatNumber(numString) {
+        return new Intl.NumberFormat().format(Number(numString));
+    }
+
     return <section className={"calculator"} onClick={takeInput}>
         <div className={"screen"}>
             <p className="memory-display">M: {memory}</p>
-            <p>{lastVal} {currentOperation} {currentVal}</p>
+            <p>{lastVal === '' ? '' : formatNumber(lastVal)} {currentOperation} {formatNumber(currentVal)}</p>
         </div>
         <div className={"buttons"}>
         {ulGroups.map(group => (

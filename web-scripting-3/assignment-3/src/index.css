@@ -14,22 +14,42 @@ html {
   --c-2: #fff;
 }
 
+@font-face {
+  font-family: 'Boldonse';
+  src: url('./fonts/Boldonse-Regular.ttf');
+}
+
 body {
   background-color: var(--c-1);
   color: var(--c-2);
+  font-family: 'Boldonse', sans-serif;
 }
 
 ul {
   list-style: none;
 }
 
-header, main, footer {
-  width: 500px;
-  background: green;
+main header {
+  margin: 40px 0 20px 0;
 }
 
-@media (min-width: 50em) {
-  header, main, footer {
-    width: 50rem;
-  }
+footer {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+}
+
+a {
+  color: var(--c-2);
+  text-decoration: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
 }
