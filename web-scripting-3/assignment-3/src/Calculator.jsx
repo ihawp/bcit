@@ -13,28 +13,37 @@ export default function Calculator() {
     // Memory
     const [memory, setMemory] = useState('0');
 
-    function calculate() {
+    const calculate = () => {
+
+        let result;
 
         switch (currentOperation) {
             case '*':
-                setCurrentVal(String(Number(lastVal) * Number(currentVal)));
+                result = String(Number(lastVal) * Number(currentVal));
                 break;
             case '/':
-                setCurrentVal(String(Number(lastVal) / Number(currentVal)));
+                result = String(Number(lastVal) / Number(currentVal));
                 break;
             case '+':
-                setCurrentVal(String(Number(lastVal) + Number(currentVal)));
+                result = String(Number(lastVal) + Number(currentVal));
                 break;
             case '-':
-                setCurrentVal(String(Number(lastVal) - Number(currentVal)));
+                result = String(Number(lastVal) - Number(currentVal));
                 break;
+        }
+
+        if (result === 'Infinity' || result === 'NaN') {
+            setCurrentVal(0);
+            alert('Invalid Operation!!');
+        } else {
+            setCurrentVal(result);
         }
 
         setCurrentOperation('');
         setLastVal('');
     }
 
-    function addToCurrentVal(val) {
+    const addToCurrentVal = (val) => {
         if (currentVal === '0') {
             setCurrentVal(val);
         } else {
@@ -42,7 +51,7 @@ export default function Calculator() {
         }
     }
 
-    function updateCurrentOperation(operator) {
+    const updateCurrentOperation = (operator) => {
         if (!operationHappening) {
             setLastVal(currentVal);
             setCurrentVal('0');
@@ -133,7 +142,7 @@ export default function Calculator() {
                 break;
             case '5':
                 addToCurrentVal('5');
-                break;           
+                break;
             case '6':
                 addToCurrentVal('6');
                 break;
@@ -147,11 +156,9 @@ export default function Calculator() {
                 addToCurrentVal('9');
                 break;
             case '.':
-                let check = currentVal.indexOf('.') === -1;
-                if (check && currentVal.length === 0) {
-                    setCurrentVal('0.');
-                } else if (check) {
-                    setCurrentVal(currentVal + '.');
+                let check = currentVal.includes('.');
+                if (!check) {
+                    addToCurrentVal('.');
                 }
                 break;
             case '+/-':
@@ -173,18 +180,16 @@ export default function Calculator() {
         { className: "operators", types: ["operator", "enter"] }
     ];
 
-    function formatNumber(numString) {
-        return new Intl.NumberFormat().format(Number(numString));
-    }
-
-    return <section className={"calculator"} onClick={takeInput}>
+    return <section className={"calculator"}>
         <div className={"screen"}>
-            <p className="memory-display">M: {formatNumber(memory)}</p>
-            <p>{lastVal === '' ? '' : formatNumber(lastVal)} {currentOperation} {formatNumber(currentVal)}</p>
+            <p className="memory-display">M: {memory}</p>
+            <p>{lastVal === '' ? '' : lastVal} {currentOperation} {currentVal}</p>
         </div>
-        <div className={"buttons"}>
+        <div className={"buttons"} onClick={takeInput}>
         {ulGroups.map(group => (
+
             <ul key={group.className} className={group.className}>
+            
             {calculatorButtons.filter(item => group.types.includes(item.type)).map(item => (
                 <li key={item.text} className={item.className}>
                     <button data-value={item.value}>{item.text}</button>
