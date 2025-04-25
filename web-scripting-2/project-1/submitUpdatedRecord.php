@@ -40,6 +40,24 @@ foreach ($studentNumbers as $key => $value) {
     }
 }
 
+// check the student number for already existing in the DB
+
+$query = $conn->prepare('SELECT id FROM users WHERE student_number = ?');
+
+$query->bind_param('s', $studentNumbers->originalStudentNumber);
+
+if (!$query->execute()) {
+    send('allStudents.php?error=query_execution_failed');
+}
+
+$result = $query->get_result();
+
+if ($result->num_rows > 0) {
+    send('allStudents.php?error=student_number_exists');
+}
+
+$query->close();
+
 $query = $conn->prepare('UPDATE users SET student_number = ?, firstname = ?, lastname = ? WHERE student_number = ?');
 
 $query->bind_param('ssss', $studentNumbers->studentNumber, $firstName, $lastName, $studentNumbers->originalStudentNumber);

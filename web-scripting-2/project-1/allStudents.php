@@ -45,6 +45,9 @@ if (isset($_GET['error'])) {
         case 'query_execution_failed':
             $string .= 'There was a server error. Please try again.';
             break;
+        case 'student_number_exists':
+            $string .= 'The student number you attempted to submit already exists in the user list.';
+            break;
     }
 
     $string .= '</p>';

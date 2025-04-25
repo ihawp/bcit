@@ -41,7 +41,7 @@ include_once 'html/header.html';
 ?>
 
 <header>
-
+    <h1>Update Record</h1>
 </header>
 <section>
     <form action="submitUpdatedRecord.php" method="POST">
