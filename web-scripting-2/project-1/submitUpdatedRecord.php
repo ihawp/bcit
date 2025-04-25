@@ -58,24 +58,23 @@ if ($result->num_rows === 0) {
 
 $query->close();
 
-// use updated* student_number from submission
+if ($studentNumbers->studentNumber !== $studentNumbers->originalStudentNumber) {
+    // use updated* student_number from submission
 
-$query = $conn->prepare('SELECT id FROM users WHERE student_number = ?');
+    $query = $conn->prepare('SELECT id FROM users WHERE student_number = ?');
 
-$query->bind_param('s', $studentNumbers->studentNumber);
+    $query->bind_param('s', $studentNumbers->studentNumber);
 
-if (!$query->execute()) {
-    send('allStudents.php?error=query_execution_failed');
+    if (!$query->execute()) {
+        send('allStudents.php?error=query_execution_failed');
+    }
+
+    $result = $query->get_result();
+
+    if ($result->num_rows > 0) {
+        send('allStudents.php?error=student_number_exists');
+    }
 }
-
-$result = $query->get_result();
-
-if ($result->num_rows > 0) {
-    send('allStudents.php?error=student_number_exists');
-}
-
-// check if student number 
-
 
 $query = $conn->prepare('UPDATE users SET student_number = ?, firstname = ?, lastname = ? WHERE student_number = ?');
 

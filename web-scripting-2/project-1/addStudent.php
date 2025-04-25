@@ -30,6 +30,9 @@ if (isset($_GET['error'])) {
         case 'query_execution_failed':
             $string .= 'There was a server error. Please try again.';
             break;
+        case 'user_exists':
+            $string .= 'The student number you submitted already exists in the user list.';
+            break;
     }
     $conn->close();
 }
