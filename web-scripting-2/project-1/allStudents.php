@@ -48,6 +48,9 @@ if (isset($_GET['error'])) {
         case 'student_number_exists':
             $string .= 'The student number you attempted to submit already exists in the user list.';
             break;
+        case 'student_number_doesnt_exist':
+            $string .= 'The student number you attempted to update does not exist in the user list.';
+            break;
     }
 
     $string .= '</p>';

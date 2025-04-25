@@ -35,7 +35,7 @@ if (empty($studentNumber) || empty($firstName) || empty($lastName)) {
     send('allStudents.php?error=empty_fields');
 }
 
-$query = $conn->prepare('DELETE FROM users WHERE student_number = ?');
+$query = $conn->prepare('DELETE FROM users WHERE student_number = ? LIMIT 1');
 
 /*
 
