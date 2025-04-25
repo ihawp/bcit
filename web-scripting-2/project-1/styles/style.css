@@ -14,8 +14,33 @@ html {
 }
 
 body {
-    background-color: blue;
+    background-color: purple;
     color: #fff;
+
+    font-family: sans-serif;
+    margin: 1rem;
+}
+
+header {
+    padding: 1rem 0 1rem 0;
+}
+
+header h1 {
+    margin: 0 0 10px 0;
+}
+
+body > header {
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+body > header nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
 }
 
 ul {
@@ -32,4 +57,60 @@ ul {
 
 a {
     color: #fff;
+}
+
+table {
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid rgb(255, 255, 255, 0.5);
+    padding: 1rem;
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+input[type="submit"] {
+    padding: .75rem;
+    background: rgb(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+}
+
+section > form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 400px;
+}
+
+form div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+input[type="text"], input[type="password"] {
+    padding: .5rem;
+    border-radius: 8px;
+    border: none;
+
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
 }
