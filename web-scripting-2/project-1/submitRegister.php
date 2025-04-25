@@ -22,12 +22,12 @@ if (!preg_match('/^a0[0-9]{7}$/i', $studentNumber)) {
     send('register.php?error=not_valid_student_number');
 }
 
-if (!is_string($username) || !is_string($password)) {
-    send('register.php?error=username_or_password_not_string');
+if (!is_string($studentNumber) || !is_string($username) || !is_string($password)) {
+    send('register.php?error=not_string');
 }
 
 if (empty($studentNumber) || empty($username) || empty($password)) {
-    send('register.php?empty_fields');
+    send('register.php?error=empty_fields');
 }
 
 // Check if username or student numbers exists.

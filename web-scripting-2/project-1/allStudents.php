@@ -23,6 +23,63 @@ include_once 'html/header.html';
 
 include_once 'db_conn.php';
 
+if (isset($_GET['error'])) {
+
+    echo '<section>';
+
+    $error = $conn->real_escape_string(cleanString($_GET['error']));
+
+    $string = '<p class="error">';
+
+    switch ($error) {
+        case 'missing_values':
+        case 'empty_fields':
+            $string .= 'The information you submitted was incomplete.';
+            break;
+        case 'not_a_string':
+            $string .= 'The information you submitted was not in the expected format.';
+            break;
+        case 'preg_match':
+            $string .= 'The Student Number that you submitted was not in the proper format.';
+            break;
+        case 'query_execution_failed':
+            $string .= 'There was a server error. Please try again.';
+            break;
+    }
+
+    $string .= '</p>';
+
+    echo $string;
+
+    echo '</section>';
+
+}
+
+if (isset($_GET['success'])) {
+
+    $success = $conn->real_escape_string(cleanString($_GET['success']));
+
+    $string = '<p class="success">';
+    // turn into function that returns proper printing message for server success (or error (aswell)) message
+    switch ($success) {
+        case 'record_updated':
+            $string .= 'The record was updated successfully!';
+            break;
+        case 'deleted':
+            $string .= 'The record was deleted successfully!';
+            break;
+    }
+
+    $string .= '</p>';
+
+    echo '<section>';
+
+    echo $string;
+
+    echo '</section>';
+
+}
+
 $query = $conn->prepare('SELECT * FROM users LIMIT 25');
 
 if (!$query->execute()) {
@@ -75,7 +132,7 @@ while ($row = $result->fetch_assoc()) {
                 <input type="text" name="lastName" id="lastName" value="'.$row['lastname'].'" hidden>
 
                 <label for="studentNumber" hidden>Student Number</label>
-                <input type="text" name="studentNumber" id="studentNumber" value="'.$row['student_number'].'" hidden>
+                <input type="text" name="studentNumber" id="studentNumber" value="'.$row['student_number'].'" pattern="^[aA]0[0-9]{7}$" hidden>
 
                 <input type="submit" value="Update">
             </form>

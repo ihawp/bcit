@@ -14,7 +14,7 @@ $username = cleanString($_POST['username']);
 $password = $_POST['password'];
 
 if (!is_string($username) || !is_string($password)) {
-    send('login.php?error=username_or_password_not_string');
+    send('login.php?error=not_string');
 }
 
 include_once 'db_conn.php';

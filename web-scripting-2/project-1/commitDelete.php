@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 if (!isset($_POST['studentNumber']) || !isset($_POST['firstName']) || !isset($_POST['lastName'])) {
-    send('allStudents.php?error=delete_failed');
+    send('allStudents.php?error=missing_values');
 }
 
 include_once 'db_conn.php';
@@ -28,7 +28,7 @@ $firstName = $conn->real_escape_string(cleanString($_POST['firstName']));
 $lastName = $conn->real_escape_string(cleanString($_POST['lastName']));
 
 if (!is_string($studentNumber) || !is_string($firstName) || !is_string($lastName)) {
-    send('allStudents.php?error=not_strings');
+    send('allStudents.php?error=not_a_string');
 }
 
 if (empty($studentNumber) || empty($firstName) || empty($lastName)) {
@@ -54,4 +54,4 @@ if (!$query->execute()) {
 }
 
 // mustve been deleted, send user away with success notifier for allStudents.php to deal with.
-send('allStudents.php?success=deleted&studentNumber='.$studentNumber.'&firstName='.$firstName.'&lastName='.$lastName);
+send('allStudents.php?success=deleted&studentNumber='.$studentNumber);

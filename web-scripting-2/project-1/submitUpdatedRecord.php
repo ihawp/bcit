@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Check if the expected values are set
 if (!isset($_POST['originalStudentNumber']) || !isset($_POST['studentNumber']) || !isset($_POST['firstName']) || !isset($_POST['lastName'])) {
-    send('allStudents.php');
+    send('allStudents.php?error=missing_values');
 }
 
 include_once 'db_conn.php';
@@ -40,12 +40,14 @@ foreach ($studentNumbers as $key => $value) {
     }
 }
 
-function dynamicQuery($query, $types, $params) {
-    $bind_names[] = $types;
-    foreach ($params as $key => $value) {
-        $bind_names[] = &$params[$key];
-    }
-    return call_user_func_array([$query, 'bind_param'], $bind_names);
+$query = $conn->prepare('UPDATE users SET student_number = ?, firstname = ?, lastname = ? WHERE student_number = ?');
+
+$query->bind_param('ssss', $studentNumbers->studentNumber, $firstName, $lastName, $studentNumbers->originalStudentNumber);
+
+if (!$query->execute()) {
+    send('allStudents.php?error=query_execution_failed');
 }
 
-// Update User where Student Number exists.
+// Assume operations are complete and send back to allStudents page
+
+send('allStudents.php?success=record_updated');

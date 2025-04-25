@@ -16,6 +16,39 @@ if (isLogged()) {
 <header>
     <h1>Register</h1>
 </header>
+<?php
+
+if (isset($_GET['error'])) {
+    include_once 'db_conn.php';
+    $error = $conn->real_escape_string(cleanString($_GET['error']));
+
+    $string = '<p class="error">';
+
+    switch ($string) {
+        case 'missing_information':
+            $string .= 'The information you submitted was not complete.';
+            break;
+        case 'not_valid_student_number':
+            $string .= 'You did not submit a valid student number.';
+            break;
+        case 'not_string':
+            $string .= 'The information you submitted did not match the expected format.';
+            break;
+        case 'empty_fields':
+            $string .= 'Some fields were left empty.';
+            break;
+        case 'query_failed':
+            $string .= 'There was a server error. Please try again.';
+            break;
+        case 'account_already_exists':
+            $string .= 'There is already an account with the username submitted.';
+            break;
+    }
+
+    $string .= '</p>';
+}
+
+?>
 <section>
     <form action="submitRegister.php" method="POST">
         

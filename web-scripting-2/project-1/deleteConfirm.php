@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 if (!isset($_POST['studentNumber']) || !isset($_POST['firstName']) || !isset($_POST['lastName'])) {
-    send('allStudents.php?error=missing_info');
+    send('allStudents.php?error=missing_values');
 }
 
 include_once 'db_conn.php';
@@ -28,7 +28,7 @@ if (!preg_match('/^a0[0-9]{7}$/i', $studentNumber)) {
 }
 
 if (!is_string($studentNumber) || !is_string($firstName) || !is_string($lastName)) {
-    send('allStudents.php?error=not_string');
+    send('allStudents.php?error=not_a_string');
 }
 
 if (empty($studentNumber) || empty($firstName) || empty($lastName)) {
@@ -41,7 +41,7 @@ include_once 'html/header.html';
 ?>
 
 <header>
-    <h1></h1>
+    <h1>Delete Confirmation</h1>
 </header>
 <section>
 
@@ -72,7 +72,3 @@ include_once 'html/header.html';
 <?php
 
 include_once 'html/footer.html';
-
-// give user an opportunity to not delete the selected delete record.
-
-// is enacted from the delete button on allStudents.php page.
