@@ -8,19 +8,19 @@ if (!isLogged()) {
     send('login.php?not_logged_in');
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     send('index.php');
 }
 
-if (!isset($_POST['studentNumber']) || !isset($_POST['firstName']) || !isset($_POST['lastName'])) {
+if (!isset($_GET['studentNumber']) || !isset($_GET['firstName']) || !isset($_GET['lastName'])) {
     send('allStudents.php?error=missing_values');
 }
 
 include_once 'db_conn.php';
 
-$studentNumber = $conn->real_escape_string(cleanString($_POST['studentNumber']));
-$firstName = $conn->real_escape_string(cleanString($_POST['firstName']));
-$lastName = $conn->real_escape_string(cleanString($_POST['lastName']));
+$studentNumber = $conn->real_escape_string(cleanString($_GET['studentNumber']));
+$firstName = $conn->real_escape_string(cleanString($_GET['firstName']));
+$lastName = $conn->real_escape_string(cleanString($_GET['lastName']));
 
 
 if (!preg_match('/^a0[0-9]{7}$/i', $studentNumber)) {
@@ -49,6 +49,7 @@ include_once 'html/header.html';
     <!-- hide most of form -->
     <p>Are you sure you want to delete student <?= uppercfirst($studentNumber) ?>?</p>
     <form action="commitDelete.php" method="POST">
+        
         <div>
             <label for="studentNumber" hidden>Student Number:</label>
             <input type="text" name="studentNumber" id="studentNumber" placeholder="Student Number" value="<?= $studentNumber ?>" required hidden>

@@ -8,24 +8,24 @@ if (!isLogged()) {
     send('login.php?error=not_logged');
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     send('index.php');
 }
 
-if (!isset($_POST['firstName']) || !isset($_POST['lastName']) || !isset($_POST['studentNumber'])) {
+if (!isset($_GET['firstName']) || !isset($_GET['lastName']) || !isset($_GET['studentNumber'])) {
     send('allStudents.php?error=missing_values');
 }
 
 include_once 'db_conn.php';
 
-$studentNumber = $conn->real_escape_string(cleanString($_POST['studentNumber']));
+$studentNumber = $conn->real_escape_string(cleanString($_GET['studentNumber']));
 
 if (!preg_match('/^a0[0-9]{7}$/i', $studentNumber)) {
     send('allStudents.php?error=preg_match');
 }
 
-$firstName = $conn->real_escape_string(cleanString($_POST['firstName']));
-$lastName = $conn->real_escape_string(cleanString($_POST['lastName']));
+$firstName = $conn->real_escape_string(cleanString($_GET['firstName']));
+$lastName = $conn->real_escape_string(cleanString($_GET['lastName']));
 
 if (!is_string($studentNumber) || !is_string($firstName) || !is_string($lastName)) {
     send('allStudents.php?error=not_a_string');
@@ -44,6 +44,7 @@ include_once 'html/header.html';
     <h1>Update Record</h1>
 </header>
 <section>
+
     <form action="submitUpdatedRecord.php" method="POST">
 
         <!-- carry original student number value (expected value) -->

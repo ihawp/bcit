@@ -43,8 +43,6 @@ if (!$query->execute()) {
     send('allStudents.php?error=query_execution_failed');
 }
 
-// mustve been deleted, send user away with success notifier for allStudents.php to deal with.
-
 if ($studentNumber == $_SESSION['student_number']) {
     send('logout.php');
 } else {

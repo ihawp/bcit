@@ -3,10 +3,16 @@
 
 // intakes the updated record sent from updateRecord.php
 
+session_start();
+
 include_once 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     send('index.php');
+}
+
+if (!isLogged()) {
+    send('allStudents.php?error=not_logged');
 }
 
 // Check if the expected values are set
@@ -82,6 +88,10 @@ $query->bind_param('ssss', $studentNumbers->studentNumber, $firstName, $lastName
 
 if (!$query->execute()) {
     send('allStudents.php?error=query_execution_failed');
+}
+
+if ($studentNumbers->originalStudentNumber == $_SESSION['student_number']) {
+    $_SESSION['student_number'] = $studentNumbers->studentNumber;
 }
 
 // Assume operations are complete and send back to allStudents page

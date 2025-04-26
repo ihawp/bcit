@@ -127,43 +127,13 @@ while ($row = $result->fetch_assoc()) {
 
     echo '<td>'.uppercfirst($row['lastname']).'</td>';
 
-    echo '<td>
-    
-            <form action="updateRecord.php" method="POST">
+    echo '<td><a href="updateRecord.php?firstName='.$row['firstname'].'&lastName='.$row['lastname'].'&studentNumber='.$row['student_number'].'" title="Update">Update</a></td>';
 
-                <label for="firstName" hidden>First Name:</label>
-                <input type="text" name="firstName" id="firstName" value="'.$row['firstname'].'" hidden>
-
-                <label for="lastName" hidden>Last Name:</label>
-                <input type="text" name="lastName" id="lastName" value="'.$row['lastname'].'" hidden>
-
-                <label for="studentNumber" hidden>Student Number</label>
-                <input type="text" name="studentNumber" id="studentNumber" value="'.$row['student_number'].'" pattern="^[aA]0[0-9]{7}$" hidden>
-
-                <input type="submit" value="Update">
-            </form>
-    
-    </td>';
-
-    echo '<td>
-            <form action="deleteConfirm.php" method="POST">
-
-                <label for="firstName" hidden>First Name:</label>
-                <input type="text" name="firstName" id="firstName" value="'.$row['firstname'].'" hidden>
-
-                <label for="lastName" hidden>Last Name:</label>
-                <input type="text" name="lastName" id="lastName" value="'.$row['lastname'].'" hidden>
-
-                <label for="studentNumber" hidden>Student Number</label>
-                <input type="text" name="studentNumber" id="studentNumber" value="'.$row['student_number'].'" hidden>
-
-                <input type="submit" value="Delete">
-            </form>
-        </td>';
-
-    echo '</tr>';
+    echo '<td><a href="deleteConfirm.php?firstName='.$row['firstname'].'&lastName='.$row['lastname'].'&studentNumber='.$row['student_number'].'" title="Delete">Delete</a></td>';
 
 }
+
+echo $_SESSION['student_number'];
 
 
 ?>
