@@ -7,12 +7,12 @@ session_start();
 
 include_once 'functions.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    send('index.php');
-}
-
 if (!isLogged()) {
     send('allStudents.php?error=not_logged');
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    send('index.php');
 }
 
 // Check if the expected values are set
