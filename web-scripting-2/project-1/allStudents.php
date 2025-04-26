@@ -133,9 +133,6 @@ while ($row = $result->fetch_assoc()) {
 
 }
 
-echo $_SESSION['student_number'];
-
-
 ?>
         </tbody>
     </table>
