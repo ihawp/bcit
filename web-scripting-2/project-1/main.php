@@ -1,14 +1,18 @@
 <?php
 
+// Start the $_SESSION (access)
 session_start();
 
+// Include potentially required functions (2 for pages requiring login)
 include_once 'functions.php';
 
+// Use functions from functions.php to determine if the user is logged
+// if they are not they will be sent to the login.php page
 if (!isLogged()) {
     send('login.php?not_logged_in');
 }
 
-
+// Include some head/header content for page construction
 include_once 'html/head.html';
 include_once 'html/header.html';
 
@@ -21,6 +25,9 @@ include_once 'html/header.html';
 
 <?php
 
+// Include $conn here
+// Potentially used by error or success for real_escape_string
+// Guaranteed to be used once past error/success for query
 include_once 'db_conn.php';
 
 if (isset($_GET['error'])) {
@@ -137,29 +144,3 @@ while ($row = $result->fetch_assoc()) {
         </tbody>
     </table>
 </section>
-
-<?php
-
-
-
-/*
-
-make and utilize to dynamically bind parameters of
-prepared statement.
-
-function makeQuery($queryString) {
-    
-    include_once 'db_conn.php';
-
-    $query = $conn->prepare($queryString);
-
-
-    call_user_func_array(array($query, 'bind_param'), $)
-
-    // would have to make more dynamic function
-    // for passing multiple bind params
-
-    $query->bind_param();
-
-}
-*/

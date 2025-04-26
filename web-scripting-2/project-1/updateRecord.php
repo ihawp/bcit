@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 }
 
 if (!isset($_GET['firstName']) || !isset($_GET['lastName']) || !isset($_GET['studentNumber'])) {
-    send('allStudents.php?error=missing_values');
+    send('main.php?error=missing_values');
 }
 
 include_once 'db_conn.php';
@@ -21,18 +21,18 @@ include_once 'db_conn.php';
 $studentNumber = $conn->real_escape_string(cleanString($_GET['studentNumber']));
 
 if (!preg_match('/^a0[0-9]{7}$/i', $studentNumber)) {
-    send('allStudents.php?error=preg_match');
+    send('main.php?error=preg_match');
 }
 
 $firstName = $conn->real_escape_string(cleanString($_GET['firstName']));
 $lastName = $conn->real_escape_string(cleanString($_GET['lastName']));
 
 if (!is_string($studentNumber) || !is_string($firstName) || !is_string($lastName)) {
-    send('allStudents.php?error=not_a_string');
+    send('main.php?error=not_a_string');
 }
 
 if (empty($studentNumber) || empty($firstName) || empty($lastName)) {
-    send('allStudents.php?error=empty_fields');
+    send('main.php?error=empty_fields');
 }
 
 include_once 'html/head.html';
