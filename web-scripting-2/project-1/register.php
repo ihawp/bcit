@@ -24,7 +24,7 @@ if (isset($_GET['error'])) {
 
     $string = '<p class="error">';
 
-    switch ($string) {
+    switch ($error) {
         case 'missing_information':
             $string .= 'The information you submitted was not complete.';
             break;
@@ -41,11 +41,14 @@ if (isset($_GET['error'])) {
             $string .= 'There was a server error. Please try again.';
             break;
         case 'account_already_exists':
-            $string .= 'There is already an account with the username submitted.';
+            $string .= 'There is already an account with the username.';
             break;
     }
 
     $string .= '</p>';
+
+    echo $string;
+
 }
 
 ?>

@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 if (!isset($_POST['username']) || !isset($_POST['password'])) {
-    send('login.php?username_or_password_not_set');
+    send('login.php?error=missing_fields');
 }
 
 $username = cleanString($_POST['username']);
@@ -19,7 +19,7 @@ if (!is_string($username) || !is_string($password)) {
 
 include_once 'db_conn.php';
 
-$query = $conn->prepare('SELECT id, username, student_number FROM users WHERE username = ?');
+$query = $conn->prepare('SELECT id, username, student_number, password FROM users WHERE username = ?');
 
 $query->bind_param('s', $username);
 
@@ -36,7 +36,7 @@ if ($result->num_rows === 0) {
 while ($row = $result->fetch_assoc()) {
 
     if (!password_verify($password, $row['password'])) {
-        send('login.php?wrong_password');
+        send('login.php?error=wrong_password');
     }
 
     session_start();

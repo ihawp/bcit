@@ -39,6 +39,12 @@ if (isset($_GET['error'])) {
         case 'not_logged':
             $string .= 'Please login before accessing that content.';
             break;
+        case 'wrong_password':
+            $string .= 'You entered the wrong password for that username.';
+            break;
+        case 'missing_fields':
+            $string .= 'The information you submitted was incomplete.';
+            break;
     }
 
     $string .= '</p>';
