@@ -60,6 +60,7 @@ session_start();
 
 $_SESSION['id'] = $query->insert_id;
 $_SESSION['username'] = $username;
+$_SESSION['student_number'] = $studentNumber;
 
 $query->close();
 $conn->close();

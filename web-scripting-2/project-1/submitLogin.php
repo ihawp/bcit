@@ -19,7 +19,7 @@ if (!is_string($username) || !is_string($password)) {
 
 include_once 'db_conn.php';
 
-$query = $conn->prepare('SELECT * FROM users WHERE username = ?');
+$query = $conn->prepare('SELECT id, username, student_number FROM users WHERE username = ?');
 
 $query->bind_param('s', $username);
 
@@ -43,6 +43,7 @@ while ($row = $result->fetch_assoc()) {
 
     $_SESSION['id'] = $row['id'];
     $_SESSION['username'] = $row['username'];
+    $_SESSION['student_number'] = $row['student_number'];
 
     send('index.php');
 }

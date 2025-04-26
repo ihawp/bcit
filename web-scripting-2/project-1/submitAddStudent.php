@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 if (!isset($_POST['studentNumber']) || !isset($_POST['firstName']) || !isset($_POST['lastName'])) {
-    send('addStudent.php?error=missing_info');
+    send('allStudents.php?error=missing_values');
 }
 
 include_once 'db_conn.php';
@@ -25,15 +25,15 @@ $firstName = $conn->real_escape_string(cleanString($_POST['firstName']));
 $lastName = $conn->real_escape_string(cleanString($_POST['lastName']));
 
 if (!is_string($studentNumber) || !is_string($firstName) || !is_string($lastName)) {
-    send('addStudent.php?error=not_string');
+    send('allStudents.php?error=not_a_string');
 }
 
 if (empty($studentNumber) || empty($firstName) || empty($lastName)) {
-    send('addStudent.php?error=empty_values');
+    send('allStudents.php?error=empty_fields');
 }
 
 if (!preg_match('/^a0[0-9]{7}$/i', $studentNumber)) {
-    send('addStudent.php?error=not_valid_student_number');
+    send('allStudents.php?error=not_valid_student_number');
 }
 
 // check if student number already exists
@@ -42,13 +42,13 @@ $query = $conn->prepare('SELECT id FROM users WHERE student_number = ?');
 $query->bind_param('s', $studentNumber);
 
 if (!$query->execute()) {
-    send('addStudent.php?error=query_execution_error');
+    send('allStudents.php?error=query_execution_error');
 }
 
 $result = $query->get_result();
 
 if ($result->num_rows > 0) {
-    send('addStudent.php?error=user_exists');
+    send('allStudents.php?error=student_number_exists');
 }
 
 $query->close();
@@ -58,7 +58,7 @@ $query = $conn->prepare('INSERT INTO users (student_number, firstname, lastname)
 $query->bind_param('sss', $studentNumber, $firstName, $lastName);
 
 if (!$query->execute()) {
-    send('addStudent.php?error=query_execution_failed');
+    send('allStudents.php?error=query_execution_failed');
 }
 
-send('addStudent.php?success=student_added');
+send('allStudents.php?success=student_added');

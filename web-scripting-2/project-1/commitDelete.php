@@ -37,16 +37,6 @@ if (empty($studentNumber) || empty($firstName) || empty($lastName)) {
 
 $query = $conn->prepare('DELETE FROM users WHERE student_number = ? LIMIT 1');
 
-/*
-
-If you delete you remove the password and username (the account)
-so I will check project requirements to make sure this is what we want
-(and not just emptying of the columns holding the student_number, firstname, lastname)
-
-Issue: Currently I have deleted my own account and have not been logged out.
-
-*/
-
 $query->bind_param('s', $studentNumber);
 
 if (!$query->execute()) {
@@ -54,4 +44,9 @@ if (!$query->execute()) {
 }
 
 // mustve been deleted, send user away with success notifier for allStudents.php to deal with.
-send('allStudents.php?success=deleted&studentNumber='.$studentNumber);
+
+if ($studentNumber == $_SESSION['student_number']) {
+    send('logout.php');
+} else {
+    send('allStudents.php?success=deleted&studentNumber='.$studentNumber);
+}

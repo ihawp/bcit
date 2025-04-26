@@ -15,28 +15,6 @@ if (!isLogged()) {
 include_once 'html/head.html';
 include_once 'html/header.html';
 
-if (isset($_GET['error'])) {
-    include_once 'db_conn.php';
-    $error = $conn->real_escape_string(cleanString($_GET['error']));
-    $string = '';
-    switch ($error) {
-        case 'missing_info':
-        case 'empty_values':
-            $string .= 'The information you submitted was not complete.';
-            break;
-        case 'not_string':
-            $string .= 'The information you submitted was not in the expected format.';
-            break;
-        case 'query_execution_failed':
-            $string .= 'There was a server error. Please try again.';
-            break;
-        case 'user_exists':
-            $string .= 'The student number you submitted already exists in the user list.';
-            break;
-    }
-    $conn->close();
-}
-
 ?>
 
 
