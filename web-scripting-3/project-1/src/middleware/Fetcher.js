@@ -1,4 +1,4 @@
-import APIKEY from '../routers/key.js';
+import APIKEY from '../../blah.js';
 
 export default async function Fetcher(url) {
 
