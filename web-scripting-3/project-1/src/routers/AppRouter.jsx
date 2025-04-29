@@ -1,70 +1,32 @@
-import { useParams, BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function User() {
+import About from '../pages/About.jsx';
+import Home from '../pages/Home.jsx';
+import Favourites from '../pages/Favourites.jsx';
+import Search from '../pages/Search.jsx';
+import Individual from '../pages/Individual.jsx';
 
-	const { id } = useParams();
-	const navigate = useNavigate();
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
 
-	const l = useEffect(() => {
-		// query some user data
-
-		// set document title
-		document.title = id;
-	}, [id]);
-
-	const redirect404 = () => {
-		navigate('/about');
-	}
-
-	return <>
-		<h1 onError={redirect404}>User ID: {id}</h1>
-	</>;
-}
-
-function Home() {
-	return <>
-		<h1>Home</h1>
-	</>;
-}
-
-function About() {
-	return <>
-		<h1>About</h1>
-	</>;
-}
+import MovieDataProvider from '../middleware/MovieData.jsx';
 
 export default function AppRouter() {
-	return <>
+	return <BrowserRouter>
+		<MovieDataProvider>
 
-	<BrowserRouter>
+			<Header />
 
-		<header>
-			<nav aria-label="">
-				<ul>
-					<li>
-						<NavLink to="/">Home</NavLink>
-					</li>
-					<li>
-						<NavLink to="/about">About</NavLink>
-					</li>
-					<li>
-						<NavLink to="/user/43">User</NavLink>
-					</li>
-				</ul>
-			</nav>
-		</header>
+			<Routes>
+				<Route path="/" element={ <Home/> } />
+				<Route path="/about" element={ <About /> } />
+				<Route path="/favourites" element={ <Favourites /> } />
+				<Route path="/search/:query" element={ <Search /> } />
+				<Route path="/i/:id" element={ <Individual /> } />
+			</Routes>
 
-		<Routes>
-			<Route path="/" element={ <Home/> } />
-			<Route path="/about" element={ <About /> } />
-			<Route path="/user/:id" element={ <User /> } />
-		</Routes>
+			<Footer />
 
-		<footer></footer>
-
-	</BrowserRouter>
-
-	</>;
+		</MovieDataProvider>
+	</BrowserRouter>;
 }

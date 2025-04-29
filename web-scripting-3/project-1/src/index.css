@@ -1,0 +1,104 @@
+/* ihawp.com 2025 */
+
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    overflow-x: hidden;
+
+    background-color: dodgerblue;
+}
+
+/* HEADER */
+
+header {
+    
+}
+
+header nav {
+
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: row;
+
+    list-style: none;
+    gap: 1rem;
+}
+
+/* POSTERS */
+
+.movie-row > div {
+    width: 100%;
+}
+
+.poster {
+    min-width: 200px;
+    min-height: 300px;
+    max-width: 200px;
+    max-height: 300px;
+    background: red;
+    border-radius: 8px;
+}
+
+.poster img {
+    position: absolute;
+    width: 200px;
+    height: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.poster .content {
+    z-index: 1;
+
+    visibility: hidden;
+
+    width: 200px;
+    height: 300px;
+
+    opacity: 0;
+
+    border-radius: 8px;
+
+    background-color: rgb(23, 139, 255);
+
+    transition: all 0.25s ease;
+}
+
+.poster:hover div div {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* SINGLE PROPERTY CLASSES */
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.gap-1 {
+    gap: 1rem;
+}
