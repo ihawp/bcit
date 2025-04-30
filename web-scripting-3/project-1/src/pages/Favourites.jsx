@@ -1,15 +1,53 @@
 import MovieDataContext from '../middleware/MovieDataContext.js';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { FavouritesContext } from '../middleware/FavouritesData.jsx';
+import Poster from '../components/Poster.jsx';
 
 export default function Favourites() {
+  const { Popular, NowPlaying, TopRated, Upcoming } = useContext(MovieDataContext);
+  const collections = { Popular, NowPlaying, TopRated, Upcoming };
 
-	const { Popular, NowPlaying, TopRated, Upcoming } = useContext(MovieDataContext);
-	const collections = { Popular, NowPlaying, TopRated, Upcoming };
+  const { favourites } = useContext(FavouritesContext);
 
+  const [data, setData] = useState([]);
 
-	console.log(JSON.parse(localStorage.getItem('favourites')));
+  const collectionsReady = Object.values(collections).every(
+    (collection) => collection && Object.keys(collection).length > 0
+  );
 
-	return <>
-		<h1>Favourites</h1>
-	</>;
+  const searchCollectionsForMovieData = (id, collections) => {
+    for (const moviesObj of Object.values(collections)) {
+      if (moviesObj && typeof moviesObj === 'object') {
+        const movie = Object.values(moviesObj).find((movie) => movie.id === id);
+        if (movie) return movie;
+      }
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    if (!collectionsReady || favourites.length === 0) {
+      setData([]);
+      return;
+    }
+
+    const arr = favourites
+      .map((favouriteId) => searchCollectionsForMovieData(favouriteId, collections))
+      .filter(Boolean);
+
+    setData(arr);
+  }, [favourites, collectionsReady]);
+
+  return (
+    <>
+      <h1>Favourites</h1>
+      <div className="flex flex-row flex-wrap gap-1">
+        {data.length > 0 ? (
+          data.map((item) => <Poster item={item} key={item.id} />)
+        ) : (
+          <p>No favourites yet.</p>
+        )}
+      </div>
+    </>
+  );
 }

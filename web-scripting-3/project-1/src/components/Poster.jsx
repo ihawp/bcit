@@ -1,58 +1,53 @@
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FavouritesContext } from '../middleware/FavouritesData.jsx';
 
 export default function Poster({ item }) {
   const title = item['original_title'] + ' Movie Poster';
 
-  const [includes, setIncludes] = useState(false);
+  const { addFavourite, removeFavourite, isFavourite } = useContext(FavouritesContext);
 
-  useEffect(() => {
-    const favourites = JSON.parse(localStorage.getItem('favourites')) || [];
-    setIncludes(favourites.includes(item.id));
-  }, [item.id]);
-
-  const updateFavourites = (newList) => {
-    localStorage.setItem('favourites', JSON.stringify(newList));
-    setIncludes(newList.includes(item.id));
-  };
-
-  const addToFavourites = () => {
-    let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
-    if (!favourites.includes(item.id)) {
-      const updated = [...favourites, item.id];
-      updateFavourites(updated);
+  const toggleFavourite = () => {
+    if (isFavourite(item.id)) {
+      removeFavourite(item.id);
+    } else {
+      addFavourite(item.id);
     }
   };
 
-  const removeFromFavourites = () => {
-    let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
-    const updated = favourites.filter(id => id !== item.id);
-    updateFavourites(updated);
-  };
+  const buttonStopProp = (event) => {
+    event.stopPropagation();
+    toggleFavourite();
+  }
 
-  if (!item.poster_path) return null;
+  const navigate = useNavigate();
 
-  return (
+  const clickNavigate = (event) => {
+    event.preventDefault();
+    localStorage.setItem('individual', item);
+    navigate(`/movie/${item.id}`, { state: {movie: item} });
+  }
+
+  return <div onClick={clickNavigate}>
     <div className="poster">
       <div className="flex flex-col">
         <img
           draggable="false"
           alt={title}
           title={title}
-          src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+          src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '/default-path.webp'}
+          loading="lazy"
         />
 
         <div className="content">
-          <h2>{item.original_title}</h2>
-          <p>{item.overview.slice(0, 150)}...</p>
-          <p>Rating: {item.vote_average}</p>
-          <Link to={`./i/${item.id}`}>More Info</Link>
-
-          <button onClick={includes ? removeFromFavourites : addToFavourites}>
-            {includes ? 'Remove from' : 'Add to'} Favourites
+          <h2>{item.original_title ? item.original_title : ''}</h2>
+          <p>{item.overview ? item.overview.slice(0, 150) + '...' : 'Error'}</p>
+          <p>{item.vote_average > 0 ? item.vote_average.toFixed(0) : ''}</p>
+          <button onClick={buttonStopProp}>
+            {isFavourite(item.id) ? 'Remove from' : 'Add to'} Favourites
           </button>
         </div>
       </div>
     </div>
-  );
+  </div>;
 }

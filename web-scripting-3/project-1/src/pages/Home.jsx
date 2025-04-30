@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import MovieDataContext from '../middleware/MovieDataContext';
-import Poster from '../components/Poster.jsx';
+import MovieRow from '../components/MovieRow.jsx';
 
 export default function Home() {
 
@@ -25,13 +25,4 @@ export default function Home() {
 
     </>;
 
-}
-
-function MovieRow({type, title}) {
-    return <div className="movie-row">
-        <h2>{title}</h2>
-        <div className='flex flex-row gap-1'>
-            {type ? Object.values(type).map((item, key) => <Poster item={item} key={key} /> ) : ''}
-        </div>
-    </div>
 }
