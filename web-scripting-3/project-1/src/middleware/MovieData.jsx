@@ -12,8 +12,8 @@ const MovieDataProvider = ({ children }) => {
     return type.results.reduce((acc, movie) => {
       acc[movie.id] = movie;
       return acc;
-    });
-  }
+    }, {});
+  };
 
   useEffect(() => {
     const fetchMovies = async () => {

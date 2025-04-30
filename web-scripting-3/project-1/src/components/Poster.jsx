@@ -1,16 +1,21 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FavouritesContext } from '../middleware/FavouritesData.jsx';
+import { EmptyHeart, FullHeart } from './svg.jsx';
 
 export default function Poster({ item }) {
   const title = item['original_title'] + ' Movie Poster';
 
   const { addFavourite, removeFavourite, isFavourite } = useContext(FavouritesContext);
 
+  const [svgState, setSVGState] = useState(isFavourite(item.id));
+
   const toggleFavourite = () => {
     if (isFavourite(item.id)) {
+      setSVGState(false);
       removeFavourite(item.id);
     } else {
+      setSVGState(true);
       addFavourite(item.id);
     }
   };
@@ -44,7 +49,7 @@ export default function Poster({ item }) {
           <p>{item.overview ? item.overview.slice(0, 150) + '...' : 'Error'}</p>
           <p>{item.vote_average > 0 ? item.vote_average.toFixed(0) : ''}</p>
           <button onClick={buttonStopProp}>
-            {isFavourite(item.id) ? 'Remove from' : 'Add to'} Favourites
+            {svgState ? <FullHeart /> : <EmptyHeart /> }
           </button>
         </div>
       </div>

@@ -15,11 +15,7 @@ export default function Search() {
 
             const data = await Fetcher('https://api.themoviedb.org/3/search/movie?query=' + encodeURIComponent(search.trim()));
         
-            console.log(data);
-
             if (data.results) {
-
-                console.log(data);
 
                 setResults(data.results);
 
