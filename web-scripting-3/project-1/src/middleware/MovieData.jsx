@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import MovieDataContext from './MovieDataContext.js';
 import Fetcher from './Fetcher.js';
 
@@ -8,20 +8,27 @@ const MovieDataProvider = ({ children }) => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
 
+  const reducer = (type) => {
+    return type.results.reduce((acc, movie) => {
+      acc[movie.id] = movie;
+      return acc;
+    });
+  }
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const popular = await Fetcher('https://api.themoviedb.org/3/movie/popular');
-        setPopularMovies(popular.results);
+        setPopularMovies(reducer(popular));
 
         const topRated = await Fetcher('https://api.themoviedb.org/3/movie/top_rated');
-        setTopRatedMovies(topRated.results);
+        setTopRatedMovies(reducer(topRated));
 
         const nowPlaying = await Fetcher('https://api.themoviedb.org/3/movie/now_playing');
-        setNowPlayingMovies(nowPlaying.results);
+        setNowPlayingMovies(reducer(nowPlaying));
 
         const upcoming = await Fetcher('https://api.themoviedb.org/3/movie/upcoming');
-        setUpcomingMovies(upcoming.results);
+        setUpcomingMovies(reducer(upcoming));
 
       } catch (error) {
         console.error('Error fetching movie data:', error);

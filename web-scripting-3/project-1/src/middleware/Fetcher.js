@@ -1,4 +1,4 @@
-import APIKEY from '../../blah.js';
+import APIKEY from '../blah.js';
 
 export default async function Fetcher(url) {
 

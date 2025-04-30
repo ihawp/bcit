@@ -1,17 +1,15 @@
+import MovieDataContext from '../middleware/MovieDataContext.js';
+import { useContext } from 'react';
+
 export default function Favourites() {
-	
+
+	const { Popular, NowPlaying, TopRated, Upcoming } = useContext(MovieDataContext);
+	const collections = { Popular, NowPlaying, TopRated, Upcoming };
 
 
-	const l = JSON.parse(localStorage.getItem('favourites'));
-	// not sure whether I use a useEffect here?
-	if (l.length > 0) {
-		console.log('has favourites');
-	} else {
-		console.log('does not have any favourites');
-	}
-
+	console.log(JSON.parse(localStorage.getItem))
 
 	return <>
-		<h1>Favourites Page</h1>
+		<h1>Favourites</h1>
 	</>;
 }

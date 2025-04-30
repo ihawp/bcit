@@ -34,7 +34,7 @@ export default function Search() {
     return <>
         <h2>You searched for: {query}</h2>
         <h3>Here's what we've got!</h3>
-        <div className='movie-row flex flex-row flex-wrap gap-1'>
+        <div className='flex flex-row flex-wrap gap-1'>
             {results.length > 0 ? results.map((item, key) => <Poster item={item} key={key} />) : 'No Results!'}
         </div>
     </>
