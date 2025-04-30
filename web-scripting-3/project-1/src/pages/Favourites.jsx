@@ -7,7 +7,7 @@ export default function Favourites() {
 	const collections = { Popular, NowPlaying, TopRated, Upcoming };
 
 
-	console.log(JSON.parse(localStorage.getItem))
+	console.log(JSON.parse(localStorage.getItem('favourites')));
 
 	return <>
 		<h1>Favourites</h1>
