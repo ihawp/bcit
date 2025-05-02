@@ -17,8 +17,8 @@ export default function SearchBar() {
     }
 
     return <nav aria-label="Search Bar" id="search-bar-container">
-        <form onSubmit={makeSearch}>
-            <input type="text" name="search-bar" id="search-bar" required></input>
+        <form className="flex flex-row" onSubmit={makeSearch}>
+            <input type="text" name="search-bar" id="search-bar" placeholder="Search Bar" required></input>
             <input type="submit" value="Search" />
         </form>
     </nav>;

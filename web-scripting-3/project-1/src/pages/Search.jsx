@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Fetcher from '../middleware/Fetcher.js';
 
 import Poster from '../components/Poster.jsx';
+import Results from '../components/Results.jsx';
 
 export default function Search() {
 
@@ -27,11 +28,10 @@ export default function Search() {
 
     }, [query]);
 
-    return <>
-        <h2>You searched for: {query}</h2>
-        <h3>Here's what we've got!</h3>
-        <div className='flex flex-row flex-wrap gap-1'>
-            {results.length > 0 ? results.map((item, key) => <Poster item={item} key={key} />) : 'No Results!'}
-        </div>
-    </>
+  return <main className="flex flex-column items-center">
+      <header>
+        <h1>Favourites</h1>
+      </header>
+      <Results data={results} />
+    </main>;
 }

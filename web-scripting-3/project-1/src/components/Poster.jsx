@@ -45,9 +45,9 @@ export default function Poster({ item }) {
         />
 
         <div className="content" onClick={clickNavigate}>
-          <h2>{item.original_title ? item.original_title : ''}</h2>
-          <p>{window.innerWidth > 800 ? item.overview ? item.overview.slice(0, 150) + '...' : 'Error' : item.release_date}</p>
-          <p>{item.vote_average > 0 ? item.vote_average.toFixed(0) : ''}</p>
+          <h2>{item.original_title}</h2>
+          <p>{item.release_date}</p>
+          <p>{item.vote_average.toFixed(0)}</p>
           <button onClick={buttonStopProp}>
             {svgState ? <FullHeart /> : <EmptyHeart /> }
           </button>

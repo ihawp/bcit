@@ -4,8 +4,8 @@
 
 .movie-row > h2 {
     margin: 0 0 10px 0;
-    font-size: 24px;
-    line-height: 36px;
+    font-size: 32px;
+    line-height: 48px;
 }
 
 svg {
@@ -16,8 +16,8 @@ svg {
 
 .poster, .poster img, .poster .content {
     
-    --width: 125px;
-    --height: 187.5px;
+    --width: 200px;
+    --height: 300px;
     min-width: var(--width);
     min-height: var(--height);
     width: var(--width);
@@ -30,13 +30,6 @@ svg {
 .poster {
     border-radius: 8px;
     transition: all 0.25s ease;
-}
-
-@media (min-width: 50em) {
-    .poster, .poster img, .poster .content {
-        --width: 200px;
-        --height: 300px;
-    }
 }
 
 .poster {

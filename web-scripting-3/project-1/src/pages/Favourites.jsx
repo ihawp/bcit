@@ -1,7 +1,7 @@
 import MovieDataContext from '../middleware/MovieDataContext.js';
 import { useContext, useEffect, useState } from 'react';
 import { FavouritesContext } from '../middleware/FavouritesData.jsx';
-import Poster from '../components/Poster.jsx';
+import Results from '../components/Results.jsx';
 
 export default function Favourites() {
   const { Popular, NowPlaying, TopRated, Upcoming } = useContext(MovieDataContext);
@@ -42,12 +42,6 @@ export default function Favourites() {
       <header>
         <h1>Favourites</h1>
       </header>
-      <section className="flex flex-row flex-wrap gap-1">
-          {data.length > 0 ? (
-            data.map((item) => <Poster item={item} key={item.id} />)
-          ) : (
-            <p>No favourites yet.</p>
-          )}
-      </section>
-  </main>;
+      <Results data={data} />
+    </main>;
 }

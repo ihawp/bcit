@@ -61,7 +61,7 @@ export default function Individual() {
 	const Add = (id) => addFavourite(id);
 	const Remove = (id) => removeFavourite(id);
 
-	return <>
+	return <main>
 		<header>
 			<h1>Individual Movie Page</h1>
 		</header>
@@ -74,5 +74,5 @@ export default function Individual() {
 				<button onClick={buttonStopProp}>{favouriteState ? 'Remove' : 'Add'}</button>
 			</div>
 		</section>
-	</>;
+	</main>;
 }

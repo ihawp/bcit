@@ -7,9 +7,11 @@ export default function Home() {
 
     const { Popular, NowPlaying, TopRated, Upcoming } = useContext(MovieDataContext);
 
-    return <>
+    return <main>
 
-        <h1>Home</h1>
+        <header>
+            <h1>Home</h1>
+        </header>
 
         <div className='movie-rows flex flex-column gap-1'>
 
@@ -23,6 +25,6 @@ export default function Home() {
 
         </div>
 
-    </>;
+    </main>;
 
 }

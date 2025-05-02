@@ -1,3 +1,23 @@
+.search-bar-container, #search-bar-container, #search-bar-container form {
+    width: 100%;
+}
+
+#search-bar-container form {
+    gap: .5rem;
+}
+
 #search-bar-container input {
     padding: .5rem .75rem;
+    border-radius: 12px;
+    border: none;
+}
+
+#search-bar-container input[type="text"] {
+    width: 100%;
+}
+
+@media (min-width: 50em) {
+    #search-bar-container input[type="text"], .search-bar-container, #search-bar-container, #search-bar-container form {
+        width: unset;
+    }
 }
