@@ -38,16 +38,16 @@ export default function Favourites() {
     setData(arr);
   }, [favourites, collectionsReady]);
 
-  return (
-    <>
-      <h1>Favourites</h1>
-      <div className="flex flex-row flex-wrap gap-1">
-        {data.length > 0 ? (
-          data.map((item) => <Poster item={item} key={item.id} />)
-        ) : (
-          <p>No favourites yet.</p>
-        )}
-      </div>
-    </>
-  );
+  return <main className="flex flex-column items-center">
+      <header>
+        <h1>Favourites</h1>
+      </header>
+      <section className="flex flex-row flex-wrap gap-1">
+          {data.length > 0 ? (
+            data.map((item) => <Poster item={item} key={item.id} />)
+          ) : (
+            <p>No favourites yet.</p>
+          )}
+      </section>
+  </main>;
 }

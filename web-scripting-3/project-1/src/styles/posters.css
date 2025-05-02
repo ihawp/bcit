@@ -1,0 +1,81 @@
+.movie-row > div {
+    padding: 2rem 0;
+}
+
+.movie-row > h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+svg {
+    width: 25px;
+    height: 25px;
+    fill: #000;
+}
+
+.poster, .poster img, .poster .content {
+    
+    --width: 125px;
+    --height: 187.5px;
+    min-width: var(--width);
+    min-height: var(--height);
+    width: var(--width);
+    height: var(--height);
+    max-width: var(--width);
+    max-height: var(--height);
+
+}
+
+.poster {
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+@media (min-width: 50em) {
+    .poster, .poster img, .poster .content {
+        --width: 200px;
+        --height: 300px;
+    }
+}
+
+.poster {
+    width: 100%;
+}
+
+.poster, .poster button { cursor: pointer }
+
+.poster img {
+    position: absolute;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.poster .content {
+    z-index: 1;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    border-radius: 8px;
+
+    background-color: rgb(23, 139, 255, 0.7);
+
+    transition: all 0.25s ease;
+
+    padding: 1rem;
+}
+
+.poster .content h2 {
+    font-size: 1.125rem;
+}
+
+.poster:hover div div {
+    visibility: visible;
+    opacity: 1;
+}
+
+.poster:hover {
+    transform: scale(1.05);
+}

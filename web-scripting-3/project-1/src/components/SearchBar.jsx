@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import '../styles/searchBar.css';
 
 export default function SearchBar() {
 
@@ -15,10 +16,10 @@ export default function SearchBar() {
 
     }
 
-    return <nav aria-label="Search Bar">
+    return <nav aria-label="Search Bar" id="search-bar-container">
         <form onSubmit={makeSearch}>
             <input type="text" name="search-bar" id="search-bar" required></input>
-            <input type="submit" value="Search"/>
+            <input type="submit" value="Search" />
         </form>
     </nav>;
 }

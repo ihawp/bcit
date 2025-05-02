@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FavouritesContext } from '../middleware/FavouritesData.jsx';
 import { EmptyHeart, FullHeart } from './svg.jsx';
+import '../styles/posters.css';
 
 export default function Poster({ item }) {
   const title = item['original_title'] + ' Movie Poster';
@@ -11,7 +12,7 @@ export default function Poster({ item }) {
   const [svgState, setSVGState] = useState(isFavourite(item.id));
 
   const toggleFavourite = () => {
-    if (isFavourite(item.id)) {
+    if (svgState) {
       setSVGState(false);
       removeFavourite(item.id);
     } else {
@@ -29,11 +30,10 @@ export default function Poster({ item }) {
 
   const clickNavigate = (event) => {
     event.preventDefault();
-    localStorage.setItem('individual', item);
     navigate(`/movie/${item.id}`, { state: {movie: item} });
   }
 
-  return <div onClick={clickNavigate}>
+  return <div>
     <div className="poster">
       <div className="flex flex-col">
         <img
@@ -44,9 +44,9 @@ export default function Poster({ item }) {
           loading="lazy"
         />
 
-        <div className="content">
+        <div className="content" onClick={clickNavigate}>
           <h2>{item.original_title ? item.original_title : ''}</h2>
-          <p>{item.overview ? item.overview.slice(0, 150) + '...' : 'Error'}</p>
+          <p>{window.innerWidth > 800 ? item.overview ? item.overview.slice(0, 150) + '...' : 'Error' : item.release_date}</p>
           <p>{item.vote_average > 0 ? item.vote_average.toFixed(0) : ''}</p>
           <button onClick={buttonStopProp}>
             {svgState ? <FullHeart /> : <EmptyHeart /> }

@@ -173,14 +173,21 @@
     color: black;
 }
 
+button.slick-arrow {
+    position: absolute;
+    visibility: hidden;
+}
+
 .slick-next {
     right: 10px;
 }
 
-.slick-next, .slick-prev {
-    position: absolute;
-}
-
 .slick-prev {
     left: 10px;
+}
+
+@media (min-width: 50em) {
+    .slick-next, .slick-prev {
+        visibility: visible;
+    }
 }

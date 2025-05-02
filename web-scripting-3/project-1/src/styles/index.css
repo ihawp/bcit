@@ -1,0 +1,110 @@
+/* ihawp.com 2025 */
+
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+
+}
+
+body {
+
+    overflow-x: hidden;
+
+    background-color: dodgerblue;
+
+    font-family: sans-serif;
+
+    margin: 1rem;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav {
+
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    text-underline-offset: 4px;
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: row;
+
+    list-style: none;
+    gap: 1rem;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* SINGLE PROPERTY CLASSES */
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.gap-1 {
+    gap: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+h1 {
+    display: block;
+    text-align: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-max {
+    width: max-content;
+}

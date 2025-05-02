@@ -1,37 +1,65 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import Fetcher from '../middleware/Fetcher';
+import { FavouritesContext } from '../middleware/FavouritesData';
 
-const updateDocumentTitle = (content) => {
-	const appTitle = 'React Movie DB';
-    document.title = appTitle + ' - ' + content;
-}
+export default function Individual() {
 
-export default function Favourites() {
-	const { id } = useParams();
+	// use params causes string which does not match for .includes
+	let { id } = useParams();
+	id = Number(id);
+
+	const { isFavourite, addFavourite, removeFavourite } = useContext(FavouritesContext);
+
+	const [favouriteState, setFavouriteState] = useState(isFavourite(id));
+
 	const location = useLocation();
-
 	const [data, setData] = useState({});
 
+	const toggleFavourite = (id) => {
+	  if (favouriteState) {
+		setFavouriteState(false);
+		Remove(id);
+	  } else {
+		setFavouriteState(true);
+		Add(id);
+	  }
+	};
+
+	const buttonStopProp = () => {
+		toggleFavourite(id);
+	}
+
+	const useFetcher = async () => {
+
+		let response = await Fetcher('https://api.themoviedb.org/3/movie/'+id);
+
+		if (response) {
+			setData(response);
+		} else {
+			setData([]);
+		}
+
+	}
+
 	useEffect(() => {
+
+		// Point of this is to either retrieve data
+		// from the point-of-click (on the poster)
+		// or query for the movie data based on the
+		// id param (if the data from poc not set)
 		if (location.state) {
 			const { movie } = location.state;
 			if (movie) setData(movie);
-			console.log(movie);
 		} else {
-			const useFetcher = () => {
-			
-			}
+			useFetcher();
 		}
 
-		const useFetcher = () => {
+	}, []);
 
-		}
-
-	}, [location]);
-
-    useEffect(() => updateDocumentTitle('Individual Movie Page'), [])
+	const Add = (id) => addFavourite(id);
+	const Remove = (id) => removeFavourite(id);
 
 	return <>
 		<header>
@@ -43,7 +71,7 @@ export default function Favourites() {
 
 			<div className="">
 				<p>{data.original_title ? data.original_title : ''}</p>
-
+				<button onClick={buttonStopProp}>{favouriteState ? 'Remove' : 'Add'}</button>
 			</div>
 		</section>
 	</>;
