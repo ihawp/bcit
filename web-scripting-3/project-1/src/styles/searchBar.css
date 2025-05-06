@@ -22,20 +22,19 @@
     border: 1px solid transparent;
 }
 
-#search-bar-container input[type="text"], #search-bar-container input[type="text"]::placeholder {
+#search-bar-container input[type="text"]::placeholder {
     color: yellow;
     width: 100%;
 }
 
 #search-bar-container input[type="submit"] {
-    background-color: yellow;
-    color: dodgerblue;
+    background-color: rgb(19, 55, 92);
+    border: 1px solid yellow;
 }
 
 #search-bar-container input[type="submit"]:hover {
-    background-color: dodgerblue;
-    color: yellow;
-    border: 1px solid yellow;
+    background-color: yellow;
+    color: rgb(19, 55, 92);
 }
 
 @media (min-width: 50em) {

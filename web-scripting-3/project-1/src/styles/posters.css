@@ -49,7 +49,7 @@
 
     border-radius: 8px;
 
-    background-color: rgb(23, 139, 255, 0.75);
+    background-color: rgba(21, 52, 83, 0.85);
 
     transition: all 0.25s ease;
 
@@ -57,15 +57,13 @@
 }
 
 .poster .content h2 {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     flex-grow: 1;
-    height: calc(100% - 50px);
+    height: calc(100% - 70px);
 }
 
 .poster button {
     border: none;
-
-    box-shadow: 100px 100px 100px 100px rgb(23, 139, 255, 0.75);
     background-color: transparent;
 }
 
