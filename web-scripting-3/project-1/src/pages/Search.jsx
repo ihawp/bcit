@@ -29,8 +29,9 @@ export default function Search() {
     }, [query]);
 
   return <main className="flex flex-column items-center">
-      <header>
-        <h1>Favourites</h1>
+      <header className="flex flex-column">
+        <h1>Search</h1>
+        <h2>You asked for "{query}" and this is what we found!</h2>
       </header>
       <Results data={results} />
     </main>;

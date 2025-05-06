@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import '../styles/searchBar.css';
+import { MagnifyingGlass } from './svg';
 
 export default function SearchBar() {
 
@@ -17,7 +18,8 @@ export default function SearchBar() {
     }
 
     return <nav aria-label="Search Bar" id="search-bar-container">
-        <form className="flex flex-row" onSubmit={makeSearch}>
+        <form className="flex flex-row items-center" onSubmit={makeSearch}>
+            <MagnifyingGlass />
             <input type="text" name="search-bar" id="search-bar" placeholder="Search Bar" required></input>
             <input type="submit" value="Search" />
         </form>

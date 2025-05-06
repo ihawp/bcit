@@ -6,7 +6,7 @@ export default function Results({data}) {
       {data.length > 0 ? (
           data.map((item) => <Poster item={item} key={item.id} />)
         ) : (
-          <p>No favourites yet.</p>
+          <p>No results yet.</p>
       )}
     </div>
   </section>;

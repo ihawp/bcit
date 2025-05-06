@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FavouritesContext } from '../middleware/FavouritesData.jsx';
-import { EmptyHeart, FullHeart } from './svg.jsx';
 import '../styles/posters.css';
+import FavouriteButton from './FavouriteButton.jsx';
 
 export default function Poster({ item }) {
   const title = item['original_title'] + ' Movie Poster';
@@ -47,10 +47,10 @@ export default function Poster({ item }) {
         <div className="content" onClick={clickNavigate}>
           <h2>{item.original_title}</h2>
           <p>{item.release_date}</p>
-          <p>{item.vote_average.toFixed(0)}</p>
-          <button onClick={buttonStopProp}>
-            {svgState ? <FullHeart /> : <EmptyHeart /> }
-          </button>
+          <div className='flex flex-row justify-between'>
+            <p>{item.vote_average.toFixed(1)} / 10</p>
+            <FavouriteButton buttonStopProp={buttonStopProp} svgState={svgState} />
+          </div>
         </div>
       </div>
     </div>

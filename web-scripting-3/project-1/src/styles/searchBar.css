@@ -6,14 +6,36 @@
     gap: .5rem;
 }
 
+.magnifying-glass {
+    width: 20px;
+    height: 20px;
+}
+
 #search-bar-container input {
     padding: .5rem .75rem;
     border-radius: 12px;
+    font-size: 1rem;
     border: none;
+    background-color: transparent;
+    outline: none;
+    color: yellow;
+    border: 1px solid transparent;
 }
 
-#search-bar-container input[type="text"] {
+#search-bar-container input[type="text"], #search-bar-container input[type="text"]::placeholder {
+    color: yellow;
     width: 100%;
+}
+
+#search-bar-container input[type="submit"] {
+    background-color: yellow;
+    color: dodgerblue;
+}
+
+#search-bar-container input[type="submit"]:hover {
+    background-color: dodgerblue;
+    color: yellow;
+    border: 1px solid yellow;
 }
 
 @media (min-width: 50em) {

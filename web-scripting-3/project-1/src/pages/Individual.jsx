@@ -3,6 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import Fetcher from '../middleware/Fetcher';
 import { FavouritesContext } from '../middleware/FavouritesData';
+import FavouriteButton from '../components/FavouriteButton';
+
+import '../styles/Individual.css'
 
 export default function Individual() {
 
@@ -17,7 +20,7 @@ export default function Individual() {
 	const location = useLocation();
 	const [data, setData] = useState({});
 
-	const toggleFavourite = (id) => {
+	const toggleFavourite = () => {
 	  if (favouriteState) {
 		setFavouriteState(false);
 		Remove(id);
@@ -61,17 +64,19 @@ export default function Individual() {
 	const Add = (id) => addFavourite(id);
 	const Remove = (id) => removeFavourite(id);
 
-	return <main>
+	return <main id="individual" className='flex flex-column items-center'>
+		{data ? console.log(data) : console.log(data)}
 		<header>
-			<h1>Individual Movie Page</h1>
+			<h1>{data.original_title}</h1>
 		</header>
 		<section>
 
 			<img src={data.backdrop_path ? 'https://image.tmdb.org/t/p/w1280' + data.backdrop_path : 'default-path.webp'} loading="lazy" draggable="false" />
 
 			<div className="">
-				<p>{data.original_title ? data.original_title : ''}</p>
-				<button onClick={buttonStopProp}>{favouriteState ? 'Remove' : 'Add'}</button>
+				<h2>Overview</h2>
+				<p>{data.overview}</p>
+				<FavouriteButton buttonStopProp={toggleFavourite} svgState={favouriteState} />
 			</div>
 		</section>
 	</main>;

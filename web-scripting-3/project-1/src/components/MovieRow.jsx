@@ -9,9 +9,16 @@ export default function MovieRow({type, title}) {
     const settings = {
         infinite: true,
         speed: 500,
-        slidesToShow: 7,
-        slidesToScroll: 7,
+        slidesToShow: 8,
+        slidesToScroll: 1,
         responsive: [
+          {
+            breakpoint: 1700,
+            settings: {
+              slidesToShow: 7,
+              slidesToScroll: 1,
+            },
+          },
           {
             breakpoint: 1460,
             settings: {

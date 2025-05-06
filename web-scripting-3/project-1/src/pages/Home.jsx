@@ -10,7 +10,7 @@ export default function Home() {
     return <main>
 
         <header>
-            <h1>Home</h1>
+            <h1>MovieDB Website</h1>
         </header>
 
         <div className='movie-rows flex flex-column gap-1'>
