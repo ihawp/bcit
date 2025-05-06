@@ -56,6 +56,14 @@ input[type="submit"], button, a {
     cursor: pointer;
 }
 
+a.underline {
+    text-decoration: underline;
+}
+
+main {
+    min-height: calc(100vh - 168px);
+}
+
 a {
     text-decoration: none;
     color: #fff;
@@ -232,7 +240,7 @@ main.about p {
 }
 
 main.about img {
-    height: 43px;
+    max-width: 320px;
     margin: 14px 0;
 }
 
